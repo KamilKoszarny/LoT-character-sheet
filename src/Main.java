@@ -1,17 +1,25 @@
+import GUI.GuiController;
+import controller.PlayerUpdater;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Player;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/LoT Character Sheet.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI/LoT Character Sheet.fxml"));
+        Pane pane = loader.load();
         primaryStage.setTitle("Legacy of Tyrant: Karta postaci");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(pane));
         primaryStage.show();
+
+        GuiController guiController = loader.getController();
+        PlayerUpdater.setGuiController(guiController);
+        PlayerUpdater.init();
     }
 
 

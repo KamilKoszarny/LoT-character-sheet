@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<VBox maxWidth="-Infinity" prefWidth="715.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GuiController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -260,7 +260,7 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <TextField fx:id="vim" alignment="CENTER" prefWidth="50.0">
+                                                <TextField fx:id="vim" alignment="CENTER" editable="false" prefWidth="50.0">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -288,7 +288,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="strength" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="strength" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -316,7 +316,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="endurance" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="endurance" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -344,7 +344,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="form" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="form" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -368,7 +368,7 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <TextField fx:id="efficiency" alignment="CENTER" prefWidth="50.0">
+                                                <TextField fx:id="efficiency" alignment="CENTER" editable="false" prefWidth="50.0">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -396,7 +396,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="eye" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="eye" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -424,7 +424,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="arm" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="arm" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -452,7 +452,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="agility" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="agility" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -476,7 +476,7 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <TextField fx:id="intelligence" alignment="CENTER" prefWidth="50.0">
+                                                <TextField fx:id="intelligence" alignment="CENTER" editable="false" prefWidth="50.0">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -504,7 +504,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="knowledge" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="knowledge" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -532,7 +532,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="focus" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="focus" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -560,7 +560,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="charisma" alignment="CENTER" prefColumnCount="2">
+                                                <TextField fx:id="charisma" alignment="CENTER" editable="false" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
