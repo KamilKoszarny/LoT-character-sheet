@@ -1,6 +1,7 @@
 package model;
 
 import lombok.Data;
+import model.items.Weapon;
 
 @Data
 public class Player {
@@ -69,4 +70,7 @@ public class Player {
     private int armorBody;
     private int armorArms;
     private int armorLegs;
+
+
+    private Weapon weaponA;
 }
