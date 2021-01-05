@@ -1,9 +1,15 @@
 package controller;
 
 import GUI.GuiController;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import model.Proffesion;
 import model.Race;
 import model.Sign;
+import model.items.Weapon;
+import model.items.WeaponModel;
+import model.items.WeaponType;
 
 public class GuiInitializer {
 
@@ -15,6 +21,8 @@ public class GuiInitializer {
         initProffesions();
         initRaces();
         initSigns();
+
+        initWeaponAMenu();
     }
 
     private static void initProffesions() {
@@ -27,5 +35,25 @@ public class GuiInitializer {
 
     private static void initSigns() {
         guiController.getSign().getItems().addAll(Sign.values());
+    }
+
+    private static void initWeaponAMenu() {
+        MenuButton button = guiController.getWeaponAMenu();
+        for (WeaponType weaponType: WeaponType.values()) {
+            Menu menu = new Menu();
+            menu.setText(weaponType.getNamePL());
+            for (WeaponModel weaponModel: WeaponModel.values()) {
+                if (weaponModel.getType().equals(weaponType)) {
+                    MenuItem menuItem = new MenuItem();
+                    menuItem.setText(weaponModel.getNamePL());
+                    menuItem.setOnAction(event -> {
+                        PlayerUpdater.getCurrentPlayer().setWeaponA(new Weapon(weaponModel));
+                        PlayerUpdater.updateDmg();
+                    });
+                    menu.getItems().add(menuItem);
+                }
+            }
+            button.getItems().add(menu);
+        }
     }
 }

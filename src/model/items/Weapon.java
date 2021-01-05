@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public class Weapon extends Item {
 
-    private WeaponType type;
-    private WeaponModel model;
-    private int dmgMin;
-    private int dmgMax;
+    private final WeaponType type;
+    private final WeaponModel model;
+    private final int dmgMin;
+    private final int dmgMax;
 
     public Weapon(WeaponModel model) {
         this.type = model.getType();

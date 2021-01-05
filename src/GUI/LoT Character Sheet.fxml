@@ -1598,23 +1598,7 @@
                                           </ImageView>
                                        </children>
                                     </HBox>
-                                    <MenuButton fx:id="weaponAMenu" layoutX="177.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.5" popupSide="RIGHT" prefHeight="141.0" prefWidth="75.0" text="WeaponA">
-                                      <items>
-                                          <Menu mnemonicParsing="false" text="Miecze">
-                                            <items>
-                                              <MenuItem fx:id="shortSwordA" mnemonicParsing="false" text="Krótki miecz" />
-                                                <MenuItem fx:id="saberA" mnemonicParsing="false" text="Szabla" />
-                                                <MenuItem fx:id="chopperA" mnemonicParsing="false" text="Tasak" />
-                                            </items>
-                                          </Menu>
-                                          <Menu mnemonicParsing="false" text="Topory">
-                                             <items>
-                                                <MenuItem fx:id="adzeA" mnemonicParsing="false" text="Siekiera" />
-                                                <MenuItem mnemonicParsing="false" text="2" />
-                                             </items>
-                                          </Menu>
-                                      </items>
-                                    </MenuButton>
+                                    <MenuButton fx:id="weaponAMenu" layoutX="177.0" layoutY="53.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="141.0" prefWidth="75.0" text="WeaponA" />
                                  </children>
                               </AnchorPane>
                               <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="10.0">
