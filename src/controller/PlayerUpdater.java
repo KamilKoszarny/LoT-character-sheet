@@ -17,7 +17,7 @@ public class PlayerUpdater {
         PlayerUpdater.guiController = guiController;
         createEmptyPlayer();
         initUpdating();
-        displayAll();
+        displayAllNotAuto();
         ItemUpdater.init(guiController);
     }
 
@@ -27,7 +27,7 @@ public class PlayerUpdater {
 
     static void loadPlayer(Player player) {
         currentPlayer = player;
-        displayAll();
+        displayAllNotAuto();
     }
 
 
@@ -153,6 +153,22 @@ public class PlayerUpdater {
             currentPlayer.setHitPoints(currentPlayer.getHitPoints() - 1);
             displayHitPoints();
         });
+        guiController.getActionsPlus().setOnMouseClicked(event -> {
+            currentPlayer.setActions(currentPlayer.getActions() + 1);
+            displayActions();
+        });
+        guiController.getActionsMinus().setOnMouseClicked(event -> {
+            currentPlayer.setActions(currentPlayer.getActions() - 1);
+            displayActions();
+        });
+        guiController.getManaPlus().setOnMouseClicked(event -> {
+            currentPlayer.setMana(currentPlayer.getMana() + 1);
+            displayMana();
+        });
+        guiController.getManaMinus().setOnMouseClicked(event -> {
+            currentPlayer.setMana(currentPlayer.getMana() - 1);
+            displayMana();
+        });
     }
 
 
@@ -191,6 +207,8 @@ public class PlayerUpdater {
         int arm = StatsCalculator.calculateArm(currentPlayer);
         currentPlayer.setArm(arm);
         guiController.getArm().setText(Integer.toString(arm));
+
+        updateHits();
     }
 
     private static void updateEye() {
@@ -203,6 +221,8 @@ public class PlayerUpdater {
         int agility = StatsCalculator.calculateAgility(currentPlayer);
         currentPlayer.setAgility(agility);
         guiController.getAgility().setText(Integer.toString(agility));
+
+        updateDodges();
     }
 
     private static void updateEfficiency() {
@@ -224,6 +244,8 @@ public class PlayerUpdater {
         int focus = StatsCalculator.calculateFocus(currentPlayer);
         currentPlayer.setFocus(focus);
         guiController.getFocus().setText(Integer.toString(focus));
+
+        updateManaIncrease();
     }
 
     private static void updateCharisma() {
@@ -265,6 +287,24 @@ public class PlayerUpdater {
         guiController.getArmorLegs().setText(Integer.toString(armorLegs));
     }
 
+    static void updateHits() {
+        int hitA = StatsCalculator.calculateHitA(currentPlayer);
+        currentPlayer.setHitA(hitA);
+        guiController.getHitA().setText(Integer.toString(hitA));
+    }
+
+    static void updateDodges() {
+        int dodge = StatsCalculator.calculateDodgeA(currentPlayer);
+        currentPlayer.setDodgeA(dodge);
+        guiController.getDodgeA().setText(Integer.toString(dodge));
+    }
+
+    static void updateManaIncrease() {
+        int manaIncrease = StatsCalculator.calculateManaIncrease(currentPlayer);
+        currentPlayer.setManaIncrease(manaIncrease);
+        guiController.getManaIncrease().setText(Integer.toString(manaIncrease));
+    }
+
     private static void displayHitPoints() {
         guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + currentPlayer.getHitPointsMax());
     }
@@ -277,7 +317,7 @@ public class PlayerUpdater {
         guiController.getMana().setText("" + currentPlayer.getMana() + '/' + currentPlayer.getManaMax());
     }
 
-    private static void displayAll() {
+    private static void displayAllNotAuto() {
         guiController.getProffesion().getSelectionModel().select(currentPlayer.getProffesion());
         guiController.getRace().getSelectionModel().select(currentPlayer.getRace());
         guiController.getSign().getSelectionModel().select(currentPlayer.getSign());
@@ -316,12 +356,5 @@ public class PlayerUpdater {
         displayActions();
         displayMana();
         guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
-        guiController.getSpeed().setText(Integer.toString(currentPlayer.getSpeed()));
-        guiController.getManaIncrease().setText(Integer.toString(currentPlayer.getManaIncrease()));
-        guiController.getArmorHead().setText(Integer.toString(currentPlayer.getArmorHead()));
-        guiController.getArmorBody().setText(Integer.toString(currentPlayer.getArmorBody()));
-        guiController.getArmorArms().setText(Integer.toString(currentPlayer.getArmorArms()));
-        guiController.getArmorLegs().setText(Integer.toString(currentPlayer.getArmorLegs()));
-
     }
 }

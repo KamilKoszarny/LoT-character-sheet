@@ -61,6 +61,11 @@ public class StatsCalculator {
         return arm;
     }
 
+    protected static int calculateHitA(Player player) {
+        int hitA = 50 + player.getArm();
+        return hitA;
+    }
+
     protected static int calculateEye(Player player) {
         int eye = player.getEyeBase();
         return eye;
@@ -69,6 +74,11 @@ public class StatsCalculator {
     protected static int calculateAgility(Player player) {
         int agility = player.getAgilityBase();
         return agility;
+    }
+
+    protected static int calculateDodgeA(Player player) {
+        int dodge = (int) Math.round(player.getAgility() / 2.);
+        return dodge;
     }
 
     protected static int calculateEfficiency(Player player) {
@@ -84,6 +94,11 @@ public class StatsCalculator {
     protected static int calculateFocus(Player player) {
         int focus = player.getFocusBase();
         return focus;
+    }
+
+    protected static int calculateManaIncrease(Player player) {
+        int manaIncrease = (int) Math.round(player.getFocus() / 5.);
+        return manaIncrease;
     }
 
     protected static int calculateCharisma(Player player) {

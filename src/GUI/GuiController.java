@@ -136,10 +136,22 @@ public class GuiController {
     private TextField actions;
 
     @FXML
+    private Button actionsPlus;
+
+    @FXML
+    private Button actionsMinus;
+
+    @FXML
     private TextField speed;
 
     @FXML
     private TextField mana;
+
+    @FXML
+    private Button manaPlus;
+
+    @FXML
+    private Button manaMinus;
 
     @FXML
     private TextField manaIncrease;
