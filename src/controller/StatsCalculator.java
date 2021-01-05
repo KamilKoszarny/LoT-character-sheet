@@ -9,9 +9,39 @@ public class StatsCalculator {
         return strength;
     }
 
+    protected static int calculateDmgAMin(Player player) {
+        int dmgAMin = (int) Math.round(1. * (1 + player.getStrength()/50.));
+        return dmgAMin;
+    }
+
+    protected static int calculateDmgAMax(Player player) {
+        int dmgAMax = (int) Math.round(2. * (1 + player.getStrength()/50.));
+        return dmgAMax;
+    }
+
     protected static int calculateEndurance(Player player) {
         int endurance = player.getEnduranceBase();
         return endurance;
+    }
+
+    protected static int calculateArmorHead(Player player) {
+        int armorHead = (int) Math.round(player.getEndurance()/20.);
+        return armorHead;
+    }
+
+    protected static int calculateArmorBody(Player player) {
+        int armorBody = (int) Math.round(player.getEndurance()/20.);
+        return armorBody;
+    }
+
+    protected static int calculateArmorArms(Player player) {
+        int armorArms = (int) Math.round(player.getEndurance()/20.);
+        return armorArms;
+    }
+
+    protected static int calculateArmorLegs(Player player) {
+        int armorLegs = (int) Math.round(player.getEndurance()/20.);
+        return armorLegs;
     }
 
     protected static int calculateForm(Player player) {

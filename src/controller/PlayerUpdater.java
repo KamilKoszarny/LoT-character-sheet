@@ -109,12 +109,16 @@ public class PlayerUpdater {
         int strength = StatsCalculator.calculateStrength(currentPlayer);
         currentPlayer.setStrength(strength);
         guiController.getStrength().setText(Integer.toString(strength));
+
+        updateDmg();
     }
 
     private static void updateEndurance() {
         int endurance = StatsCalculator.calculateEndurance(currentPlayer);
         currentPlayer.setEndurance(endurance);
         guiController.getEndurance().setText(Integer.toString(endurance));
+
+        updateArmor();
     }
 
     private static void updateForm() {
@@ -127,6 +131,9 @@ public class PlayerUpdater {
         int vim = StatsCalculator.calculateVim(currentPlayer);
         currentPlayer.setVim(vim);
         guiController.getVim().setText(Integer.toString(vim));
+        int hitPointsMax = (int) Math.round(vim/3.);
+        currentPlayer.setHitPointsMax(hitPointsMax);
+        guiController.getHitPoints().setText("" + hitPointsMax + '/' + hitPointsMax);
     }
 
     private static void updateArm() {
@@ -175,6 +182,30 @@ public class PlayerUpdater {
         int intelligence = StatsCalculator.calculateIntelligence(currentPlayer);
         currentPlayer.setIntelligence(intelligence);
         guiController.getIntelligence().setText(Integer.toString(intelligence));
+    }
+
+
+    private static void updateDmg() {
+        int dmgAMin = StatsCalculator.calculateDmgAMin(currentPlayer);
+        currentPlayer.setDmgAMin(dmgAMin);
+        int dmgAMax = StatsCalculator.calculateDmgAMax(currentPlayer);
+        currentPlayer.setDmgAMax(dmgAMax);
+        guiController.getDmgA().setText("" + dmgAMin + "-" + dmgAMax);
+    }
+
+    private static void updateArmor() {
+        int armorHead = StatsCalculator.calculateArmorHead(currentPlayer);
+        currentPlayer.setArmorHead(armorHead);
+        guiController.getArmorHead().setText(Integer.toString(armorHead));
+        int armorBody = StatsCalculator.calculateArmorBody(currentPlayer);
+        currentPlayer.setArmorBody(armorBody);
+        guiController.getArmorBody().setText(Integer.toString(armorBody));
+        int armorArms = StatsCalculator.calculateArmorArms(currentPlayer);
+        currentPlayer.setArmorArms(armorArms);
+        guiController.getArmorArms().setText(Integer.toString(armorArms));
+        int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
+        currentPlayer.setArmorLegs(armorLegs);
+        guiController.getArmorLegs().setText(Integer.toString(armorLegs));
     }
 
     public static void setGuiController(GuiController guiController) {
