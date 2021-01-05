@@ -1,6 +1,5 @@
 package controller;
 
-import GUI.GuiController;
 import lombok.Getter;
 import lombok.Setter;
 import model.Player;

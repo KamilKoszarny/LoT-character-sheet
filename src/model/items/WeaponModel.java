@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum WeaponModel {
 
     SHORT_SWORD(WeaponType.SWORD, "Krótki miecz", 2, 4),
-    SABER(WeaponType.SWORD, "Szabla", 2, 5),
+    SABRE(WeaponType.SWORD, "Szabla", 2, 5),
     CHOPPER(WeaponType.SWORD, "Tasak", 3, 6),
     ADZE(WeaponType.AXE, "Siekiera", 1, 4);
 

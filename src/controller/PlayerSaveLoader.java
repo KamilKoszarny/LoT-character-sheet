@@ -1,6 +1,5 @@
 package controller;
 
-import GUI.GuiController;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;

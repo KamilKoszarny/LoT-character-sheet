@@ -1,7 +1,5 @@
 package controller;
 
-import GUI.GuiController;
-
 public class ItemUpdater {
 
     private static GuiController guiController;
