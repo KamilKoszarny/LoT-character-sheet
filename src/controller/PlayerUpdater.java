@@ -17,6 +17,7 @@ public class PlayerUpdater {
         PlayerUpdater.guiController = guiController;
         createEmptyPlayer();
         initUpdating();
+        displayAll();
         ItemUpdater.init(guiController);
     }
 
@@ -29,8 +30,10 @@ public class PlayerUpdater {
         displayAll();
     }
 
+
     private static void initUpdating() {
         initIdentityUpdating();
+        initAttributesUpdating();
         initStatsUpdating();
     }
 
@@ -55,7 +58,8 @@ public class PlayerUpdater {
         guiController.getHistory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHistory(newValue));
     }
 
-    private static void initStatsUpdating() {
+
+    private static void initAttributesUpdating() {
         initStrengthBaseListener();
         initEnduranceBaseListener();
         initFormBaseListener();
@@ -139,6 +143,19 @@ public class PlayerUpdater {
         });
     }
 
+
+    private static void initStatsUpdating() {
+        guiController.getHitPointsPlus().setOnMouseClicked(event -> {
+            currentPlayer.setHitPoints(currentPlayer.getHitPoints() + 1);
+            displayHitPoints();
+        });
+        guiController.getHitPointsMinus().setOnMouseClicked(event -> {
+            currentPlayer.setHitPoints(currentPlayer.getHitPoints() - 1);
+            displayHitPoints();
+        });
+    }
+
+
     private static void updateStrength() {
         int strength = StatsCalculator.calculateStrength(currentPlayer);
         currentPlayer.setStrength(strength);
@@ -192,6 +209,9 @@ public class PlayerUpdater {
         int efficiency = StatsCalculator.calculateEfficiency(currentPlayer);
         currentPlayer.setEfficiency(efficiency);
         guiController.getEfficiency().setText(Integer.toString(efficiency));
+        int speed = (int) Math.round(1 + efficiency/25.);
+        currentPlayer.setSpeed(speed);
+        guiController.getSpeed().setText(Integer.toString(speed));
     }
 
     private static void updateKnowledge() {
@@ -216,6 +236,9 @@ public class PlayerUpdater {
         int intelligence = StatsCalculator.calculateIntelligence(currentPlayer);
         currentPlayer.setIntelligence(intelligence);
         guiController.getIntelligence().setText(Integer.toString(intelligence));
+        int manaMax = (int) Math.round(intelligence/3.);
+        currentPlayer.setManaMax(manaMax);
+        guiController.getMana().setText("" + currentPlayer.getMana() + '/' + manaMax);
     }
 
 
@@ -240,6 +263,18 @@ public class PlayerUpdater {
         int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
         currentPlayer.setArmorLegs(armorLegs);
         guiController.getArmorLegs().setText(Integer.toString(armorLegs));
+    }
+
+    private static void displayHitPoints() {
+        guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + currentPlayer.getHitPointsMax());
+    }
+
+    private static void displayActions() {
+        guiController.getActions().setText("" + currentPlayer.getActions() + '/' + currentPlayer.getActionsMax());
+    }
+
+    private static void displayMana() {
+        guiController.getMana().setText("" + currentPlayer.getMana() + '/' + currentPlayer.getManaMax());
     }
 
     private static void displayAll() {
@@ -277,7 +312,9 @@ public class PlayerUpdater {
         guiController.getCharismaBase().setText(Integer.toString(currentPlayer.getCharismaBase()));
         guiController.getCharisma().setText(Integer.toString(currentPlayer.getCharisma()));
 
-        guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + currentPlayer.getHitPointsMax());
+        displayHitPoints();
+        displayActions();
+        displayMana();
         guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
         guiController.getSpeed().setText(Integer.toString(currentPlayer.getSpeed()));
         guiController.getManaIncrease().setText(Integer.toString(currentPlayer.getManaIncrease()));

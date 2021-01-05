@@ -124,6 +124,12 @@ public class GuiController {
     private TextField hitPoints;
 
     @FXML
+    private Button hitPointsPlus;
+
+    @FXML
+    private Button hitPointsMinus;
+
+    @FXML
     private TextField hitPointsIncrease;
 
     @FXML
