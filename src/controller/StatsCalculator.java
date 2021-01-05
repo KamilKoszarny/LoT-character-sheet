@@ -10,15 +10,23 @@ public class StatsCalculator {
     }
 
     protected static int calculateDmgAMin(Player player) {
-        int dmgAMinBase = player.getWeaponA() == null ? 1 : player.getWeaponA().getDmgMin();
-        int dmgAMin = (int) Math.round(dmgAMinBase * (1 + player.getStrength()/50.));
-        return dmgAMin;
+        if (player.getWeaponA() == null) {
+            return (int) Math.round(1 * (1 + player.getStrength()/50.));
+        } else if (player.getWeaponA().getType().isRange()) {
+            return (int) Math.round(player.getWeaponA().getDmgMin() * (1 + player.getEye()/100.));
+        } else {
+            return (int) Math.round(player.getWeaponA().getDmgMin() * (1 + player.getStrength()/50.));
+        }
     }
 
     protected static int calculateDmgAMax(Player player) {
-        int dmgAMaxBase = player.getWeaponA() == null ? 2 : player.getWeaponA().getDmgMax();
-        int dmgAMax = (int) Math.round(dmgAMaxBase * (1 + player.getStrength()/50.));
-        return dmgAMax;
+        if (player.getWeaponA() == null) {
+            return (int) Math.round(2 * (1 + player.getStrength()/50.));
+        } else if (player.getWeaponA().getType().isRange()) {
+            return (int) Math.round(player.getWeaponA().getDmgMax() * (1 + player.getEye()/100.));
+        } else {
+            return (int) Math.round(player.getWeaponA().getDmgMax() * (1 + player.getStrength()/50.));
+        }
     }
 
     protected static int calculateEndurance(Player player) {
@@ -62,8 +70,11 @@ public class StatsCalculator {
     }
 
     protected static int calculateHitA(Player player) {
-        int hitA = 50 + player.getArm();
-        return hitA;
+        if (player.getWeaponA() == null || !player.getWeaponA().getType().isRange()) {
+            return 50 + player.getArm();
+        } else {
+            return 50 + player.getEye();
+        }
     }
 
     protected static int calculateEye(Player player) {

@@ -20,4 +20,8 @@ public enum WeaponType {
     WeaponType(String namePL) {
         this.namePL = namePL;
     }
+
+    public boolean isRange() {
+        return this.equals(BOW) || this.equals(CROSSBOW);
+    }
 }

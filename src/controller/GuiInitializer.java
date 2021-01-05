@@ -54,6 +54,7 @@ public class GuiInitializer {
                     menuItem.setOnAction(event -> {
                         PlayerUpdater.getCurrentPlayer().setWeaponA(new Weapon(weaponModel));
                         PlayerUpdater.updateDmg();
+                        PlayerUpdater.updateHits();
                         displayWeaponA(weaponModel);
                     });
                     menu.getItems().add(menuItem);

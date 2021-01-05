@@ -214,6 +214,9 @@ public class PlayerUpdater {
         int eye = StatsCalculator.calculateEye(currentPlayer);
         currentPlayer.setEye(eye);
         guiController.getEye().setText(Integer.toString(eye));
+
+        updateDmg();
+        updateHits();
     }
 
     private static void updateAgility() {
