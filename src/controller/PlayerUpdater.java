@@ -11,7 +11,6 @@ public class PlayerUpdater {
     @Setter
     private static Player currentPlayer;
 
-    @Setter
     private static GuiController guiController;
 
     public static void init(GuiController guiController) {
@@ -31,7 +30,29 @@ public class PlayerUpdater {
     }
 
     private static void initUpdating() {
+        initIdentityUpdating();
         initStatsUpdating();
+    }
+
+    private static void initIdentityUpdating() {
+        guiController.getProffesion().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setProffesion(guiController.getProffesion().getItems().get((Integer) newValue));
+        });
+        guiController.getRace().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setRace(guiController.getRace().getItems().get((Integer) newValue));
+        });
+        guiController.getSign().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setSign(guiController.getSign().getItems().get((Integer) newValue));
+        });
+
+        guiController.getFullname().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setFullname(newValue));
+        guiController.getAge().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setAge(newValue));
+        guiController.getHeight().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHeight(newValue));
+        guiController.getWeight().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setWeight(newValue));
+        guiController.getReligion().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setReligion(newValue));
+        guiController.getOrigin().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setOrigin(newValue));
+        guiController.getAppearance().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setAppearance(newValue));
+        guiController.getHistory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHistory(newValue));
     }
 
     private static void initStatsUpdating() {
@@ -222,6 +243,18 @@ public class PlayerUpdater {
     }
 
     private static void displayAll() {
+        guiController.getProffesion().getSelectionModel().select(currentPlayer.getProffesion());
+        guiController.getRace().getSelectionModel().select(currentPlayer.getRace());
+        guiController.getSign().getSelectionModel().select(currentPlayer.getSign());
+        guiController.getFullname().setText(currentPlayer.getFullname());
+        guiController.getAge().setText(currentPlayer.getAge());
+        guiController.getHeight().setText(currentPlayer.getHeight());
+        guiController.getWeight().setText(currentPlayer.getWeight());
+        guiController.getReligion().setText(currentPlayer.getReligion());
+        guiController.getOrigin().setText(currentPlayer.getOrigin());
+        guiController.getAppearance().setText(currentPlayer.getAppearance());
+        guiController.getHistory().setText(currentPlayer.getHistory());
+
         guiController.getVim().setText(Integer.toString(currentPlayer.getVim()));
         guiController.getStrengthBase().setText(Integer.toString(currentPlayer.getStrengthBase()));
         guiController.getStrength().setText(Integer.toString(currentPlayer.getStrength()));

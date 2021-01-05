@@ -11,9 +11,9 @@ public class Player implements Serializable {
     private String fullname;
     private Proffesion proffesion;
     private Race race;
-    private double age;
-    private double height;
-    private double weight;
+    private String age;
+    private String height;
+    private String weight;
     private Sign sign;
     private String religion;
     private String origin;

@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import lombok.Getter;
 import lombok.Setter;
+import model.Proffesion;
+import model.Race;
+import model.Sign;
 
 @Getter
 @Setter
@@ -19,10 +22,10 @@ public class GuiController {
     private TextField fullname;
 
     @FXML
-    private ChoiceBox<?> proffesion;
+    private ChoiceBox<Proffesion> proffesion;
 
     @FXML
-    private ChoiceBox<?> race;
+    private ChoiceBox<Race> race;
 
     @FXML
     private TextField age;
@@ -34,7 +37,7 @@ public class GuiController {
     private TextField weight;
 
     @FXML
-    private ChoiceBox<?> sign;
+    private ChoiceBox<Sign> sign;
 
     @FXML
     private TextField religion;

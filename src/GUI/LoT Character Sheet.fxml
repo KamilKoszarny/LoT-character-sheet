@@ -12,7 +12,7 @@
         <Menu mnemonicParsing="false" text="Plik">
           <items>
             <MenuItem mnemonicParsing="false" text="Nowy" />
-            <MenuItem mnemonicParsing="false" text="Otwórz..." />
+            <MenuItem fx:id="open" mnemonicParsing="false" text="Otwórz..." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Zapisz" />
             <MenuItem fx:id="saveAs" mnemonicParsing="false" text="Zapisz jako..." />
