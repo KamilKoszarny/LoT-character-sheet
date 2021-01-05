@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.Player;
 
 public class Main extends Application {
 
@@ -18,8 +17,7 @@ public class Main extends Application {
         primaryStage.show();
 
         GuiController guiController = loader.getController();
-        PlayerUpdater.setGuiController(guiController);
-        PlayerUpdater.init();
+        PlayerUpdater.init(guiController);
     }
 
 

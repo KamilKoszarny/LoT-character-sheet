@@ -1,9 +1,7 @@
 package GUI;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -160,5 +158,20 @@ public class GuiController {
 
     @FXML
     private TextField armorLegs;
+
+    @FXML
+    private MenuButton weaponAMenu;
+
+    @FXML
+    private MenuItem shortSwordA;
+
+    @FXML
+    private MenuItem saberA;
+
+    @FXML
+    private MenuItem chopperA;
+
+    @FXML
+    private MenuItem adzeA;
 }
 

@@ -10,12 +10,14 @@ public class StatsCalculator {
     }
 
     protected static int calculateDmgAMin(Player player) {
-        int dmgAMin = (int) Math.round(1. * (1 + player.getStrength()/50.));
+        int dmgAMinBase = player.getWeaponA() == null ? 1 : player.getWeaponA().getDmgMin();
+        int dmgAMin = (int) Math.round(dmgAMinBase * (1 + player.getStrength()/50.));
         return dmgAMin;
     }
 
     protected static int calculateDmgAMax(Player player) {
-        int dmgAMax = (int) Math.round(2. * (1 + player.getStrength()/50.));
+        int dmgAMaxBase = player.getWeaponA() == null ? 2 : player.getWeaponA().getDmgMax();
+        int dmgAMax = (int) Math.round(dmgAMaxBase * (1 + player.getStrength()/50.));
         return dmgAMax;
     }
 

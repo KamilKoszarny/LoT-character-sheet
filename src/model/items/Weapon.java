@@ -1,5 +1,8 @@
 package model.items;
 
+import lombok.Getter;
+
+@Getter
 public class Weapon extends Item {
 
     private WeaponType type;

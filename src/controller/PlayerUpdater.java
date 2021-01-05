@@ -1,16 +1,22 @@
 package controller;
 
 import GUI.GuiController;
+import lombok.Setter;
 import model.Player;
 
 public class PlayerUpdater {
 
+    @Setter
     private static Player currentPlayer;
+
+    @Setter
     private static GuiController guiController;
 
-    public static void init() {
+    public static void init(GuiController guiController) {
+        PlayerUpdater.guiController = guiController;
         createEmptyPlayer();
         initUpdating();
+        ItemUpdater.init(currentPlayer, guiController);
     }
 
     private static void createEmptyPlayer() {
@@ -185,7 +191,7 @@ public class PlayerUpdater {
     }
 
 
-    private static void updateDmg() {
+    static void updateDmg() {
         int dmgAMin = StatsCalculator.calculateDmgAMin(currentPlayer);
         currentPlayer.setDmgAMin(dmgAMin);
         int dmgAMax = StatsCalculator.calculateDmgAMax(currentPlayer);
@@ -206,9 +212,5 @@ public class PlayerUpdater {
         int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
         currentPlayer.setArmorLegs(armorLegs);
         guiController.getArmorLegs().setText(Integer.toString(armorLegs));
-    }
-
-    public static void setGuiController(GuiController guiController) {
-        PlayerUpdater.guiController = guiController;
     }
 }
