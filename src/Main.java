@@ -1,4 +1,5 @@
 import GUI.GuiController;
+import controller.PlayerSaveLoader;
 import controller.PlayerUpdater;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ public class Main extends Application {
 
         GuiController guiController = loader.getController();
         PlayerUpdater.init(guiController);
+        PlayerSaveLoader.init(primaryStage, guiController);
     }
 
 

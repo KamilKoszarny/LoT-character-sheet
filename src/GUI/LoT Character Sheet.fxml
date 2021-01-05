@@ -15,7 +15,7 @@
             <MenuItem mnemonicParsing="false" text="Otwórz..." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Zapisz" />
-            <MenuItem mnemonicParsing="false" text="Zapisz jako..." />
+            <MenuItem fx:id="saveAs" mnemonicParsing="false" text="Zapisz jako..." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Zamknij" />
           </items>
@@ -1141,7 +1141,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="hitPointsIncreaseByNight" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="2" text="1" />
+                                                      <TextField fx:id="hitPointsIncrease" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="2" text="1" />
                                                    </children>
                                                 </VBox>
                                              </children>

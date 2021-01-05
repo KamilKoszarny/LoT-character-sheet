@@ -3,8 +3,10 @@ package model;
 import lombok.Data;
 import model.items.Weapon;
 
+import java.io.Serializable;
+
 @Data
-public class Player {
+public class Player implements Serializable {
 
     private String fullname;
     private Proffesion proffesion;
@@ -48,10 +50,10 @@ public class Player {
 
     private int hitPoints;
     private int hitPointsMax;
-    private int hitPointsIncreaseByNight;
+    private int hitPointsIncrease = 1;
 
-    private int actions;
-    private int actionsMax;
+    private int actions = 5;
+    private int actionsMax = 5;
     private int speed;
 
     private int mana;

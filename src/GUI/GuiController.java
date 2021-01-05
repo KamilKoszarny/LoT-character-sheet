@@ -10,6 +10,12 @@ import lombok.Setter;
 public class GuiController {
 
     @FXML
+    private MenuItem open;
+
+    @FXML
+    private MenuItem saveAs;
+
+    @FXML
     private TextField fullname;
 
     @FXML
@@ -115,7 +121,7 @@ public class GuiController {
     private TextField hitPoints;
 
     @FXML
-    private TextField hitPointsIncreaseByNight;
+    private TextField hitPointsIncrease;
 
     @FXML
     private TextField actions;

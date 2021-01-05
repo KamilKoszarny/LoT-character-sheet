@@ -1,11 +1,13 @@
 package controller;
 
 import GUI.GuiController;
+import lombok.Getter;
 import lombok.Setter;
 import model.Player;
 
 public class PlayerUpdater {
 
+    @Getter
     @Setter
     private static Player currentPlayer;
 
@@ -16,11 +18,16 @@ public class PlayerUpdater {
         PlayerUpdater.guiController = guiController;
         createEmptyPlayer();
         initUpdating();
-        ItemUpdater.init(currentPlayer, guiController);
+        ItemUpdater.init(guiController);
     }
 
     private static void createEmptyPlayer() {
         currentPlayer = new Player();
+    }
+
+    static void loadPlayer(Player player) {
+        currentPlayer = player;
+        displayAll();
     }
 
     private static void initUpdating() {
@@ -139,7 +146,7 @@ public class PlayerUpdater {
         guiController.getVim().setText(Integer.toString(vim));
         int hitPointsMax = (int) Math.round(vim/3.);
         currentPlayer.setHitPointsMax(hitPointsMax);
-        guiController.getHitPoints().setText("" + hitPointsMax + '/' + hitPointsMax);
+        guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + hitPointsMax);
     }
 
     private static void updateArm() {
@@ -212,5 +219,39 @@ public class PlayerUpdater {
         int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
         currentPlayer.setArmorLegs(armorLegs);
         guiController.getArmorLegs().setText(Integer.toString(armorLegs));
+    }
+
+    private static void displayAll() {
+        guiController.getVim().setText(Integer.toString(currentPlayer.getVim()));
+        guiController.getStrengthBase().setText(Integer.toString(currentPlayer.getStrengthBase()));
+        guiController.getStrength().setText(Integer.toString(currentPlayer.getStrength()));
+        guiController.getEnduranceBase().setText(Integer.toString(currentPlayer.getEnduranceBase()));
+        guiController.getEndurance().setText(Integer.toString(currentPlayer.getEndurance()));
+        guiController.getFormBase().setText(Integer.toString(currentPlayer.getFormBase()));
+        guiController.getForm().setText(Integer.toString(currentPlayer.getForm()));
+        guiController.getEfficiency().setText(Integer.toString(currentPlayer.getEfficiency()));
+        guiController.getArmBase().setText(Integer.toString(currentPlayer.getArmBase()));
+        guiController.getArm().setText(Integer.toString(currentPlayer.getArm()));
+        guiController.getEyeBase().setText(Integer.toString(currentPlayer.getEyeBase()));
+        guiController.getEye().setText(Integer.toString(currentPlayer.getEye()));
+        guiController.getAgilityBase().setText(Integer.toString(currentPlayer.getAgilityBase()));
+        guiController.getAgility().setText(Integer.toString(currentPlayer.getAgility()));
+        guiController.getIntelligence().setText(Integer.toString(currentPlayer.getIntelligence()));
+        guiController.getKnowledgeBase().setText(Integer.toString(currentPlayer.getKnowledgeBase()));
+        guiController.getKnowledge().setText(Integer.toString(currentPlayer.getKnowledge()));
+        guiController.getFocusBase().setText(Integer.toString(currentPlayer.getFocusBase()));
+        guiController.getFocus().setText(Integer.toString(currentPlayer.getFocus()));
+        guiController.getCharismaBase().setText(Integer.toString(currentPlayer.getCharismaBase()));
+        guiController.getCharisma().setText(Integer.toString(currentPlayer.getCharisma()));
+
+        guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + currentPlayer.getHitPointsMax());
+        guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
+        guiController.getSpeed().setText(Integer.toString(currentPlayer.getSpeed()));
+        guiController.getManaIncrease().setText(Integer.toString(currentPlayer.getManaIncrease()));
+        guiController.getArmorHead().setText(Integer.toString(currentPlayer.getArmorHead()));
+        guiController.getArmorBody().setText(Integer.toString(currentPlayer.getArmorBody()));
+        guiController.getArmorArms().setText(Integer.toString(currentPlayer.getArmorArms()));
+        guiController.getArmorLegs().setText(Integer.toString(currentPlayer.getArmorLegs()));
+
     }
 }
