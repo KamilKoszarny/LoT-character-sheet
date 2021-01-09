@@ -64,7 +64,7 @@ public class GuiInitializer {
         }
     }
 
-    private static void displayWeaponA(WeaponModel weaponModel) {
+    public static void displayWeaponA(WeaponModel weaponModel) {
         MenuButton button = guiController.getWeaponAMenu();
         Image img = new Image("images/weapons/" + weaponModel.name() + ".png");
         ImageView view = new ImageView(img);

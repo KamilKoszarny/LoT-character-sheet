@@ -358,5 +358,9 @@ public class PlayerUpdater {
         displayActions();
         displayMana();
         guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
+
+        if (currentPlayer.getWeaponA() != null) {
+            GuiInitializer.displayWeaponA(currentPlayer.getWeaponA().getModel());
+        }
     }
 }
