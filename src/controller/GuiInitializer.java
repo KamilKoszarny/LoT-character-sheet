@@ -7,13 +7,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Proffesion;
-import model.Race;
-import model.Sign;
-import model.SkillType;
+import model.*;
 import model.items.Weapon;
 import model.items.WeaponModel;
 import model.items.WeaponType;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class GuiInitializer {
 
@@ -26,6 +26,7 @@ public class GuiInitializer {
         initRaces();
         initSigns();
         initSkills();
+        initTraits();
 
         initWeaponAMenu();
     }
@@ -55,6 +56,21 @@ public class GuiInitializer {
         items.addAll(SkillType.values());
         items.add(10, new Separator());
         items.add(21, new Separator());
+    }
+
+    private static void initTraits() {
+        guiController.getTraitPositive().getItems().addAll(
+                Arrays.stream(Trait.values())
+                        .filter(trait -> trait.getType().equals(TraitType.POSITIVE))
+                        .collect(Collectors.toList()));
+        guiController.getTraitNeutral().getItems().addAll(
+                Arrays.stream(Trait.values())
+                        .filter(trait -> trait.getType().equals(TraitType.NEUTRAL))
+                        .collect(Collectors.toList()));
+        guiController.getTraitNegative().getItems().addAll(
+                Arrays.stream(Trait.values())
+                        .filter(trait -> trait.getType().equals(TraitType.NEGATIVE))
+                        .collect(Collectors.toList()));
     }
 
     private static void initWeaponAMenu() {

@@ -37,6 +37,21 @@ public class PlayerDisplayer {
         }
     }
 
+    public static void displayTraits() {
+        if (currentPlayer.getPositiveTrait() != null) {
+            guiController.getTraitPositive().getSelectionModel().select(currentPlayer.getPositiveTrait());
+            guiController.getTraitPositiveDescription().setText(currentPlayer.getPositiveTrait().getDescriptionPL());
+        }
+        if (currentPlayer.getNeutralTrait() != null) {
+            guiController.getTraitNeutral().getSelectionModel().select(currentPlayer.getNeutralTrait());
+            guiController.getTraitNeutralDescription().setText(currentPlayer.getNeutralTrait().getDescriptionPL());
+        }
+        if (currentPlayer.getNegativeTrait() != null) {
+            guiController.getTraitNegative().getSelectionModel().select(currentPlayer.getNegativeTrait());
+            guiController.getTraitNegativeDescription().setText(currentPlayer.getNegativeTrait().getDescriptionPL());
+        }
+    }
+
     public static void displayHitPoints() {
         guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + currentPlayer.getHitPointsMax());
     }
@@ -85,6 +100,7 @@ public class PlayerDisplayer {
         guiController.getCharisma().setText(Integer.toString(currentPlayer.getCharisma()));
 
         displaySkills();
+        displayTraits();
 
         displayHitPoints();
         displayActions();

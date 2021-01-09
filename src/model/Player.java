@@ -49,6 +49,9 @@ public class Player implements Serializable {
     private int experiencePoints;
 
     private Skill[] skills = new Skill[6];
+    private Trait positiveTrait;
+    private Trait neutralTrait;
+    private Trait negativeTrait;
 
     private int hitPoints;
     private int hitPointsMax;

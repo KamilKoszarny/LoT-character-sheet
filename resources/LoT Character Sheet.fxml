@@ -812,14 +812,14 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="traitPositive" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis cechy dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="traitPositiveDescription" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -835,14 +835,14 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="traitNeutral" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis cechy dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="traitNeutralDescription" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -858,14 +858,14 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="traitNegative" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis cechy dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="traitNegativeDescription" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>

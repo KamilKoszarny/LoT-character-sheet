@@ -7,6 +7,7 @@ import lombok.Setter;
 import model.Proffesion;
 import model.Race;
 import model.Sign;
+import model.Trait;
 
 @Getter
 @Setter
@@ -209,6 +210,24 @@ public class GuiController {
 
     @FXML
     private Label skill6description;
+
+    @FXML
+    private ChoiceBox<Trait> traitPositive;
+
+    @FXML
+    private Label traitPositiveDescription;
+
+    @FXML
+    private ChoiceBox<Trait> traitNeutral;
+
+    @FXML
+    private Label traitNeutralDescription;
+
+    @FXML
+    private ChoiceBox<Trait> traitNegative;
+
+    @FXML
+    private Label traitNegativeDescription;
 
     @FXML
     private TextField hitPoints;

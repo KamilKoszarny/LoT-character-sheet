@@ -38,6 +38,7 @@ public class PlayerUpdater {
         initIdentityUpdating();
         initAttributesUpdating();
         initSkillsUpdating();
+        initTraitsUpdating();
         initStatsUpdating();
     }
 
@@ -187,6 +188,21 @@ public class PlayerUpdater {
                 skill.setLevel(2);
                 lvl2Checkbox.setDisable(false);
             }
+        });
+    }
+
+    private static void initTraitsUpdating() {
+        guiController.getTraitPositive().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setPositiveTrait(guiController.getTraitPositive().getItems().get((Integer) newValue));
+            PlayerDisplayer.displayTraits();
+        });
+        guiController.getTraitNeutral().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setNeutralTrait(guiController.getTraitNeutral().getItems().get((Integer) newValue));
+            PlayerDisplayer.displayTraits();
+        });
+        guiController.getTraitNegative().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setNegativeTrait(guiController.getTraitNegative().getItems().get((Integer) newValue));
+            PlayerDisplayer.displayTraits();
         });
     }
 
