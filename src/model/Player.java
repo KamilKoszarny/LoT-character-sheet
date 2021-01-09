@@ -48,6 +48,8 @@ public class Player implements Serializable {
 
     private int experiencePoints;
 
+    private Skill[] skills = new Skill[6];
+
     private int hitPoints;
     private int hitPointsMax;
     private int hitPointsIncrease = 1;

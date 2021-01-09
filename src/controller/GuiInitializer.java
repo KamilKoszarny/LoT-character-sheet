@@ -1,13 +1,16 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.Proffesion;
 import model.Race;
 import model.Sign;
+import model.SkillType;
 import model.items.Weapon;
 import model.items.WeaponModel;
 import model.items.WeaponType;
@@ -22,6 +25,7 @@ public class GuiInitializer {
         initProffesions();
         initRaces();
         initSigns();
+        initSkills();
 
         initWeaponAMenu();
     }
@@ -36,6 +40,21 @@ public class GuiInitializer {
 
     private static void initSigns() {
         guiController.getSign().getItems().addAll(Sign.values());
+    }
+
+    private static void initSkills() {
+        fillSkillsChoiceBox(guiController.getSkill1().getItems());
+        fillSkillsChoiceBox(guiController.getSkill2().getItems());
+        fillSkillsChoiceBox(guiController.getSkill3().getItems());
+        fillSkillsChoiceBox(guiController.getSkill4().getItems());
+        fillSkillsChoiceBox(guiController.getSkill5().getItems());
+        fillSkillsChoiceBox(guiController.getSkill6().getItems());
+    }
+
+    private static void fillSkillsChoiceBox(ObservableList<Object> items) {
+        items.addAll(SkillType.values());
+        items.add(10, new Separator());
+        items.add(21, new Separator());
     }
 
     private static void initWeaponAMenu() {

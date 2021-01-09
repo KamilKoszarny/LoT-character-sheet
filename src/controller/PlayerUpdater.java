@@ -1,22 +1,26 @@
 package controller;
 
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import lombok.Getter;
 import lombok.Setter;
 import model.Player;
+import model.Skill;
+import model.SkillType;
 
 public class PlayerUpdater {
 
     @Getter
     @Setter
-    private static Player currentPlayer;
+    static Player currentPlayer;
 
-    private static GuiController guiController;
+    static GuiController guiController;
 
     public static void init(GuiController guiController) {
         PlayerUpdater.guiController = guiController;
         createEmptyPlayer();
         initUpdating();
-        displayAllNotAuto();
+        PlayerDisplayer.displayAllNotAuto();
         ItemUpdater.init(guiController);
     }
 
@@ -26,13 +30,14 @@ public class PlayerUpdater {
 
     static void loadPlayer(Player player) {
         currentPlayer = player;
-        displayAllNotAuto();
+        PlayerDisplayer.displayAllNotAuto();
     }
 
 
     private static void initUpdating() {
         initIdentityUpdating();
         initAttributesUpdating();
+        initSkillsUpdating();
         initStatsUpdating();
     }
 
@@ -142,31 +147,73 @@ public class PlayerUpdater {
         });
     }
 
+    private static void initSkillsUpdating() {
+        initSkillUpdating(1, guiController.getSkill1(), guiController.getSkill1lvl1(), guiController.getSkill1lvl2(), guiController.getSkill1lvl3());
+        initSkillUpdating(2, guiController.getSkill2(), guiController.getSkill2lvl1(), guiController.getSkill2lvl2(), guiController.getSkill2lvl3());
+        initSkillUpdating(3, guiController.getSkill3(), guiController.getSkill3lvl1(), guiController.getSkill3lvl2(), guiController.getSkill3lvl3());
+        initSkillUpdating(4, guiController.getSkill4(), guiController.getSkill4lvl1(), guiController.getSkill4lvl2(), guiController.getSkill4lvl3());
+        initSkillUpdating(5, guiController.getSkill5(), guiController.getSkill5lvl1(), guiController.getSkill5lvl2(), guiController.getSkill5lvl3());
+        initSkillUpdating(6, guiController.getSkill6(), guiController.getSkill6lvl1(), guiController.getSkill6lvl2(), guiController.getSkill6lvl3());
+    }
+
+    private static void initSkillUpdating(int skillNumber, ChoiceBox<Object> skillChoiceBox, CheckBox lvl1Checkbox, CheckBox lvl2Checkbox, CheckBox lvl3Checkbox) {
+        skillChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.getSkills()[skillNumber - 1] = new Skill((SkillType) skillChoiceBox.getItems().get((Integer) newValue));
+            lvl2Checkbox.setDisable(false);
+            PlayerDisplayer.displaySkills();
+        });
+
+        lvl1Checkbox.setDisable(true);
+        lvl2Checkbox.setDisable(true);
+        lvl3Checkbox.setDisable(true);
+
+        lvl2Checkbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            Skill skill = currentPlayer.getSkills()[skillNumber - 1];
+            if (newValue) {
+                skill.setLevel(2);
+                lvl3Checkbox.setDisable(false);
+            } else {
+                skill.setLevel(1);
+                lvl3Checkbox.setDisable(true);
+            }
+        });
+
+        lvl3Checkbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            Skill skill = currentPlayer.getSkills()[skillNumber - 1];
+            if (newValue) {
+                skill.setLevel(3);
+                lvl2Checkbox.setDisable(true);
+            } else {
+                skill.setLevel(2);
+                lvl2Checkbox.setDisable(false);
+            }
+        });
+    }
 
     private static void initStatsUpdating() {
         guiController.getHitPointsPlus().setOnMouseClicked(event -> {
             currentPlayer.setHitPoints(currentPlayer.getHitPoints() + 1);
-            displayHitPoints();
+            PlayerDisplayer.displayHitPoints();
         });
         guiController.getHitPointsMinus().setOnMouseClicked(event -> {
             currentPlayer.setHitPoints(currentPlayer.getHitPoints() - 1);
-            displayHitPoints();
+            PlayerDisplayer.displayHitPoints();
         });
         guiController.getActionsPlus().setOnMouseClicked(event -> {
             currentPlayer.setActions(currentPlayer.getActions() + 1);
-            displayActions();
+            PlayerDisplayer.displayActions();
         });
         guiController.getActionsMinus().setOnMouseClicked(event -> {
             currentPlayer.setActions(currentPlayer.getActions() - 1);
-            displayActions();
+            PlayerDisplayer.displayActions();
         });
         guiController.getManaPlus().setOnMouseClicked(event -> {
             currentPlayer.setMana(currentPlayer.getMana() + 1);
-            displayMana();
+            PlayerDisplayer.displayMana();
         });
         guiController.getManaMinus().setOnMouseClicked(event -> {
             currentPlayer.setMana(currentPlayer.getMana() - 1);
-            displayMana();
+            PlayerDisplayer.displayMana();
         });
     }
 
@@ -307,60 +354,4 @@ public class PlayerUpdater {
         guiController.getManaIncrease().setText(Integer.toString(manaIncrease));
     }
 
-    private static void displayHitPoints() {
-        guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + currentPlayer.getHitPointsMax());
-    }
-
-    private static void displayActions() {
-        guiController.getActions().setText("" + currentPlayer.getActions() + '/' + currentPlayer.getActionsMax());
-    }
-
-    private static void displayMana() {
-        guiController.getMana().setText("" + currentPlayer.getMana() + '/' + currentPlayer.getManaMax());
-    }
-
-    private static void displayAllNotAuto() {
-        guiController.getProffesion().getSelectionModel().select(currentPlayer.getProffesion());
-        guiController.getRace().getSelectionModel().select(currentPlayer.getRace());
-        guiController.getSign().getSelectionModel().select(currentPlayer.getSign());
-        guiController.getFullname().setText(currentPlayer.getFullname());
-        guiController.getAge().setText(currentPlayer.getAge());
-        guiController.getHeight().setText(currentPlayer.getHeight());
-        guiController.getWeight().setText(currentPlayer.getWeight());
-        guiController.getReligion().setText(currentPlayer.getReligion());
-        guiController.getOrigin().setText(currentPlayer.getOrigin());
-        guiController.getAppearance().setText(currentPlayer.getAppearance());
-        guiController.getHistory().setText(currentPlayer.getHistory());
-
-        guiController.getVim().setText(Integer.toString(currentPlayer.getVim()));
-        guiController.getStrengthBase().setText(Integer.toString(currentPlayer.getStrengthBase()));
-        guiController.getStrength().setText(Integer.toString(currentPlayer.getStrength()));
-        guiController.getEnduranceBase().setText(Integer.toString(currentPlayer.getEnduranceBase()));
-        guiController.getEndurance().setText(Integer.toString(currentPlayer.getEndurance()));
-        guiController.getFormBase().setText(Integer.toString(currentPlayer.getFormBase()));
-        guiController.getForm().setText(Integer.toString(currentPlayer.getForm()));
-        guiController.getEfficiency().setText(Integer.toString(currentPlayer.getEfficiency()));
-        guiController.getArmBase().setText(Integer.toString(currentPlayer.getArmBase()));
-        guiController.getArm().setText(Integer.toString(currentPlayer.getArm()));
-        guiController.getEyeBase().setText(Integer.toString(currentPlayer.getEyeBase()));
-        guiController.getEye().setText(Integer.toString(currentPlayer.getEye()));
-        guiController.getAgilityBase().setText(Integer.toString(currentPlayer.getAgilityBase()));
-        guiController.getAgility().setText(Integer.toString(currentPlayer.getAgility()));
-        guiController.getIntelligence().setText(Integer.toString(currentPlayer.getIntelligence()));
-        guiController.getKnowledgeBase().setText(Integer.toString(currentPlayer.getKnowledgeBase()));
-        guiController.getKnowledge().setText(Integer.toString(currentPlayer.getKnowledge()));
-        guiController.getFocusBase().setText(Integer.toString(currentPlayer.getFocusBase()));
-        guiController.getFocus().setText(Integer.toString(currentPlayer.getFocus()));
-        guiController.getCharismaBase().setText(Integer.toString(currentPlayer.getCharismaBase()));
-        guiController.getCharisma().setText(Integer.toString(currentPlayer.getCharisma()));
-
-        displayHitPoints();
-        displayActions();
-        displayMana();
-        guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
-
-        if (currentPlayer.getWeaponA() != null) {
-            GuiInitializer.displayWeaponA(currentPlayer.getWeaponA().getModel());
-        }
-    }
 }

@@ -4,12 +4,12 @@ import model.Player;
 
 public class StatsCalculator {
 
-    protected static int calculateStrength(Player player) {
+    public static int calculateStrength(Player player) {
         int strength = player.getStrengthBase();
         return strength;
     }
 
-    protected static int calculateDmgAMin(Player player) {
+    public static int calculateDmgAMin(Player player) {
         if (player.getWeaponA() == null) {
             return (int) Math.round(1 * (1 + player.getStrength()/50.));
         } else if (player.getWeaponA().getType().isRange()) {
@@ -19,7 +19,7 @@ public class StatsCalculator {
         }
     }
 
-    protected static int calculateDmgAMax(Player player) {
+    public static int calculateDmgAMax(Player player) {
         if (player.getWeaponA() == null) {
             return (int) Math.round(2 * (1 + player.getStrength()/50.));
         } else if (player.getWeaponA().getType().isRange()) {
@@ -29,47 +29,47 @@ public class StatsCalculator {
         }
     }
 
-    protected static int calculateEndurance(Player player) {
+    public static int calculateEndurance(Player player) {
         int endurance = player.getEnduranceBase();
         return endurance;
     }
 
-    protected static int calculateArmorHead(Player player) {
+    public static int calculateArmorHead(Player player) {
         int armorHead = (int) Math.round(player.getEndurance()/20.);
         return armorHead;
     }
 
-    protected static int calculateArmorBody(Player player) {
+    public static int calculateArmorBody(Player player) {
         int armorBody = (int) Math.round(player.getEndurance()/20.);
         return armorBody;
     }
 
-    protected static int calculateArmorArms(Player player) {
+    public static int calculateArmorArms(Player player) {
         int armorArms = (int) Math.round(player.getEndurance()/20.);
         return armorArms;
     }
 
-    protected static int calculateArmorLegs(Player player) {
+    public static int calculateArmorLegs(Player player) {
         int armorLegs = (int) Math.round(player.getEndurance()/20.);
         return armorLegs;
     }
 
-    protected static int calculateForm(Player player) {
+    public static int calculateForm(Player player) {
         int form = player.getFormBase();
         return form;
     }
 
-    protected static int calculateVim(Player player) {
+    public static int calculateVim(Player player) {
         int vim = (int) Math.round((player.getStrengthBase() + player.getEnduranceBase() + player.getFormBase()) / 3.);
         return vim;
     }
 
-    protected static int calculateArm(Player player) {
+    public static int calculateArm(Player player) {
         int arm = player.getArmBase();
         return arm;
     }
 
-    protected static int calculateHitA(Player player) {
+    public static int calculateHitA(Player player) {
         if (player.getWeaponA() == null || !player.getWeaponA().getType().isRange()) {
             return 50 + player.getArm();
         } else {
@@ -77,47 +77,47 @@ public class StatsCalculator {
         }
     }
 
-    protected static int calculateEye(Player player) {
+    public static int calculateEye(Player player) {
         int eye = player.getEyeBase();
         return eye;
     }
 
-    protected static int calculateAgility(Player player) {
+    public static int calculateAgility(Player player) {
         int agility = player.getAgilityBase();
         return agility;
     }
 
-    protected static int calculateDodgeA(Player player) {
+    public static int calculateDodgeA(Player player) {
         int dodge = (int) Math.round(player.getAgility() / 2.);
         return dodge;
     }
 
-    protected static int calculateEfficiency(Player player) {
+    public static int calculateEfficiency(Player player) {
         int efficiency = (int) Math.round((player.getArmBase() + player.getEyeBase() + player.getAgilityBase()) / 3.);
         return efficiency;
     }
 
-    protected static int calculateKnowledge(Player player) {
+    public static int calculateKnowledge(Player player) {
         int knowledge = player.getKnowledgeBase();
         return knowledge;
     }
 
-    protected static int calculateFocus(Player player) {
+    public static int calculateFocus(Player player) {
         int focus = player.getFocusBase();
         return focus;
     }
 
-    protected static int calculateManaIncrease(Player player) {
+    public static int calculateManaIncrease(Player player) {
         int manaIncrease = (int) Math.round(player.getFocus() / 5.);
         return manaIncrease;
     }
 
-    protected static int calculateCharisma(Player player) {
+    public static int calculateCharisma(Player player) {
         int charisma = player.getCharismaBase();
         return charisma;
     }
 
-    protected static int calculateIntelligence(Player player) {
+    public static int calculateIntelligence(Player player) {
         int intelligence = (int) Math.round((player.getKnowledgeBase() + player.getFocusBase() + player.getCharismaBase()) / 3.);
         return intelligence;
     }

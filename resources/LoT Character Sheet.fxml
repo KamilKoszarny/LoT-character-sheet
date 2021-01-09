@@ -245,7 +245,7 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <TextField fx:id="vim" alignment="CENTER" editable="false" prefWidth="50.0">
+                                                <TextField fx:id="vim" alignment="CENTER" disable="true" prefWidth="50.0">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -273,7 +273,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="strength" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="strength" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -301,7 +301,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="endurance" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="endurance" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -329,7 +329,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="form" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="form" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -353,7 +353,7 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <TextField fx:id="efficiency" alignment="CENTER" editable="false" prefWidth="50.0">
+                                                <TextField fx:id="efficiency" alignment="CENTER" disable="true" prefWidth="50.0">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -381,7 +381,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="eye" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="eye" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -409,7 +409,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="arm" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="arm" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -437,7 +437,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="agility" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="agility" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -461,7 +461,7 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <TextField fx:id="intelligence" alignment="CENTER" editable="false" prefWidth="50.0">
+                                                <TextField fx:id="intelligence" alignment="CENTER" disable="true" prefWidth="50.0">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
@@ -489,7 +489,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="knowledge" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="knowledge" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -517,7 +517,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="focus" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="focus" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -545,7 +545,7 @@
                                                       <Font size="9.0" />
                                                    </font>
                                                 </TextField>
-                                                <TextField fx:id="charisma" alignment="CENTER" editable="false" prefColumnCount="2">
+                                                <TextField fx:id="charisma" alignment="CENTER" disable="true" prefColumnCount="2">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
@@ -593,29 +593,29 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill1" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill1lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill1lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill1lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis umiej dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="skill1description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -626,29 +626,29 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill2" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill2lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill2lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill2lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis umiej dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="skill2description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -659,29 +659,29 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill3" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill3lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill3lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill3lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis umiej dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="skill3description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -696,29 +696,29 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill4" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill4lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill4lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill4lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis umiej dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="skill4description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -729,29 +729,29 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill5" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill5lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill5lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill5lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis umiej dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="skill5description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -762,29 +762,29 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill6" prefWidth="150.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill6lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill6lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
-                                                <CheckBox mnemonicParsing="false">
+                                                <CheckBox fx:id="skill6lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                              </children>
                                           </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis umiej dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
+                                          <Label fx:id="skill6description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
@@ -1120,7 +1120,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="hitPoints" alignment="CENTER" editable="false" maxWidth="-Infinity" prefColumnCount="3">
+                                                      <TextField fx:id="hitPoints" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="3">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1191,7 +1191,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="actions" alignment="CENTER" editable="false" maxWidth="-Infinity" prefColumnCount="3" text="5/5">
+                                                      <TextField fx:id="actions" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="3" text="5/5">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1262,7 +1262,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="mana" alignment="CENTER" editable="false" maxWidth="-Infinity" prefColumnCount="3">
+                                                      <TextField fx:id="mana" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="3">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>

@@ -121,6 +121,96 @@ public class GuiController {
     private TextField experiencePoints;
 
     @FXML
+    private ChoiceBox<Object> skill1;
+
+    @FXML
+    private CheckBox skill1lvl1;
+
+    @FXML
+    private CheckBox skill1lvl2;
+
+    @FXML
+    private CheckBox skill1lvl3;
+
+    @FXML
+    private Label skill1description;
+
+    @FXML
+    private ChoiceBox<Object> skill2;
+
+    @FXML
+    private CheckBox skill2lvl1;
+
+    @FXML
+    private CheckBox skill2lvl2;
+
+    @FXML
+    private CheckBox skill2lvl3;
+
+    @FXML
+    private Label skill2description;
+
+    @FXML
+    private ChoiceBox<Object> skill3;
+
+    @FXML
+    private CheckBox skill3lvl1;
+
+    @FXML
+    private CheckBox skill3lvl2;
+
+    @FXML
+    private CheckBox skill3lvl3;
+
+    @FXML
+    private Label skill3description;
+
+    @FXML
+    private ChoiceBox<Object> skill4;
+
+    @FXML
+    private CheckBox skill4lvl1;
+
+    @FXML
+    private CheckBox skill4lvl2;
+
+    @FXML
+    private CheckBox skill4lvl3;
+
+    @FXML
+    private Label skill4description;
+
+    @FXML
+    private ChoiceBox<Object> skill5;
+
+    @FXML
+    private CheckBox skill5lvl1;
+
+    @FXML
+    private CheckBox skill5lvl2;
+
+    @FXML
+    private CheckBox skill5lvl3;
+
+    @FXML
+    private Label skill5description;
+
+    @FXML
+    private ChoiceBox<Object> skill6;
+
+    @FXML
+    private CheckBox skill6lvl1;
+
+    @FXML
+    private CheckBox skill6lvl2;
+
+    @FXML
+    private CheckBox skill6lvl3;
+
+    @FXML
+    private Label skill6description;
+
+    @FXML
     private TextField hitPoints;
 
     @FXML
