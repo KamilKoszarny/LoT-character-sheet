@@ -1,6 +1,7 @@
 package controller;
 
 import model.Player;
+import model.items.Weapon;
 
 public class StatsCalculator {
 
@@ -9,23 +10,25 @@ public class StatsCalculator {
         return strength;
     }
 
-    public static int calculateDmgAMin(Player player) {
-        if (player.getWeaponA() == null) {
+    public static int calculateDmgMin(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
             return (int) Math.round(1 * (1 + player.getStrength()/50.));
-        } else if (player.getWeaponA().getType().isRange()) {
-            return (int) Math.round(player.getWeaponA().getDmgMin() * (1 + player.getEye()/100.));
+        } else if (weapon.getType().isRange()) {
+            return (int) Math.round(weapon.getDmgMin() * (1 + player.getEye()/100.));
         } else {
-            return (int) Math.round(player.getWeaponA().getDmgMin() * (1 + player.getStrength()/50.));
+            return (int) Math.round(weapon.getDmgMin() * (1 + player.getStrength()/50.));
         }
     }
 
-    public static int calculateDmgAMax(Player player) {
-        if (player.getWeaponA() == null) {
+    public static int calculateDmgMax(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
             return (int) Math.round(2 * (1 + player.getStrength()/50.));
-        } else if (player.getWeaponA().getType().isRange()) {
-            return (int) Math.round(player.getWeaponA().getDmgMax() * (1 + player.getEye()/100.));
+        } else if (weapon.getType().isRange()) {
+            return (int) Math.round(weapon.getDmgMax() * (1 + player.getEye()/100.));
         } else {
-            return (int) Math.round(player.getWeaponA().getDmgMax() * (1 + player.getStrength()/50.));
+            return (int) Math.round(weapon.getDmgMax() * (1 + player.getStrength()/50.));
         }
     }
 
@@ -69,8 +72,9 @@ public class StatsCalculator {
         return arm;
     }
 
-    public static int calculateHitA(Player player) {
-        if (player.getWeaponA() == null || !player.getWeaponA().getType().isRange()) {
+    public static int calculateHit(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null || !weapon.getType().isRange()) {
             return 50 + player.getArm();
         } else {
             return 50 + player.getEye();

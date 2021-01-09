@@ -78,6 +78,13 @@ public class Player implements Serializable {
     private int blockA;
     private int dodgeA;
     private int rangeA;
+    private int dmgBMin;
+    private int dmgBMax;
+    private int hitB;
+    private int parryB;
+    private int blockB;
+    private int dodgeB;
+    private int rangeB;
 
     private int armorHead;
     private int armorBody;
@@ -86,4 +93,5 @@ public class Player implements Serializable {
 
 
     private Weapon weaponA;
+    private Weapon weaponB;
 }

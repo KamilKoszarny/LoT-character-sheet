@@ -1353,17 +1353,17 @@
                                        </font>
                                     </Label>
                                     <Label text="   obrażenia " />
-                                    <TextField alignment="CENTER" prefColumnCount="5" />
+                                    <TextField fx:id="dmgB" alignment="CENTER" prefColumnCount="5" />
                                     <Label text="   traf. " />
-                                    <TextField alignment="CENTER" prefColumnCount="3" />
+                                    <TextField fx:id="hitB" alignment="CENTER" prefColumnCount="3" />
                                     <Label text="   par. " />
-                                    <TextField alignment="CENTER" prefColumnCount="3" />
+                                    <TextField fx:id="parryB" alignment="CENTER" prefColumnCount="3" />
                                     <Label text="   blok. " />
-                                    <TextField alignment="CENTER" prefColumnCount="3" />
+                                    <TextField fx:id="blockB" alignment="CENTER" prefColumnCount="3" />
                                     <Label text="   unik. " />
-                                    <TextField alignment="CENTER" prefColumnCount="3" />
+                                    <TextField fx:id="dodgeB" alignment="CENTER" prefColumnCount="3" />
                                     <Label text="   zasięg " />
-                                    <TextField alignment="CENTER" prefColumnCount="3" />
+                                    <TextField fx:id="rangeB" alignment="CENTER" prefColumnCount="3" />
                                  </children>
                               </HBox>
                               <HBox>
@@ -1599,6 +1599,7 @@
                                        </children>
                                     </HBox>
                                     <MenuButton fx:id="weaponAMenu" alignment="CENTER" layoutX="181.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="weaponBMenu" alignment="CENTER" layoutX="85.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
                                  </children>
                               </AnchorPane>
                               <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="10.0">

@@ -3,9 +3,13 @@ package controller;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Ability;
 import model.Proffesion;
 import model.Skill;
+import model.items.WeaponModel;
 
 import static controller.PlayerUpdater.currentPlayer;
 import static controller.PlayerUpdater.guiController;
@@ -108,6 +112,23 @@ public class PlayerDisplayer {
         guiController.getMana().setText("" + currentPlayer.getMana() + '/' + currentPlayer.getManaMax());
     }
 
+    private static void displayEquipment() {
+        if (currentPlayer.getWeaponA() != null) {
+            displayWeapon(currentPlayer.getWeaponA().getModel(), true);
+        }
+        if (currentPlayer.getWeaponB() != null) {
+            displayWeapon(currentPlayer.getWeaponA().getModel(), false);
+        }
+    }
+
+    public static void displayWeapon(WeaponModel weaponModel, boolean firstSet) {
+        MenuButton button = firstSet ? guiController.getWeaponAMenu() : guiController.getWeaponBMenu();
+        Image img = new Image("images/weapons/" + weaponModel.name() + ".png");
+        ImageView view = new ImageView(img);
+        button.setGraphic(view);
+        button.setOpacity(1);
+    }
+
     public static void displayAllNotAuto() {
         guiController.getProffesion().getSelectionModel().select(currentPlayer.getProffesion());
         guiController.getRace().getSelectionModel().select(currentPlayer.getRace());
@@ -152,8 +173,6 @@ public class PlayerDisplayer {
         displayMana();
         guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
 
-        if (currentPlayer.getWeaponA() != null) {
-            GuiInitializer.displayWeaponA(currentPlayer.getWeaponA().getModel());
-        }
+        displayEquipment();
     }
 }

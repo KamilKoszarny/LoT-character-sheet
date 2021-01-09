@@ -347,11 +347,22 @@ public class PlayerUpdater {
 
 
     static void updateDmg() {
-        int dmgAMin = StatsCalculator.calculateDmgAMin(currentPlayer);
-        currentPlayer.setDmgAMin(dmgAMin);
-        int dmgAMax = StatsCalculator.calculateDmgAMax(currentPlayer);
-        currentPlayer.setDmgAMax(dmgAMax);
-        guiController.getDmgA().setText("" + dmgAMin + "-" + dmgAMax);
+        updateDmg(true);
+        updateDmg(false);
+    }
+
+    static void updateDmg(boolean firstSet) {
+        int dmgMin = StatsCalculator.calculateDmgMin(currentPlayer, firstSet);
+        int dmgMax = StatsCalculator.calculateDmgMax(currentPlayer, firstSet);
+        if (firstSet) {
+            currentPlayer.setDmgAMin(dmgMin);
+            currentPlayer.setDmgAMax(dmgMax);
+            guiController.getDmgA().setText("" + dmgMin + "-" + dmgMax);
+        } else {
+            currentPlayer.setDmgBMin(dmgMin);
+            currentPlayer.setDmgBMax(dmgMax);
+            guiController.getDmgB().setText("" + dmgMin + "-" + dmgMax);
+        }
     }
 
     private static void updateArmor() {
@@ -370,9 +381,19 @@ public class PlayerUpdater {
     }
 
     static void updateHits() {
-        int hitA = StatsCalculator.calculateHitA(currentPlayer);
-        currentPlayer.setHitA(hitA);
-        guiController.getHitA().setText(Integer.toString(hitA));
+        updateHits(true);
+        updateHits(false);
+    }
+
+    static void updateHits(boolean firstSet) {
+        int hit = StatsCalculator.calculateHit(currentPlayer, firstSet);
+        if(firstSet) {
+            currentPlayer.setHitA(hit);
+            guiController.getHitA().setText(Integer.toString(hit));
+        } else {
+            currentPlayer.setHitB(hit);
+            guiController.getHitB().setText(Integer.toString(hit));
+        }
     }
 
     static void updateDodges() {

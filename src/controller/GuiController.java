@@ -369,6 +369,24 @@ public class GuiController {
     private TextField rangeA;
 
     @FXML
+    private TextField dmgB;
+
+    @FXML
+    private TextField hitB;
+
+    @FXML
+    private TextField parryB;
+
+    @FXML
+    private TextField blockB;
+
+    @FXML
+    private TextField dodgeB;
+
+    @FXML
+    private TextField rangeB;
+
+    @FXML
     private TextField armorHead;
 
     @FXML
@@ -384,15 +402,6 @@ public class GuiController {
     private MenuButton weaponAMenu;
 
     @FXML
-    private MenuItem shortSwordA;
-
-    @FXML
-    private MenuItem saberA;
-
-    @FXML
-    private MenuItem chopperA;
-
-    @FXML
-    private MenuItem adzeA;
+    private MenuButton weaponBMenu;
 }
 
