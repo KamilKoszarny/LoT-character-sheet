@@ -52,6 +52,12 @@ public class Player implements Serializable {
     private Trait positiveTrait;
     private Trait neutralTrait;
     private Trait negativeTrait;
+    private String abilityI1Time;
+    private String abilityI2Time;
+    private String abilityII1Time;
+    private String abilityII2Time;
+    private String abilityIII1Time;
+    private String abilityIII2Time;
 
     private int hitPoints;
     private int hitPointsMax;

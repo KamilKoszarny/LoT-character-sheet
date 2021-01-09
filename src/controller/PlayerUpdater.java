@@ -39,12 +39,14 @@ public class PlayerUpdater {
         initAttributesUpdating();
         initSkillsUpdating();
         initTraitsUpdating();
+        initAbilityTimeUpdating();
         initStatsUpdating();
     }
 
     private static void initIdentityUpdating() {
         guiController.getProffesion().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setProffesion(guiController.getProffesion().getItems().get((Integer) newValue));
+            PlayerDisplayer.displayAbilities();
         });
         guiController.getRace().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setRace(guiController.getRace().getItems().get((Integer) newValue));
@@ -204,6 +206,21 @@ public class PlayerUpdater {
             currentPlayer.setNegativeTrait(guiController.getTraitNegative().getItems().get((Integer) newValue));
             PlayerDisplayer.displayTraits();
         });
+    }
+
+    private static void initAbilityTimeUpdating() {
+        guiController.getAbilityI1Time().textProperty().addListener((observable, oldValue, newValue)
+                -> currentPlayer.setAbilityI1Time(newValue));
+        guiController.getAbilityI2Time().textProperty().addListener((observable, oldValue, newValue)
+                -> currentPlayer.setAbilityI2Time(newValue));
+        guiController.getAbilityII1Time().textProperty().addListener((observable, oldValue, newValue)
+                -> currentPlayer.setAbilityII1Time(newValue));
+        guiController.getAbilityII2Time().textProperty().addListener((observable, oldValue, newValue)
+                -> currentPlayer.setAbilityII2Time(newValue));
+        guiController.getAbilityIII1Time().textProperty().addListener((observable, oldValue, newValue)
+                -> currentPlayer.setAbilityIII1Time(newValue));
+        guiController.getAbilityIII2Time().textProperty().addListener((observable, oldValue, newValue)
+                -> currentPlayer.setAbilityIII2Time(newValue));
     }
 
     private static void initStatsUpdating() {

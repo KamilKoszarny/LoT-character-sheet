@@ -2,10 +2,8 @@ package model;
 
 import lombok.Getter;
 
-import java.io.Serializable;
-
 @Getter
-public enum Trait implements Serializable {
+public enum Trait {
 
     TWO_HANDED(TraitType.POSITIVE, "Oburęczny", "Brak kary drugiej ręki"),
     RESISTANT(TraitType.POSITIVE, "Odporny", "+20% odp. na ch. ciala"),

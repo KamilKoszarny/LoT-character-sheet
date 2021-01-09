@@ -793,6 +793,203 @@
                                     </VBox>
                                  </children>
                               </HBox>
+                              <Label text="ZDOLNOŚCI PROFESJI">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox fx:id="abilitiesI">
+                                 <children>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityI0" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityI0Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityI1" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="abilityI1Time" prefColumnCount="8" />
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityI1Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityI2" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="abilityI2Time" prefColumnCount="8" />
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityI2Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox fx:id="abilitiesII">
+                                 <children>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityII0" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityII0Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityII1" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="abilityII1Time" prefColumnCount="8" />
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityII1Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityII2" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="abilityII2Time" prefColumnCount="8" />
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityII2Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox fx:id="abilitiesIII">
+                                 <children>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityIII0" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityIII0Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityIII1" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="abilityIII1Time" prefColumnCount="8" />
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityIII1Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefWidth="234.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label fx:id="abilityIII2" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                                <TextField fx:id="abilityIII2Time" prefColumnCount="8" />
+                                             </children>
+                                          </HBox>
+                                          <Label fx:id="abilityIII2Description" alignment="TOP_LEFT" wrapText="true">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
                               <Label text="CECHY">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
@@ -873,203 +1070,6 @@
                                        </children>
                                     </VBox>
                                  </children>
-                              </HBox>
-                              <Label text="ZDOLNOŚCI PROFESJI">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="5.0" right="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox>
-                                 <children>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="ARGUMENT SIŁY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="LEWY PROSTY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <DatePicker prefHeight="25.0" prefWidth="110.0" />
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="PRAWY SIERPOWY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <DatePicker prefHeight="25.0" prefWidth="110.0" />
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="ARGUMENT SIŁY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="LEWY PROSTY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <DatePicker prefHeight="25.0" prefWidth="110.0" />
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="PRAWY SIERPOWY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <DatePicker prefHeight="25.0" prefWidth="110.0" />
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox>
-                                 <children>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="ARGUMENT SIŁY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="LEWY PROSTY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <DatePicker prefHeight="25.0" prefWidth="110.0" />
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefWidth="234.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label maxWidth="1.7976931348623157E308" text="PRAWY SIERPOWY" HBox.hgrow="ALWAYS">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <DatePicker prefHeight="25.0" prefWidth="110.0" />
-                                             </children>
-                                          </HBox>
-                                          <Label alignment="TOP_LEFT" minHeight="32.0" text="Opis zdolności dsf dafs dasf dasf sadf sad fsad fas df adsf sadf adsf saf." wrapText="true">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </VBox.margin>
                               </HBox>
                               <Label text="INNE">
                                  <font>

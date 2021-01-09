@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import lombok.Getter;
 import lombok.Setter;
 import model.Proffesion;
@@ -228,6 +229,90 @@ public class GuiController {
 
     @FXML
     private Label traitNegativeDescription;
+
+    @FXML
+    private HBox abilitiesI;
+
+    @FXML
+    private Label abilityI0;
+
+    @FXML
+    private Label abilityI0Description;
+
+    @FXML
+    private Label abilityI1;
+
+    @FXML
+    private TextField abilityI1Time;
+
+    @FXML
+    private Label abilityI1Description;
+
+    @FXML
+    private Label abilityI2;
+
+    @FXML
+    private TextField abilityI2Time;
+
+    @FXML
+    private Label abilityI2Description;
+
+    @FXML
+    private HBox abilitiesII;
+
+    @FXML
+    private Label abilityII0;
+
+    @FXML
+    private Label abilityIIPassive;
+
+    @FXML
+    private Label abilityII0Description;
+
+    @FXML
+    private Label abilityII1;
+
+    @FXML
+    private TextField abilityII1Time;
+
+    @FXML
+    private Label abilityII1Description;
+
+    @FXML
+    private Label abilityII2;
+
+    @FXML
+    private TextField abilityII2Time;
+
+    @FXML
+    private Label abilityII2Description;
+
+    @FXML
+    private HBox abilitiesIII;
+
+    @FXML
+    private Label abilityIII0;
+
+    @FXML
+    private Label abilityIII0Description;
+
+    @FXML
+    private Label abilityIII1;
+
+    @FXML
+    private TextField abilityIII1Time;
+
+    @FXML
+    private Label abilityIII1Description;
+
+    @FXML
+    private Label abilityIII2;
+
+    @FXML
+    private TextField abilityIII2Time;
+
+    @FXML
+    private Label abilityIII2Description;
 
     @FXML
     private TextField hitPoints;

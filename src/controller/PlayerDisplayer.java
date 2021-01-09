@@ -3,6 +3,8 @@ package controller;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import model.Ability;
+import model.Proffesion;
 import model.Skill;
 
 import static controller.PlayerUpdater.currentPlayer;
@@ -49,6 +51,48 @@ public class PlayerDisplayer {
         if (currentPlayer.getNegativeTrait() != null) {
             guiController.getTraitNegative().getSelectionModel().select(currentPlayer.getNegativeTrait());
             guiController.getTraitNegativeDescription().setText(currentPlayer.getNegativeTrait().getDescriptionPL());
+        }
+    }
+
+    public static void displayAbilities() {
+        if (currentPlayer.getProffesion() == null) return;
+
+        final Proffesion lvl1Proffesion = currentPlayer.getProffesion().getLvl1Proffesion();
+        guiController.getAbilityI0().setText(Ability.findAbility(lvl1Proffesion, 0).getNamePL());
+        guiController.getAbilityI1().setText(Ability.findAbility(lvl1Proffesion, 1).getNamePL());
+        guiController.getAbilityI2().setText(Ability.findAbility(lvl1Proffesion, 2).getNamePL());
+        guiController.getAbilityI0Description().setText(Ability.findAbility(lvl1Proffesion, 0).getDescriptionPL());
+        guiController.getAbilityI1Description().setText(Ability.findAbility(lvl1Proffesion, 1).getDescriptionPL());
+        guiController.getAbilityI2Description().setText(Ability.findAbility(lvl1Proffesion, 2).getDescriptionPL());
+        guiController.getAbilityI1Time().setText(currentPlayer.getAbilityI1Time());
+        guiController.getAbilityI2Time().setText(currentPlayer.getAbilityI2Time());
+
+        if (currentPlayer.getProffesion().getLevel() >= 2) {
+            final Proffesion lvl2Proffesion = currentPlayer.getProffesion().getLvl2Proffesion();
+            guiController.getAbilityII0().setText(Ability.findAbility(lvl2Proffesion, 0).getNamePL());
+            guiController.getAbilityII1().setText(Ability.findAbility(lvl2Proffesion, 1).getNamePL());
+            guiController.getAbilityII2().setText(Ability.findAbility(lvl2Proffesion, 2).getNamePL());
+            guiController.getAbilityII0Description().setText(Ability.findAbility(lvl2Proffesion, 0).getDescriptionPL());
+            guiController.getAbilityII1Description().setText(Ability.findAbility(lvl2Proffesion, 1).getDescriptionPL());
+            guiController.getAbilityII2Description().setText(Ability.findAbility(lvl2Proffesion, 2).getDescriptionPL());
+            guiController.getAbilityII1Time().setText(currentPlayer.getAbilityII1Time());
+            guiController.getAbilityII2Time().setText(currentPlayer.getAbilityII2Time());
+        } else {
+            guiController.getAbilitiesII().setVisible(false);
+        }
+
+        if (currentPlayer.getProffesion().getLevel() == 3) {
+            final Proffesion lvl3Proffesion = currentPlayer.getProffesion();
+            guiController.getAbilityIII0().setText(Ability.findAbility(lvl3Proffesion, 0).getNamePL());
+            guiController.getAbilityIII1().setText(Ability.findAbility(lvl3Proffesion, 1).getNamePL());
+            guiController.getAbilityIII2().setText(Ability.findAbility(lvl3Proffesion, 2).getNamePL());
+            guiController.getAbilityIII0Description().setText(Ability.findAbility(lvl3Proffesion, 0).getDescriptionPL());
+            guiController.getAbilityIII1Description().setText(Ability.findAbility(lvl3Proffesion, 1).getDescriptionPL());
+            guiController.getAbilityIII2Description().setText(Ability.findAbility(lvl3Proffesion, 2).getDescriptionPL());
+            guiController.getAbilityIII1Time().setText(currentPlayer.getAbilityIII1Time());
+            guiController.getAbilityIII2Time().setText(currentPlayer.getAbilityIII2Time());
+        } else {
+            guiController.getAbilitiesIII().setVisible(false);
         }
     }
 
@@ -101,6 +145,7 @@ public class PlayerDisplayer {
 
         displaySkills();
         displayTraits();
+        displayAbilities();
 
         displayHitPoints();
         displayActions();
