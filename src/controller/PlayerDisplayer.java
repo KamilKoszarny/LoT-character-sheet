@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import model.Ability;
 import model.Proffesion;
 import model.Skill;
+import model.items.Helmet;
 import model.items.Item;
 import model.items.Weapon;
 
@@ -124,7 +125,7 @@ public class PlayerDisplayer {
     }
 
     public static void displayItem(Item item, EquipmentSlot equipmentSlot) {
-        MenuButton button = findEquipmentButton(equipmentSlot);
+        MenuButton button = equipmentSlot.getMenuButton();
         if (item == null) {
             button.setOpacity(0);
         } else {
@@ -135,19 +136,15 @@ public class PlayerDisplayer {
         }
     }
 
-    public static MenuButton findEquipmentButton(EquipmentSlot equipmentSlot) {
-        switch (equipmentSlot) {
-            case WEAPON_A: return guiController.getWeaponAMenu();
-            case WEAPON_B: return guiController.getWeaponBMenu();
-            default: return guiController.getWeaponAMenu();
-        }
-    }
-
     public static Image findImage(Item item) {
         String path = "images/items/";
         switch (item.getItemType()) {
             case WEAPON:
                 path += "weapons/" + ((Weapon) item).getModel().name() + ".png";
+                break;
+            case HELMET:
+                path += "helmets/" + ((Helmet) item).getModel().name() + ".png";
+                break;
         }
         return new Image(path);
     }

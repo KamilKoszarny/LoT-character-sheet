@@ -10,6 +10,7 @@ import static controller.Main.guiController;
 public enum EquipmentSlot {
     WEAPON_A(ItemType.WEAPON, guiController.getWeaponAMenu()),
     WEAPON_B(ItemType.WEAPON, guiController.getWeaponBMenu()),
+    HELMET(ItemType.HELMET, guiController.getHelmetMenu()),
     ;
 
     private final ItemType itemType;

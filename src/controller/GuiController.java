@@ -407,5 +407,8 @@ public class GuiController {
 
     @FXML
     private MenuButton weaponBMenu;
+
+    @FXML
+    private MenuButton helmetMenu;
 }
 

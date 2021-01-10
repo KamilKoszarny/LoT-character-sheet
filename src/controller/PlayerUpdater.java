@@ -367,7 +367,7 @@ public class PlayerUpdater {
         }
     }
 
-    private static void updateArmor() {
+    public static void updateArmor() {
         int armorHead = StatsCalculator.calculateArmorHead(currentPlayer);
         currentPlayer.setArmorHead(armorHead);
         guiController.getArmorHead().setText(Integer.toString(armorHead));

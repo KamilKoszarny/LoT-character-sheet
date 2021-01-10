@@ -39,6 +39,8 @@ public class StatsCalculator {
 
     public static int calculateArmorHead(Player player) {
         int armorHead = (int) Math.round(player.getEndurance()/20.);
+        if (player.getHelmet() != null)
+            armorHead += player.getHelmet().getArmor();
         return armorHead;
     }
 

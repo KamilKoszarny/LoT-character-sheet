@@ -3,6 +3,7 @@ package model;
 import controller.PlayerUpdater;
 import controller.items.EquipmentSlot;
 import lombok.Data;
+import model.items.Helmet;
 import model.items.Item;
 import model.items.Weapon;
 
@@ -97,11 +98,13 @@ public class Player implements Serializable {
 
     private Weapon weaponA;
     private Weapon weaponB;
+    private Helmet helmet;
 
     public Item getItem(EquipmentSlot equipmentSlot) {
         switch (equipmentSlot) {
             case WEAPON_A: return getWeaponA();
             case WEAPON_B: return getWeaponB();
+            case HELMET: return getHelmet();
         }
         return null;
     }
@@ -110,14 +113,18 @@ public class Player implements Serializable {
         if (item != null && !equipmentSlot.itemTypeCompatible(item.getItemType())) return false;
 
         switch (equipmentSlot) {
-            case WEAPON_A: {
+            case WEAPON_A:
                 setWeaponA((Weapon) item);
                 PlayerUpdater.updateDmg(true);
-            } break;
-            case WEAPON_B: {
+            break;
+            case WEAPON_B:
                 setWeaponB((Weapon) item);
                 PlayerUpdater.updateDmg(false);
-            } break;
+            break;
+            case HELMET:
+                setHelmet((Helmet) item);
+                PlayerUpdater.updateArmor();
+            break;
         }
         return true;
     }

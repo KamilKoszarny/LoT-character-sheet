@@ -113,7 +113,7 @@ public class ItemHandler {
     }
 
     private static Point holdPoint(EquipmentSlot equipmentSlot, Image itemImage, Point clickPoint) {
-        MenuButton button = PlayerDisplayer.findEquipmentButton(equipmentSlot);
+        MenuButton button = equipmentSlot.getMenuButton();
         int itemMinX = (int) ((button.getWidth() - itemImage.getWidth()) / 2);
         int itemMaxX = (int) ((button.getWidth() + itemImage.getWidth()) / 2);
         int itemMinY = (int) ((button.getHeight() - itemImage.getHeight()) / 2);

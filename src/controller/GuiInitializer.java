@@ -8,9 +8,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Separator;
 import model.*;
-import model.items.Weapon;
-import model.items.WeaponModel;
-import model.items.WeaponType;
+import model.items.*;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -85,6 +83,18 @@ public class GuiInitializer {
         button.setOnMousePressed(event
                 -> ItemHandler.handleEquipmentSlotClick(button, equipmentSlot, new Point((int)event.getX(), (int)event.getY())));
 
+        switch (equipmentSlot) {
+            case WEAPON_A:
+            case WEAPON_B:
+                initWeaponMenu(button, equipmentSlot);
+                break;
+            case HELMET:
+                initHelmetMenu(button, equipmentSlot);
+                break;
+        }
+    }
+
+    private static void initWeaponMenu(MenuButton button, EquipmentSlot equipmentSlot) {
         for (WeaponType weaponType: WeaponType.values()) {
             Menu menu = new Menu();
             menu.setText(weaponType.getNamePL());
@@ -103,6 +113,20 @@ public class GuiInitializer {
                 }
             }
             button.getItems().add(menu);
+        }
+    }
+
+    private static void initHelmetMenu(MenuButton button, EquipmentSlot equipmentSlot) {
+        for (HelmetModel helmetModel: HelmetModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(helmetModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Helmet helmet = new Helmet(helmetModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(helmet, equipmentSlot);
+                PlayerUpdater.updateArmor();
+                PlayerDisplayer.displayItem(helmet, equipmentSlot);
+            });
+            button.getItems().add(menuItem);
         }
     }
 }
