@@ -348,12 +348,12 @@ public class PlayerUpdater {
     }
 
 
-    static void updateDmg() {
+    public static void updateDmg() {
         updateDmg(true);
         updateDmg(false);
     }
 
-    static void updateDmg(boolean firstSet) {
+    public static void updateDmg(boolean firstSet) {
         int dmgMin = StatsCalculator.calculateDmgMin(currentPlayer, firstSet);
         int dmgMax = StatsCalculator.calculateDmgMax(currentPlayer, firstSet);
         if (firstSet) {

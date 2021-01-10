@@ -82,12 +82,8 @@ public class GuiInitializer {
         button.lookup(".arrow-button" ).setStyle( "-fx-padding: 0" );
         button.lookup(".arrow" ).setStyle( "-fx-background-insets: 0; -fx-padding: 0; -fx-shape: null;" );
 
-        button.setOnMousePressed(event -> {
-             if (PlayerUpdater.getCurrentPlayer().getItem(equipmentSlot) != null) {
-                 button.hide();
-                 ItemHandler.tryCatchItem(equipmentSlot, new Point((int)event.getX(), (int)event.getY()));
-             }
-        });
+        button.setOnMousePressed(event
+                -> ItemHandler.handleEquipmentSlotClick(button, equipmentSlot, new Point((int)event.getX(), (int)event.getY())));
 
         for (WeaponType weaponType: WeaponType.values()) {
             Menu menu = new Menu();
@@ -98,7 +94,7 @@ public class GuiInitializer {
                     menuItem.setText(weaponModel.getNamePL());
                     menuItem.setOnAction(event -> {
                         Weapon weapon = new Weapon(weaponModel);
-                        PlayerUpdater.getCurrentPlayer().setItem(weapon, equipmentSlot);
+                        PlayerUpdater.getCurrentPlayer().trySetItem(weapon, equipmentSlot);
                         PlayerUpdater.updateDmg(equipmentSlot.equals(EquipmentSlot.WEAPON_A));
                         PlayerUpdater.updateHits(equipmentSlot.equals(EquipmentSlot.WEAPON_A));
                         PlayerDisplayer.displayItem(weapon, equipmentSlot);

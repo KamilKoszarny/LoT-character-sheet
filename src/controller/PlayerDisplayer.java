@@ -144,7 +144,7 @@ public class PlayerDisplayer {
     }
 
     public static Image findImage(Item item) {
-        String path = "images/";
+        String path = "images/items/";
         switch (item.getItemType()) {
             case WEAPON:
                 path += "weapons/" + ((Weapon) item).getModel().name() + ".png";
