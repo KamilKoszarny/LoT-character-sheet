@@ -34,7 +34,7 @@ public class ItemHandler {
     }
 
     public static void tryCatchItem(EquipmentSlot equipmentSlot, Point clickPoint) {
-        Item item = getItemFromPlayer(equipmentSlot);
+        Item item = currentPlayer.getItem(equipmentSlot);
         Image itemImage = PlayerDisplayer.findImage(item);
         holdPoint = holdPoint(equipmentSlot, itemImage, clickPoint);
         if (holdPoint == null) {
@@ -47,22 +47,14 @@ public class ItemHandler {
         heldItemRectangle.setHeight(itemImage.getHeight());
         heldItemRectangle.setVisible(true);
         drawHeldItem(new Point(equipmentSlot.getX() + clickPoint.x, equipmentSlot.getY() + clickPoint.y));
-    }
 
-    private static Item getItemFromPlayer(EquipmentSlot equipmentSlot) {
-        Item item = null;
-        if (equipmentSlot.equals(EquipmentSlot.WEAPON_A))
-            item = currentPlayer.getWeaponA();
-        return item;
+        currentPlayer.setItem(null, equipmentSlot);
+        PlayerDisplayer.displayItem(null, equipmentSlot);
     }
 
     private static void drawHeldItem(Point movePoint) {
         heldItemRectangle.setX(movePoint.x - holdPoint.x);
         heldItemRectangle.setY(movePoint.y - holdPoint.y);
-        System.out.println("Mouse x: " + movePoint.x);
-        System.out.println("Mouse y: " + movePoint.y);
-        System.out.println("Held x: " + holdPoint.x);
-        System.out.println("Held y: " + holdPoint.y);
     }
 
     private static Point holdPoint(EquipmentSlot equipmentSlot, Image itemImage, Point clickPoint) {

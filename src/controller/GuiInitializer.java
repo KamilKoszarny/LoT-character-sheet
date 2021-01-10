@@ -73,23 +73,21 @@ public class GuiInitializer {
     }
 
     private static void initEquipment() {
-        initWeaponMenu(guiController.getWeaponAMenu(), true);
-        initWeaponMenu(guiController.getWeaponBMenu(), false);
+        for (EquipmentSlot slot: EquipmentSlot.values()) {
+            initItemMenu(slot.getMenuButton(), slot);
+        }
     }
 
-    private static void initWeaponMenu(MenuButton button, boolean firstSet) {
+    private static void initItemMenu(MenuButton button, EquipmentSlot equipmentSlot) {
         button.lookup(".arrow-button" ).setStyle( "-fx-padding: 0" );
         button.lookup(".arrow" ).setStyle( "-fx-background-insets: 0; -fx-padding: 0; -fx-shape: null;" );
 
-        if (firstSet) {
-            button.setOnMousePressed(event -> {
-                 if (PlayerUpdater.getCurrentPlayer().getWeaponA() != null) {
-                     button.hide();
-                     ItemHandler.tryCatchItem(EquipmentSlot.WEAPON_A, new Point((int)event.getX(), (int)event.getY()));
-                 }
-            });
-
-        }
+        button.setOnMousePressed(event -> {
+             if (PlayerUpdater.getCurrentPlayer().getItem(equipmentSlot) != null) {
+                 button.hide();
+                 ItemHandler.tryCatchItem(equipmentSlot, new Point((int)event.getX(), (int)event.getY()));
+             }
+        });
 
         for (WeaponType weaponType: WeaponType.values()) {
             Menu menu = new Menu();
@@ -100,14 +98,10 @@ public class GuiInitializer {
                     menuItem.setText(weaponModel.getNamePL());
                     menuItem.setOnAction(event -> {
                         Weapon weapon = new Weapon(weaponModel);
-                        if (firstSet) {
-                            PlayerUpdater.getCurrentPlayer().setWeaponA(weapon);
-                        } else {
-                            PlayerUpdater.getCurrentPlayer().setWeaponB(weapon);
-                        }
-                        PlayerUpdater.updateDmg(firstSet);
-                        PlayerUpdater.updateHits(firstSet);
-                        PlayerDisplayer.displayItem(weapon, firstSet ? EquipmentSlot.WEAPON_A : EquipmentSlot.WEAPON_B);
+                        PlayerUpdater.getCurrentPlayer().setItem(weapon, equipmentSlot);
+                        PlayerUpdater.updateDmg(equipmentSlot.equals(EquipmentSlot.WEAPON_A));
+                        PlayerUpdater.updateHits(equipmentSlot.equals(EquipmentSlot.WEAPON_A));
+                        PlayerDisplayer.displayItem(weapon, equipmentSlot);
                     });
                     menu.getItems().add(menuItem);
                 }

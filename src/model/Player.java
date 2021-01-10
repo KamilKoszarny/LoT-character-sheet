@@ -1,6 +1,8 @@
 package model;
 
+import controller.items.EquipmentSlot;
 import lombok.Data;
+import model.items.Item;
 import model.items.Weapon;
 
 import java.io.Serializable;
@@ -94,4 +96,21 @@ public class Player implements Serializable {
 
     private Weapon weaponA;
     private Weapon weaponB;
+
+    public Item getItem(EquipmentSlot equipmentSlot) {
+        switch (equipmentSlot) {
+            case WEAPON_A: return getWeaponA();
+            case WEAPON_B: return getWeaponB();
+        }
+        return null;
+    }
+
+    public void setItem(Item item, EquipmentSlot equipmentSlot) {
+        if (item != null && !equipmentSlot.itemTypeCompatible(item.getItemType())) return;
+
+        switch (equipmentSlot) {
+            case WEAPON_A: setWeaponA((Weapon) item);
+            case WEAPON_B: setWeaponB((Weapon) item);
+        }
+    }
 }

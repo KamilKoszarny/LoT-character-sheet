@@ -125,10 +125,14 @@ public class PlayerDisplayer {
 
     public static void displayItem(Item item, EquipmentSlot equipmentSlot) {
         MenuButton button = findEquipmentButton(equipmentSlot);
-        Image img = findImage(item);
-        ImageView view = new ImageView(img);
-        button.setGraphic(view);
-        button.setOpacity(1);
+        if (item == null) {
+            button.setOpacity(0);
+        } else {
+            Image img = findImage(item);
+            ImageView view = new ImageView(img);
+            button.setGraphic(view);
+            button.setOpacity(1);
+        }
     }
 
     public static MenuButton findEquipmentButton(EquipmentSlot equipmentSlot) {

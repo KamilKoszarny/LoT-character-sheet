@@ -1,21 +1,34 @@
 package controller.items;
 
+import javafx.scene.control.MenuButton;
 import lombok.Getter;
+import model.items.ItemType;
+
+import static controller.Main.guiController;
 
 @Getter
 public enum EquipmentSlot {
-    WEAPON_A(181, 56, 67, 137),
-    WEAPON_B(85, 56, 67, 137);
+    WEAPON_A(ItemType.WEAPON, guiController.getWeaponAMenu()),
+    WEAPON_B(ItemType.WEAPON, guiController.getWeaponBMenu()),
+    ;
 
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    private final ItemType itemType;
+    private final MenuButton menuButton;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
 
-    EquipmentSlot(int x, int y, int width, int height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    EquipmentSlot(ItemType itemType, MenuButton menuButton) {
+        this.itemType = itemType;
+        this.menuButton = menuButton;
+        this.x = (int) menuButton.getLayoutX();
+        this.y = (int) menuButton.getLayoutY();
+        this.width = (int) menuButton.getWidth();
+        this.height = (int) menuButton.getHeight();
+    }
+
+    public boolean itemTypeCompatible(ItemType itemType) {
+        return itemType.equals(this.itemType);
     }
 }
