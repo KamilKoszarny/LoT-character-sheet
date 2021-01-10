@@ -1,5 +1,6 @@
 package controller;
 
+import controller.items.EquipmentSlot;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -9,10 +10,11 @@ import javafx.scene.image.ImageView;
 import model.Ability;
 import model.Proffesion;
 import model.Skill;
-import model.items.WeaponModel;
+import model.items.Item;
+import model.items.Weapon;
 
+import static controller.Main.guiController;
 import static controller.PlayerUpdater.currentPlayer;
-import static controller.PlayerUpdater.guiController;
 
 public class PlayerDisplayer {
 
@@ -114,19 +116,36 @@ public class PlayerDisplayer {
 
     private static void displayEquipment() {
         if (currentPlayer.getWeaponA() != null) {
-            displayWeapon(currentPlayer.getWeaponA().getModel(), true);
+            displayItem(currentPlayer.getWeaponA(), EquipmentSlot.WEAPON_A);
         }
         if (currentPlayer.getWeaponB() != null) {
-            displayWeapon(currentPlayer.getWeaponA().getModel(), false);
+            displayItem(currentPlayer.getWeaponA(), EquipmentSlot.WEAPON_B);
         }
     }
 
-    public static void displayWeapon(WeaponModel weaponModel, boolean firstSet) {
-        MenuButton button = firstSet ? guiController.getWeaponAMenu() : guiController.getWeaponBMenu();
-        Image img = new Image("images/weapons/" + weaponModel.name() + ".png");
+    public static void displayItem(Item item, EquipmentSlot equipmentSlot) {
+        MenuButton button = findEquipmentButton(equipmentSlot);
+        Image img = findImage(item);
         ImageView view = new ImageView(img);
         button.setGraphic(view);
         button.setOpacity(1);
+    }
+
+    public static MenuButton findEquipmentButton(EquipmentSlot equipmentSlot) {
+        switch (equipmentSlot) {
+            case WEAPON_A: return guiController.getWeaponAMenu();
+            case WEAPON_B: return guiController.getWeaponBMenu();
+            default: return guiController.getWeaponAMenu();
+        }
+    }
+
+    public static Image findImage(Item item) {
+        String path = "images/";
+        switch (item.getItemType()) {
+            case WEAPON:
+                path += "weapons/" + ((Weapon) item).getModel().name() + ".png";
+        }
+        return new Image(path);
     }
 
     public static void displayAllNotAuto() {

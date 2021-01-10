@@ -1,7 +1,5 @@
-import controller.GuiController;
-import controller.GuiInitializer;
-import controller.PlayerSaveLoader;
-import controller.PlayerUpdater;
+package controller;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,17 +8,20 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static GuiController guiController;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoT Character Sheet.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoT Character Sheet.fxml"));
         Pane pane = loader.load();
         primaryStage.setTitle("Legacy of Tyrant: Karta postaci");
         primaryStage.setScene(new Scene(pane));
         primaryStage.show();
 
         GuiController guiController = loader.getController();
-        GuiInitializer.init(guiController);
-        PlayerUpdater.init(guiController);
+        Main.guiController = loader.getController();
+        GuiInitializer.init();
+        PlayerUpdater.init();
         PlayerSaveLoader.init(primaryStage, guiController);
     }
 

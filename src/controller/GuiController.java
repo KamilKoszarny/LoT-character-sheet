@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import lombok.Getter;
 import lombok.Setter;
@@ -397,6 +398,9 @@ public class GuiController {
 
     @FXML
     private TextField armorLegs;
+
+    @FXML
+    private AnchorPane itemsPane;
 
     @FXML
     private MenuButton weaponAMenu;

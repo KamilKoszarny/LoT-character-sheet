@@ -1,5 +1,7 @@
 package controller;
 
+import controller.items.ItemHandler;
+import controller.items.ItemUpdater;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import lombok.Getter;
@@ -8,20 +10,20 @@ import model.Player;
 import model.Skill;
 import model.SkillType;
 
+import static controller.Main.guiController;
+
 public class PlayerUpdater {
 
     @Getter
     @Setter
-    static Player currentPlayer;
+    public static Player currentPlayer;
 
-    static GuiController guiController;
-
-    public static void init(GuiController guiController) {
-        PlayerUpdater.guiController = guiController;
+    public static void init() {
         createEmptyPlayer();
         initUpdating();
         PlayerDisplayer.displayAllNotAuto();
-        ItemUpdater.init(guiController);
+        ItemUpdater.init();
+        ItemHandler.init();
     }
 
     private static void createEmptyPlayer() {

@@ -1,5 +1,7 @@
 package controller;
 
+import controller.items.EquipmentSlot;
+import controller.items.ItemHandler;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
@@ -10,16 +12,16 @@ import model.items.Weapon;
 import model.items.WeaponModel;
 import model.items.WeaponType;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static controller.Main.guiController;
+
 public class GuiInitializer {
 
-    private static GuiController guiController;
 
-    public static void init(GuiController guiController) {
-        GuiInitializer.guiController = guiController;
-
+    public static void init() {
         initProffesions();
         initRaces();
         initSigns();
@@ -79,6 +81,16 @@ public class GuiInitializer {
         button.lookup(".arrow-button" ).setStyle( "-fx-padding: 0" );
         button.lookup(".arrow" ).setStyle( "-fx-background-insets: 0; -fx-padding: 0; -fx-shape: null;" );
 
+        if (firstSet) {
+            button.setOnMousePressed(event -> {
+                 if (PlayerUpdater.getCurrentPlayer().getWeaponA() != null) {
+                     button.hide();
+                     ItemHandler.tryCatchItem(EquipmentSlot.WEAPON_A, new Point((int)event.getX(), (int)event.getY()));
+                 }
+            });
+
+        }
+
         for (WeaponType weaponType: WeaponType.values()) {
             Menu menu = new Menu();
             menu.setText(weaponType.getNamePL());
@@ -87,14 +99,15 @@ public class GuiInitializer {
                     MenuItem menuItem = new MenuItem();
                     menuItem.setText(weaponModel.getNamePL());
                     menuItem.setOnAction(event -> {
+                        Weapon weapon = new Weapon(weaponModel);
                         if (firstSet) {
-                            PlayerUpdater.getCurrentPlayer().setWeaponA(new Weapon(weaponModel));
+                            PlayerUpdater.getCurrentPlayer().setWeaponA(weapon);
                         } else {
-                            PlayerUpdater.getCurrentPlayer().setWeaponB(new Weapon(weaponModel));
+                            PlayerUpdater.getCurrentPlayer().setWeaponB(weapon);
                         }
                         PlayerUpdater.updateDmg(firstSet);
                         PlayerUpdater.updateHits(firstSet);
-                        PlayerDisplayer.displayWeapon(weaponModel, firstSet);
+                        PlayerDisplayer.displayItem(weapon, firstSet ? EquipmentSlot.WEAPON_A : EquipmentSlot.WEAPON_B);
                     });
                     menu.getItems().add(menuItem);
                 }

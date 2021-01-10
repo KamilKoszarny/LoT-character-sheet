@@ -14,7 +14,7 @@ public class StatsCalculator {
         Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
         if (weapon == null) {
             return (int) Math.round(1 * (1 + player.getStrength()/50.));
-        } else if (weapon.getType().isRange()) {
+        } else if (weapon.getWeaponType().isRange()) {
             return (int) Math.round(weapon.getDmgMin() * (1 + player.getEye()/100.));
         } else {
             return (int) Math.round(weapon.getDmgMin() * (1 + player.getStrength()/50.));
@@ -25,7 +25,7 @@ public class StatsCalculator {
         Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
         if (weapon == null) {
             return (int) Math.round(2 * (1 + player.getStrength()/50.));
-        } else if (weapon.getType().isRange()) {
+        } else if (weapon.getWeaponType().isRange()) {
             return (int) Math.round(weapon.getDmgMax() * (1 + player.getEye()/100.));
         } else {
             return (int) Math.round(weapon.getDmgMax() * (1 + player.getStrength()/50.));
@@ -74,7 +74,7 @@ public class StatsCalculator {
 
     public static int calculateHit(Player player, boolean firstSet) {
         Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
-        if (weapon == null || !weapon.getType().isRange()) {
+        if (weapon == null || !weapon.getWeaponType().isRange()) {
             return 50 + player.getArm();
         } else {
             return 50 + player.getEye();

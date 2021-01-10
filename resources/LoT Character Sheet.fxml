@@ -1571,7 +1571,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <AnchorPane>
+                              <AnchorPane fx:id="itemsPane">
                                  <children>
                                     <HBox alignment="CENTER" layoutX="70.0">
                                        <children>
@@ -1600,68 +1600,65 @@
                                     </HBox>
                                     <MenuButton fx:id="weaponAMenu" alignment="CENTER" layoutX="181.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
                                     <MenuButton fx:id="weaponBMenu" alignment="CENTER" layoutX="85.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
-                                 </children>
-                              </AnchorPane>
-                              <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="10.0">
-                                 <children>
-                                    <ImageView fitHeight="180.0" fitWidth="9999.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="180.0" fitWidth="9999.0" layoutX="10.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/inventory.png" />
                                        </image>
                                     </ImageView>
-                                    <TextArea maxHeight="-Infinity" prefColumnCount="16" prefHeight="180.0" prefRowCount="2">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" right="5.0" />
-                                       </HBox.margin>
-                                    </TextArea>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                    <HBox alignment="CENTER" layoutX="380.0" layoutY="310.0" maxHeight="-Infinity" prefHeight="10.0">
                                        <children>
-                                          <Label text="Obciążenie:">
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField alignment="CENTER_RIGHT" maxWidth="-Infinity" prefColumnCount="4">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="30.0" right="5.0" />
-                                             </VBox.margin>
-                                          </TextField>
-                                          <Label text="Pieniądze:">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                             <font>
-                                                <Font size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <HBox alignment="CENTER">
+                                          <TextArea maxHeight="-Infinity" prefColumnCount="16" prefHeight="180.0" prefRowCount="2">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" />
+                                             </HBox.margin>
+                                          </TextArea>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
-                                                <Label text="szt. złota" />
-                                                <TextField prefColumnCount="2">
-                                                   <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
+                                                <Label text="Obciążenie:">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField alignment="CENTER_RIGHT" maxWidth="-Infinity" prefColumnCount="4">
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="30.0" right="5.0" />
+                                                   </VBox.margin>
                                                 </TextField>
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER" />
-                                          <HBox alignment="CENTER">
-                                             <children>
-                                                <Label text="w banku" />
-                                                <TextField prefColumnCount="2">
-                                                   <HBox.margin>
+                                                <Label text="Pieniądze:">
+                                                   <VBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </HBox.margin>
-                                                </TextField>
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox alignment="CENTER">
+                                                   <children>
+                                                      <Label text="szt. złota" />
+                                                      <TextField prefColumnCount="2">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" />
+                                                <HBox alignment="CENTER">
+                                                   <children>
+                                                      <Label text="w banku" />
+                                                      <TextField prefColumnCount="2">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </HBox>
                                              </children>
-                                          </HBox>
+                                          </VBox>
                                        </children>
-                                    </VBox>
+                                    </HBox>
                                  </children>
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
+                              </AnchorPane>
                               <Label text="STAN">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
