@@ -403,12 +403,15 @@ public class GuiController {
     private AnchorPane itemsPane;
 
     @FXML
-    private MenuButton weaponAMenu;
+    private MenuButton weaponA;
 
     @FXML
-    private MenuButton weaponBMenu;
+    private MenuButton weaponB;
 
     @FXML
-    private MenuButton helmetMenu;
+    private MenuButton helmet;
+
+    @FXML
+    private MenuButton inventory;
 }
 

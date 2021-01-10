@@ -7,10 +7,11 @@ import model.items.ItemType;
 import static controller.Main.guiController;
 
 @Getter
-public enum EquipmentSlot {
-    WEAPON_A(ItemType.WEAPON, guiController.getWeaponAMenu()),
-    WEAPON_B(ItemType.WEAPON, guiController.getWeaponBMenu()),
-    HELMET(ItemType.HELMET, guiController.getHelmetMenu()),
+public enum ItemSlot {
+    WEAPON_A(ItemType.WEAPON, guiController.getWeaponA()),
+    WEAPON_B(ItemType.WEAPON, guiController.getWeaponB()),
+    HELMET(ItemType.HELMET, guiController.getHelmet()),
+    INVENTORY(null, guiController.getInventory())
     ;
 
     private final ItemType itemType;
@@ -20,7 +21,7 @@ public enum EquipmentSlot {
     private final int width;
     private final int height;
 
-    EquipmentSlot(ItemType itemType, MenuButton menuButton) {
+    ItemSlot(ItemType itemType, MenuButton menuButton) {
         this.itemType = itemType;
         this.menuButton = menuButton;
         this.x = (int) menuButton.getLayoutX();

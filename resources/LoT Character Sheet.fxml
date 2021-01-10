@@ -1598,10 +1598,11 @@
                                           </ImageView>
                                        </children>
                                     </HBox>
-                                    <MenuButton fx:id="weaponAMenu" alignment="CENTER" layoutX="181.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
-                                    <MenuButton fx:id="weaponBMenu" alignment="CENTER" layoutX="85.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
-                                    <MenuButton fx:id="helmetMenu" alignment="CENTER" layoutX="321.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="69.0" prefWidth="69.0" style="-fx-background-color: #111;" />
-                                    <ImageView fitHeight="180.0" fitWidth="9999.0" layoutX="10.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                                    <MenuButton fx:id="weaponA" alignment="CENTER" layoutX="181.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="weaponB" alignment="CENTER" layoutX="85.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="helmet" alignment="CENTER" layoutX="321.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="69.0" prefWidth="69.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="inventory" alignment="CENTER" layoutX="10.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="180.0" prefWidth="360.0" style="-fx-background-color: #111;" />
+                                    <ImageView fitHeight="180.0" fitWidth="9999.0" focusTraversable="true" layoutX="10.0" layoutY="310.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/inventory.png" />
                                        </image>

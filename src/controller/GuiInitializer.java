@@ -1,7 +1,7 @@
 package controller;
 
-import controller.items.EquipmentSlot;
 import controller.items.ItemHandler;
+import controller.items.ItemSlot;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
@@ -11,7 +11,9 @@ import model.*;
 import model.items.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static controller.Main.guiController;
@@ -71,30 +73,34 @@ public class GuiInitializer {
     }
 
     private static void initEquipment() {
-        for (EquipmentSlot slot: EquipmentSlot.values()) {
+        for (ItemSlot slot: ItemSlot.values()) {
             initItemMenu(slot.getMenuButton(), slot);
         }
     }
 
-    private static void initItemMenu(MenuButton button, EquipmentSlot equipmentSlot) {
+    private static void initItemMenu(MenuButton button, ItemSlot itemSlot) {
         button.lookup(".arrow-button" ).setStyle( "-fx-padding: 0" );
         button.lookup(".arrow" ).setStyle( "-fx-background-insets: 0; -fx-padding: 0; -fx-shape: null;" );
 
         button.setOnMousePressed(event
-                -> ItemHandler.handleEquipmentSlotClick(button, equipmentSlot, new Point((int)event.getX(), (int)event.getY())));
+                -> ItemHandler.handleItemSlotClick(button, itemSlot, new Point((int)event.getX(), (int)event.getY())));
 
-        switch (equipmentSlot) {
+        switch (itemSlot) {
             case WEAPON_A:
             case WEAPON_B:
-                initWeaponMenu(button, equipmentSlot);
+                button.getItems().addAll(createWeaponMenu(itemSlot));
                 break;
             case HELMET:
-                initHelmetMenu(button, equipmentSlot);
+                button.getItems().addAll(createHelmetMenu(itemSlot));
+                break;
+            case INVENTORY:
+                button.getItems().addAll(createInventoryMenu(itemSlot));
                 break;
         }
     }
 
-    private static void initWeaponMenu(MenuButton button, EquipmentSlot equipmentSlot) {
+    private static List<MenuItem> createWeaponMenu(ItemSlot itemSlot) {
+        List<MenuItem> weaponMenuItems = new ArrayList<>();
         for (WeaponType weaponType: WeaponType.values()) {
             Menu menu = new Menu();
             menu.setText(weaponType.getNamePL());
@@ -104,29 +110,50 @@ public class GuiInitializer {
                     menuItem.setText(weaponModel.getNamePL());
                     menuItem.setOnAction(event -> {
                         Weapon weapon = new Weapon(weaponModel);
-                        PlayerUpdater.getCurrentPlayer().trySetItem(weapon, equipmentSlot);
-                        PlayerUpdater.updateDmg(equipmentSlot.equals(EquipmentSlot.WEAPON_A));
-                        PlayerUpdater.updateHits(equipmentSlot.equals(EquipmentSlot.WEAPON_A));
-                        PlayerDisplayer.displayItem(weapon, equipmentSlot);
+                        PlayerUpdater.getCurrentPlayer().trySetItem(weapon, itemSlot);
+                        PlayerUpdater.updateDmg(itemSlot.equals(ItemSlot.WEAPON_A));
+                        PlayerUpdater.updateHits(itemSlot.equals(ItemSlot.WEAPON_A));
+                        PlayerDisplayer.displayItem(weapon, itemSlot);
                     });
                     menu.getItems().add(menuItem);
                 }
             }
-            button.getItems().add(menu);
+            weaponMenuItems.add(menu);
         }
+        return weaponMenuItems;
     }
 
-    private static void initHelmetMenu(MenuButton button, EquipmentSlot equipmentSlot) {
+    private static List<MenuItem> createHelmetMenu(ItemSlot itemSlot) {
+        List<MenuItem> helmetMenuItems = new ArrayList<>();
         for (HelmetModel helmetModel: HelmetModel.values()) {
             MenuItem menuItem = new MenuItem();
             menuItem.setText(helmetModel.getNamePL());
             menuItem.setOnAction(event -> {
                 Helmet helmet = new Helmet(helmetModel);
-                PlayerUpdater.getCurrentPlayer().trySetItem(helmet, equipmentSlot);
+                PlayerUpdater.getCurrentPlayer().trySetItem(helmet, itemSlot);
                 PlayerUpdater.updateArmor();
-                PlayerDisplayer.displayItem(helmet, equipmentSlot);
+                PlayerDisplayer.displayItem(helmet, itemSlot);
             });
-            button.getItems().add(menuItem);
+            helmetMenuItems.add(menuItem);
         }
+        return helmetMenuItems;
+    }
+
+    private static List<MenuItem> createInventoryMenu(ItemSlot itemSlot) {
+        List<MenuItem> inventoryMenuItems = new ArrayList<>();
+        for (ItemType itemType: ItemType.values()) {
+            Menu menu = new Menu();
+            menu.setText(itemType.getNamePL());
+            switch (itemType) {
+                case WEAPON:
+                    menu.getItems().addAll(createWeaponMenu(itemSlot));
+                    break;
+                case HELMET:
+                    menu.getItems().addAll(createHelmetMenu(itemSlot));
+                    break;
+            }
+            inventoryMenuItems.add(menu);
+        }
+        return inventoryMenuItems;
     }
 }

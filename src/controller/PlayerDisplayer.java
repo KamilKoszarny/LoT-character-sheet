@@ -1,6 +1,6 @@
 package controller;
 
-import controller.items.EquipmentSlot;
+import controller.items.ItemSlot;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -117,15 +117,15 @@ public class PlayerDisplayer {
 
     private static void displayEquipment() {
         if (currentPlayer.getWeaponA() != null) {
-            displayItem(currentPlayer.getWeaponA(), EquipmentSlot.WEAPON_A);
+            displayItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_A);
         }
         if (currentPlayer.getWeaponB() != null) {
-            displayItem(currentPlayer.getWeaponA(), EquipmentSlot.WEAPON_B);
+            displayItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_B);
         }
     }
 
-    public static void displayItem(Item item, EquipmentSlot equipmentSlot) {
-        MenuButton button = equipmentSlot.getMenuButton();
+    public static void displayItem(Item item, ItemSlot itemSlot) {
+        MenuButton button = itemSlot.getMenuButton();
         if (item == null) {
             button.setOpacity(0);
         } else {

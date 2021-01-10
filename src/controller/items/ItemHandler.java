@@ -33,7 +33,7 @@ public class ItemHandler {
             if (heldItem != null)
                 drawHeldItem(new Point((int)event.getX(), (int)event.getY()));
         });
-        for (MenuButton button: Arrays.stream(EquipmentSlot.values()).map(EquipmentSlot::getMenuButton).collect(Collectors.toList())) {
+        for (MenuButton button: Arrays.stream(ItemSlot.values()).map(ItemSlot::getMenuButton).collect(Collectors.toList())) {
             button.setOnMouseMoved(event -> {
                 if (heldItem != null)
                     drawHeldItem(new Point((int) (button.getLayoutX() + event.getX()), (int) (button.getLayoutY() + event.getY())));
@@ -41,35 +41,35 @@ public class ItemHandler {
         }
     }
 
-    public static void handleEquipmentSlotClick(MenuButton button, EquipmentSlot equipmentSlot, Point clickPoint) {
+    public static void handleItemSlotClick(MenuButton button, ItemSlot itemSlot, Point clickPoint) {
         if (heldItem != null) {
             button.hide();
-            if (currentPlayer.getItem(equipmentSlot) != null) {
-                changeItem(equipmentSlot, clickPoint);
+            if (currentPlayer.getItem(itemSlot) != null) {
+                changeItem(itemSlot, clickPoint);
             } else {
-                tryPutOnItem(equipmentSlot);
+                tryPutOnItem(itemSlot);
             }
         } else {
-            if (currentPlayer.getItem(equipmentSlot) != null) {
+            if (currentPlayer.getItem(itemSlot) != null) {
                 button.hide();
-                tryCatchItem(equipmentSlot, clickPoint);
+                tryCatchItem(itemSlot, clickPoint);
             }  // else show menu
         }
     }
 
-    public static void tryCatchItem(EquipmentSlot equipmentSlot, Point clickPoint) {
-        Item item = currentPlayer.getItem(equipmentSlot);
+    public static void tryCatchItem(ItemSlot itemSlot, Point clickPoint) {
+        Item item = currentPlayer.getItem(itemSlot);
         Image itemImage = PlayerDisplayer.findImage(item);
-        holdPoint = holdPoint(equipmentSlot, itemImage, clickPoint);
+        holdPoint = holdPoint(itemSlot, itemImage, clickPoint);
         if (holdPoint == null) {
             return;
         }
 
         catchItem(item, itemImage);
-        drawHeldItem(new Point(equipmentSlot.getX() + clickPoint.x, equipmentSlot.getY() + clickPoint.y));
+        drawHeldItem(new Point(itemSlot.getX() + clickPoint.x, itemSlot.getY() + clickPoint.y));
 
-        currentPlayer.trySetItem(null, equipmentSlot);
-        PlayerDisplayer.displayItem(null, equipmentSlot);
+        currentPlayer.trySetItem(null, itemSlot);
+        PlayerDisplayer.displayItem(null, itemSlot);
     }
 
     private static void catchItem(Item item, Image itemImage) {
@@ -80,22 +80,22 @@ public class ItemHandler {
         heldItemRectangle.setVisible(true);
     }
 
-    public static boolean tryPutOnItem(EquipmentSlot equipmentSlot) {
-        if (currentPlayer.trySetItem(heldItem, equipmentSlot)) {
-            PlayerDisplayer.displayItem(heldItem, equipmentSlot);
+    public static boolean tryPutOnItem(ItemSlot itemSlot) {
+        if (currentPlayer.trySetItem(heldItem, itemSlot)) {
+            PlayerDisplayer.displayItem(heldItem, itemSlot);
             hideHeldItem();
             return true;
         }
         return false;
     }
 
-    private static void changeItem(EquipmentSlot equipmentSlot, Point clickPoint) {
-        Item belowItem = currentPlayer.getItem(equipmentSlot);
-        if (tryPutOnItem(equipmentSlot)) {
+    private static void changeItem(ItemSlot itemSlot, Point clickPoint) {
+        Item belowItem = currentPlayer.getItem(itemSlot);
+        if (tryPutOnItem(itemSlot)) {
             Image itemImage = PlayerDisplayer.findImage(belowItem);
             catchItem(belowItem, itemImage);
             holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
-            drawHeldItem(new Point(equipmentSlot.getX() + clickPoint.x, equipmentSlot.getY() + clickPoint.y));
+            drawHeldItem(new Point(itemSlot.getX() + clickPoint.x, itemSlot.getY() + clickPoint.y));
         }
     }
 
@@ -112,8 +112,8 @@ public class ItemHandler {
         heldItemRectangle.setVisible(false);
     }
 
-    private static Point holdPoint(EquipmentSlot equipmentSlot, Image itemImage, Point clickPoint) {
-        MenuButton button = equipmentSlot.getMenuButton();
+    private static Point holdPoint(ItemSlot itemSlot, Image itemImage, Point clickPoint) {
+        MenuButton button = itemSlot.getMenuButton();
         int itemMinX = (int) ((button.getWidth() - itemImage.getWidth()) / 2);
         int itemMaxX = (int) ((button.getWidth() + itemImage.getWidth()) / 2);
         int itemMinY = (int) ((button.getHeight() - itemImage.getHeight()) / 2);

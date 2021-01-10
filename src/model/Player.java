@@ -1,13 +1,16 @@
 package model;
 
 import controller.PlayerUpdater;
-import controller.items.EquipmentSlot;
+import controller.items.ItemSlot;
+import javafx.util.Pair;
 import lombok.Data;
 import model.items.Helmet;
 import model.items.Item;
 import model.items.Weapon;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class Player implements Serializable {
@@ -100,8 +103,10 @@ public class Player implements Serializable {
     private Weapon weaponB;
     private Helmet helmet;
 
-    public Item getItem(EquipmentSlot equipmentSlot) {
-        switch (equipmentSlot) {
+    private Map<Item, Pair<Integer, Integer>> inventory = new HashMap<>();
+
+    public Item getItem(ItemSlot itemSlot) {
+        switch (itemSlot) {
             case WEAPON_A: return getWeaponA();
             case WEAPON_B: return getWeaponB();
             case HELMET: return getHelmet();
@@ -109,10 +114,10 @@ public class Player implements Serializable {
         return null;
     }
 
-    public boolean trySetItem(Item item, EquipmentSlot equipmentSlot) {
-        if (item != null && !equipmentSlot.itemTypeCompatible(item.getItemType())) return false;
+    public boolean trySetItem(Item item, ItemSlot itemSlot) {
+        if (item != null && !itemSlot.itemTypeCompatible(item.getItemType())) return false;
 
-        switch (equipmentSlot) {
+        switch (itemSlot) {
             case WEAPON_A:
                 setWeaponA((Weapon) item);
                 PlayerUpdater.updateDmg(true);
