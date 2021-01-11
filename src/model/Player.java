@@ -136,6 +136,9 @@ public class Player implements Serializable {
 
     public void addToInventory(Item item, Point slot) {
         inventory.put(item, slot);
-        System.out.println("item added to inventory");
+    }
+
+    public void removeFromInventory(Item item) {
+        inventory.remove(item);
     }
 }

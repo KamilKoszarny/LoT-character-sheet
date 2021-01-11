@@ -16,6 +16,7 @@ import model.Skill;
 import model.items.Helmet;
 import model.items.Item;
 import model.items.Weapon;
+import utils.Utils;
 
 import java.awt.*;
 
@@ -145,6 +146,8 @@ public class PlayerDisplayer {
         for (Item item: currentPlayer.getInventory().keySet()) {
             displayInventoryItem(item, currentPlayer.getInventory().get(item));
         }
+        changeInventoryItemsMouseTransparency(ItemHandler.isItemHeld());
+        System.out.println("displayInventory: Inventory size: " + currentPlayer.getInventory().keySet().size());
     }
 
     public static void displayInventoryItem(Item item, Point slot) {
@@ -155,7 +158,25 @@ public class PlayerDisplayer {
                 invButton.getLayoutY() + slot.y * ItemHandler.ITEM_SLOT_SIZE,
                 itemImage.getWidth(), itemImage.getHeight());
         rectangle.setFill(new ImagePattern(itemImage));
+        rectangle.setId(Integer.toString(item.hashCode()));
+
+        ItemHandler.initInventoryItemClick(item, rectangle);
+
         guiController.getItemsPane().getChildren().add(rectangle);
+    }
+
+    public static void removeInventoryItem(Item item) {
+        guiController.getItemsPane().getChildren()
+                .removeIf(node -> node.getId() != null
+                        && node.getId().equals(Integer.toString(item.hashCode())));
+    }
+
+    public static void changeInventoryItemsMouseTransparency(boolean transparent) {
+        guiController.getItemsPane().getChildren().forEach(node -> {
+            if (Utils.isInteger(node.getId())) {
+                node.setMouseTransparent(transparent);
+            }
+        });
     }
 
     public static Image findImage(Item item) {
