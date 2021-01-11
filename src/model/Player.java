@@ -2,12 +2,12 @@ package model;
 
 import controller.PlayerUpdater;
 import controller.items.ItemSlot;
-import javafx.util.Pair;
 import lombok.Data;
 import model.items.Helmet;
 import model.items.Item;
 import model.items.Weapon;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,7 +103,7 @@ public class Player implements Serializable {
     private Weapon weaponB;
     private Helmet helmet;
 
-    private Map<Item, Pair<Integer, Integer>> inventory = new HashMap<>();
+    private Map<Item, Point> inventory = new HashMap<>();
 
     public Item getItem(ItemSlot itemSlot) {
         switch (itemSlot) {
@@ -132,5 +132,10 @@ public class Player implements Serializable {
             break;
         }
         return true;
+    }
+
+    public void addToInventory(Item item, Point slot) {
+        inventory.put(item, slot);
+        System.out.println("item added to inventory");
     }
 }

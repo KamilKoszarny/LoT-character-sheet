@@ -1,11 +1,13 @@
 package model.items;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
-@Data
 public class Item implements Serializable {
 
+    @Getter
+    @Setter
     private ItemType itemType;
 }

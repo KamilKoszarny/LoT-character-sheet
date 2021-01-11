@@ -1,5 +1,6 @@
 package controller;
 
+import controller.items.ItemHandler;
 import controller.items.ItemSlot;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -7,12 +8,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import model.Ability;
 import model.Proffesion;
 import model.Skill;
 import model.items.Helmet;
 import model.items.Item;
 import model.items.Weapon;
+
+import java.awt.*;
 
 import static controller.Main.guiController;
 import static controller.PlayerUpdater.currentPlayer;
@@ -117,14 +122,14 @@ public class PlayerDisplayer {
 
     private static void displayEquipment() {
         if (currentPlayer.getWeaponA() != null) {
-            displayItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_A);
+            displayEquipmentItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_A);
         }
         if (currentPlayer.getWeaponB() != null) {
-            displayItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_B);
+            displayEquipmentItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_B);
         }
     }
 
-    public static void displayItem(Item item, ItemSlot itemSlot) {
+    public static void displayEquipmentItem(Item item, ItemSlot itemSlot) {
         MenuButton button = itemSlot.getMenuButton();
         if (item == null) {
             button.setOpacity(0);
@@ -134,6 +139,23 @@ public class PlayerDisplayer {
             button.setGraphic(view);
             button.setOpacity(1);
         }
+    }
+
+    public static void displayInventory() {
+        for (Item item: currentPlayer.getInventory().keySet()) {
+            displayInventoryItem(item, currentPlayer.getInventory().get(item));
+        }
+    }
+
+    public static void displayInventoryItem(Item item, Point slot) {
+        final MenuButton invButton = guiController.getInventory();
+        Image itemImage = findImage(item);
+        Rectangle rectangle = new Rectangle(
+                invButton.getLayoutX() + slot.x * ItemHandler.ITEM_SLOT_SIZE,
+                invButton.getLayoutY() + slot.y * ItemHandler.ITEM_SLOT_SIZE,
+                itemImage.getWidth(), itemImage.getHeight());
+        rectangle.setFill(new ImagePattern(itemImage));
+        guiController.getItemsPane().getChildren().add(rectangle);
     }
 
     public static Image findImage(Item item) {
@@ -194,5 +216,6 @@ public class PlayerDisplayer {
         guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
 
         displayEquipment();
+        displayInventory();
     }
 }

@@ -113,7 +113,7 @@ public class GuiInitializer {
                         PlayerUpdater.getCurrentPlayer().trySetItem(weapon, itemSlot);
                         PlayerUpdater.updateDmg(itemSlot.equals(ItemSlot.WEAPON_A));
                         PlayerUpdater.updateHits(itemSlot.equals(ItemSlot.WEAPON_A));
-                        PlayerDisplayer.displayItem(weapon, itemSlot);
+                        PlayerDisplayer.displayEquipmentItem(weapon, itemSlot);
                     });
                     menu.getItems().add(menuItem);
                 }
@@ -132,7 +132,7 @@ public class GuiInitializer {
                 Helmet helmet = new Helmet(helmetModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(helmet, itemSlot);
                 PlayerUpdater.updateArmor();
-                PlayerDisplayer.displayItem(helmet, itemSlot);
+                PlayerDisplayer.displayEquipmentItem(helmet, itemSlot);
             });
             helmetMenuItems.add(menuItem);
         }

@@ -16,6 +16,11 @@ import static controller.PlayerUpdater.currentPlayer;
 
 public class ItemHandler {
 
+    public static final int ITEM_SLOT_SIZE = 30;
+    public static final int INVENTORY_SLOTS_X = 5;
+    public static final int INVENTORY_SLOTS_Y = 10;
+
+
     private static Item heldItem;
     private static Point holdPoint;
     private static final Rectangle heldItemRectangle = new Rectangle();
@@ -47,7 +52,7 @@ public class ItemHandler {
             if (currentPlayer.getItem(itemSlot) != null) {
                 changeItem(itemSlot, clickPoint);
             } else {
-                tryPutOnItem(itemSlot);
+                tryPutItem(itemSlot, clickPoint);
             }
         } else {
             if (currentPlayer.getItem(itemSlot) != null) {
@@ -69,7 +74,7 @@ public class ItemHandler {
         drawHeldItem(new Point(itemSlot.getX() + clickPoint.x, itemSlot.getY() + clickPoint.y));
 
         currentPlayer.trySetItem(null, itemSlot);
-        PlayerDisplayer.displayItem(null, itemSlot);
+        PlayerDisplayer.displayEquipmentItem(null, itemSlot);
     }
 
     private static void catchItem(Item item, Image itemImage) {
@@ -80,18 +85,25 @@ public class ItemHandler {
         heldItemRectangle.setVisible(true);
     }
 
-    public static boolean tryPutOnItem(ItemSlot itemSlot) {
+    public static boolean tryPutItem(ItemSlot itemSlot, Point clickPoint) {
         if (currentPlayer.trySetItem(heldItem, itemSlot)) {
-            PlayerDisplayer.displayItem(heldItem, itemSlot);
+            PlayerDisplayer.displayEquipmentItem(heldItem, itemSlot);
             hideHeldItem();
             return true;
+        } else if (itemSlot.equals(ItemSlot.INVENTORY)) {
+            Point inventorySlot = calcInventorySlot(clickPoint);
+            if (itemFitsInInventory(inventorySlot)) {
+                currentPlayer.addToInventory(heldItem, inventorySlot);
+                hideHeldItem();
+                PlayerDisplayer.displayInventory();
+            }
         }
         return false;
     }
 
     private static void changeItem(ItemSlot itemSlot, Point clickPoint) {
         Item belowItem = currentPlayer.getItem(itemSlot);
-        if (tryPutOnItem(itemSlot)) {
+        if (tryPutItem(itemSlot, clickPoint)) {
             Image itemImage = PlayerDisplayer.findImage(belowItem);
             catchItem(belowItem, itemImage);
             holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
@@ -123,5 +135,25 @@ public class ItemHandler {
             return new Point(clickPoint.x - itemMinX, clickPoint.y - itemMinY);
         else
             return null;
+    }
+
+    private static Point calcInventorySlot(Point clickPoint) {
+        double itemUpLeftCornerX = Math.max(0, clickPoint.x - holdPoint.x);
+        double itemUpLeftCornerY = Math.max(0, clickPoint.y - holdPoint.y);
+        int inventorySlotX = (int) Math.round(itemUpLeftCornerX / ITEM_SLOT_SIZE);
+        int inventorySlotY = (int) Math.round(itemUpLeftCornerY / ITEM_SLOT_SIZE);
+        System.out.println("itemUpLeftCornerX: " + itemUpLeftCornerX);
+        System.out.println("itemUpLeftCornerY: " + itemUpLeftCornerY);
+        System.out.println("inventorySlotX: " + inventorySlotX);
+        System.out.println("inventorySlotY: " + inventorySlotY);
+        return new Point(inventorySlotX, inventorySlotY);
+    }
+
+    private static boolean itemFitsInInventory(Point slot) {
+        Image itemImage = PlayerDisplayer.findImage(heldItem);
+        int heldItemSizeX = (int) Math.round(itemImage.getWidth()/ITEM_SLOT_SIZE);
+        int heldItemSizeY = (int) Math.round(itemImage.getHeight()/ITEM_SLOT_SIZE);
+        //todo
+        return true;
     }
 }

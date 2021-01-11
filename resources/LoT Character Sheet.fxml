@@ -1601,15 +1601,15 @@
                                     <MenuButton fx:id="weaponA" alignment="CENTER" layoutX="181.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
                                     <MenuButton fx:id="weaponB" alignment="CENTER" layoutX="85.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="137.0" prefWidth="67.0" style="-fx-background-color: #111;" />
                                     <MenuButton fx:id="helmet" alignment="CENTER" layoutX="321.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="69.0" prefWidth="69.0" style="-fx-background-color: #111;" />
-                                    <MenuButton fx:id="inventory" alignment="CENTER" layoutX="10.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="180.0" prefWidth="360.0" style="-fx-background-color: #111;" />
-                                    <ImageView fitHeight="180.0" fitWidth="9999.0" focusTraversable="true" layoutX="10.0" layoutY="310.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                                    <MenuButton fx:id="inventory" alignment="CENTER" layoutX="10.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #111;" />
+                                    <ImageView fitHeight="150.0" fitWidth="9999.0" focusTraversable="true" layoutX="10.0" layoutY="310.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/inventory.png" />
                                        </image>
                                     </ImageView>
-                                    <HBox alignment="CENTER" layoutX="380.0" layoutY="310.0" maxHeight="-Infinity" prefHeight="10.0">
+                                    <HBox alignment="CENTER" layoutX="330.0" layoutY="310.0" maxHeight="-Infinity" prefHeight="10.0">
                                        <children>
-                                          <TextArea maxHeight="-Infinity" prefColumnCount="16" prefHeight="180.0" prefRowCount="2">
+                                          <TextArea maxHeight="-Infinity" prefColumnCount="20" prefHeight="180.0" prefRowCount="2">
                                              <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                                              </HBox.margin>
