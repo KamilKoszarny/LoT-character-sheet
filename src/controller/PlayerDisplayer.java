@@ -238,8 +238,11 @@ public class PlayerDisplayer {
         guiController.getWeight().setText(currentPlayer.getWeight());
         guiController.getReligion().setText(currentPlayer.getReligion());
         guiController.getOrigin().setText(currentPlayer.getOrigin());
+        guiController.getFamily().setText(currentPlayer.getFamily());
         guiController.getAppearance().setText(currentPlayer.getAppearance());
         guiController.getHistory().setText(currentPlayer.getHistory());
+        guiController.getState().setText(currentPlayer.getState());
+        guiController.getNotes().setText(currentPlayer.getNotes());
 
         guiController.getVim().setText(Integer.toString(currentPlayer.getVim()));
         guiController.getStrengthBase().setText(Integer.toString(currentPlayer.getStrengthBase()));

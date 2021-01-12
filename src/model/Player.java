@@ -26,8 +26,11 @@ public class Player implements Serializable {
     private Sign sign;
     private String religion;
     private String origin;
+    private String family;
     private String appearance;
     private String history;
+    private String state;
+    private String notes;
 
     private int vim;
     private int strengthBase;

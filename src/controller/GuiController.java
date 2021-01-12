@@ -49,10 +49,19 @@ public class GuiController {
     private TextField origin;
 
     @FXML
+    private TextField family;
+
+    @FXML
     private TextField appearance;
 
     @FXML
     private TextArea history;
+
+    @FXML
+    private TextArea state;
+
+    @FXML
+    private TextArea notes;
 
     @FXML
     private TextField vim;

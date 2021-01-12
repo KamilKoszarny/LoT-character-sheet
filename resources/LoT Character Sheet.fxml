@@ -178,6 +178,26 @@
                                     </TextField>
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label text="Rodzina">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="family" HBox.hgrow="ALWAYS">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
                                  <children>
                                     <Label text="Wygląd">
@@ -206,7 +226,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="history" maxHeight="-Infinity" prefRowCount="45" VBox.vgrow="ALWAYS">
+                              <TextArea fx:id="history" maxHeight="-Infinity" prefRowCount="45" wrapText="true" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
@@ -1671,7 +1691,32 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextArea prefRowCount="2">
+                              <TextArea fx:id="state" prefRowCount="5" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </content>
+            </Tab>
+            <Tab text="Notatki">
+               <content>
+                  <ScrollPane fitToWidth="true">
+                     <content>
+                        <VBox>
+                           <children>
+                              <Label text="Notatki">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="notes" maxHeight="-Infinity" prefRowCount="63" wrapText="true" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
