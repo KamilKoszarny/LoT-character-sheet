@@ -1,8 +1,11 @@
 package controller.items;
 
 import controller.PlayerDisplayer;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.items.Item;
@@ -205,15 +208,36 @@ public class ItemHandler {
     }
 
     public static void initInventoryItemClick(Item item, Rectangle rectangle) {
+        ContextMenu invItemContextMenu = invItemContextMenu(item);
         rectangle.setOnMouseClicked(event -> {
-            Image itemImage = PlayerDisplayer.findImage(item);
-            holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
-            catchItem(item, itemImage);
-            drawHeldItem(new Point((int)(rectangle.getLayoutX() + event.getX()),  (int)(rectangle.getLayoutY() + event.getY())));
-            currentPlayer.removeFromInventory(item);
-            PlayerDisplayer.removeInventoryItem(item);
-            PlayerDisplayer.displayInventory();
+            if (event.getButton() == MouseButton.PRIMARY) {
+                Image itemImage = PlayerDisplayer.findImage(item);
+                holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
+                catchItem(item, itemImage);
+                drawHeldItem(new Point((int) (rectangle.getLayoutX() + event.getX()), (int) (rectangle.getLayoutY() + event.getY())));
+                currentPlayer.removeFromInventory(item);
+                PlayerDisplayer.removeInventoryItem(item);
+                PlayerDisplayer.displayInventory();
+            } else {
+                invItemContextMenu.show(rectangle, event.getScreenX(), event.getScreenY());
+            }
         });
+    }
+
+    private static ContextMenu invItemContextMenu(Item item) {
+        final ContextMenu contextMenu = new ContextMenu();
+        contextMenu.getItems().add(createInvItemDropButton(item));
+        return contextMenu;
+    }
+
+    private static javafx.scene.control.MenuItem createInvItemDropButton(Item item) {
+        javafx.scene.control.MenuItem dropButton = new MenuItem();
+        dropButton.setText("Wyrzuć");
+        dropButton.setOnAction(event -> {
+            currentPlayer.getInventory().remove(item);
+            PlayerDisplayer.removeInventoryItem(item);
+        });
+        return dropButton;
     }
 
     public static void tryPutNewItemInInventory(Item item) {

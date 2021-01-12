@@ -4,9 +4,9 @@ import controller.items.ItemHandler;
 import controller.items.ItemSlot;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import model.*;
 import model.items.*;
 
@@ -82,8 +82,11 @@ public class GuiInitializer {
         button.lookup(".arrow-button" ).setStyle( "-fx-padding: 0" );
         button.lookup(".arrow" ).setStyle( "-fx-background-insets: 0; -fx-padding: 0; -fx-shape: null;" );
 
-        button.setOnMousePressed(event
-                -> ItemHandler.handleItemSlotClick(button, itemSlot, new Point((int)event.getX(), (int)event.getY())));
+        button.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                ItemHandler.handleItemSlotClick(button, itemSlot, new Point((int) event.getX(), (int) event.getY()));
+            }
+        });
 
         switch (itemSlot) {
             case WEAPON_A:
@@ -110,6 +113,25 @@ public class GuiInitializer {
                 button.getItems().addAll(createInventoryMenu(itemSlot));
                 break;
         }
+        if (!itemSlot.equals(ItemSlot.INVENTORY)) {
+            addContextMenu(button, itemSlot);
+        }
+    }
+
+    private static void addContextMenu(MenuButton button, ItemSlot itemSlot) {
+        final ContextMenu contextMenu = new ContextMenu();
+        contextMenu.getItems().add(createDropButton(itemSlot));
+        button.setContextMenu(contextMenu);
+    }
+
+    private static MenuItem createDropButton(ItemSlot itemSlot) {
+        MenuItem dropButton = new MenuItem();
+        dropButton.setText("Wyrzuć");
+        dropButton.setOnAction(event -> {
+            PlayerUpdater.getCurrentPlayer().trySetItem(null, itemSlot);
+            PlayerDisplayer.displayEquipmentItem(null, itemSlot);
+        });
+        return dropButton;
     }
 
     private static List<MenuItem> createWeaponMenu(ItemSlot itemSlot) {
