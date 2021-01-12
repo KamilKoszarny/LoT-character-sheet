@@ -192,7 +192,7 @@ public class GuiInitializer {
             menuItem.setOnAction(event -> {
                 Helmet helmet = new Helmet(helmetModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(helmet, itemSlot);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 PlayerDisplayer.displayEquipmentItem(helmet, itemSlot);
             });
             helmetMenuItems.add(menuItem);
@@ -208,7 +208,7 @@ public class GuiInitializer {
             menuItem.setOnAction(event -> {
                 Armor armor = new Armor(armorModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(armor, itemSlot);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 PlayerDisplayer.displayEquipmentItem(armor, itemSlot);
             });
             armorMenuItems.add(menuItem);
@@ -224,7 +224,7 @@ public class GuiInitializer {
             menuItem.setOnAction(event -> {
                 Gloves gloves = new Gloves(glovesModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(gloves, itemSlot);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 PlayerDisplayer.displayEquipmentItem(gloves, itemSlot);
             });
             glovesMenuItems.add(menuItem);
@@ -240,7 +240,7 @@ public class GuiInitializer {
             menuItem.setOnAction(event -> {
                 Boots boots = new Boots(bootsModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(boots, itemSlot);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 PlayerDisplayer.displayEquipmentItem(boots, itemSlot);
             });
             bootsMenuItems.add(menuItem);
@@ -288,7 +288,7 @@ public class GuiInitializer {
             menuItem.setOnAction(event -> {
                 Belt belt = new Belt(beltModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(belt, itemSlot);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 PlayerDisplayer.displayEquipmentItem(belt, itemSlot);
             });
             beltMenuItems.add(menuItem);

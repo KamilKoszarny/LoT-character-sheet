@@ -187,19 +187,19 @@ public class Player implements Serializable {
                 break;
             case HELMET:
                 setHelmet((Helmet) item);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 break;
             case ARMOR:
                 setArmor((Armor) item);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 break;
             case GLOVES:
                 setGloves((Gloves) item);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 break;
             case BOOTS:
                 setBoots((Boots) item);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 break;
             case AMULET:
                 setAmulet((Amulet) item);
@@ -215,7 +215,7 @@ public class Player implements Serializable {
                 break;
             case BELT:
                 setBelt((Belt) item);
-                PlayerUpdater.updateArmor();
+                PlayerUpdater.updateStatsFromArmor();
                 break;
             case INVENTORY:
                 ItemHandler.tryPutNewItemInInventory(item);

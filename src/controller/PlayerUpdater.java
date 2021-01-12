@@ -379,6 +379,16 @@ public class PlayerUpdater {
         updateAttackTime(firstSet);
     }
 
+    public static void updateStatsFromArmor() {
+        updateArmor();
+        updateEye();
+        updateArm();
+        updateAgility();
+        updateKnowledge();
+        updateFocus();
+        updateCharisma();
+    }
+
     public static void updateDmg() {
         updateDmg(true);
         updateDmg(false);

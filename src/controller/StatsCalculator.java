@@ -34,6 +34,8 @@ public class StatsCalculator {
 
     public static int calculateArm(Player player) {
         int arm = player.getArmBase();
+        if (player.getArmor() != null)
+            arm += player.getArmor().getModel().getArmModifier();
         if (player.getGloves() != null)
             arm += player.getGloves().getModel().getArmModifier();
         return arm;
@@ -41,13 +43,20 @@ public class StatsCalculator {
 
     public static int calculateEye(Player player) {
         int eye = player.getEyeBase();
+        if (player.getHelmet() != null)
+            eye += player.getHelmet().getModel().getEyeModifier();
         return eye;
     }
 
     public static int calculateAgility(Player player) {
         int agility = player.getAgilityBase();
+        if (player.getArmor() != null)
+            agility += player.getArmor().getModel().getAgilityModifier();
         if (player.getGloves() != null)
             agility += player.getBoots().getModel().getAgilityModifier();
+        if (player.getBelt() != null) {
+            agility += player.getBelt().getModel().getAgilityModifier();
+        }
         return agility;
     }
 
@@ -65,11 +74,17 @@ public class StatsCalculator {
 
     public static int calculateFocus(Player player) {
         int focus = player.getFocusBase();
+        if (player.getArmor() != null)
+            focus += player.getArmor().getModel().getFocusModifier();
         return focus;
     }
 
     public static int calculateCharisma(Player player) {
         int charisma = player.getCharismaBase();
+        if (player.getArmor() != null)
+            charisma += player.getArmor().getModel().getCharismaModifier();
+        if (player.getHelmet() != null)
+            charisma += player.getHelmet().getModel().getCharismaModifier();
         if (player.getAmulet() != null)
             charisma += player.getAmulet().getCharisma();
         if (player.getRing1() != null)
