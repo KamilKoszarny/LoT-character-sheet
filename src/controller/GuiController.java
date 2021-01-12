@@ -409,6 +409,12 @@ public class GuiController {
     private MenuButton weaponB;
 
     @FXML
+    private MenuButton shieldA;
+
+    @FXML
+    private MenuButton shieldB;
+
+    @FXML
     private MenuButton helmet;
 
     @FXML

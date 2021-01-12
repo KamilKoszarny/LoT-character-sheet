@@ -90,6 +90,10 @@ public class GuiInitializer {
             case WEAPON_B:
                 button.getItems().addAll(createWeaponMenu(itemSlot));
                 break;
+            case SHIELD_A:
+            case SHIELD_B:
+                button.getItems().addAll(createShieldMenu(itemSlot));
+                break;
             case HELMET:
                 button.getItems().addAll(createHelmetMenu(itemSlot));
                 break;
@@ -123,6 +127,22 @@ public class GuiInitializer {
         return weaponMenuItems;
     }
 
+    private static List<MenuItem> createShieldMenu(ItemSlot itemSlot) {
+        List<MenuItem> shieldMenuItems = new ArrayList<>();
+        for (ShieldModel shieldModel: ShieldModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(shieldModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Shield shield = new Shield(shieldModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(shield, itemSlot);
+                PlayerUpdater.updateBlock(itemSlot.equals(ItemSlot.SHIELD_A));
+                PlayerDisplayer.displayEquipmentItem(shield, itemSlot);
+            });
+            shieldMenuItems.add(menuItem);
+        }
+        return shieldMenuItems;
+    }
+
     private static List<MenuItem> createHelmetMenu(ItemSlot itemSlot) {
         List<MenuItem> helmetMenuItems = new ArrayList<>();
         for (HelmetModel helmetModel: HelmetModel.values()) {
@@ -147,6 +167,9 @@ public class GuiInitializer {
             switch (itemType) {
                 case WEAPON:
                     menu.getItems().addAll(createWeaponMenu(itemSlot));
+                    break;
+                case SHIELD:
+                    menu.getItems().addAll(createShieldMenu(itemSlot));
                     break;
                 case HELMET:
                     menu.getItems().addAll(createHelmetMenu(itemSlot));

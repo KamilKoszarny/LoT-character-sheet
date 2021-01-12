@@ -6,6 +6,7 @@ import controller.items.ItemSlot;
 import lombok.Data;
 import model.items.Helmet;
 import model.items.Item;
+import model.items.Shield;
 import model.items.Weapon;
 
 import java.awt.*;
@@ -102,15 +103,19 @@ public class Player implements Serializable {
 
     private Weapon weaponA;
     private Weapon weaponB;
+    private Shield shieldA;
+    private Shield shieldB;
     private Helmet helmet;
 
     private Map<Item, Point> inventory = new HashMap<>();
 
     public Item getItem(ItemSlot itemSlot) {
         switch (itemSlot) {
-            case WEAPON_A: return getWeaponA();
-            case WEAPON_B: return getWeaponB();
-            case HELMET: return getHelmet();
+            case WEAPON_A: return weaponA;
+            case WEAPON_B: return weaponB;
+            case SHIELD_A: return shieldA;
+            case SHIELD_B: return shieldB;
+            case HELMET: return helmet;
         }
         return null;
     }
@@ -122,26 +127,35 @@ public class Player implements Serializable {
             case WEAPON_A:
                 setWeaponA((Weapon) item);
                 PlayerUpdater.updateDmg(true);
-            break;
+                break;
             case WEAPON_B:
                 setWeaponB((Weapon) item);
                 PlayerUpdater.updateDmg(false);
-            break;
+                break;
+            case SHIELD_A:
+                setShieldA((Shield) item);
+                PlayerUpdater.updateBlock(true);
+                break;
+            case SHIELD_B:
+                setShieldB((Shield) item);
+                PlayerUpdater.updateBlock(false);
+                break;
             case HELMET:
                 setHelmet((Helmet) item);
                 PlayerUpdater.updateArmor();
+                break;
             case INVENTORY:
                 ItemHandler.tryPutNewItemInInventory(item);
-            break;
+                break;
         }
         return true;
     }
 
     public void addToInventory(Item item, Point slot) {
-        inventory.put(item, slot);
+        getInventory().put(item, slot);
     }
 
     public void removeFromInventory(Item item) {
-        inventory.remove(item);
+        getInventory().remove(item);
     }
 }

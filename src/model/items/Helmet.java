@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class Helmet extends Item{
 
-    private HelmetModel model;
+    private final HelmetModel model;
     private int armor;
 
     public Helmet(HelmetModel model) {

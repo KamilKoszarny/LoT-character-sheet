@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.items.Item;
-import model.items.Weapon;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -110,7 +109,6 @@ public class ItemHandler {
                 return true;
             } else if (itemsUnderneath.size() == 1) {
                 Item underneathItem = itemsUnderneath.iterator().next();
-                System.out.println("underneathItem: " + ((Weapon)underneathItem).getModel().getNamePL());
                 Image itemImage = PlayerDisplayer.findImage(underneathItem);
                 currentPlayer.addToInventory(heldItem, inventorySlot);
                 holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);

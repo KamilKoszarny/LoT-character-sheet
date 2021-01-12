@@ -15,6 +15,7 @@ import model.Proffesion;
 import model.Skill;
 import model.items.Helmet;
 import model.items.Item;
+import model.items.Shield;
 import model.items.Weapon;
 import utils.Utils;
 
@@ -128,6 +129,12 @@ public class PlayerDisplayer {
         if (currentPlayer.getWeaponB() != null) {
             displayEquipmentItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_B);
         }
+        if (currentPlayer.getShieldA() != null) {
+            displayEquipmentItem(currentPlayer.getShieldA(), ItemSlot.SHIELD_A);
+        }
+        if (currentPlayer.getShieldB() != null) {
+            displayEquipmentItem(currentPlayer.getShieldB(), ItemSlot.SHIELD_B);
+        }
     }
 
     public static void displayEquipmentItem(Item item, ItemSlot itemSlot) {
@@ -184,6 +191,9 @@ public class PlayerDisplayer {
         switch (item.getItemType()) {
             case WEAPON:
                 path += "weapons/" + ((Weapon) item).getModel().name() + ".png";
+                break;
+            case SHIELD:
+                path += "shields/" + ((Shield) item).getModel().name() + ".png";
                 break;
             case HELMET:
                 path += "helmets/" + ((Helmet) item).getModel().name() + ".png";

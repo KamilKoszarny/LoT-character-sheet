@@ -1,6 +1,7 @@
 package controller;
 
 import model.Player;
+import model.items.Shield;
 import model.items.Weapon;
 
 public class StatsCalculator {
@@ -126,5 +127,13 @@ public class StatsCalculator {
     public static int calculateIntelligence(Player player) {
         int intelligence = (int) Math.round((player.getKnowledgeBase() + player.getFocusBase() + player.getCharismaBase()) / 3.);
         return intelligence;
+    }
+
+    public static int calculateBlock(Player player, boolean firtsSet) {
+        Shield shield = firtsSet ? player.getShieldA() : player.getShieldB();
+        if (shield == null) {
+            return 0;
+        }
+        return shield.getBlock();
     }
 }

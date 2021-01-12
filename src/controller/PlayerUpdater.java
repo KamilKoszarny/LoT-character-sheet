@@ -1,7 +1,6 @@
 package controller;
 
 import controller.items.ItemHandler;
-import controller.items.ItemUpdater;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import lombok.Getter;
@@ -22,7 +21,6 @@ public class PlayerUpdater {
         createEmptyPlayer();
         initUpdating();
         PlayerDisplayer.displayAllNotAuto();
-        ItemUpdater.init();
         ItemHandler.init();
     }
 
@@ -364,6 +362,17 @@ public class PlayerUpdater {
             currentPlayer.setDmgBMin(dmgMin);
             currentPlayer.setDmgBMax(dmgMax);
             guiController.getDmgB().setText("" + dmgMin + "-" + dmgMax);
+        }
+    }
+
+    public static void updateBlock(boolean firstSet) {
+        int block = StatsCalculator.calculateBlock(currentPlayer, firstSet);
+        if (firstSet) {
+            currentPlayer.setBlockA(block);
+            guiController.getBlockA().setText(Integer.toString(block));
+        } else {
+            currentPlayer.setBlockB(block);
+            guiController.getBlockB().setText(Integer.toString(block));
         }
     }
 

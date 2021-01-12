@@ -5,19 +5,19 @@ import lombok.Getter;
 @Getter
 public enum HelmetModel {
 
-    LEATHER_HOOD(       1, 1, 5, "Skórzany kaptur"),
-    CASQUE(             2, 4, 15, "Szyszak"),
-    HELMET(             3, 5, 12, "Hełm"),
-    CLOSED_HELMET(      4, 6, 16, "Zamknięty hełm"),
-    MASK(               1, 2, 10, "Maska"),
-    SKULL_HELMET(       4, 5, 24, "Hełm czaszki"),
-    WOLF_CAP(           2, 2, 15, "Wilczy kaptur"),
-    EAGLE_HELMET(       3, 2, 18, "Orli hełm"),
-    BARBARIAN_HELMET(   3, 2, 10, "Barbarzyński hełm"),
-    HORN_HELMET(        4, 6, 12, "Rogaty hełm"),
-    GLADIATOR_HELMET(   4, 5, 15, "Hełm gladiatora"),
-    TOURNAMENT_HELMET(  5, 7, 20, "Hełm turniejowy"),
-    CROWN(              5, 3, 30, "Korona");
+    LEATHER_HOOD(       1, 2, 5, "Skórzany kaptur"),
+    CASQUE(             2, 5, 15, "Szyszak"),
+    HELMET(             3, 6, 12, "Hełm"),
+    CLOSED_HELMET(      4, 8, 16, "Zamknięty hełm"),
+    MASK(               1, 3, 10, "Maska"),
+    SKULL_HELMET(       4, 7, 24, "Hełm czaszki"),
+    WOLF_CAP(           2, 4, 15, "Wilczy kaptur"),
+    EAGLE_HELMET(       3, 6, 18, "Orli hełm"),
+    BARBARIAN_HELMET(   3, 6, 10, "Barbarzyński hełm"),
+    HORN_HELMET(        4, 8, 12, "Rogaty hełm"),
+    GLADIATOR_HELMET(   4, 9, 15, "Hełm gladiatora"),
+    TOURNAMENT_HELMET(  5, 12, 20, "Hełm turniejowy"),
+    CROWN(              5, 8, 30, "Korona");
 
     private int armor;
     private int weight;

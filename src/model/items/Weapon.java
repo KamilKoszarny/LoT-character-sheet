@@ -7,8 +7,8 @@ public class Weapon extends Item {
 
     private final WeaponType weaponType;
     private final WeaponModel model;
-    private final int dmgMin;
-    private final int dmgMax;
+    private int dmgMin;
+    private int dmgMax;
 
     public Weapon(WeaponModel model) {
         setItemType(ItemType.WEAPON);
