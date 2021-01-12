@@ -263,6 +263,10 @@ public class PlayerUpdater {
         guiController.getHorseRiding().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseRiding(newValue));
         guiController.getHorseState().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseState(newValue));
         guiController.getHorseEquipment().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseEquipment(newValue));
+        guiController.getExtraInventory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setExtraInventory(newValue));
+        guiController.getLoad().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setLoad(newValue));
+        guiController.getGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setGold(newValue));
+        guiController.getBankGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setBankGold(newValue));
     }
 
 

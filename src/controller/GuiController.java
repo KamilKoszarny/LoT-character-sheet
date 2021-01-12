@@ -485,5 +485,17 @@ public class GuiController {
 
     @FXML
     private MenuButton inventory;
+
+    @FXML
+    private TextArea extraInventory;
+
+    @FXML
+    private TextField load;
+
+    @FXML
+    private TextField gold;
+
+    @FXML
+    private TextField bankGold;
 }
 

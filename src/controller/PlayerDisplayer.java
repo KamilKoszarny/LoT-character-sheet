@@ -351,6 +351,10 @@ public class PlayerDisplayer {
         guiController.getHorseRiding().setText(currentPlayer.getHorseRiding());
         guiController.getHorseState().setText(currentPlayer.getHorseState());
         guiController.getHorseEquipment().setText(currentPlayer.getHorseEquipment());
+        guiController.getExtraInventory().setText(currentPlayer.getExtraInventory());
+        guiController.getLoad().setText(currentPlayer.getLoad());
+        guiController.getGold().setText(currentPlayer.getGold());
+        guiController.getBankGold().setText(currentPlayer.getBankGold());
 
         displayEquipment();
         displayInventory();

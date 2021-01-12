@@ -1636,21 +1636,21 @@
                                           <Image url="@images/inventory.png" />
                                        </image>
                                     </ImageView>
-                                    <HBox alignment="CENTER" layoutX="330.0" layoutY="310.0" maxHeight="-Infinity" prefHeight="10.0">
+                                    <HBox alignment="CENTER" layoutX="310.0" layoutY="310.0" maxHeight="-Infinity" prefHeight="10.0">
                                        <children>
-                                          <TextArea maxHeight="-Infinity" prefColumnCount="20" prefHeight="180.0" prefRowCount="2">
+                                          <TextArea fx:id="extraInventory" maxHeight="-Infinity" prefColumnCount="20" prefHeight="180.0" prefRowCount="2">
                                              <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                                              </HBox.margin>
                                           </TextArea>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                          <VBox prefHeight="200.0" prefWidth="140.0">
                                              <children>
                                                 <Label text="Obciążenie:">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Label>
-                                                <TextField alignment="CENTER_RIGHT" maxWidth="-Infinity" prefColumnCount="4">
+                                                <TextField fx:id="load" alignment="CENTER_RIGHT" maxWidth="-Infinity" prefColumnCount="4">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" left="30.0" right="5.0" />
                                                    </VBox.margin>
@@ -1666,7 +1666,7 @@
                                                 <HBox alignment="CENTER">
                                                    <children>
                                                       <Label text="szt. złota" />
-                                                      <TextField prefColumnCount="2">
+                                                      <TextField fx:id="gold" prefColumnCount="4">
                                                          <HBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                          </HBox.margin>
@@ -1677,7 +1677,7 @@
                                                 <HBox alignment="CENTER">
                                                    <children>
                                                       <Label text="w banku" />
-                                                      <TextField prefColumnCount="2">
+                                                      <TextField fx:id="bankGold" prefColumnCount="4">
                                                          <HBox.margin>
                                                             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                          </HBox.margin>

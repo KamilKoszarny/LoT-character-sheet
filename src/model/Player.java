@@ -127,6 +127,14 @@ public class Player implements Serializable {
     private Ring ring2;
     private Belt belt;
 
+    private String extraInventory;
+
+    private String load;
+
+    private String gold;
+
+    private String bankGold;
+
     private Map<Item, Point> inventory = new HashMap<>();
 
     public Item getItem(ItemSlot itemSlot) {
