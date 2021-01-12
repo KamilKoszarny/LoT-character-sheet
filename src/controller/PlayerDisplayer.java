@@ -119,6 +119,14 @@ public class PlayerDisplayer {
         guiController.getMana().setText("" + currentPlayer.getMana() + '/' + currentPlayer.getManaMax());
     }
 
+    public static void displayDmg(boolean firstSet) {
+        if (firstSet) {
+            guiController.getDmgA().setText("" + currentPlayer.getDmgAMin() + "-" + currentPlayer.getDmgAMax());
+        } else {
+            guiController.getDmgB().setText("" + currentPlayer.getDmgBMin() + "-" + currentPlayer.getDmgBMax());
+        }
+    }
+
     private static void displayEquipment() {
         if (currentPlayer.getWeaponA() != null) {
             displayEquipmentItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_A);
@@ -143,6 +151,18 @@ public class PlayerDisplayer {
         }
         if (currentPlayer.getBoots() != null) {
             displayEquipmentItem(currentPlayer.getBoots(), ItemSlot.BOOTS);
+        }
+        if (currentPlayer.getAmulet() != null) {
+            displayEquipmentItem(currentPlayer.getAmulet(), ItemSlot.AMULET);
+        }
+        if (currentPlayer.getRing1() != null) {
+            displayEquipmentItem(currentPlayer.getRing1(), ItemSlot.RING1);
+        }
+        if (currentPlayer.getRing2() != null) {
+            displayEquipmentItem(currentPlayer.getRing2(), ItemSlot.RING2);
+        }
+        if (currentPlayer.getBelt() != null) {
+            displayEquipmentItem(currentPlayer.getBelt(), ItemSlot.BELT);
         }
     }
 
@@ -242,6 +262,15 @@ public class PlayerDisplayer {
             case BOOTS:
                 path += "boots/" + ((Boots) item).getModel().name() + ".png";
                 break;
+            case AMULET:
+                path += "amulets/" + ((Amulet) item).getModel().name() + ".png";
+                break;
+            case RING:
+                path += "rings/" + ((Ring) item).getModel().name() + ".png";
+                break;
+            case BELT:
+                path += "belts/" + ((Belt) item).getModel().name() + ".png";
+                break;
         }
         return new Image(path);
     }
@@ -292,6 +321,36 @@ public class PlayerDisplayer {
         displayActions();
         displayMana();
         guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
+        guiController.getSpeed().setText(Integer.toString(currentPlayer.getSpeed()));
+        guiController.getManaIncrease().setText(Integer.toString(currentPlayer.getManaIncrease()));
+        displayDmg(true);
+        guiController.getHitA().setText(Integer.toString(currentPlayer.getHitA()));
+        guiController.getParryA().setText(Integer.toString(currentPlayer.getParryA()));
+        guiController.getBlockA().setText(Integer.toString(currentPlayer.getBlockA()));
+        guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodgeA()));
+        guiController.getRangeA().setText(Integer.toString(currentPlayer.getRangeA()));
+        displayDmg(false);
+        guiController.getHitB().setText(Integer.toString(currentPlayer.getHitB()));
+        guiController.getParryB().setText(Integer.toString(currentPlayer.getParryB()));
+        guiController.getBlockB().setText(Integer.toString(currentPlayer.getBlockB()));
+        guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodgeB()));
+        guiController.getRangeB().setText(Integer.toString(currentPlayer.getRangeB()));
+        guiController.getArmorHead().setText(Integer.toString(currentPlayer.getArmorHead()));
+        guiController.getArmorBody().setText(Integer.toString(currentPlayer.getArmorBody()));
+        guiController.getArmorArms().setText(Integer.toString(currentPlayer.getArmorArms()));
+        guiController.getArmorLegs().setText(Integer.toString(currentPlayer.getArmorLegs()));
+        guiController.getResistFire().setText(Integer.toString(currentPlayer.getResistFire()));
+        guiController.getResistCold().setText(Integer.toString(currentPlayer.getResistCold()));
+        guiController.getResistWind().setText(Integer.toString(currentPlayer.getResistWind()));
+        guiController.getResistEarth().setText(Integer.toString(currentPlayer.getResistEarth()));
+        guiController.getResistMagic().setText(Integer.toString(currentPlayer.getResistMagic()));
+        guiController.getResistBodyIllness().setText(Integer.toString(currentPlayer.getResistBodyIllness()));
+        guiController.getResistMindIllness().setText(Integer.toString(currentPlayer.getResistMindIllness()));
+        guiController.getHorseName().setText(currentPlayer.getHorseName());
+        guiController.getHorseHitPoints().setText(currentPlayer.getHorseHitPoints());
+        guiController.getHorseRiding().setText(currentPlayer.getHorseRiding());
+        guiController.getHorseState().setText(currentPlayer.getHorseState());
+        guiController.getHorseEquipment().setText(currentPlayer.getHorseEquipment());
 
         displayEquipment();
         displayInventory();

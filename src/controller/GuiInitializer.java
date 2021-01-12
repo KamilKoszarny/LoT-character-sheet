@@ -109,6 +109,16 @@ public class GuiInitializer {
             case BOOTS:
                 button.getItems().addAll(createBootsMenu(itemSlot));
                 break;
+            case AMULET:
+                button.getItems().addAll(createAmuletMenu(itemSlot));
+                break;
+            case RING1:
+            case RING2:
+                button.getItems().addAll(createRingMenu(itemSlot));
+                break;
+            case BELT:
+                button.getItems().addAll(createBeltMenu(itemSlot));
+                break;
             case INVENTORY:
                 button.getItems().addAll(createInventoryMenu(itemSlot));
                 break;
@@ -239,6 +249,54 @@ public class GuiInitializer {
         return bootsMenuItems;
     }
 
+    private static List<MenuItem> createAmuletMenu(ItemSlot itemSlot) {
+        List<MenuItem> amuletMenuItems = new ArrayList<>();
+        for (AmuletModel amuletModel: AmuletModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(amuletModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Amulet amulet = new Amulet(amuletModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(amulet, itemSlot);
+                PlayerUpdater.updateCharisma();
+                PlayerDisplayer.displayEquipmentItem(amulet, itemSlot);
+            });
+            amuletMenuItems.add(menuItem);
+        }
+        return amuletMenuItems;
+    }
+
+    private static List<MenuItem> createRingMenu(ItemSlot itemSlot) {
+        List<MenuItem> ringMenuItems = new ArrayList<>();
+        for (RingModel ringModel: RingModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(ringModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Ring ring = new Ring(ringModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(ring, itemSlot);
+                PlayerUpdater.updateCharisma();
+                PlayerDisplayer.displayEquipmentItem(ring, itemSlot);
+            });
+            ringMenuItems.add(menuItem);
+        }
+        return ringMenuItems;
+    }
+
+    private static List<MenuItem> createBeltMenu(ItemSlot itemSlot) {
+        List<MenuItem> beltMenuItems = new ArrayList<>();
+        for (BeltModel beltModel: BeltModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(beltModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Belt belt = new Belt(beltModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(belt, itemSlot);
+                PlayerUpdater.updateArmor();
+                PlayerDisplayer.displayEquipmentItem(belt, itemSlot);
+            });
+            beltMenuItems.add(menuItem);
+        }
+        return beltMenuItems;
+    }
+
     private static List<MenuItem> createInventoryMenu(ItemSlot itemSlot) {
         List<MenuItem> inventoryMenuItems = new ArrayList<>();
         for (ItemType itemType: ItemType.values()) {
@@ -262,6 +320,15 @@ public class GuiInitializer {
                     break;
                 case BOOTS:
                     menu.getItems().addAll(createBootsMenu(itemSlot));
+                    break;
+                case AMULET:
+                    menu.getItems().addAll(createAmuletMenu(itemSlot));
+                    break;
+                case RING:
+                    menu.getItems().addAll(createRingMenu(itemSlot));
+                    break;
+                case BELT:
+                    menu.getItems().addAll(createBeltMenu(itemSlot));
                     break;
             }
             inventoryMenuItems.add(menu);

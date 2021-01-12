@@ -251,6 +251,18 @@ public class PlayerUpdater {
             currentPlayer.setMana(currentPlayer.getMana() - 1);
             PlayerDisplayer.displayMana();
         });
+        guiController.getResistFire().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistFire(Integer.parseInt(newValue)));
+        guiController.getResistCold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistCold(Integer.parseInt(newValue)));
+        guiController.getResistWind().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistWind(Integer.parseInt(newValue)));
+        guiController.getResistEarth().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistEarth(Integer.parseInt(newValue)));
+        guiController.getResistMagic().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistMagic(Integer.parseInt(newValue)));
+        guiController.getResistBodyIllness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistBodyIllness(Integer.parseInt(newValue)));
+        guiController.getResistMindIllness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistMindIllness(Integer.parseInt(newValue)));
+        guiController.getHorseName().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseName(newValue));
+        guiController.getHorseHitPoints().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseHitPoints(newValue));
+        guiController.getHorseRiding().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseRiding(newValue));
+        guiController.getHorseState().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseState(newValue));
+        guiController.getHorseEquipment().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseEquipment(newValue));
     }
 
 
@@ -333,7 +345,7 @@ public class PlayerUpdater {
         updateManaIncrease();
     }
 
-    private static void updateCharisma() {
+    public static void updateCharisma() {
         int charisma = StatsCalculator.calculateCharisma(currentPlayer);
         currentPlayer.setCharisma(charisma);
         guiController.getCharisma().setText(Integer.toString(charisma));
@@ -360,12 +372,11 @@ public class PlayerUpdater {
         if (firstSet) {
             currentPlayer.setDmgAMin(dmgMin);
             currentPlayer.setDmgAMax(dmgMax);
-            guiController.getDmgA().setText("" + dmgMin + "-" + dmgMax);
         } else {
             currentPlayer.setDmgBMin(dmgMin);
             currentPlayer.setDmgBMax(dmgMax);
-            guiController.getDmgB().setText("" + dmgMin + "-" + dmgMax);
         }
+        PlayerDisplayer.displayDmg(firstSet);
     }
 
     public static void updateBlock(boolean firstSet) {

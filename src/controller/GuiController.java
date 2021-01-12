@@ -409,6 +409,42 @@ public class GuiController {
     private TextField armorLegs;
 
     @FXML
+    private TextField resistFire;
+
+    @FXML
+    private TextField resistCold;
+
+    @FXML
+    private TextField resistWind;
+
+    @FXML
+    private TextField resistEarth;
+
+    @FXML
+    private TextField resistMagic;
+
+    @FXML
+    private TextField resistBodyIllness;
+
+    @FXML
+    private TextField resistMindIllness;
+
+    @FXML
+    private TextField horseName;
+
+    @FXML
+    private TextField horseHitPoints;
+
+    @FXML
+    private TextField horseRiding;
+
+    @FXML
+    private TextField horseState;
+
+    @FXML
+    private TextArea horseEquipment;
+
+    @FXML
     private AnchorPane itemsPane;
 
     @FXML
@@ -434,6 +470,18 @@ public class GuiController {
 
     @FXML
     private MenuButton boots;
+
+    @FXML
+    private MenuButton amulet;
+
+    @FXML
+    private MenuButton ring1;
+
+    @FXML
+    private MenuButton ring2;
+
+    @FXML
+    private MenuButton belt;
 
     @FXML
     private MenuButton inventory;

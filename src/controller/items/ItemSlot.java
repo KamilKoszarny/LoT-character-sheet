@@ -16,6 +16,10 @@ public enum ItemSlot {
     ARMOR(ItemType.ARMOR, guiController.getArmor()),
     GLOVES(ItemType.GLOVES, guiController.getGloves()),
     BOOTS(ItemType.BOOTS, guiController.getBoots()),
+    AMULET(ItemType.AMULET, guiController.getAmulet()),
+    RING1(ItemType.RING, guiController.getRing1()),
+    RING2(ItemType.RING, guiController.getRing2()),
+    BELT(ItemType.BELT, guiController.getBelt()),
     INVENTORY(null, guiController.getInventory()) //all types
     ;
 

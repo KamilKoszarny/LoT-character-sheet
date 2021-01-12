@@ -100,6 +100,19 @@ public class Player implements Serializable {
     private int armorArms;
     private int armorLegs;
 
+    private int resistFire;
+    private int resistCold;
+    private int resistWind;
+    private int resistEarth;
+    private int resistMagic;
+    private int resistBodyIllness;
+    private int resistMindIllness;
+
+    private String horseName;
+    private String horseHitPoints;
+    private String horseRiding;
+    private String horseState;
+    private String horseEquipment;
 
     private Weapon weaponA;
     private Weapon weaponB;
@@ -109,6 +122,10 @@ public class Player implements Serializable {
     private Armor armor;
     private Gloves gloves;
     private Boots boots;
+    private Amulet amulet;
+    private Ring ring1;
+    private Ring ring2;
+    private Belt belt;
 
     private Map<Item, Point> inventory = new HashMap<>();
 
@@ -122,6 +139,10 @@ public class Player implements Serializable {
             case ARMOR: return armor;
             case GLOVES: return gloves;
             case BOOTS: return boots;
+            case AMULET: return amulet;
+            case RING1: return ring1;
+            case RING2: return ring2;
+            case BELT: return belt;
         }
         return null;
     }
@@ -168,6 +189,22 @@ public class Player implements Serializable {
                 break;
             case BOOTS:
                 setBoots((Boots) item);
+                PlayerUpdater.updateArmor();
+                break;
+            case AMULET:
+                setAmulet((Amulet) item);
+                PlayerUpdater.updateCharisma();
+                break;
+            case RING1:
+                setRing1((Ring) item);
+                PlayerUpdater.updateCharisma();
+                break;
+            case RING2:
+                setRing2((Ring) item);
+                PlayerUpdater.updateCharisma();
+                break;
+            case BELT:
+                setBelt((Belt) item);
                 PlayerUpdater.updateArmor();
                 break;
             case INVENTORY:

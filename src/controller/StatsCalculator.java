@@ -51,6 +51,8 @@ public class StatsCalculator {
         int armorBody = (int) Math.round(player.getEndurance()/20.);
         if (player.getArmor() != null)
             armorBody += player.getArmor().getBodyArmor();
+        if (player.getBelt() != null)
+            armorBody += player.getBelt().getArmor();
         return armorBody;
     }
 
@@ -133,6 +135,12 @@ public class StatsCalculator {
 
     public static int calculateCharisma(Player player) {
         int charisma = player.getCharismaBase();
+        if (player.getAmulet() != null)
+            charisma += player.getAmulet().getCharisma();
+        if (player.getRing1() != null)
+            charisma += player.getRing1().getCharisma();
+        if (player.getRing2() != null)
+            charisma += player.getRing2().getCharisma();
         return charisma;
     }
 

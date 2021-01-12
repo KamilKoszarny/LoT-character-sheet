@@ -1446,7 +1446,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="ogień" />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistFire" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1455,7 +1455,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="chłód" />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistCold" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1464,7 +1464,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="powietrze" />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistWind" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -1473,7 +1473,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="ziemia / trucizny" textAlignment="CENTER" wrapText="true" />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistEarth" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1494,7 +1494,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="magia" />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistMagic" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1503,7 +1503,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="choroby ciała" textAlignment="CENTER" wrapText="true" />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistBodyIllness" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1512,7 +1512,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="choroby umysłu" textAlignment="CENTER" wrapText="true" />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistMindIllness" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -1541,11 +1541,11 @@
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="30.0" text="imię" />
-                                                <TextField alignment="CENTER" prefColumnCount="6" />
+                                                <TextField fx:id="horseName" alignment="CENTER" prefColumnCount="6" />
                                                 <Label alignment="CENTER" prefWidth="30.0" text="PZ" />
-                                                <TextField alignment="CENTER" prefColumnCount="3" />
+                                                <TextField fx:id="horseHitPoints" alignment="CENTER" prefColumnCount="3" />
                                                 <Label text="   prowadzenie  " />
-                                                <TextField alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="horseRiding" alignment="CENTER" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1554,7 +1554,7 @@
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="30.0" text="stan" textAlignment="CENTER" wrapText="true" />
-                                                <TextField alignment="CENTER" prefColumnCount="23" />
+                                                <TextField fx:id="horseState" alignment="CENTER" prefColumnCount="23" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -1565,7 +1565,7 @@
                                                 <Insets left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <TextArea prefColumnCount="10" prefRowCount="2">
+                                          <TextArea fx:id="horseEquipment" prefColumnCount="10" prefRowCount="2">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                                              </VBox.margin>
@@ -1626,6 +1626,10 @@
                                     <MenuButton fx:id="armor" alignment="CENTER" layoutX="321.0" layoutY="89.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="105.0" prefWidth="69.0" style="-fx-background-color: #111;" />
                                     <MenuButton fx:id="gloves" alignment="CENTER" layoutX="181.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="69.0" prefWidth="69.0" style="-fx-background-color: #111;" />
                                     <MenuButton fx:id="boots" alignment="CENTER" layoutX="463.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="69.0" prefWidth="69.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="amulet" alignment="CENTER" layoutX="409.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="ring1" alignment="CENTER" layoutX="271.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="ring2" alignment="CENTER" layoutX="409.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #111;" />
+                                    <MenuButton fx:id="belt" alignment="CENTER" layoutX="322.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="33.0" prefWidth="68.0" style="-fx-background-color: #111;" />
                                     <MenuButton fx:id="inventory" alignment="CENTER" layoutX="10.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: #111;" />
                                     <ImageView fitHeight="150.0" fitWidth="9999.0" focusTraversable="true" layoutX="10.0" layoutY="310.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                        <image>

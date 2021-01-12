@@ -19,9 +19,9 @@ public enum HelmetModel {
     TOURNAMENT_HELMET(  5, 12, 20, "Hełm turniejowy"),
     CROWN(              5, 8, 30, "Korona");
 
-    private int armor;
-    private int weight;
-    private int durability;
+    private final int armor;
+    private final int weight;
+    private final int durability;
     private final String namePL;
 
     HelmetModel(int armor, int weight, int durability, String namePL) {
