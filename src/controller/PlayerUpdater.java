@@ -451,7 +451,7 @@ public class PlayerUpdater {
     }
 
     static void updateDodges() {
-        int dodge = StatsCalculator.calculateDodgeA(currentPlayer);
+        int dodge = StatsCalculator.calculateDodge(currentPlayer, true);
         currentPlayer.setDodgeA(dodge);
         guiController.getDodgeA().setText(Integer.toString(dodge));
         currentPlayer.setDodgeB(dodge);

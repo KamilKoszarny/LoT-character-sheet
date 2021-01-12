@@ -7,9 +7,81 @@ import model.items.WeaponType;
 
 public class StatsCalculator {
 
+    public static int calculateVim(Player player) {
+        int vim = (int) Math.round((player.getStrengthBase() + player.getEnduranceBase() + player.getFormBase()) / 3.);
+        return vim;
+    }
+
     public static int calculateStrength(Player player) {
         int strength = player.getStrengthBase();
         return strength;
+    }
+
+    public static int calculateEndurance(Player player) {
+        int endurance = player.getEnduranceBase();
+        return endurance;
+    }
+
+    public static int calculateForm(Player player) {
+        int form = player.getFormBase();
+        return form;
+    }
+
+    public static int calculateEfficiency(Player player) {
+        int efficiency = (int) Math.round((player.getArmBase() + player.getEyeBase() + player.getAgilityBase()) / 3.);
+        return efficiency;
+    }
+
+    public static int calculateArm(Player player) {
+        int arm = player.getArmBase();
+        if (player.getGloves() != null)
+            arm += player.getGloves().getModel().getArmModifier();
+        return arm;
+    }
+
+    public static int calculateEye(Player player) {
+        int eye = player.getEyeBase();
+        return eye;
+    }
+
+    public static int calculateAgility(Player player) {
+        int agility = player.getAgilityBase();
+        if (player.getGloves() != null)
+            agility += player.getBoots().getModel().getAgilityModifier();
+        return agility;
+    }
+
+    public static int calculateIntelligence(Player player) {
+        int intelligence = (int) Math.round((player.getKnowledgeBase() + player.getFocusBase() + player.getCharismaBase()) / 3.);
+        return intelligence;
+    }
+
+    public static int calculateKnowledge(Player player) {
+        int knowledge = player.getKnowledgeBase();
+        if (player.getHelmet() != null)
+            knowledge += player.getHelmet().getModel().getKnowledgeModifier();
+        return knowledge;
+    }
+
+    public static int calculateFocus(Player player) {
+        int focus = player.getFocusBase();
+        return focus;
+    }
+
+    public static int calculateCharisma(Player player) {
+        int charisma = player.getCharismaBase();
+        if (player.getAmulet() != null)
+            charisma += player.getAmulet().getCharisma();
+        if (player.getRing1() != null)
+            charisma += player.getRing1().getCharisma();
+        if (player.getRing2() != null)
+            charisma += player.getRing2().getCharisma();
+        return charisma;
+    }
+
+    public static int calculateManaIncrease(Player player) {
+        int manaIncrease = (int) Math.round(player.getFocus() / 5.);
+        return manaIncrease;
     }
 
     public static int calculateDmgMin(Player player, boolean firstSet) {
@@ -38,9 +110,57 @@ public class StatsCalculator {
         }
     }
 
-    public static int calculateEndurance(Player player) {
-        int endurance = player.getEnduranceBase();
-        return endurance;
+    public static int calculateHit(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
+            return 50 + player.getArm();
+        } else if (weapon.getWeaponType().isRange()) {
+            return 50 + player.getEye();
+        } else if (weapon.getWeaponType().equals(WeaponType.MAGES)) {
+            return 50 + player.getFocus();
+        } else {
+            return 50 + player.getArm();
+        }
+    }
+
+    public static int calculateParry(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
+            return 0;
+        } else {
+            return weapon.getParry();
+        }
+    }
+
+    public static int calculateBlock(Player player, boolean firtsSet) {
+        Shield shield = firtsSet ? player.getShieldA() : player.getShieldB();
+        if (shield == null) {
+            return 0;
+        }
+        return shield.getBlock();
+    }
+
+    public static int calculateDodge(Player player, boolean firstSet) {
+        int dodge = (int) Math.round(player.getAgility() / 2.);
+        return dodge;
+    }
+
+    public static int calculateRange(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
+            return 0;
+        } else {
+            return weapon.getRange();
+        }
+    }
+
+    public static int calculateAttackTime(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
+            return 0;
+        } else {
+            return weapon.getTime();
+        }
     }
 
     public static int calculateArmorHead(Player player) {
@@ -77,119 +197,5 @@ public class StatsCalculator {
         if (player.getArmor() != null)
             armorLegs += player.getArmor().getLegsArmor();
         return armorLegs;
-    }
-
-    public static int calculateForm(Player player) {
-        int form = player.getFormBase();
-        return form;
-    }
-
-    public static int calculateVim(Player player) {
-        int vim = (int) Math.round((player.getStrengthBase() + player.getEnduranceBase() + player.getFormBase()) / 3.);
-        return vim;
-    }
-
-    public static int calculateArm(Player player) {
-        int arm = player.getArmBase();
-        return arm;
-    }
-
-    public static int calculateHit(Player player, boolean firstSet) {
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
-        if (weapon == null) {
-            return 50 + player.getArm();
-        } else if (weapon.getWeaponType().isRange()) {
-            return 50 + player.getEye();
-        } else if (weapon.getWeaponType().equals(WeaponType.MAGES)) {
-            return 50 + player.getFocus();
-        } else {
-            return 50 + player.getArm();
-        }
-    }
-
-    public static int calculateEye(Player player) {
-        int eye = player.getEyeBase();
-        return eye;
-    }
-
-    public static int calculateAgility(Player player) {
-        int agility = player.getAgilityBase();
-        return agility;
-    }
-
-    public static int calculateDodgeA(Player player) {
-        int dodge = (int) Math.round(player.getAgility() / 2.);
-        return dodge;
-    }
-
-    public static int calculateEfficiency(Player player) {
-        int efficiency = (int) Math.round((player.getArmBase() + player.getEyeBase() + player.getAgilityBase()) / 3.);
-        return efficiency;
-    }
-
-    public static int calculateKnowledge(Player player) {
-        int knowledge = player.getKnowledgeBase();
-        return knowledge;
-    }
-
-    public static int calculateFocus(Player player) {
-        int focus = player.getFocusBase();
-        return focus;
-    }
-
-    public static int calculateManaIncrease(Player player) {
-        int manaIncrease = (int) Math.round(player.getFocus() / 5.);
-        return manaIncrease;
-    }
-
-    public static int calculateCharisma(Player player) {
-        int charisma = player.getCharismaBase();
-        if (player.getAmulet() != null)
-            charisma += player.getAmulet().getCharisma();
-        if (player.getRing1() != null)
-            charisma += player.getRing1().getCharisma();
-        if (player.getRing2() != null)
-            charisma += player.getRing2().getCharisma();
-        return charisma;
-    }
-
-    public static int calculateIntelligence(Player player) {
-        int intelligence = (int) Math.round((player.getKnowledgeBase() + player.getFocusBase() + player.getCharismaBase()) / 3.);
-        return intelligence;
-    }
-
-    public static int calculateParry(Player player, boolean firstSet) {
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
-        if (weapon == null) {
-            return 0;
-        } else {
-            return weapon.getParry();
-        }
-    }
-
-    public static int calculateRange(Player player, boolean firstSet) {
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
-        if (weapon == null) {
-            return 0;
-        } else {
-            return weapon.getRange();
-        }
-    }
-
-    public static int calculateAttackTime(Player player, boolean firstSet) {
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
-        if (weapon == null) {
-            return 0;
-        } else {
-            return weapon.getTime();
-        }
-    }
-
-    public static int calculateBlock(Player player, boolean firtsSet) {
-        Shield shield = firtsSet ? player.getShieldA() : player.getShieldB();
-        if (shield == null) {
-            return 0;
-        }
-        return shield.getBlock();
     }
 }
