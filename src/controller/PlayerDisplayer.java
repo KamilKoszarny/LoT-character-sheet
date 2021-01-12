@@ -138,6 +138,32 @@ public class PlayerDisplayer {
     }
 
     public static void displayEquipmentItem(Item item, ItemSlot itemSlot) {
+        displayEquipmentItem(item, itemSlot, 1);
+        if (itemSlot.equals(ItemSlot.WEAPON_A)) {
+            displaySecondHand(item, true);
+        } else if (itemSlot.equals(ItemSlot.WEAPON_B)) {
+            displaySecondHand(item, false);
+        }
+    }
+
+    private static void displaySecondHand(Item item, boolean firstSet) {
+        Weapon weapon = firstSet ? currentPlayer.getWeaponA() : currentPlayer.getWeaponB();
+        Shield shield = firstSet ? currentPlayer.getShieldA() : currentPlayer.getShieldB();
+        ItemSlot shieldSlot = firstSet ? ItemSlot.SHIELD_A : ItemSlot.SHIELD_B;
+
+        if (item == null) {
+            if (shield == null) {
+                displayEquipmentItem(null, shieldSlot);
+            }
+        }
+        else if (weapon.getModel().isTwoHanded()) {
+            displayEquipmentItem(weapon, shieldSlot, 0.6);
+        } else if (shield == null) {
+            displayEquipmentItem(null, shieldSlot);
+        }
+    }
+
+    public static void displayEquipmentItem(Item item, ItemSlot itemSlot, double opacity) {
         MenuButton button = itemSlot.getMenuButton();
         if (item == null) {
             button.setOpacity(0);
@@ -145,7 +171,7 @@ public class PlayerDisplayer {
             Image img = findImage(item);
             ImageView view = new ImageView(img);
             button.setGraphic(view);
-            button.setOpacity(1);
+            button.setOpacity(opacity);
         }
     }
 

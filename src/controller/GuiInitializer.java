@@ -134,9 +134,10 @@ public class GuiInitializer {
             menuItem.setText(shieldModel.getNamePL());
             menuItem.setOnAction(event -> {
                 Shield shield = new Shield(shieldModel);
-                PlayerUpdater.getCurrentPlayer().trySetItem(shield, itemSlot);
-                PlayerUpdater.updateBlock(itemSlot.equals(ItemSlot.SHIELD_A));
-                PlayerDisplayer.displayEquipmentItem(shield, itemSlot);
+                if (PlayerUpdater.getCurrentPlayer().trySetItem(shield, itemSlot)) {
+                    PlayerUpdater.updateBlock(itemSlot.equals(ItemSlot.SHIELD_A));
+                    PlayerDisplayer.displayEquipmentItem(shield, itemSlot);
+                }
             });
             shieldMenuItems.add(menuItem);
         }

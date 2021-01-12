@@ -121,7 +121,15 @@ public class Player implements Serializable {
     }
 
     public boolean trySetItem(Item item, ItemSlot itemSlot) {
-        if (item != null && !itemSlot.itemTypeCompatible(item.getItemType())) return false;
+        if (item != null
+                && (!itemSlot.itemTypeCompatible(item.getItemType())
+                || itemSlot.equals(ItemSlot.WEAPON_A) && ((Weapon) item).getModel().isTwoHanded() && shieldA != null
+                || itemSlot.equals(ItemSlot.WEAPON_B) && ((Weapon) item).getModel().isTwoHanded() && shieldB != null
+                || itemSlot.equals(ItemSlot.SHIELD_A) && weaponA != null && weaponA.getModel().isTwoHanded()
+                || itemSlot.equals(ItemSlot.SHIELD_B) && weaponB != null && weaponB.getModel().isTwoHanded()
+        )) {
+            return false;
+        }
 
         switch (itemSlot) {
             case WEAPON_A:
