@@ -42,21 +42,33 @@ public class StatsCalculator {
         int armorHead = (int) Math.round(player.getEndurance()/20.);
         if (player.getHelmet() != null)
             armorHead += player.getHelmet().getArmor();
+        if (player.getArmor() != null)
+            armorHead += player.getArmor().getHeadArmor();
         return armorHead;
     }
 
     public static int calculateArmorBody(Player player) {
         int armorBody = (int) Math.round(player.getEndurance()/20.);
+        if (player.getArmor() != null)
+            armorBody += player.getArmor().getBodyArmor();
         return armorBody;
     }
 
     public static int calculateArmorArms(Player player) {
         int armorArms = (int) Math.round(player.getEndurance()/20.);
+        if (player.getGloves() != null)
+            armorArms += player.getGloves().getArmor();
+        if (player.getArmor() != null)
+            armorArms += player.getArmor().getArmsArmor();
         return armorArms;
     }
 
     public static int calculateArmorLegs(Player player) {
         int armorLegs = (int) Math.round(player.getEndurance()/20.);
+        if (player.getBoots() != null)
+            armorLegs += player.getBoots().getArmor();
+        if (player.getArmor() != null)
+            armorLegs += player.getArmor().getLegsArmor();
         return armorLegs;
     }
 

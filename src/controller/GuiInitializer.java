@@ -97,6 +97,15 @@ public class GuiInitializer {
             case HELMET:
                 button.getItems().addAll(createHelmetMenu(itemSlot));
                 break;
+            case ARMOR:
+                button.getItems().addAll(createArmorMenu(itemSlot));
+                break;
+            case GLOVES:
+                button.getItems().addAll(createGlovesMenu(itemSlot));
+                break;
+            case BOOTS:
+                button.getItems().addAll(createBootsMenu(itemSlot));
+                break;
             case INVENTORY:
                 button.getItems().addAll(createInventoryMenu(itemSlot));
                 break;
@@ -160,6 +169,54 @@ public class GuiInitializer {
         return helmetMenuItems;
     }
 
+    private static List<MenuItem> createArmorMenu(ItemSlot itemSlot) {
+        List<MenuItem> armorMenuItems = new ArrayList<>();
+        for (ArmorModel armorModel: ArmorModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(armorModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Armor armor = new Armor(armorModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(armor, itemSlot);
+                PlayerUpdater.updateArmor();
+                PlayerDisplayer.displayEquipmentItem(armor, itemSlot);
+            });
+            armorMenuItems.add(menuItem);
+        }
+        return armorMenuItems;
+    }
+
+    private static List<MenuItem> createGlovesMenu(ItemSlot itemSlot) {
+        List<MenuItem> glovesMenuItems = new ArrayList<>();
+        for (GlovesModel glovesModel: GlovesModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(glovesModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Gloves gloves = new Gloves(glovesModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(gloves, itemSlot);
+                PlayerUpdater.updateArmor();
+                PlayerDisplayer.displayEquipmentItem(gloves, itemSlot);
+            });
+            glovesMenuItems.add(menuItem);
+        }
+        return glovesMenuItems;
+    }
+
+    private static List<MenuItem> createBootsMenu(ItemSlot itemSlot) {
+        List<MenuItem> bootsMenuItems = new ArrayList<>();
+        for (BootsModel bootsModel: BootsModel.values()) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(bootsModel.getNamePL());
+            menuItem.setOnAction(event -> {
+                Boots boots = new Boots(bootsModel);
+                PlayerUpdater.getCurrentPlayer().trySetItem(boots, itemSlot);
+                PlayerUpdater.updateArmor();
+                PlayerDisplayer.displayEquipmentItem(boots, itemSlot);
+            });
+            bootsMenuItems.add(menuItem);
+        }
+        return bootsMenuItems;
+    }
+
     private static List<MenuItem> createInventoryMenu(ItemSlot itemSlot) {
         List<MenuItem> inventoryMenuItems = new ArrayList<>();
         for (ItemType itemType: ItemType.values()) {
@@ -174,6 +231,15 @@ public class GuiInitializer {
                     break;
                 case HELMET:
                     menu.getItems().addAll(createHelmetMenu(itemSlot));
+                    break;
+                case ARMOR:
+                    menu.getItems().addAll(createArmorMenu(itemSlot));
+                    break;
+                case GLOVES:
+                    menu.getItems().addAll(createGlovesMenu(itemSlot));
+                    break;
+                case BOOTS:
+                    menu.getItems().addAll(createBootsMenu(itemSlot));
                     break;
             }
             inventoryMenuItems.add(menu);

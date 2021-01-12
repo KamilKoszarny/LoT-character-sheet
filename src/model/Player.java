@@ -4,10 +4,7 @@ import controller.PlayerUpdater;
 import controller.items.ItemHandler;
 import controller.items.ItemSlot;
 import lombok.Data;
-import model.items.Helmet;
-import model.items.Item;
-import model.items.Shield;
-import model.items.Weapon;
+import model.items.*;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -109,6 +106,9 @@ public class Player implements Serializable {
     private Shield shieldA;
     private Shield shieldB;
     private Helmet helmet;
+    private Armor armor;
+    private Gloves gloves;
+    private Boots boots;
 
     private Map<Item, Point> inventory = new HashMap<>();
 
@@ -119,6 +119,9 @@ public class Player implements Serializable {
             case SHIELD_A: return shieldA;
             case SHIELD_B: return shieldB;
             case HELMET: return helmet;
+            case ARMOR: return armor;
+            case GLOVES: return gloves;
+            case BOOTS: return boots;
         }
         return null;
     }
@@ -153,6 +156,18 @@ public class Player implements Serializable {
                 break;
             case HELMET:
                 setHelmet((Helmet) item);
+                PlayerUpdater.updateArmor();
+                break;
+            case ARMOR:
+                setArmor((Armor) item);
+                PlayerUpdater.updateArmor();
+                break;
+            case GLOVES:
+                setGloves((Gloves) item);
+                PlayerUpdater.updateArmor();
+                break;
+            case BOOTS:
+                setBoots((Boots) item);
                 PlayerUpdater.updateArmor();
                 break;
             case INVENTORY:

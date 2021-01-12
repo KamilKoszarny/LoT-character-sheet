@@ -427,6 +427,15 @@ public class GuiController {
     private MenuButton helmet;
 
     @FXML
+    private MenuButton armor;
+
+    @FXML
+    private MenuButton gloves;
+
+    @FXML
+    private MenuButton boots;
+
+    @FXML
     private MenuButton inventory;
 }
 

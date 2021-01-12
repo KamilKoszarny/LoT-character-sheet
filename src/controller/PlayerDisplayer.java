@@ -13,10 +13,7 @@ import javafx.scene.shape.Rectangle;
 import model.Ability;
 import model.Proffesion;
 import model.Skill;
-import model.items.Helmet;
-import model.items.Item;
-import model.items.Shield;
-import model.items.Weapon;
+import model.items.*;
 import utils.Utils;
 
 import java.awt.*;
@@ -135,6 +132,18 @@ public class PlayerDisplayer {
         if (currentPlayer.getShieldB() != null) {
             displayEquipmentItem(currentPlayer.getShieldB(), ItemSlot.SHIELD_B);
         }
+        if (currentPlayer.getHelmet() != null) {
+            displayEquipmentItem(currentPlayer.getHelmet(), ItemSlot.HELMET);
+        }
+        if (currentPlayer.getArmor() != null) {
+            displayEquipmentItem(currentPlayer.getArmor(), ItemSlot.ARMOR);
+        }
+        if (currentPlayer.getGloves() != null) {
+            displayEquipmentItem(currentPlayer.getGloves(), ItemSlot.GLOVES);
+        }
+        if (currentPlayer.getBoots() != null) {
+            displayEquipmentItem(currentPlayer.getBoots(), ItemSlot.BOOTS);
+        }
     }
 
     public static void displayEquipmentItem(Item item, ItemSlot itemSlot) {
@@ -223,6 +232,15 @@ public class PlayerDisplayer {
                 break;
             case HELMET:
                 path += "helmets/" + ((Helmet) item).getModel().name() + ".png";
+                break;
+            case ARMOR:
+                path += "armors/" + ((Armor) item).getModel().name() + ".png";
+                break;
+            case GLOVES:
+                path += "gloves/" + ((Gloves) item).getModel().name() + ".png";
+                break;
+            case BOOTS:
+                path += "boots/" + ((Boots) item).getModel().name() + ".png";
                 break;
         }
         return new Image(path);

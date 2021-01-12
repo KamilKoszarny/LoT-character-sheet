@@ -13,6 +13,9 @@ public enum ItemSlot {
     SHIELD_A(ItemType.SHIELD, guiController.getShieldA()),
     SHIELD_B(ItemType.SHIELD, guiController.getShieldB()),
     HELMET(ItemType.HELMET, guiController.getHelmet()),
+    ARMOR(ItemType.ARMOR, guiController.getArmor()),
+    GLOVES(ItemType.GLOVES, guiController.getGloves()),
+    BOOTS(ItemType.BOOTS, guiController.getBoots()),
     INVENTORY(null, guiController.getInventory()) //all types
     ;
 
