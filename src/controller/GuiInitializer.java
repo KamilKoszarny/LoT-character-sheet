@@ -156,8 +156,7 @@ public class GuiInitializer {
                     menuItem.setOnAction(event -> {
                         Weapon weapon = new Weapon(weaponModel);
                         PlayerUpdater.getCurrentPlayer().trySetItem(weapon, itemSlot);
-                        PlayerUpdater.updateDmg(itemSlot.equals(ItemSlot.WEAPON_A));
-                        PlayerUpdater.updateHits(itemSlot.equals(ItemSlot.WEAPON_A));
+                        PlayerUpdater.updateStatsFromWeapon(itemSlot.equals(ItemSlot.WEAPON_A));
                         PlayerDisplayer.displayEquipmentItem(weapon, itemSlot);
                     });
                     menu.getItems().add(menuItem);

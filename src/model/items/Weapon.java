@@ -9,6 +9,9 @@ public class Weapon extends Item {
     private final WeaponModel model;
     private int dmgMin;
     private int dmgMax;
+    private int parry;
+    private int range;
+    private int time;
 
     public Weapon(WeaponModel model) {
         setItemType(ItemType.WEAPON);
@@ -16,5 +19,8 @@ public class Weapon extends Item {
         this.model = model;
         this.dmgMin = model.getDmgMin();
         this.dmgMax = model.getDmgMax();
+        this.parry = model.getParry();
+        this.range = model.getRange();
+        this.time = model.getTime();
     }
 }

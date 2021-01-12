@@ -379,6 +379,9 @@ public class GuiController {
     private TextField rangeA;
 
     @FXML
+    private TextField timeA;
+
+    @FXML
     private TextField dmgB;
 
     @FXML
@@ -395,6 +398,9 @@ public class GuiController {
 
     @FXML
     private TextField rangeB;
+
+    @FXML
+    private TextField timeB;
 
     @FXML
     private TextField armorHead;

@@ -347,6 +347,7 @@ public class PlayerUpdater {
         guiController.getFocus().setText(Integer.toString(focus));
 
         updateManaIncrease();
+        updateHits();
     }
 
     public static void updateCharisma() {
@@ -364,6 +365,19 @@ public class PlayerUpdater {
         guiController.getMana().setText("" + currentPlayer.getMana() + '/' + manaMax);
     }
 
+    static void updateManaIncrease() {
+        int manaIncrease = StatsCalculator.calculateManaIncrease(currentPlayer);
+        currentPlayer.setManaIncrease(manaIncrease);
+        guiController.getManaIncrease().setText(Integer.toString(manaIncrease));
+    }
+
+    public static void updateStatsFromWeapon(boolean firstSet) {
+        updateDmg(firstSet);
+        updateHits(firstSet);
+        updateParry(firstSet);
+        updateRange(firstSet);
+        updateAttackTime(firstSet);
+    }
 
     public static void updateDmg() {
         updateDmg(true);
@@ -383,17 +397,6 @@ public class PlayerUpdater {
         PlayerDisplayer.displayDmg(firstSet);
     }
 
-    public static void updateBlock(boolean firstSet) {
-        int block = StatsCalculator.calculateBlock(currentPlayer, firstSet);
-        if (firstSet) {
-            currentPlayer.setBlockA(block);
-            guiController.getBlockA().setText(Integer.toString(block));
-        } else {
-            currentPlayer.setBlockB(block);
-            guiController.getBlockB().setText(Integer.toString(block));
-        }
-    }
-
     public static void updateArmor() {
         int armorHead = StatsCalculator.calculateArmorHead(currentPlayer);
         currentPlayer.setArmorHead(armorHead);
@@ -409,12 +412,12 @@ public class PlayerUpdater {
         guiController.getArmorLegs().setText(Integer.toString(armorLegs));
     }
 
-    static void updateHits() {
+    public static void updateHits() {
         updateHits(true);
         updateHits(false);
     }
 
-    static void updateHits(boolean firstSet) {
+    public static void updateHits(boolean firstSet) {
         int hit = StatsCalculator.calculateHit(currentPlayer, firstSet);
         if(firstSet) {
             currentPlayer.setHitA(hit);
@@ -422,6 +425,28 @@ public class PlayerUpdater {
         } else {
             currentPlayer.setHitB(hit);
             guiController.getHitB().setText(Integer.toString(hit));
+        }
+    }
+
+    public static void updateParry(boolean firstSet) {
+        int parry = StatsCalculator.calculateParry(currentPlayer, firstSet);
+        if(firstSet) {
+            currentPlayer.setParryA(parry);
+            guiController.getParryA().setText(Integer.toString(parry));
+        } else {
+            currentPlayer.setParryB(parry);
+            guiController.getParryB().setText(Integer.toString(parry));
+        }
+    }
+
+    public static void updateBlock(boolean firstSet) {
+        int block = StatsCalculator.calculateBlock(currentPlayer, firstSet);
+        if (firstSet) {
+            currentPlayer.setBlockA(block);
+            guiController.getBlockA().setText(Integer.toString(block));
+        } else {
+            currentPlayer.setBlockB(block);
+            guiController.getBlockB().setText(Integer.toString(block));
         }
     }
 
@@ -433,10 +458,26 @@ public class PlayerUpdater {
         guiController.getDodgeB().setText(Integer.toString(dodge));
     }
 
-    static void updateManaIncrease() {
-        int manaIncrease = StatsCalculator.calculateManaIncrease(currentPlayer);
-        currentPlayer.setManaIncrease(manaIncrease);
-        guiController.getManaIncrease().setText(Integer.toString(manaIncrease));
+    public static void updateRange(boolean firstSet) {
+        int range = StatsCalculator.calculateRange(currentPlayer, firstSet);
+        if(firstSet) {
+            currentPlayer.setRangeA(range);
+            guiController.getRangeA().setText(Integer.toString(range));
+        } else {
+            currentPlayer.setRangeB(range);
+            guiController.getRangeB().setText(Integer.toString(range));
+        }
+    }
+
+    public static void updateAttackTime(boolean firstSet) {
+        int attackTime = StatsCalculator.calculateAttackTime(currentPlayer, firstSet);
+        if(firstSet) {
+            currentPlayer.setAttackTimeA(attackTime);
+            guiController.getTimeA().setText(Integer.toString(attackTime));
+        } else {
+            currentPlayer.setAttackTimeB(attackTime);
+            guiController.getTimeB().setText(Integer.toString(attackTime));
+        }
     }
 
 }

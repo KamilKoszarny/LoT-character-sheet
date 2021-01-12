@@ -87,6 +87,7 @@ public class Player implements Serializable {
     private int blockA;
     private int dodgeA;
     private int rangeA;
+    private int attackTimeA;
     private int dmgBMin;
     private int dmgBMax;
     private int hitB;
@@ -94,6 +95,7 @@ public class Player implements Serializable {
     private int blockB;
     private int dodgeB;
     private int rangeB;
+    private int attackTimeB;
 
     private int armorHead;
     private int armorBody;
@@ -169,11 +171,11 @@ public class Player implements Serializable {
         switch (itemSlot) {
             case WEAPON_A:
                 setWeaponA((Weapon) item);
-                PlayerUpdater.updateDmg(true);
+                PlayerUpdater.updateStatsFromWeapon(true);
                 break;
             case WEAPON_B:
                 setWeaponB((Weapon) item);
-                PlayerUpdater.updateDmg(false);
+                PlayerUpdater.updateStatsFromWeapon(false);
                 break;
             case SHIELD_A:
                 setShieldA((Shield) item);

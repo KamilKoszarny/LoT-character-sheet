@@ -1211,7 +1211,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="actions" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="3" text="5/5">
+                                                      <TextField fx:id="actions" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="3" text="5/5">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1282,7 +1282,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="mana" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="3">
+                                                      <TextField fx:id="mana" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="3">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1348,18 +1348,20 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label text="   obrażenia " />
-                                    <TextField fx:id="dmgA" alignment="CENTER" prefColumnCount="5" />
-                                    <Label text="   traf. " />
-                                    <TextField fx:id="hitA" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   par. " />
-                                    <TextField fx:id="parryA" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   blok. " />
-                                    <TextField fx:id="blockA" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   unik. " />
-                                    <TextField fx:id="dodgeA" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   zasięg " />
-                                    <TextField fx:id="rangeA" alignment="CENTER" prefColumnCount="3" />
+                                    <Label text="obrażenia " />
+                                    <TextField fx:id="dmgA" alignment="CENTER" disable="true" prefColumnCount="5" />
+                                    <Label text=" traf. " />
+                                    <TextField fx:id="hitA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" par. " />
+                                    <TextField fx:id="parryA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" blok. " />
+                                    <TextField fx:id="blockA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" unik. " />
+                                    <TextField fx:id="dodgeA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" zasięg " />
+                                    <TextField fx:id="rangeA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" czas " />
+                                    <TextField fx:id="timeA" alignment="CENTER" disable="true" prefColumnCount="3" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />
@@ -1372,18 +1374,20 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label text="   obrażenia " />
-                                    <TextField fx:id="dmgB" alignment="CENTER" prefColumnCount="5" />
-                                    <Label text="   traf. " />
-                                    <TextField fx:id="hitB" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   par. " />
-                                    <TextField fx:id="parryB" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   blok. " />
-                                    <TextField fx:id="blockB" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   unik. " />
-                                    <TextField fx:id="dodgeB" alignment="CENTER" prefColumnCount="3" />
-                                    <Label text="   zasięg " />
-                                    <TextField fx:id="rangeB" alignment="CENTER" prefColumnCount="3" />
+                                    <Label text=" obrażenia " />
+                                    <TextField fx:id="dmgB" alignment="CENTER" disable="true" prefColumnCount="5" />
+                                    <Label text=" traf. " />
+                                    <TextField fx:id="hitB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" par. " />
+                                    <TextField fx:id="parryB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" blok. " />
+                                    <TextField fx:id="blockB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" unik. " />
+                                    <TextField fx:id="dodgeB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" zasięg " />
+                                    <TextField fx:id="rangeB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <Label text=" czas " />
+                                    <TextField fx:id="timeB" alignment="CENTER" disable="true" prefColumnCount="3" />
                                  </children>
                               </HBox>
                               <HBox>
@@ -1398,7 +1402,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="głowa" />
-                                                <TextField fx:id="armorHead" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="armorHead" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1407,7 +1411,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="korpus" />
-                                                <TextField fx:id="armorBody" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="armorBody" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1416,7 +1420,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="ręce" />
-                                                <TextField fx:id="armorArms" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="armorArms" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1425,7 +1429,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="nogi" />
-                                                <TextField fx:id="armorLegs" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="armorLegs" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

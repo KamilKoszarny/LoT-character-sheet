@@ -209,7 +209,6 @@ public class PlayerDisplayer {
             displayInventoryItem(item, currentPlayer.getInventory().get(item));
         }
         changeInventoryItemsMouseTransparency(ItemHandler.isItemHeld());
-        System.out.println("displayInventory: Inventory size: " + currentPlayer.getInventory().keySet().size());
     }
 
     public static void displayInventoryItem(Item item, Point slot) {

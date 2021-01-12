@@ -3,6 +3,7 @@ package controller;
 import model.Player;
 import model.items.Shield;
 import model.items.Weapon;
+import model.items.WeaponType;
 
 public class StatsCalculator {
 
@@ -17,6 +18,8 @@ public class StatsCalculator {
             return (int) Math.round(1 * (1 + player.getStrength()/50.));
         } else if (weapon.getWeaponType().isRange()) {
             return (int) Math.round(weapon.getDmgMin() * (1 + player.getEye()/100.));
+        } else if (weapon.getWeaponType().equals(WeaponType.MAGES)){
+            return weapon.getDmgMin();
         } else {
             return (int) Math.round(weapon.getDmgMin() * (1 + player.getStrength()/50.));
         }
@@ -28,6 +31,8 @@ public class StatsCalculator {
             return (int) Math.round(2 * (1 + player.getStrength()/50.));
         } else if (weapon.getWeaponType().isRange()) {
             return (int) Math.round(weapon.getDmgMax() * (1 + player.getEye()/100.));
+        } else if (weapon.getWeaponType().equals(WeaponType.MAGES)){
+            return weapon.getDmgMax();
         } else {
             return (int) Math.round(weapon.getDmgMax() * (1 + player.getStrength()/50.));
         }
@@ -91,10 +96,14 @@ public class StatsCalculator {
 
     public static int calculateHit(Player player, boolean firstSet) {
         Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
-        if (weapon == null || !weapon.getWeaponType().isRange()) {
+        if (weapon == null) {
             return 50 + player.getArm();
-        } else {
+        } else if (weapon.getWeaponType().isRange()) {
             return 50 + player.getEye();
+        } else if (weapon.getWeaponType().equals(WeaponType.MAGES)) {
+            return 50 + player.getFocus();
+        } else {
+            return 50 + player.getArm();
         }
     }
 
@@ -147,6 +156,33 @@ public class StatsCalculator {
     public static int calculateIntelligence(Player player) {
         int intelligence = (int) Math.round((player.getKnowledgeBase() + player.getFocusBase() + player.getCharismaBase()) / 3.);
         return intelligence;
+    }
+
+    public static int calculateParry(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
+            return 0;
+        } else {
+            return weapon.getParry();
+        }
+    }
+
+    public static int calculateRange(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
+            return 0;
+        } else {
+            return weapon.getRange();
+        }
+    }
+
+    public static int calculateAttackTime(Player player, boolean firstSet) {
+        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        if (weapon == null) {
+            return 0;
+        } else {
+            return weapon.getTime();
+        }
     }
 
     public static int calculateBlock(Player player, boolean firtsSet) {
