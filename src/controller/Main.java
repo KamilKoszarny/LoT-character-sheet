@@ -16,10 +16,6 @@ public class Main extends Application {
         Pane pane = loader.load();
         primaryStage.setTitle("Legacy of Tyrant: Karta postaci");
         primaryStage.setScene(new Scene(pane));
-        primaryStage.setX(10);
-        primaryStage.setY(10);
-        primaryStage.setWidth(742);
-        primaryStage.setHeight(640);
         primaryStage.show();
 
         GuiController guiController = loader.getController();
@@ -27,6 +23,10 @@ public class Main extends Application {
         GuiInitializer.init();
         PlayerUpdater.init();
         PlayerSaveLoader.init(primaryStage, guiController);
+        primaryStage.setX(10);
+        primaryStage.setY(10);
+        primaryStage.setWidth(742);
+        primaryStage.setHeight(640);
     }
 
 
