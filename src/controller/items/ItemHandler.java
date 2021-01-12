@@ -21,8 +21,8 @@ import static controller.PlayerUpdater.currentPlayer;
 public class ItemHandler {
 
     public static final int ITEM_SLOT_SIZE = 30;
-    public static final int INVENTORY_SLOTS_X = 5;
-    public static final int INVENTORY_SLOTS_Y = 10;
+    public static final int INVENTORY_SLOTS_X = 10;
+    public static final int INVENTORY_SLOTS_Y = 5;
 
 
     private static Item heldItem;
@@ -87,18 +87,22 @@ public class ItemHandler {
         heldItemRectangle.setFill(new ImagePattern(itemImage));
         heldItemRectangle.setWidth(itemImage.getWidth());
         heldItemRectangle.setHeight(itemImage.getHeight());
+        heldItemRectangle.toFront();
         heldItemRectangle.setVisible(true);
         PlayerDisplayer.changeInventoryItemsMouseTransparency(true);
     }
 
     public static boolean tryPutItem(ItemSlot itemSlot, Point clickPoint) {
-        if (currentPlayer.trySetItem(heldItem, itemSlot)) {
+        if (!itemSlot.equals(ItemSlot.INVENTORY) && currentPlayer.trySetItem(heldItem, itemSlot)) {
             PlayerDisplayer.displayEquipmentItem(heldItem, itemSlot);
             hideHeldItem();
             return true;
         } else if (itemSlot.equals(ItemSlot.INVENTORY)) {
             Point inventorySlot = calcInventorySlot(clickPoint);
-            Set<Item> itemsUnderneath = itemsUnderneath(inventorySlot);
+            if (itemOutOfInventory(heldItem, inventorySlot)) {
+                return false;
+            }
+            Set<Item> itemsUnderneath = itemsUnderneath(heldItem, inventorySlot);
             if (itemsUnderneath.size() == 0) {
                 currentPlayer.addToInventory(heldItem, inventorySlot);
                 hideHeldItem();
@@ -111,10 +115,10 @@ public class ItemHandler {
                 currentPlayer.addToInventory(heldItem, inventorySlot);
                 holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
                 catchItem(underneathItem, itemImage);
-//                drawHeldItem(new Point(itemSlot.getX() + clickPoint.x, itemSlot.getY() + clickPoint.y));
                 currentPlayer.removeFromInventory(underneathItem);
                 PlayerDisplayer.removeInventoryItem(underneathItem);
                 PlayerDisplayer.displayInventory();
+                heldItemRectangle.toFront();
                 return true;
             }
         }
@@ -167,9 +171,14 @@ public class ItemHandler {
         return new Point(inventorySlotX, inventorySlotY);
     }
 
-    private static Set<Item> itemsUnderneath(Point slot) {
+    private static boolean itemOutOfInventory(Item item, Point slot) {
+        Set<Point> heldItemSlots = itemSlots(item, slot);
+        return heldItemSlots.stream().anyMatch(point -> point.x >= INVENTORY_SLOTS_X || point.y >= INVENTORY_SLOTS_Y);
+    }
+
+    private static Set<Item> itemsUnderneath(Item item, Point slot) {
         Set<Item> itemsUnderneath = new HashSet<>();
-        Set<Point> heldItemSlots = itemSlots(heldItem, slot);
+        Set<Point> heldItemSlots = itemSlots(item, slot);
         for (Item invItem: currentPlayer.getInventory().keySet()) {
             Point invItemSlot = currentPlayer.getInventory().get(invItem);
             Set<Point> invItemSlots = itemSlots(invItem, invItemSlot);
@@ -202,9 +211,23 @@ public class ItemHandler {
             Image itemImage = PlayerDisplayer.findImage(item);
             holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
             catchItem(item, itemImage);
+            drawHeldItem(new Point((int)(rectangle.getLayoutX() + event.getX()),  (int)(rectangle.getLayoutY() + event.getY())));
             currentPlayer.removeFromInventory(item);
             PlayerDisplayer.removeInventoryItem(item);
             PlayerDisplayer.displayInventory();
         });
+    }
+
+    public static void tryPutNewItemInInventory(Item item) {
+        for (int x = 0; x < INVENTORY_SLOTS_X; x++) {
+            for (int y = 0; y < INVENTORY_SLOTS_Y; y++) {
+                Point slot = new Point(x, y);
+                if (!itemOutOfInventory(item, slot) && itemsUnderneath(item, slot).size() == 0) {
+                    currentPlayer.addToInventory(item, slot);
+                    PlayerDisplayer.displayInventory();
+                    return;
+                }
+            }
+        }
     }
 }

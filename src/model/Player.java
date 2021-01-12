@@ -1,6 +1,7 @@
 package model;
 
 import controller.PlayerUpdater;
+import controller.items.ItemHandler;
 import controller.items.ItemSlot;
 import lombok.Data;
 import model.items.Helmet;
@@ -129,6 +130,8 @@ public class Player implements Serializable {
             case HELMET:
                 setHelmet((Helmet) item);
                 PlayerUpdater.updateArmor();
+            case INVENTORY:
+                ItemHandler.tryPutNewItemInInventory(item);
             break;
         }
         return true;

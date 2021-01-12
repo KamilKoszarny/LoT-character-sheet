@@ -11,7 +11,7 @@ public enum ItemSlot {
     WEAPON_A(ItemType.WEAPON, guiController.getWeaponA()),
     WEAPON_B(ItemType.WEAPON, guiController.getWeaponB()),
     HELMET(ItemType.HELMET, guiController.getHelmet()),
-    INVENTORY(null, guiController.getInventory())
+    INVENTORY(null, guiController.getInventory()) //all types
     ;
 
     private final ItemType itemType;
@@ -31,6 +31,6 @@ public enum ItemSlot {
     }
 
     public boolean itemTypeCompatible(ItemType itemType) {
-        return itemType.equals(this.itemType);
+        return this.equals(INVENTORY) || itemType.equals(this.itemType);
     }
 }
