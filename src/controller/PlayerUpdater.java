@@ -257,10 +257,12 @@ public class PlayerUpdater {
         guiController.getHitPointsPlus().setOnMouseClicked(event -> {
             currentPlayer.setHitPoints(currentPlayer.getHitPoints() + 1);
             PlayerDisplayer.displayHitPoints();
+            updateStatsFromSkill(SkillType.WRATH);
         });
         guiController.getHitPointsMinus().setOnMouseClicked(event -> {
             currentPlayer.setHitPoints(currentPlayer.getHitPoints() - 1);
             PlayerDisplayer.displayHitPoints();
+            updateStatsFromSkill(SkillType.WRATH);
         });
         guiController.getActionsPlus().setOnMouseClicked(event -> {
             currentPlayer.setActions(currentPlayer.getActions() + 1);
@@ -293,6 +295,7 @@ public class PlayerUpdater {
         guiController.getResistMagic().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistMagic(Integer.parseInt(newValue)));
         guiController.getResistBodyIllness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistBodyIllness(Integer.parseInt(newValue)));
         guiController.getResistMindIllness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistMindIllness(Integer.parseInt(newValue)));
+        guiController.getHorseType().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseType(guiController.getHorseType().getItems().get((Integer) newValue)));
         guiController.getHorseName().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseName(newValue));
         guiController.getHorseHitPoints().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseHitPoints(newValue));
         guiController.getHorseRiding().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseRiding(newValue));
@@ -400,11 +403,21 @@ public class PlayerUpdater {
 
     private static void updateStatsFromSkill(SkillType skillType) {
         switch (skillType) {
+            case REGENERATION:
+                updateHitPointsIncrease();
+            case WRATH:
+                updateDmg();
             case MAGIC_TALENT:
                 updateManaIncrease();
                 updateManaMax();
                 break;
         }
+    }
+
+    private static void updateHitPointsIncrease() {
+        int hitPointsIncrease = StatsCalculator.calculateHitPointsIncrease(currentPlayer);
+        currentPlayer.setHitPointsIncrease(hitPointsIncrease);
+        guiController.getHitPointsIncrease().setText(Integer.toString(hitPointsIncrease));
     }
 
     private static void updateManaMax() {

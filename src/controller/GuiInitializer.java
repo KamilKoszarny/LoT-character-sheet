@@ -27,6 +27,7 @@ public class GuiInitializer {
         initSigns();
         initSkills();
         initTraits();
+        initHorseTypes();
         initEquipment();
     }
 
@@ -70,6 +71,10 @@ public class GuiInitializer {
                 Arrays.stream(Trait.values())
                         .filter(trait -> trait.getType().equals(TraitType.NEGATIVE))
                         .collect(Collectors.toList()));
+    }
+
+    private static void initHorseTypes() {
+        guiController.getHorseType().getItems().addAll(HorseType.values());
     }
 
     private static void initEquipment() {

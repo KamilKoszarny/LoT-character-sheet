@@ -347,6 +347,7 @@ public class PlayerDisplayer {
         guiController.getResistMagic().setText(Integer.toString(currentPlayer.getResistMagic()));
         guiController.getResistBodyIllness().setText(Integer.toString(currentPlayer.getResistBodyIllness()));
         guiController.getResistMindIllness().setText(Integer.toString(currentPlayer.getResistMindIllness()));
+        guiController.getHorseType().getSelectionModel().select(currentPlayer.getHorseType());
         guiController.getHorseName().setText(currentPlayer.getHorseName());
         guiController.getHorseHitPoints().setText(currentPlayer.getHorseHitPoints());
         guiController.getHorseRiding().setText(currentPlayer.getHorseRiding());

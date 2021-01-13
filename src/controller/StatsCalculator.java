@@ -96,6 +96,15 @@ public class StatsCalculator {
         return charisma;
     }
 
+    public static int calculateHitPointsIncrease(Player player) {
+        int hitPointsIncrease = 1;
+        Skill regeneration = player.getSkill(SkillType.REGENERATION);
+        if (regeneration != null) {
+            hitPointsIncrease += regeneration.getLevel() == 1 ? 2 : 4;
+        }
+        return hitPointsIncrease;
+    }
+
     public static int calculateManaMax(Player player) {
         int manaMax = (int) Math.round(player.getIntelligence()/3.);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
@@ -115,29 +124,41 @@ public class StatsCalculator {
     }
 
     public static int calculateDmgMin(Player player, boolean firstSet) {
+        int dmgMin = 0;
         Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
         if (weapon == null) {
-            return (int) Math.round(1 * (1 + player.getStrength()/50.));
+            dmgMin += (int) Math.round(1 * (1 + player.getStrength()/50.));
         } else if (weapon.getWeaponType().isRange()) {
-            return (int) Math.round(weapon.getDmgMin() * (1 + player.getEye()/100.));
+            dmgMin += (int) Math.round(weapon.getDmgMin() * (1 + player.getEye()/100.));
         } else if (weapon.getWeaponType().equals(WeaponType.MAGES)){
-            return weapon.getDmgMin();
+            dmgMin += weapon.getDmgMin();
         } else {
-            return (int) Math.round(weapon.getDmgMin() * (1 + player.getStrength()/50.));
+            dmgMin += (int) Math.round(weapon.getDmgMin() * (1 + player.getStrength()/50.));
         }
+        Skill wrath = player.getSkill(SkillType.WRATH);
+        if (wrath != null && player.getHitPoints() < 0.4 * player.getHitPointsMax()) {
+            dmgMin += 2 * wrath.getLevel();
+        }
+        return dmgMin;
     }
 
     public static int calculateDmgMax(Player player, boolean firstSet) {
+        int dmgMax = 0;
         Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
         if (weapon == null) {
-            return (int) Math.round(2 * (1 + player.getStrength()/50.));
+            dmgMax += (int) Math.round(2 * (1 + player.getStrength()/50.));
         } else if (weapon.getWeaponType().isRange()) {
-            return (int) Math.round(weapon.getDmgMax() * (1 + player.getEye()/100.));
+            dmgMax += (int) Math.round(weapon.getDmgMax() * (1 + player.getEye()/100.));
         } else if (weapon.getWeaponType().equals(WeaponType.MAGES)){
-            return weapon.getDmgMax();
+            dmgMax += weapon.getDmgMax();
         } else {
-            return (int) Math.round(weapon.getDmgMax() * (1 + player.getStrength()/50.));
+            dmgMax += (int) Math.round(weapon.getDmgMax() * (1 + player.getStrength()/50.));
         }
+        Skill wrath = player.getSkill(SkillType.WRATH);
+        if (wrath != null && player.getHitPoints() < 0.4 * player.getHitPointsMax()) {
+            dmgMax += 2 * wrath.getLevel();
+        }
+        return dmgMax;
     }
 
     public static int calculateHit(Player player, boolean firstSet) {

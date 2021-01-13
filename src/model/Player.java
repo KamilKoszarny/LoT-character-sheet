@@ -110,6 +110,7 @@ public class Player implements Serializable {
     private int resistBodyIllness;
     private int resistMindIllness;
 
+    private HorseType horseType;
     private String horseName;
     private String horseHitPoints;
     private String horseRiding;

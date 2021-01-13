@@ -1190,7 +1190,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="hitPointsIncrease" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="2" text="1" />
+                                                      <TextField fx:id="hitPointsIncrease" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="2" text="1" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -1378,7 +1378,7 @@
                                        </font>
                                     </Label>
                                     <Label text="obrażenia " />
-                                    <TextField fx:id="dmgA" alignment="CENTER" disable="true" prefColumnCount="5" />
+                                    <TextField fx:id="dmgA" alignment="CENTER" disable="true" prefColumnCount="6" />
                                     <Label text=" traf. " />
                                     <TextField fx:id="hitA" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" par. " />
@@ -1386,7 +1386,7 @@
                                     <Label text=" blok. " />
                                     <TextField fx:id="blockA" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" unik. " />
-                                    <TextField fx:id="dodgeA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <TextField fx:id="dodgeA" alignment="CENTER" disable="true" prefColumnCount="2" />
                                     <Label text=" zasięg " />
                                     <TextField fx:id="rangeA" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" czas " />
@@ -1404,7 +1404,7 @@
                                        </font>
                                     </Label>
                                     <Label text=" obrażenia " />
-                                    <TextField fx:id="dmgB" alignment="CENTER" disable="true" prefColumnCount="5" />
+                                    <TextField fx:id="dmgB" alignment="CENTER" disable="true" prefColumnCount="6" />
                                     <Label text=" traf. " />
                                     <TextField fx:id="hitB" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" par. " />
@@ -1412,7 +1412,7 @@
                                     <Label text=" blok. " />
                                     <TextField fx:id="blockB" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" unik. " />
-                                    <TextField fx:id="dodgeB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <TextField fx:id="dodgeB" alignment="CENTER" disable="true" prefColumnCount="2" />
                                     <Label text=" zasięg " />
                                     <TextField fx:id="rangeB" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" czas " />
@@ -1573,6 +1573,15 @@
                                           </Label>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
+                                                <Label alignment="CENTER" prefWidth="30.0" text="typ" textAlignment="CENTER" wrapText="true" />
+                                                <ChoiceBox fx:id="horseType" prefWidth="150.0" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
                                                 <Label alignment="CENTER" prefWidth="30.0" text="imię" />
                                                 <TextField fx:id="horseName" alignment="CENTER" prefColumnCount="6" />
                                                 <Label alignment="CENTER" prefWidth="30.0" text="PZ" />
@@ -1610,7 +1619,7 @@
                                     </VBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
+                                    <Insets left="5.0" right="5.0" top="20.0" />
                                  </VBox.margin>
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1621,7 +1630,7 @@
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
                                  </VBox.margin>
                               </Label>
                               <AnchorPane fx:id="itemsPane">

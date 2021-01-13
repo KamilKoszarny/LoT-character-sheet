@@ -6,10 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import lombok.Getter;
 import lombok.Setter;
-import model.Proffesion;
-import model.Race;
-import model.Sign;
-import model.Trait;
+import model.*;
 
 @Getter
 @Setter
@@ -440,6 +437,9 @@ public class GuiController {
 
     @FXML
     private TextField resistMindIllness;
+
+    @FXML
+    private ChoiceBox<HorseType> horseType;
 
     @FXML
     private TextField horseName;
