@@ -191,11 +191,21 @@ public class PlayerDisplayer {
         guiController.getTimeB().setText(attackTimeBText);
     }
 
-    public static void displayArmorStats() {
+    public static void displayArmors() {
         guiController.getArmorHead().setText(Integer.toString(currentPlayer.getArmorHead()));
         guiController.getArmorBody().setText(Integer.toString(currentPlayer.getArmorBody()));
         guiController.getArmorArms().setText(Integer.toString(currentPlayer.getArmorArms()));
         guiController.getArmorLegs().setText(Integer.toString(currentPlayer.getArmorLegs()));
+    }
+
+    public static void displayResistances() {
+        guiController.getResistFire().setText(Integer.toString(currentPlayer.getResistFire()));
+        guiController.getResistCold().setText(Integer.toString(currentPlayer.getResistCold()));
+        guiController.getResistWind().setText(Integer.toString(currentPlayer.getResistWind()));
+        guiController.getResistEarth().setText(Integer.toString(currentPlayer.getResistEarth()));
+        guiController.getResistMagic().setText(Integer.toString(currentPlayer.getResistMagic()));
+        guiController.getResistBodyIllness().setText(Integer.toString(currentPlayer.getResistBodyIllness()));
+        guiController.getResistMindIllness().setText(Integer.toString(currentPlayer.getResistMindIllness()));
     }
 
     private static void displayEquipment() {
@@ -402,7 +412,7 @@ public class PlayerDisplayer {
         displayAttackTime();
         guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodgeA()));
         guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodgeB()));
-        displayArmorStats();
+        displayArmors();
         guiController.getResistFire().setText(Integer.toString(currentPlayer.getResistFire()));
         guiController.getResistCold().setText(Integer.toString(currentPlayer.getResistCold()));
         guiController.getResistWind().setText(Integer.toString(currentPlayer.getResistWind()));

@@ -15,7 +15,7 @@ public enum WeaponModel {
     CHOPPER(WeaponType.SWORD,             3, 6, 1, 1,       false, 15, 8, 14, "Tasak", new Modifier(ModifierType.HIT, -5)),
     GLASS_SWORD(WeaponType.SWORD,         4, 8, 1, 1,       false, 20, 3, 4, "Szklany miecz"),
     BROAD_SWORD(WeaponType.SWORD,         4, 8, 1, 1,       false, 25, 9, 18, "Pałasz"),
-    LONG_SWORD(WeaponType.SWORD,          3, 9, 1, 1,       false, 35, 7, 16, "Długi miecz"),
+    LONG_SWORD(WeaponType.SWORD,          3, 9, 1, 1,       false, 30, 7, 16, "Długi miecz"),
     TWO_HAND_SWORD(WeaponType.SWORD,      5, 7, 1, 2,      true, 30, 12, 18, "Miecz oburęczny"),
     CLAYMORE(WeaponType.SWORD,            3, 10, 1, 2,     true, 45, 9, 16, "Claymore"),
     HALF_HAND_SWORD_1H(WeaponType.SWORD,  4, 8, 2, 2,    true, 30, 11, 19, "Miecz półtoraręczny (1 ręka)"),

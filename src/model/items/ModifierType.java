@@ -12,6 +12,15 @@ public enum ModifierType {
     KNOWLEDGE,
     FOCUS,
     CHARISMA,
+    STRENGTH_GROWTH,
+    ENDURANCE_GROWTH,
+    FORM_GROWTH,
+    EYE_GROWTH,
+    ARM_GROWTH,
+    AGILITY_GROWTH,
+    KNOWLEDGE_GROWTH,
+    FOCUS_GROWTH,
+    CHARISMA_GROWTH,
 
     //skills
 
@@ -44,5 +53,9 @@ public enum ModifierType {
     RES_MAGIC,
     RES_BODY_ILL,
     RES_MIND_ILL,
+
+    //others
+    ITEM_REQUIREMENTS,
+    ITEM_STATS,
     ;
 }

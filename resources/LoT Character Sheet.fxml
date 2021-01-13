@@ -1493,7 +1493,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="ogień" />
-                                                <TextField fx:id="resistFire" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistFire" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1502,7 +1502,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="chłód" />
-                                                <TextField fx:id="resistCold" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistCold" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1511,7 +1511,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="powietrze" />
-                                                <TextField fx:id="resistWind" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistWind" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -1520,7 +1520,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="ziemia / trucizny" textAlignment="CENTER" wrapText="true" />
-                                                <TextField fx:id="resistEarth" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistEarth" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1541,7 +1541,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="magia" />
-                                                <TextField fx:id="resistMagic" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistMagic" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1550,7 +1550,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="choroby ciała" textAlignment="CENTER" wrapText="true" />
-                                                <TextField fx:id="resistBodyIllness" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistBodyIllness" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1559,7 +1559,7 @@
                                           <HBox alignment="CENTER">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="60.0" text="choroby umysłu" textAlignment="CENTER" wrapText="true" />
-                                                <TextField fx:id="resistMindIllness" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="resistMindIllness" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="5.0" />

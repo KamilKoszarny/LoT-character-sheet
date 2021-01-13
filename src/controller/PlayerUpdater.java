@@ -227,14 +227,17 @@ public class PlayerUpdater {
     private static void initTraitsUpdating() {
         guiController.getTraitPositive().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setPositiveTrait(guiController.getTraitPositive().getItems().get((Integer) newValue));
+            updateResistances();
             PlayerDisplayer.displayTraits();
         });
         guiController.getTraitNeutral().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setNeutralTrait(guiController.getTraitNeutral().getItems().get((Integer) newValue));
+            updateResistances();
             PlayerDisplayer.displayTraits();
         });
         guiController.getTraitNegative().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setNegativeTrait(guiController.getTraitNegative().getItems().get((Integer) newValue));
+            updateResistances();
             PlayerDisplayer.displayTraits();
         });
     }
@@ -321,8 +324,8 @@ public class PlayerUpdater {
         int endurance = StatsCalculator.calculateEndurance(currentPlayer);
         currentPlayer.setEndurance(endurance);
         guiController.getEndurance().setText(Integer.toString(endurance));
-
-        updateArmor();
+        updateArmors();
+        updateResistances();
     }
 
     private static void updateForm() {
@@ -402,12 +405,47 @@ public class PlayerUpdater {
         updateManaMax();
     }
 
+    public static void updateStatsFromWeapon(boolean firstSet) {
+        updateKnowledge();
+        updateManaMax();
+        updateManaIncrease();
+        updateDmg(firstSet);
+        updateHits(firstSet);
+        updateParry(firstSet);
+        updateRange(firstSet);
+        updateAttackTime(firstSet);
+    }
+
+    public static void updateStatsFromArmor() {
+        updateArmors();
+        updateForm();
+        updateEye();
+        updateArm();
+        updateAgility();
+        updateKnowledge();
+        updateFocus();
+        updateCharisma();
+    }
+
     private static void updateStatsFromSkill(SkillType skillType) {
         switch (skillType) {
             case REGENERATION:
                 updateHitPointsIncrease();
+                break;
+            case STONE_SKIN:
+                updateResistances();
             case WRATH:
                 updateDmg();
+                break;
+            case SHIELDMAN:
+                updateBlock();
+                updateDmg();
+                break;
+            case LIGHT_MAGIC:
+            case ELEMENTAL_MAGIC:
+            case CHANGE_MAGIC:
+                updateResistances();
+                break;
             case MAGIC_TALENT:
                 updateManaIncrease();
                 updateManaMax();
@@ -431,28 +469,6 @@ public class PlayerUpdater {
         int manaIncrease = StatsCalculator.calculateManaIncrease(currentPlayer);
         currentPlayer.setManaIncrease(manaIncrease);
         guiController.getManaIncrease().setText(Integer.toString(manaIncrease));
-    }
-
-    public static void updateStatsFromWeapon(boolean firstSet) {
-        updateKnowledge();
-        updateManaMax();
-        updateManaIncrease();
-        updateDmg(firstSet);
-        updateHits(firstSet);
-        updateParry(firstSet);
-        updateRange(firstSet);
-        updateAttackTime(firstSet);
-    }
-
-    public static void updateStatsFromArmor() {
-        updateArmor();
-        updateForm();
-        updateEye();
-        updateArm();
-        updateAgility();
-        updateKnowledge();
-        updateFocus();
-        updateCharisma();
     }
 
     public static void updateDmg() {
@@ -479,7 +495,7 @@ public class PlayerUpdater {
         PlayerDisplayer.displayDmg();
     }
 
-    public static void updateArmor() {
+    public static void updateArmors() {
         int armorHead = StatsCalculator.calculateArmorHead(currentPlayer);
         currentPlayer.setArmorHead(armorHead);
         int armorBody = StatsCalculator.calculateArmorBody(currentPlayer);
@@ -488,7 +504,25 @@ public class PlayerUpdater {
         currentPlayer.setArmorArms(armorArms);
         int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
         currentPlayer.setArmorLegs(armorLegs);
-        PlayerDisplayer.displayArmorStats();
+        PlayerDisplayer.displayArmors();
+    }
+
+    public static void updateResistances() {
+        int fireResistance = StatsCalculator.calculateFireResistance(currentPlayer);
+        currentPlayer.setResistFire(fireResistance);
+        int coldResistance = StatsCalculator.calculateColdResistance(currentPlayer);
+        currentPlayer.setResistCold(coldResistance);
+        int windResistance = StatsCalculator.calculateWindResistance(currentPlayer);
+        currentPlayer.setResistWind(windResistance);
+        int earthResistance = StatsCalculator.calculateEarthResistance(currentPlayer);
+        currentPlayer.setResistEarth(earthResistance);
+        int magicResistance = StatsCalculator.calculateMagicResistance(currentPlayer);
+        currentPlayer.setResistMagic(magicResistance);
+        int bodyIllnessResistance = StatsCalculator.calculateBodyIllnessResistance(currentPlayer);
+        currentPlayer.setResistBodyIllness(bodyIllnessResistance);
+        int findIllnessResistance = StatsCalculator.calculateMindIllnessResistance(currentPlayer);
+        currentPlayer.setResistMindIllness(findIllnessResistance);
+        PlayerDisplayer.displayResistances();
     }
 
     public static void updateHits() {
@@ -517,6 +551,11 @@ public class PlayerUpdater {
             currentPlayer.setParryB(parry);
         }
         PlayerDisplayer.displayParry();
+    }
+
+    public static void updateBlock() {
+        updateBlock(true);
+        updateBlock(false);
     }
 
     public static void updateBlock(boolean firstSet) {

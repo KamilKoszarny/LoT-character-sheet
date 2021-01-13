@@ -1,9 +1,13 @@
 package controller;
 
+import model.Modifying;
 import model.Player;
 import model.Skill;
 import model.SkillType;
-import model.items.*;
+import model.items.ModifierType;
+import model.items.Shield;
+import model.items.Weapon;
+import model.items.WeaponType;
 
 public class StatsCalculator {
 
@@ -13,19 +17,19 @@ public class StatsCalculator {
 
     public static int calculateStrength(Player player) {
         int strength = player.getStrengthBase();
-        strength += itemsModifiersSum(player, ModifierType.STRENGTH);
+        strength += modifiersSum(player, ModifierType.STRENGTH);
         return strength;
     }
 
     public static int calculateEndurance(Player player) {
         int endurance = player.getEnduranceBase();
-        endurance += itemsModifiersSum(player, ModifierType.ENDURANCE);
+        endurance += modifiersSum(player, ModifierType.ENDURANCE);
         return endurance;
     }
 
     public static int calculateForm(Player player) {
         int form = player.getFormBase();
-        form += itemsModifiersSum(player, ModifierType.FORM);
+        form += modifiersSum(player, ModifierType.FORM);
         return form;
     }
 
@@ -35,19 +39,19 @@ public class StatsCalculator {
 
     public static int calculateArm(Player player) {
         int arm = player.getArmBase();
-        arm += itemsModifiersSum(player, ModifierType.ARM);
+        arm += modifiersSum(player, ModifierType.ARM);
         return arm;
     }
 
     public static int calculateEye(Player player) {
         int eye = player.getEyeBase();
-        eye += itemsModifiersSum(player, ModifierType.EYE);
+        eye += modifiersSum(player, ModifierType.EYE);
         return eye;
     }
 
     public static int calculateAgility(Player player) {
         int agility = player.getAgilityBase();
-        agility += itemsModifiersSum(player, ModifierType.AGILITY);
+        agility += modifiersSum(player, ModifierType.AGILITY);
         return agility;
     }
 
@@ -57,25 +61,25 @@ public class StatsCalculator {
 
     public static int calculateKnowledge(Player player) {
         int knowledge = player.getKnowledgeBase();
-        knowledge += itemsModifiersSum(player, ModifierType.KNOWLEDGE);
+        knowledge += modifiersSum(player, ModifierType.KNOWLEDGE);
         return knowledge;
     }
 
     public static int calculateFocus(Player player) {
         int focus = player.getFocusBase();
-        focus += itemsModifiersSum(player, ModifierType.FOCUS);
+        focus += modifiersSum(player, ModifierType.FOCUS);
         return focus;
     }
 
     public static int calculateCharisma(Player player) {
         int charisma = player.getCharismaBase();
-        charisma += itemsModifiersSum(player, ModifierType.CHARISMA);
+        charisma += modifiersSum(player, ModifierType.CHARISMA);
         return charisma;
     }
 
     public static int calculateHitPointsIncrease(Player player) {
         int hitPointsIncrease = 1;
-        hitPointsIncrease += itemsModifiersSum(player, ModifierType.HP_INCREASE);
+        hitPointsIncrease += modifiersSum(player, ModifierType.HP_INCREASE);
         Skill regeneration = player.getSkill(SkillType.REGENERATION);
         if (regeneration != null) {
             hitPointsIncrease += regeneration.getLevel() == 1 ? 2 : 4;
@@ -85,7 +89,7 @@ public class StatsCalculator {
 
     public static int calculateManaMax(Player player) {
         int manaMax = (int) Math.round(player.getIntelligence()/3.);
-        manaMax += itemsModifiersSum(player, ModifierType.MANA_MAX);
+        manaMax += modifiersSum(player, ModifierType.MANA_MAX);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
             manaMax += 10 * magicTalent.getLevel();
@@ -95,7 +99,7 @@ public class StatsCalculator {
 
     public static int calculateManaIncrease(Player player) {
         int manaIncrease = (int) Math.round(player.getFocus() / 5.);
-        manaIncrease += itemsModifiersSum(player, ModifierType.MANA_INCREASE);
+        manaIncrease += modifiersSum(player, ModifierType.MANA_INCREASE);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
             manaIncrease += 3 * magicTalent.getLevel();
@@ -122,6 +126,10 @@ public class StatsCalculator {
         if (!firstHand) {
             if (player.getShieldA() != null) {
                 dmgMin = player.getShieldA().getDmg();
+                Skill shieldman = player.getSkill(SkillType.SHIELDMAN);
+                if (shieldman != null) {
+                    dmgMin += shieldman.getLevel();
+                }
             } else if (player.getWeaponA2ndHand() == null) {
                 dmgMin = 1;
             }
@@ -148,6 +156,10 @@ public class StatsCalculator {
         if (!firstHand) {
             if (player.getShieldA() != null) {
                 dmgMax = player.getShieldA().getDmg();
+                Skill shieldman = player.getSkill(SkillType.SHIELDMAN);
+                if (shieldman != null) {
+                    dmgMax += shieldman.getLevel();
+                }
             } else if (player.getWeaponA2ndHand() == null) {
                 dmgMax = 1;
             }
@@ -187,7 +199,12 @@ public class StatsCalculator {
         if (shield == null) {
             return 0;
         }
-        return shield.getBlock();
+        int block = shield.getBlock();
+        Skill shieldman = player.getSkill(SkillType.SHIELDMAN);
+        if (shieldman != null) {
+            block += shieldman.getLevel() * 5;
+        }
+        return block;
     }
 
     public static int calculateDodge(Player player, boolean firstSet) {
@@ -249,10 +266,94 @@ public class StatsCalculator {
         return armorLegs;
     }
 
-    private static int itemsModifiersSum(Player player, ModifierType modifierType) {
+    public static int calculateFireResistance(Player player) {
+        int fireResistance = 0;
+        fireResistance += modifiersSum(player, ModifierType.RES_FIRE);
+        fireResistance += getStoneSkinResistance(player);
+        fireResistance += getElementalMagicResistance(player);
+        return fireResistance;
+    }
+
+    public static int calculateColdResistance(Player player) {
+        int coldResistance = 0;
+        coldResistance += modifiersSum(player, ModifierType.RES_COLD);
+        coldResistance += getStoneSkinResistance(player);
+        coldResistance += getElementalMagicResistance(player);
+        return coldResistance;
+    }
+
+    public static int calculateWindResistance(Player player) {
+        int windResistance = 0;
+        windResistance += modifiersSum(player, ModifierType.RES_WIND);
+        windResistance += getStoneSkinResistance(player);
+        windResistance += getElementalMagicResistance(player);
+        return windResistance;
+    }
+
+    public static int calculateEarthResistance(Player player) {
+        int earthResistance = 0;
+        earthResistance += modifiersSum(player, ModifierType.RES_EARTH);
+        earthResistance += getStoneSkinResistance(player);
+        earthResistance += getLightMagicResistance(player);
+        earthResistance += getElementalMagicResistance(player);
+        return earthResistance;
+    }
+
+    public static int calculateMagicResistance(Player player) {
+        int magicResistance = 0;
+        magicResistance += modifiersSum(player, ModifierType.RES_MAGIC);
+        magicResistance += getStoneSkinResistance(player);
+        magicResistance += getChangeMagicResistance(player);
+        return magicResistance;
+    }
+
+    public static int calculateBodyIllnessResistance(Player player) {
+        int bodyIllnessResistance = 0;
+        bodyIllnessResistance += modifiersSum(player, ModifierType.RES_BODY_ILL);
+        bodyIllnessResistance += getLightMagicResistance(player);
+        return bodyIllnessResistance;
+    }
+
+    public static int calculateMindIllnessResistance(Player player) {
+        int mindIllnessResistance = 0;
+        mindIllnessResistance += modifiersSum(player, ModifierType.RES_MIND_ILL);
+        return mindIllnessResistance;
+    }
+
+    private static int getStoneSkinResistance(Player player) {
+        Skill stoneSkin = player.getSkill(SkillType.STONE_SKIN);
+        if (stoneSkin != null) {
+            int lvl = stoneSkin.getLevel();
+            return player.getEndurance() / (lvl == 1 ? 10 : lvl == 2 ? 5 : 3);
+        }
+        return 0;
+    }
+
+    private static int getLightMagicResistance(Player player) {
+        Skill lightMagic = player.getSkill(SkillType.LIGHT_MAGIC);
+        return lightMagic != null ? 10 : 0;
+    }
+
+    private static int getElementalMagicResistance(Player player) {
+        Skill elementalMagic = player.getSkill(SkillType.ELEMENTAL_MAGIC);
+        if (elementalMagic != null) {
+            int lvl = elementalMagic.getLevel();
+            return lvl == 1 ? 5 : lvl == 2 ? 5 : 12;
+        }
+        return 0;
+    }
+
+    private static int getChangeMagicResistance(Player player) {
+        Skill changeMagic = player.getSkill(SkillType.CHANGE_MAGIC);
+        if (changeMagic != null && changeMagic.getLevel() >= 2)
+            return 20;
+        return 0;
+    }
+
+    private static int modifiersSum(Player player, ModifierType modifierType) {
         int sum = 0;
-        for (Item item: player.getWearItems()) {
-            sum += item.getModifierValue(modifierType);
+        for (Modifying modifying: player.getModifyingObjects()) {
+            sum += modifying.getModifierValue(modifierType);
         }
         return sum;
     }

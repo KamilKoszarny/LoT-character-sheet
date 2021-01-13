@@ -8,10 +8,8 @@ import model.items.*;
 
 import java.awt.*;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Data
 public class Player implements Serializable {
@@ -160,6 +158,16 @@ public class Player implements Serializable {
                 return skill;
         }
         return null;
+    }
+
+    public Set<Modifying> getModifyingObjects() {
+        Set<Modifying> modifyingObjects = new HashSet<>();
+        modifyingObjects.addAll(getWearItems());
+        modifyingObjects.add(positiveTrait);
+        modifyingObjects.add(neutralTrait);
+        modifyingObjects.add(negativeTrait);
+        //todo illness
+        return modifyingObjects.stream().filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
     public Set<Item> getWearItems() {
