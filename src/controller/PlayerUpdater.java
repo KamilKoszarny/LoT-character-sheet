@@ -460,16 +460,22 @@ public class PlayerUpdater {
     }
 
     public static void updateDmg(boolean firstSet) {
-        int dmgMin = StatsCalculator.calculateDmgMin(currentPlayer, firstSet);
-        int dmgMax = StatsCalculator.calculateDmgMax(currentPlayer, firstSet);
+        int dmgMin = StatsCalculator.calculateDmgMin(currentPlayer, firstSet, true);
+        int dmgMax = StatsCalculator.calculateDmgMax(currentPlayer, firstSet, true);
+        int dmgMin2ndHand = StatsCalculator.calculateDmgMin(currentPlayer, firstSet, false);
+        int dmgMax2ndHand = StatsCalculator.calculateDmgMax(currentPlayer, firstSet, false);
         if (firstSet) {
             currentPlayer.setDmgAMin(dmgMin);
+            currentPlayer.setDmgA2Min(dmgMin2ndHand);
             currentPlayer.setDmgAMax(dmgMax);
+            currentPlayer.setDmgA2Max(dmgMax2ndHand);
         } else {
             currentPlayer.setDmgBMin(dmgMin);
+            currentPlayer.setDmgB2Min(dmgMin2ndHand);
             currentPlayer.setDmgBMax(dmgMax);
+            currentPlayer.setDmgB2Max(dmgMax2ndHand);
         }
-        PlayerDisplayer.displayDmg(firstSet);
+        PlayerDisplayer.displayDmg();
     }
 
     public static void updateArmor() {
@@ -493,66 +499,69 @@ public class PlayerUpdater {
     }
 
     public static void updateHits(boolean firstSet) {
-        int hit = StatsCalculator.calculateHit(currentPlayer, firstSet);
+        int hit = StatsCalculator.calculateHit(currentPlayer, firstSet, true);
+        int hit2ndHand = StatsCalculator.calculateHit(currentPlayer, firstSet, false);
         if(firstSet) {
             currentPlayer.setHitA(hit);
-            guiController.getHitA().setText(Integer.toString(hit));
+            currentPlayer.setHitA2(hit2ndHand);
         } else {
             currentPlayer.setHitB(hit);
-            guiController.getHitB().setText(Integer.toString(hit));
+            currentPlayer.setHitB2(hit2ndHand);
         }
+        PlayerDisplayer.displayHit();
     }
 
     public static void updateParry(boolean firstSet) {
         int parry = StatsCalculator.calculateParry(currentPlayer, firstSet);
         if(firstSet) {
             currentPlayer.setParryA(parry);
-            guiController.getParryA().setText(Integer.toString(parry));
         } else {
             currentPlayer.setParryB(parry);
-            guiController.getParryB().setText(Integer.toString(parry));
         }
+        PlayerDisplayer.displayParry();
     }
 
     public static void updateBlock(boolean firstSet) {
         int block = StatsCalculator.calculateBlock(currentPlayer, firstSet);
         if (firstSet) {
             currentPlayer.setBlockA(block);
-            guiController.getBlockA().setText(Integer.toString(block));
         } else {
             currentPlayer.setBlockB(block);
-            guiController.getBlockB().setText(Integer.toString(block));
         }
+        PlayerDisplayer.displayBlock();
     }
 
     static void updateDodges() {
         int dodge = StatsCalculator.calculateDodge(currentPlayer, true);
         currentPlayer.setDodgeA(dodge);
-        guiController.getDodgeA().setText(Integer.toString(dodge));
         currentPlayer.setDodgeB(dodge);
-        guiController.getDodgeB().setText(Integer.toString(dodge));
+        PlayerDisplayer.displayDodge();
     }
 
     public static void updateRange(boolean firstSet) {
-        int range = StatsCalculator.calculateRange(currentPlayer, firstSet);
+        int range = StatsCalculator.calculateRange(currentPlayer, firstSet, true);
+        int range2ndHand = StatsCalculator.calculateRange(currentPlayer, firstSet, false);
         if(firstSet) {
             currentPlayer.setRangeA(range);
-            guiController.getRangeA().setText(Integer.toString(range));
+            currentPlayer.setRangeA2(range2ndHand);
         } else {
             currentPlayer.setRangeB(range);
-            guiController.getRangeB().setText(Integer.toString(range));
+            currentPlayer.setRangeB2(range2ndHand);
         }
+        PlayerDisplayer.displayRange();
     }
 
     public static void updateAttackTime(boolean firstSet) {
-        int attackTime = StatsCalculator.calculateAttackTime(currentPlayer, firstSet);
+        int attackTime = StatsCalculator.calculateAttackTime(currentPlayer, firstSet, true);
+        int attackTime2ndHand = StatsCalculator.calculateAttackTime(currentPlayer, firstSet, false);
         if(firstSet) {
             currentPlayer.setAttackTimeA(attackTime);
-            guiController.getTimeA().setText(Integer.toString(attackTime));
+            currentPlayer.setAttackTimeA2(attackTime2ndHand);
         } else {
             currentPlayer.setAttackTimeB(attackTime);
-            guiController.getTimeB().setText(Integer.toString(attackTime));
+            currentPlayer.setAttackTimeB2(attackTime2ndHand);
         }
+        PlayerDisplayer.displayAttackTime();
     }
 
 }

@@ -121,12 +121,71 @@ public class PlayerDisplayer {
         guiController.getMana().setText("" + currentPlayer.getMana() + '/' + currentPlayer.getManaMax());
     }
 
-    public static void displayDmg(boolean firstSet) {
-        if (firstSet) {
-            guiController.getDmgA().setText("" + currentPlayer.getDmgAMin() + "-" + currentPlayer.getDmgAMax());
-        } else {
-            guiController.getDmgB().setText("" + currentPlayer.getDmgBMin() + "-" + currentPlayer.getDmgBMax());
+    public static void displayDmg() {
+        String dmgAText = "" + currentPlayer.getDmgAMin() + "-" + currentPlayer.getDmgAMax();
+        if (currentPlayer.getItem(ItemSlot.SHIELD_A) != null) {
+            dmgAText += "/" + currentPlayer.getDmgA2Min() + "-" + currentPlayer.getDmgA2Max();
         }
+        guiController.getDmgA().setText(dmgAText);
+        String dmgBText = "" + currentPlayer.getDmgBMin() + "-" + currentPlayer.getDmgBMax();
+        if (currentPlayer.getItem(ItemSlot.SHIELD_B) != null) {
+            dmgBText += "/" + currentPlayer.getDmgB2Min() + "-" + currentPlayer.getDmgB2Max();
+        }
+        guiController.getDmgB().setText(dmgBText);
+    }
+
+    public static void displayHit() {
+        String hitAText = "" + currentPlayer.getHitA();
+        if (currentPlayer.getWeaponA2ndHand() != null) {
+            hitAText += "/" + currentPlayer.getHitA2();
+        }
+        guiController.getHitA().setText(hitAText);
+        String hitBText = "" + currentPlayer.getHitB();
+        if (currentPlayer.getWeaponB2ndHand() != null) {
+            hitBText += "/" + currentPlayer.getHitB2();
+        }
+        guiController.getHitB().setText(hitBText);
+    }
+
+    public static void displayParry() {
+        guiController.getParryA().setText(Integer.toString(currentPlayer.getParryA()));
+        guiController.getParryB().setText(Integer.toString(currentPlayer.getParryB()));
+    }
+
+    public static void displayBlock() {
+        guiController.getBlockA().setText(Integer.toString(currentPlayer.getBlockA()));
+        guiController.getBlockB().setText(Integer.toString(currentPlayer.getBlockB()));
+    }
+
+    public static void displayDodge() {
+        guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodgeA()));
+        guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodgeB()));
+    }
+
+    public static void displayRange() {
+        String rangeAText = "" + currentPlayer.getRangeA();
+        if (currentPlayer.getWeaponA2ndHand() != null) {
+            rangeAText += "/" + currentPlayer.getRangeA2();
+        }
+        guiController.getRangeA().setText(rangeAText);
+        String rangeBText = "" + currentPlayer.getRangeB();
+        if (currentPlayer.getWeaponB2ndHand() != null) {
+            rangeBText += "/" + currentPlayer.getRangeB2();
+        }
+        guiController.getRangeB().setText(rangeBText);
+    }
+
+    public static void displayAttackTime() {
+        String attackTimeAText = "" + currentPlayer.getAttackTimeA();
+        if (currentPlayer.getWeaponA2ndHand() != null) {
+            attackTimeAText += "/" + currentPlayer.getAttackTimeA2();
+        }
+        guiController.getTimeA().setText(attackTimeAText);
+        String attackTimeBText = "" + currentPlayer.getAttackTimeB();
+        if (currentPlayer.getWeaponB2ndHand() != null) {
+            attackTimeBText += "/" + currentPlayer.getAttackTimeB2();
+        }
+        guiController.getTimeB().setText(attackTimeBText);
     }
 
     private static void displayEquipment() {
@@ -180,16 +239,16 @@ public class PlayerDisplayer {
     private static void displaySecondHand(Item item, boolean firstSet) {
         Weapon weapon = firstSet ? currentPlayer.getWeaponA() : currentPlayer.getWeaponB();
         Shield shield = firstSet ? currentPlayer.getShieldA() : currentPlayer.getShieldB();
+        Weapon weapon2ndHand = firstSet ? currentPlayer.getWeaponA2ndHand() : currentPlayer.getWeaponB2ndHand();
         ItemSlot shieldSlot = firstSet ? ItemSlot.SHIELD_A : ItemSlot.SHIELD_B;
 
         if (item == null) {
-            if (shield == null) {
+            if (shield == null && weapon2ndHand == null) {
                 displayEquipmentItem(null, shieldSlot);
             }
-        }
-        else if (weapon.getModel().isTwoHanded()) {
+        } else if (weapon.getModel().isTwoHanded()) {
             displayEquipmentItem(weapon, shieldSlot, 0.6);
-        } else if (shield == null) {
+        } else if (shield == null && weapon2ndHand == null) {
             displayEquipmentItem(null, shieldSlot);
         }
     }
@@ -324,18 +383,15 @@ public class PlayerDisplayer {
         guiController.getHitPointsIncrease().setText(Integer.toString(currentPlayer.getHitPointsIncrease()));
         guiController.getSpeed().setText(Integer.toString(currentPlayer.getSpeed()));
         guiController.getManaIncrease().setText(Integer.toString(currentPlayer.getManaIncrease()));
-        displayDmg(true);
-        guiController.getHitA().setText(Integer.toString(currentPlayer.getHitA()));
-        guiController.getParryA().setText(Integer.toString(currentPlayer.getParryA()));
-        guiController.getBlockA().setText(Integer.toString(currentPlayer.getBlockA()));
+        displayDmg();
+        displayParry();
+        displayBlock();
+        displayDodge();
+        displayHit();
+        displayRange();
+        displayAttackTime();
         guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodgeA()));
-        guiController.getRangeA().setText(Integer.toString(currentPlayer.getRangeA()));
-        displayDmg(false);
-        guiController.getHitB().setText(Integer.toString(currentPlayer.getHitB()));
-        guiController.getParryB().setText(Integer.toString(currentPlayer.getParryB()));
-        guiController.getBlockB().setText(Integer.toString(currentPlayer.getBlockB()));
         guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodgeB()));
-        guiController.getRangeB().setText(Integer.toString(currentPlayer.getRangeB()));
         guiController.getArmorHead().setText(Integer.toString(currentPlayer.getArmorHead()));
         guiController.getArmorBody().setText(Integer.toString(currentPlayer.getArmorBody()));
         guiController.getArmorArms().setText(Integer.toString(currentPlayer.getArmorArms()));

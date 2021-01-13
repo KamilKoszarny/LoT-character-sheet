@@ -54,8 +54,8 @@ public enum WeaponModel {
     SPIKE(WeaponType.SHORT,              4, 5, 1, 1,        false, 0, 3, 10, "Kolec"),
     KNUCKLE_DUSTER(WeaponType.SHORT,     2, 3, 1, 1,       false, 0, 2, 17, "Kastet"),
     HAND_BLADE(WeaponType.SHORT,         3, 7, 1, 1,         false, 0, 4, 13, "Ręczne ostrze"),
-    TRIBLADE(WeaponType.SHORT,           4, 8, 1, 1,         false, 0, 7, 12, "Trójostrze"),
-    CLAWS(WeaponType.SHORT,              3, 10, 1, 1,        false, 0, 6, 11, "Pazury"),
+    TRIBLADE(WeaponType.SHORT,           4, 8, 1, 1,         false, 0, 6, 12, "Trójostrze"),
+    CLAWS(WeaponType.SHORT,              3, 10, 1, 1,        false, 0, 5, 11, "Pazury"),
 
     //long
     SPEAR(WeaponType.LONG,              3, 6, 1, 3,       true, 20, 8, 10, "Włócznia"),

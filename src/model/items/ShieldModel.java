@@ -9,18 +9,18 @@ import java.util.Set;
 @Getter
 public enum ShieldModel {
 
-    WOODEN_SHIELD(      15, 0, 4, 5, "Drewniana tarcza"),
-    BUCKLER(            20, 0, 7, 12, "Puklerz"),
-    TARGE(              20, 1, 8, 15, "Tarża"),
-    KITE_SHIELD(        25, 1, 10, 15, "Trójkątna tarcza"),
-    DIAMOND_SHIELD(     30, 1, 16, 16, "Rombowa tarcza"),
-    RONDACHE(           25, 2, 18, 24, "Rondela"),
-    BRONZE_SHIELD(      30, 2, 21, 25, "Brązowa tarcza"),
-    SPIKED_SHIELD(      30, 4, 19, 20, "Kolczasta tarcza"),
-    BONE_SHIELD(        30, 3, 20, 25, "Kościana tarcza"),
-    TOURNAMENT_SHIELD(  35, 2, 18, 32, "Turniejowa tarcza"),
-    HERALD_SHIELD(      35, 3, 22, 40, "Heraldyczna tarcza"),
-    DRAGON_SHIELD(      40, 3, 25, 50, "Smocza tarcza");
+    WOODEN_SHIELD(      15, 1, 4, 5, "Drewniana tarcza"),
+    BUCKLER(            20, 1, 7, 12, "Puklerz"),
+    TARGE(              20, 2, 8, 15, "Tarża"),
+    KITE_SHIELD(        25, 2, 10, 15, "Trójkątna tarcza"),
+    DIAMOND_SHIELD(     30, 2, 16, 16, "Rombowa tarcza"),
+    RONDACHE(           25, 3, 18, 24, "Rondela"),
+    BRONZE_SHIELD(      30, 3, 21, 25, "Brązowa tarcza"),
+    SPIKED_SHIELD(      30, 5, 19, 20, "Kolczasta tarcza"),
+    BONE_SHIELD(        30, 4, 20, 25, "Kościana tarcza"),
+    TOURNAMENT_SHIELD(  35, 3, 18, 32, "Turniejowa tarcza"),
+    HERALD_SHIELD(      35, 4, 22, 40, "Heraldyczna tarcza"),
+    DRAGON_SHIELD(      40, 4, 25, 50, "Smocza tarcza");
 
     private final int block;
     private final int dmg;

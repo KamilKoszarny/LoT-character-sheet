@@ -100,7 +100,7 @@ public class GuiInitializer {
                 break;
             case SHIELD_A:
             case SHIELD_B:
-                button.getItems().addAll(createShieldMenu(itemSlot));
+                button.getItems().addAll(create2ndHandMenu(itemSlot));
                 break;
             case HELMET:
                 button.getItems().addAll(createHelmetMenu(itemSlot));
@@ -161,7 +161,7 @@ public class GuiInitializer {
                     menuItem.setOnAction(event -> {
                         Weapon weapon = new Weapon(weaponModel);
                         if (PlayerUpdater.getCurrentPlayer().trySetItem(weapon, itemSlot)) {
-                            PlayerUpdater.updateStatsFromWeapon(itemSlot.equals(ItemSlot.WEAPON_A));
+                            PlayerUpdater.updateStatsFromWeapon(itemSlot.equals(ItemSlot.WEAPON_A) || itemSlot.equals(ItemSlot.SHIELD_A));
                             PlayerDisplayer.displayEquipmentItem(weapon, itemSlot);
                         }
                     });
@@ -171,6 +171,21 @@ public class GuiInitializer {
             weaponMenuItems.add(menu);
         }
         return weaponMenuItems;
+    }
+
+    private static List<MenuItem> create2ndHandMenu(ItemSlot itemSlot) {
+        List<MenuItem> secondHandMenuItems = new ArrayList<>();
+        Menu weaponMenu = new Menu();
+        weaponMenu.setText(ItemType.WEAPON.getNamePL());
+        weaponMenu.getItems().addAll(createWeaponMenu(itemSlot));
+        secondHandMenuItems.add(weaponMenu);
+
+        Menu shieldMenu = new Menu();
+        shieldMenu.setText(ItemType.SHIELD.getNamePL());
+        shieldMenu.getItems().addAll(createShieldMenu(itemSlot));
+        secondHandMenuItems.add(shieldMenu);
+
+        return secondHandMenuItems;
     }
 
     private static List<MenuItem> createShieldMenu(ItemSlot itemSlot) {

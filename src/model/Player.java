@@ -90,6 +90,11 @@ public class Player implements Serializable {
     private int dodgeA;
     private int rangeA;
     private int attackTimeA;
+    private int dmgA2Min;
+    private int dmgA2Max;
+    private int hitA2;
+    private int rangeA2;
+    private int attackTimeA2;
     private int dmgBMin;
     private int dmgBMax;
     private int hitB;
@@ -98,6 +103,11 @@ public class Player implements Serializable {
     private int dodgeB;
     private int rangeB;
     private int attackTimeB;
+    private int dmgB2Min;
+    private int dmgB2Max;
+    private int hitB2;
+    private int rangeB2;
+    private int attackTimeB2;
 
     private int armorHead;
     private int armorBody;
@@ -121,6 +131,8 @@ public class Player implements Serializable {
 
     private Weapon weaponA;
     private Weapon weaponB;
+    private Weapon weaponA2ndHand;
+    private Weapon weaponB2ndHand;
     private Shield shieldA;
     private Shield shieldB;
     private Helmet helmet;
@@ -165,8 +177,16 @@ public class Player implements Serializable {
         switch (itemSlot) {
             case WEAPON_A: return weaponA;
             case WEAPON_B: return weaponB;
-            case SHIELD_A: return shieldA;
-            case SHIELD_B: return shieldB;
+            case SHIELD_A:
+                if (shieldA != null)
+                    return shieldA;
+                else
+                    return weaponA2ndHand;
+            case SHIELD_B:
+                if (shieldB != null)
+                    return shieldB;
+                else
+                    return weaponB2ndHand;
             case HELMET: return helmet;
             case ARMOR: return armor;
             case GLOVES: return gloves;
@@ -182,8 +202,8 @@ public class Player implements Serializable {
     public boolean trySetItem(Item item, ItemSlot itemSlot) {
         if (item != null
                 && (!itemSlot.itemTypeCompatible(item.getItemType())
-                || itemSlot.equals(ItemSlot.WEAPON_A) && ((Weapon) item).getModel().isTwoHanded() && shieldA != null
-                || itemSlot.equals(ItemSlot.WEAPON_B) && ((Weapon) item).getModel().isTwoHanded() && shieldB != null
+                || itemSlot.equals(ItemSlot.WEAPON_A) && ((Weapon) item).getModel().isTwoHanded() && (shieldA != null || weaponA2ndHand != null)
+                || itemSlot.equals(ItemSlot.WEAPON_B) && ((Weapon) item).getModel().isTwoHanded() && (shieldB != null || weaponB2ndHand != null)
                 || itemSlot.equals(ItemSlot.SHIELD_A) && weaponA != null && weaponA.getModel().isTwoHanded()
                 || itemSlot.equals(ItemSlot.SHIELD_B) && weaponB != null && weaponB.getModel().isTwoHanded()
         )) {
@@ -200,12 +220,34 @@ public class Player implements Serializable {
                 PlayerUpdater.updateStatsFromWeapon(false);
                 break;
             case SHIELD_A:
-                setShieldA((Shield) item);
-                PlayerUpdater.updateBlock(true);
+                if (item == null) {
+                    setShieldA(null);
+                    setWeaponA2ndHand(null);
+                    PlayerUpdater.updateStatsFromWeapon(true);
+                    PlayerUpdater.updateBlock(true);
+                } else if (item instanceof Weapon) {
+                    setWeaponA2ndHand((Weapon) item);
+                    PlayerUpdater.updateStatsFromWeapon(true);
+                } else {
+                    setShieldA((Shield) item);
+                    PlayerUpdater.updateDmg(true);
+                    PlayerUpdater.updateBlock(true);
+                }
                 break;
             case SHIELD_B:
-                setShieldB((Shield) item);
-                PlayerUpdater.updateBlock(false);
+                if (item == null) {
+                    setShieldB(null);
+                    setWeaponB2ndHand(null);
+                    PlayerUpdater.updateStatsFromWeapon(false);
+                    PlayerUpdater.updateBlock(false);
+                } else if (item instanceof Weapon) {
+                    setWeaponB2ndHand((Weapon) item);
+                    PlayerUpdater.updateStatsFromWeapon(false);
+                } else {
+                    setShieldB((Shield) item);
+                    PlayerUpdater.updateDmg(false);
+                    PlayerUpdater.updateBlock(false);
+                }
                 break;
             case HELMET:
                 setHelmet((Helmet) item);

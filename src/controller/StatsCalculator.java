@@ -103,9 +103,9 @@ public class StatsCalculator {
         return manaIncrease;
     }
 
-    public static int calculateDmgMin(Player player, boolean firstSet) {
+    public static int calculateDmgMin(Player player, boolean firstSet, boolean firstHand) {
         int dmgMin = 0;
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        Weapon weapon = firstSet ? (firstHand ? player.getWeaponA() : player.getWeaponA2ndHand()) : (firstHand ? player.getWeaponB() : player.getWeaponB2ndHand());
         if (weapon == null) {
             dmgMin += (int) Math.round(1 * (1 + player.getStrength()/50.));
         } else if (weapon.getWeaponType().isRange()) {
@@ -119,12 +119,19 @@ public class StatsCalculator {
         if (wrath != null && player.getHitPoints() < 0.4 * player.getHitPointsMax()) {
             dmgMin += 2 * wrath.getLevel();
         }
+        if (!firstHand) {
+            if (player.getShieldA() != null) {
+                dmgMin = player.getShieldA().getDmg();
+            } else if (player.getWeaponA2ndHand() == null) {
+                dmgMin = 1;
+            }
+        }
         return dmgMin;
     }
 
-    public static int calculateDmgMax(Player player, boolean firstSet) {
+    public static int calculateDmgMax(Player player, boolean firstSet, boolean firstHand) {
         int dmgMax = 0;
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+        Weapon weapon = firstSet ? (firstHand ? player.getWeaponA() : player.getWeaponA2ndHand()) : (firstHand ? player.getWeaponB() : player.getWeaponB2ndHand());
         if (weapon == null) {
             dmgMax += (int) Math.round(2 * (1 + player.getStrength()/50.));
         } else if (weapon.getWeaponType().isRange()) {
@@ -138,20 +145,32 @@ public class StatsCalculator {
         if (wrath != null && player.getHitPoints() < 0.4 * player.getHitPointsMax()) {
             dmgMax += 2 * wrath.getLevel();
         }
+        if (!firstHand) {
+            if (player.getShieldA() != null) {
+                dmgMax = player.getShieldA().getDmg();
+            } else if (player.getWeaponA2ndHand() == null) {
+                dmgMax = 1;
+            }
+        }
         return dmgMax;
     }
 
-    public static int calculateHit(Player player, boolean firstSet) {
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+    public static int calculateHit(Player player, boolean firstSet, boolean firstHand) {
+        int hit = 0;
+        Weapon weapon = firstSet ? (firstHand ? player.getWeaponA() : player.getWeaponA2ndHand()) : (firstHand ? player.getWeaponB() : player.getWeaponB2ndHand());
         if (weapon == null) {
-            return 50 + player.getArm();
+            hit += 50 + player.getArm();
         } else if (weapon.getWeaponType().isRange()) {
-            return 50 + player.getEye() + weapon.getModifierValue(ModifierType.HIT);
+            hit += 50 + player.getEye() + weapon.getModifierValue(ModifierType.HIT);
         } else if (weapon.getWeaponType().equals(WeaponType.MAGES)) {
-            return 50 + player.getFocus();
+            hit += 50 + player.getFocus();
         } else {
-            return 50 + player.getArm() + weapon.getModifierValue(ModifierType.HIT);
+            hit += 50 + player.getArm() + weapon.getModifierValue(ModifierType.HIT);
         }
+        if (!firstHand) {
+            hit += -30;
+        }
+        return hit;
     }
 
     public static int calculateParry(Player player, boolean firstSet) {
@@ -176,8 +195,8 @@ public class StatsCalculator {
         return dodge;
     }
 
-    public static int calculateRange(Player player, boolean firstSet) {
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+    public static int calculateRange(Player player, boolean firstSet, boolean firstHand) {
+        Weapon weapon = firstSet ? (firstHand ? player.getWeaponA() : player.getWeaponA2ndHand()) : (firstHand ? player.getWeaponB() : player.getWeaponB2ndHand());
         if (weapon == null) {
             return 0;
         } else {
@@ -185,8 +204,8 @@ public class StatsCalculator {
         }
     }
 
-    public static int calculateAttackTime(Player player, boolean firstSet) {
-        Weapon weapon = firstSet ? player.getWeaponA() : player.getWeaponB();
+    public static int calculateAttackTime(Player player, boolean firstSet, boolean firstHand) {
+        Weapon weapon = firstSet ? (firstHand ? player.getWeaponA() : player.getWeaponA2ndHand()) : (firstHand ? player.getWeaponB() : player.getWeaponB2ndHand());
         if (weapon == null) {
             return 0;
         } else {
