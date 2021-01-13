@@ -9,7 +9,7 @@ public class Boots extends Item{
     private int armor;
 
     public Boots(BootsModel model) {
-        setItemType(ItemType.BOOTS);
+        super(ItemType.BOOTS, model.getModifiers());
         this.model = model;
         this.armor = model.getArmor();
     }

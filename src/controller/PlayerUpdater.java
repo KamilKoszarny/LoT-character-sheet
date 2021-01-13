@@ -442,6 +442,7 @@ public class PlayerUpdater {
 
     public static void updateStatsFromArmor() {
         updateArmor();
+        updateForm();
         updateEye();
         updateArm();
         updateAgility();

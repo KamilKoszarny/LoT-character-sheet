@@ -3,97 +3,73 @@ package controller;
 import model.Player;
 import model.Skill;
 import model.SkillType;
-import model.items.ModifierType;
-import model.items.Shield;
-import model.items.Weapon;
-import model.items.WeaponType;
+import model.items.*;
 
 public class StatsCalculator {
 
     public static int calculateVim(Player player) {
-        int vim = (int) Math.round((player.getStrengthBase() + player.getEnduranceBase() + player.getFormBase()) / 3.);
-        return vim;
+        return (int) Math.round((player.getStrengthBase() + player.getEnduranceBase() + player.getFormBase()) / 3.);
     }
 
     public static int calculateStrength(Player player) {
         int strength = player.getStrengthBase();
+        strength += itemsModifiersSum(player, ModifierType.STRENGTH);
         return strength;
     }
 
     public static int calculateEndurance(Player player) {
         int endurance = player.getEnduranceBase();
+        endurance += itemsModifiersSum(player, ModifierType.ENDURANCE);
         return endurance;
     }
 
     public static int calculateForm(Player player) {
         int form = player.getFormBase();
+        form += itemsModifiersSum(player, ModifierType.FORM);
         return form;
     }
 
     public static int calculateEfficiency(Player player) {
-        int efficiency = (int) Math.round((player.getArmBase() + player.getEyeBase() + player.getAgilityBase()) / 3.);
-        return efficiency;
+        return (int) Math.round((player.getArmBase() + player.getEyeBase() + player.getAgilityBase()) / 3.);
     }
 
     public static int calculateArm(Player player) {
         int arm = player.getArmBase();
-        if (player.getArmor() != null)
-            arm += player.getArmor().getModel().getArmModifier();
-        if (player.getGloves() != null)
-            arm += player.getGloves().getModel().getArmModifier();
+        arm += itemsModifiersSum(player, ModifierType.ARM);
         return arm;
     }
 
     public static int calculateEye(Player player) {
         int eye = player.getEyeBase();
-        if (player.getHelmet() != null)
-            eye += player.getHelmet().getModel().getEyeModifier();
+        eye += itemsModifiersSum(player, ModifierType.EYE);
         return eye;
     }
 
     public static int calculateAgility(Player player) {
         int agility = player.getAgilityBase();
-        if (player.getArmor() != null)
-            agility += player.getArmor().getModel().getAgilityModifier();
-        if (player.getGloves() != null)
-            agility += player.getBoots().getModel().getAgilityModifier();
-        if (player.getBelt() != null) {
-            agility += player.getBelt().getModel().getAgilityModifier();
-        }
+        agility += itemsModifiersSum(player, ModifierType.AGILITY);
         return agility;
     }
 
     public static int calculateIntelligence(Player player) {
-        int intelligence = (int) Math.round((player.getKnowledgeBase() + player.getFocusBase() + player.getCharismaBase()) / 3.);
-        return intelligence;
+        return (int) Math.round((player.getKnowledgeBase() + player.getFocusBase() + player.getCharismaBase()) / 3.);
     }
 
     public static int calculateKnowledge(Player player) {
         int knowledge = player.getKnowledgeBase();
-        if (player.getHelmet() != null)
-            knowledge += player.getHelmet().getModel().getKnowledgeModifier();
+        knowledge += itemsModifiersSum(player, ModifierType.KNOWLEDGE);
         return knowledge;
     }
 
     public static int calculateFocus(Player player) {
         int focus = player.getFocusBase();
-        if (player.getArmor() != null)
-            focus += player.getArmor().getModel().getFocusModifier();
+        focus += itemsModifiersSum(player, ModifierType.FOCUS);
         return focus;
     }
 
     public static int calculateCharisma(Player player) {
         int charisma = player.getCharismaBase();
-        if (player.getArmor() != null)
-            charisma += player.getArmor().getModel().getCharismaModifier();
-        if (player.getHelmet() != null)
-            charisma += player.getHelmet().getModel().getCharismaModifier();
-        if (player.getAmulet() != null)
-            charisma += player.getAmulet().getCharisma();
-        if (player.getRing1() != null)
-            charisma += player.getRing1().getCharisma();
-        if (player.getRing2() != null)
-            charisma += player.getRing2().getCharisma();
+        charisma += itemsModifiersSum(player, ModifierType.CHARISMA);
         return charisma;
     }
 
@@ -249,5 +225,13 @@ public class StatsCalculator {
         if (player.getArmor() != null)
             armorLegs += player.getArmor().getLegsArmor();
         return armorLegs;
+    }
+
+    private static int itemsModifiersSum(Player player, ModifierType modifierType) {
+        int sum = 0;
+        for (Item item: player.getWearItems()) {
+            sum += item.getModifierValue(modifierType);
+        }
+        return sum;
     }
 }

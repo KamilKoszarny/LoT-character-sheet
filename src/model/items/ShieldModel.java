@@ -2,6 +2,10 @@ package model.items;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 public enum ShieldModel {
 
@@ -23,12 +27,14 @@ public enum ShieldModel {
     private final int weight;
     private final int durability;
     private final String namePL;
+    private final Set<Modifier> modifiers;
 
-    ShieldModel(int block, int dmg, int weight, int durability, String namePL) {
+    ShieldModel(int block, int dmg, int weight, int durability, String namePL, Modifier... modifiers) {
         this.block = block;
         this.dmg = dmg;
         this.weight = weight;
         this.durability = durability;
         this.namePL = namePL;
+        this.modifiers = new HashSet<>(Arrays.asList(modifiers));
     }
 }

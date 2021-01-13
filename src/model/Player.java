@@ -9,7 +9,9 @@ import model.items.*;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @Data
 public class Player implements Serializable {
@@ -146,6 +148,17 @@ public class Player implements Serializable {
                 return skill;
         }
         return null;
+    }
+
+    public Set<Item> getWearItems() {
+        Set<Item> wearItems = new HashSet<>();
+        for (ItemSlot itemSlot: ItemSlot.values()) {
+            Item item = getItem(itemSlot);
+            if (item != null) {
+                wearItems.add(item);
+            }
+        }
+        return wearItems;
     }
 
     public Item getItem(ItemSlot itemSlot) {

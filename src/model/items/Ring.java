@@ -7,11 +7,8 @@ public class Ring extends Item{
 
     private final RingModel model;
 
-    private int charisma;
-
     public Ring(RingModel model) {
-        setItemType(ItemType.RING);
+        super(ItemType.RING, model.getModifiers());
         this.model = model;
-        this.charisma = model.getCharisma();
     }
 }

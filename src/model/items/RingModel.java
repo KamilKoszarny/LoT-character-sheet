@@ -2,22 +2,26 @@ package model.items;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 public enum RingModel {
 
-    IRON_RING("Żelazny pierścień", 1),
-    COPPER_RING("Miedziany pierścień", 2),
-    BRONZE_RING("Brązowy pierścień", 3),
-    SILVER_RING("Srebrny pierścień", 4),
-    GOLD_RING("Złoty pierścień", 5),
+    IRON_RING("Żelazny pierścień", new Modifier(ModifierType.CHARISMA, 1)),
+    COPPER_RING("Miedziany pierścień", new Modifier(ModifierType.CHARISMA, 2)),
+    BRONZE_RING("Brązowy pierścień", new Modifier(ModifierType.CHARISMA, 3)),
+    SILVER_RING("Srebrny pierścień", new Modifier(ModifierType.CHARISMA, 4)),
+    GOLD_RING("Złoty pierścień", new Modifier(ModifierType.CHARISMA, 5)),
     ;
 
     private final String namePL;
-    private final int charisma;
+    private final Set<Modifier> modifiers;
 
-    RingModel(String namePL, int charisma) {
+    RingModel(String namePL, Modifier... modifiers) {
         this.namePL = namePL;
-        this.charisma = charisma;
+        this.modifiers = new HashSet<>(Arrays.asList(modifiers));
     }
 
 }
