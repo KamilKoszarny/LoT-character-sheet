@@ -3,6 +3,7 @@ package controller;
 import model.Player;
 import model.Skill;
 import model.SkillType;
+import model.items.ModifierType;
 import model.items.Shield;
 import model.items.Weapon;
 import model.items.WeaponType;
@@ -166,11 +167,11 @@ public class StatsCalculator {
         if (weapon == null) {
             return 50 + player.getArm();
         } else if (weapon.getWeaponType().isRange()) {
-            return 50 + player.getEye();
+            return 50 + player.getEye() + weapon.getModifierValue(ModifierType.HIT);
         } else if (weapon.getWeaponType().equals(WeaponType.MAGES)) {
             return 50 + player.getFocus();
         } else {
-            return 50 + player.getArm();
+            return 50 + player.getArm() + weapon.getModifierValue(ModifierType.HIT);
         }
     }
 
