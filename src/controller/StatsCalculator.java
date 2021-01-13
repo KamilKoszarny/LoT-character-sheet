@@ -75,6 +75,7 @@ public class StatsCalculator {
 
     public static int calculateHitPointsIncrease(Player player) {
         int hitPointsIncrease = 1;
+        hitPointsIncrease += itemsModifiersSum(player, ModifierType.HP_INCREASE);
         Skill regeneration = player.getSkill(SkillType.REGENERATION);
         if (regeneration != null) {
             hitPointsIncrease += regeneration.getLevel() == 1 ? 2 : 4;
@@ -84,6 +85,7 @@ public class StatsCalculator {
 
     public static int calculateManaMax(Player player) {
         int manaMax = (int) Math.round(player.getIntelligence()/3.);
+        manaMax += itemsModifiersSum(player, ModifierType.MANA_MAX);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
             manaMax += 10 * magicTalent.getLevel();
@@ -93,6 +95,7 @@ public class StatsCalculator {
 
     public static int calculateManaIncrease(Player player) {
         int manaIncrease = (int) Math.round(player.getFocus() / 5.);
+        manaIncrease += itemsModifiersSum(player, ModifierType.MANA_INCREASE);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
             manaIncrease += 3 * magicTalent.getLevel();

@@ -154,7 +154,7 @@ public class Player implements Serializable {
         Set<Item> wearItems = new HashSet<>();
         for (ItemSlot itemSlot: ItemSlot.values()) {
             Item item = getItem(itemSlot);
-            if (item != null) {
+            if (item != null && itemSlot != ItemSlot.WEAPON_B && itemSlot != ItemSlot.SHIELD_B) {
                 wearItems.add(item);
             }
         }

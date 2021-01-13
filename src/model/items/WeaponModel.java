@@ -94,19 +94,19 @@ public enum WeaponModel {
     REPEAT_CROSSBOW(WeaponType.CROSSBOW,    4, 6, 1, 15, true, 0, 10, 9, "Kusza powtarzalna"),
 
     //mages
-    WAND(WeaponType.MAGES,               2, 2, 1, 10,       false, 0, 2, 5, "Różdżka"),
-    FEATHERY_WAND(WeaponType.MAGES,      3, 3, 1, 15,       false, 0, 1, 6, "Pierzasta różdżka"),
-    BONE_WAND(WeaponType.MAGES,          3, 3, 1, 15,       false, 0, 2, 6, "Kościana różdżka"),
+    WAND(WeaponType.MAGES,               2, 2, 1, 10,       false, 0, 2, 5, "Różdżka", new Modifier(ModifierType.MANA_MAX, 5)),
+    FEATHERY_WAND(WeaponType.MAGES,      3, 3, 1, 15,       false, 0, 1, 6, "Pierzasta różdżka", new Modifier(ModifierType.MANA_MAX, 5), new Modifier(ModifierType.MANA_INCREASE, 1)),
+    BONE_WAND(WeaponType.MAGES,          3, 3, 1, 15,       false, 0, 2, 6, "Kościana różdżka", new Modifier(ModifierType.MANA_MAX, 10)),
     KRIN_WAND(WeaponType.MAGES,          5, 5, 1, 15,       false, 0, 2, 9, "Różdżka Krinów"),
-    SPHERE(WeaponType.MAGES,             2, 2, 1, 15,       false, 10, 3, 4, "Kula"),
+    SPHERE(WeaponType.MAGES,             2, 2, 1, 15,       false, 10, 3, 4, "Kula", new Modifier(ModifierType.MANA_INCREASE, 1)),
     HOLY_SPHERE(WeaponType.MAGES,        4, 4, 1, 15,       false, 15, 3, 7, "Święta kula"),
-    COLD_SPHERE(WeaponType.MAGES,        3, 3, 1, 10,       false, 15, 5, 7, "Zimna kula"),
-    CLOUD_SPHERE(WeaponType.MAGES,       2, 2, 1, 20,       false, 15, 3, 6, "Kula chmur"),
-    HOT_SPHERE(WeaponType.MAGES,         2, 2, 1, 20,       false, 15, 3, 6, "Gorąca kula"),
-    EARTH_STAFF( WeaponType.MAGES,       4, 4, 1, 25,     true, 25, 6, 10, "Laska ziemi"),
-    STAFF(WeaponType.MAGES,              4, 4, 1, 20,     true, 20, 5, 9, "Laska"),
-    KNOTTY_STAFF(WeaponType.MAGES,       5, 5, 1, 25,     true, 35, 7, 16, "Sękata laska"),
-    WINGED_STAFF(WeaponType.MAGES,       5, 5, 1, 30,     true, 30, 2, 14, "Skrzydlata laska"),
+    COLD_SPHERE(WeaponType.MAGES,        3, 3, 1, 10,       false, 15, 5, 7, "Zimna kula", new Modifier(ModifierType.MANA_INCREASE, 2)),
+    CLOUD_SPHERE(WeaponType.MAGES,       2, 2, 1, 20,       false, 15, 3, 6, "Kula chmur", new Modifier(ModifierType.MANA_INCREASE, 2)),
+    HOT_SPHERE(WeaponType.MAGES,         2, 2, 1, 20,       false, 15, 3, 6, "Gorąca kula", new Modifier(ModifierType.MANA_INCREASE, 2)),
+    EARTH_STAFF( WeaponType.MAGES,       4, 4, 1, 25,     true, 25, 6, 10, "Laska ziemi", new Modifier(ModifierType.KNOWLEDGE, 8)),
+    STAFF(WeaponType.MAGES,              4, 4, 1, 20,     true, 20, 5, 9, "Laska", new Modifier(ModifierType.KNOWLEDGE, 5)),
+    KNOTTY_STAFF(WeaponType.MAGES,       5, 5, 1, 25,     true, 35, 7, 16, "Sękata laska", new Modifier(ModifierType.KNOWLEDGE, 10)),
+    WINGED_STAFF(WeaponType.MAGES,       5, 5, 1, 30,     true, 30, 2, 14, "Skrzydlata laska", new Modifier(ModifierType.KNOWLEDGE, 10)),
     ;
 
     private final WeaponType type;

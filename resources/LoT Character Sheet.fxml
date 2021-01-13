@@ -1311,7 +1311,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="mana" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="3">
+                                                      <TextField fx:id="mana" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="3">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1361,7 +1361,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="manaIncrease" alignment="CENTER" maxWidth="-Infinity" prefColumnCount="2" />
+                                                      <TextField fx:id="manaIncrease" alignment="CENTER" disable="true" maxWidth="-Infinity" prefColumnCount="2" />
                                                    </children>
                                                 </VBox>
                                              </children>

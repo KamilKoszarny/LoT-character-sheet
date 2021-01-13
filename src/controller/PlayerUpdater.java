@@ -433,6 +433,9 @@ public class PlayerUpdater {
     }
 
     public static void updateStatsFromWeapon(boolean firstSet) {
+        updateKnowledge();
+        updateManaMax();
+        updateManaIncrease();
         updateDmg(firstSet);
         updateHits(firstSet);
         updateParry(firstSet);
