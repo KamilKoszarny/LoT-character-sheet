@@ -50,6 +50,7 @@ public class PlayerUpdater {
         });
         guiController.getRace().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setRace(guiController.getRace().getItems().get((Integer) newValue));
+            PlayerDisplayer.displayTraits();
         });
         guiController.getSign().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setSign(guiController.getSign().getItems().get((Integer) newValue));
@@ -481,16 +482,13 @@ public class PlayerUpdater {
     public static void updateArmor() {
         int armorHead = StatsCalculator.calculateArmorHead(currentPlayer);
         currentPlayer.setArmorHead(armorHead);
-        guiController.getArmorHead().setText(Integer.toString(armorHead));
         int armorBody = StatsCalculator.calculateArmorBody(currentPlayer);
         currentPlayer.setArmorBody(armorBody);
-        guiController.getArmorBody().setText(Integer.toString(armorBody));
         int armorArms = StatsCalculator.calculateArmorArms(currentPlayer);
         currentPlayer.setArmorArms(armorArms);
-        guiController.getArmorArms().setText(Integer.toString(armorArms));
         int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
         currentPlayer.setArmorLegs(armorLegs);
-        guiController.getArmorLegs().setText(Integer.toString(armorLegs));
+        PlayerDisplayer.displayArmorStats();
     }
 
     public static void updateHits() {

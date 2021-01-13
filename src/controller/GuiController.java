@@ -220,6 +220,9 @@ public class GuiController {
     private Label skill6description;
 
     @FXML
+    private Label traitRaceDescription;
+
+    @FXML
     private ChoiceBox<Trait> traitPositive;
 
     @FXML

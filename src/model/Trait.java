@@ -6,15 +6,15 @@ import lombok.Getter;
 public enum Trait {
 
     TWO_HANDED(TraitType.POSITIVE, "Oburęczny", "Brak kary drugiej ręki"),
-    RESISTANT(TraitType.POSITIVE, "Odporny", "+20% odp. na ch. ciala"),
-    GOOD_AT_MATHS(TraitType.POSITIVE, "Dobrze liczy", "charyzma +20% przy targowaniu"),
+    RESISTANT(TraitType.POSITIVE, "Odporny", "+20% odp. na choroby ciała"),
+    GOOD_AT_MATHS(TraitType.POSITIVE, "Dobrze liczy", "Charyzma +20 przy targowaniu"),
 
-    ELEMENTAL_NEPHEW(TraitType.NEUTRAL, "Bratanek żywiołów", "+10p% odp. na zywioly; -10p% niewr. na magie"),
-    DREAMER(TraitType.NEUTRAL, "Marzyciel", "-20% odp. na ch. Psych.  +20% odp. na ch. ciala"),
-    NON_STANDARD_BODY(TraitType.NEUTRAL, "Niestandardowa budowa", "-10% wym. Przedmiotów; -5% stat. Przedmiotów"),
+    ELEMENTAL_NEPHEW(TraitType.NEUTRAL, "Bratanek żywiołów", "+10p% odp. na zywioly;\n-10p% odp. na magie"),
+    DREAMER(TraitType.NEUTRAL, "Marzyciel", "-20% odp. na choroby psychiczne\n+20% odp. na choroby ciała"),
+    NON_STANDARD_BODY(TraitType.NEUTRAL, "Niestandardowa budowa", "-10% wym. Przedmiotów;\n-5% statystyki przedmiotów"),
 
-    UNREGULAR_BODY(TraitType.NEGATIVE, "Nieregularna budowa", "+10% wym. przedmiotow"),
-    HAND_SHAKING(TraitType.NEGATIVE, "Drżenie rąk", "r -10%, przyrost -10%");
+    UNREGULAR_BODY(TraitType.NEGATIVE, "Nieregularna budowa", "+10% wymagania przedmiotow"),
+    HAND_SHAKING(TraitType.NEGATIVE, "Drżenie rąk", "ręka -10%(startowa),\nprzyrost -10% (co 10 punkt *2PD)");
 
     private final String namePL;
     private final String descriptionPL;

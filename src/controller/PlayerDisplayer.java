@@ -53,6 +53,9 @@ public class PlayerDisplayer {
     }
 
     public static void displayTraits() {
+        if (currentPlayer.getRace() != null) {
+            guiController.getTraitRaceDescription().setText(currentPlayer.getRace().getTraitDescription());
+        }
         if (currentPlayer.getPositiveTrait() != null) {
             guiController.getTraitPositive().getSelectionModel().select(currentPlayer.getPositiveTrait());
             guiController.getTraitPositiveDescription().setText(currentPlayer.getPositiveTrait().getDescriptionPL());
@@ -186,6 +189,13 @@ public class PlayerDisplayer {
             attackTimeBText += "/" + currentPlayer.getAttackTimeB2();
         }
         guiController.getTimeB().setText(attackTimeBText);
+    }
+
+    public static void displayArmorStats() {
+        guiController.getArmorHead().setText(Integer.toString(currentPlayer.getArmorHead()));
+        guiController.getArmorBody().setText(Integer.toString(currentPlayer.getArmorBody()));
+        guiController.getArmorArms().setText(Integer.toString(currentPlayer.getArmorArms()));
+        guiController.getArmorLegs().setText(Integer.toString(currentPlayer.getArmorLegs()));
     }
 
     private static void displayEquipment() {
@@ -392,10 +402,7 @@ public class PlayerDisplayer {
         displayAttackTime();
         guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodgeA()));
         guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodgeB()));
-        guiController.getArmorHead().setText(Integer.toString(currentPlayer.getArmorHead()));
-        guiController.getArmorBody().setText(Integer.toString(currentPlayer.getArmorBody()));
-        guiController.getArmorArms().setText(Integer.toString(currentPlayer.getArmorArms()));
-        guiController.getArmorLegs().setText(Integer.toString(currentPlayer.getArmorLegs()));
+        displayArmorStats();
         guiController.getResistFire().setText(Integer.toString(currentPlayer.getResistFire()));
         guiController.getResistCold().setText(Integer.toString(currentPlayer.getResistCold()));
         guiController.getResistWind().setText(Integer.toString(currentPlayer.getResistWind()));
