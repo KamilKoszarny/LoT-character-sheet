@@ -346,6 +346,12 @@ public class GuiController {
     private Button actionsMinus;
 
     @FXML
+    private Button actionsMaxPlus;
+
+    @FXML
+    private Button actionsMaxMinus;
+
+    @FXML
     private TextField speed;
 
     @FXML

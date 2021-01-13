@@ -139,6 +139,14 @@ public class Player implements Serializable {
 
     private Map<Item, Point> inventory = new HashMap<>();
 
+    public Skill getSkill(SkillType skillType) {
+        for (Skill skill: skills) {
+            if (skill != null && skill.getType().equals(skillType))
+                return skill;
+        }
+        return null;
+    }
+
     public Item getItem(ItemSlot itemSlot) {
         switch (itemSlot) {
             case WEAPON_A: return weaponA;

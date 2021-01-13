@@ -1,6 +1,8 @@
 package controller;
 
 import model.Player;
+import model.Skill;
+import model.SkillType;
 import model.items.Shield;
 import model.items.Weapon;
 import model.items.WeaponType;
@@ -94,8 +96,21 @@ public class StatsCalculator {
         return charisma;
     }
 
+    public static int calculateManaMax(Player player) {
+        int manaMax = (int) Math.round(player.getIntelligence()/3.);
+        Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
+        if (magicTalent != null) {
+            manaMax += 10 * magicTalent.getLevel();
+        }
+        return manaMax;
+    }
+
     public static int calculateManaIncrease(Player player) {
         int manaIncrease = (int) Math.round(player.getFocus() / 5.);
+        Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
+        if (magicTalent != null) {
+            manaIncrease += 3 * magicTalent.getLevel();
+        }
         return manaIncrease;
     }
 

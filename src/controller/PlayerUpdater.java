@@ -164,7 +164,13 @@ public class PlayerUpdater {
 
     private static void initSkillUpdating(int skillNumber, ChoiceBox<Object> skillChoiceBox, CheckBox lvl1Checkbox, CheckBox lvl2Checkbox, CheckBox lvl3Checkbox) {
         skillChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            currentPlayer.getSkills()[skillNumber - 1] = new Skill((SkillType) skillChoiceBox.getItems().get((Integer) newValue));
+            if (newValue.intValue() == -1) { //null selected
+                return;
+            }
+            SkillType skillType = (SkillType) skillChoiceBox.getItems().get((Integer) newValue);
+            currentPlayer.getSkills()[skillNumber - 1] = new Skill(skillType);
+            updateStatsFromSkill(skillType);
+            lvl1Checkbox.setDisable(false);
             lvl2Checkbox.setDisable(false);
             PlayerDisplayer.displaySkills();
         });
@@ -173,15 +179,35 @@ public class PlayerUpdater {
         lvl2Checkbox.setDisable(true);
         lvl3Checkbox.setDisable(true);
 
+        lvl1Checkbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            Skill skill = currentPlayer.getSkills()[skillNumber - 1];
+            SkillType skillType = skill.getType();
+            if (newValue) {
+                skill.setLevel(1);
+                lvl2Checkbox.setDisable(false);
+            } else {
+                currentPlayer.getSkills()[skillNumber - 1] = null;
+                skillChoiceBox.getSelectionModel().select(null);
+                lvl1Checkbox.setDisable(true);
+                lvl2Checkbox.setDisable(true);
+            }
+            updateStatsFromSkill(skillType);
+            PlayerDisplayer.displaySkills();
+        });
+
+
         lvl2Checkbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             Skill skill = currentPlayer.getSkills()[skillNumber - 1];
             if (newValue) {
                 skill.setLevel(2);
+                lvl1Checkbox.setDisable(true);
                 lvl3Checkbox.setDisable(false);
             } else {
                 skill.setLevel(1);
+                lvl1Checkbox.setDisable(false);
                 lvl3Checkbox.setDisable(true);
             }
+            updateStatsFromSkill(skill.getType());
         });
 
         lvl3Checkbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -193,6 +219,7 @@ public class PlayerUpdater {
                 skill.setLevel(2);
                 lvl2Checkbox.setDisable(false);
             }
+            updateStatsFromSkill(skill.getType());
         });
     }
 
@@ -241,6 +268,14 @@ public class PlayerUpdater {
         });
         guiController.getActionsMinus().setOnMouseClicked(event -> {
             currentPlayer.setActions(currentPlayer.getActions() - 1);
+            PlayerDisplayer.displayActions();
+        });
+        guiController.getActionsMaxPlus().setOnMouseClicked(event -> {
+            currentPlayer.setActionsMax(currentPlayer.getActionsMax() + 1);
+            PlayerDisplayer.displayActions();
+        });
+        guiController.getActionsMaxMinus().setOnMouseClicked(event -> {
+            currentPlayer.setActionsMax(currentPlayer.getActionsMax() - 1);
             PlayerDisplayer.displayActions();
         });
         guiController.getManaPlus().setOnMouseClicked(event -> {
@@ -360,12 +395,25 @@ public class PlayerUpdater {
         int intelligence = StatsCalculator.calculateIntelligence(currentPlayer);
         currentPlayer.setIntelligence(intelligence);
         guiController.getIntelligence().setText(Integer.toString(intelligence));
-        int manaMax = (int) Math.round(intelligence/3.);
+        updateManaMax();
+    }
+
+    private static void updateStatsFromSkill(SkillType skillType) {
+        switch (skillType) {
+            case MAGIC_TALENT:
+                updateManaIncrease();
+                updateManaMax();
+                break;
+        }
+    }
+
+    private static void updateManaMax() {
+        int manaMax = StatsCalculator.calculateManaMax(currentPlayer);
         currentPlayer.setManaMax(manaMax);
         guiController.getMana().setText("" + currentPlayer.getMana() + '/' + manaMax);
     }
 
-    static void updateManaIncrease() {
+    private static void updateManaIncrease() {
         int manaIncrease = StatsCalculator.calculateManaIncrease(currentPlayer);
         currentPlayer.setManaIncrease(manaIncrease);
         guiController.getManaIncrease().setText(Integer.toString(manaIncrease));

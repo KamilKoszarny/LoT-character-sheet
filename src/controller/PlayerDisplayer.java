@@ -47,6 +47,8 @@ public class PlayerDisplayer {
                 lvl3Checkbox.setSelected(true);
             }
             description.setText(skill.getType().getDescriptionPL());
+        } else {
+            description.setText(null);
         }
     }
 
