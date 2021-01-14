@@ -505,6 +505,12 @@ public class GuiController {
     private TextField loadExtra;
 
     @FXML
+    private Button loadExtraPlus;
+
+    @FXML
+    private Button loadExtraMinus;
+
+    @FXML
     private TextField gold;
 
     @FXML

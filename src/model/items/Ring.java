@@ -8,7 +8,7 @@ public class Ring extends Item{
     private final RingModel model;
 
     public Ring(RingModel model) {
-        super(ItemType.RING, model.getModifiers());
+        super(ItemType.RING, 0, model.getModifiers());
         this.model = model;
     }
 }

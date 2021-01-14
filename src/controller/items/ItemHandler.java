@@ -234,7 +234,7 @@ public class ItemHandler {
         javafx.scene.control.MenuItem dropButton = new MenuItem();
         dropButton.setText("Wyrzuć");
         dropButton.setOnAction(event -> {
-            currentPlayer.getInventory().remove(item);
+            currentPlayer.removeFromInventory(item);
             PlayerDisplayer.removeInventoryItem(item);
         });
         return dropButton;

@@ -4,10 +4,7 @@ import model.Modifying;
 import model.Player;
 import model.Skill;
 import model.SkillType;
-import model.items.ModifierType;
-import model.items.Shield;
-import model.items.Weapon;
-import model.items.WeaponType;
+import model.items.*;
 
 public class StatsCalculator {
 
@@ -318,6 +315,14 @@ public class StatsCalculator {
         int mindIllnessResistance = 0;
         mindIllnessResistance += modifiersSum(player, ModifierType.RES_MIND_ILL);
         return mindIllnessResistance;
+    }
+
+    public static int calculateLoad(Player player) {
+        int load = 0;
+        for (Item item: player.getAllItems()) {
+            load += item.getWeight();
+        }
+        return load;
     }
 
     private static int getStoneSkinResistance(Player player) {

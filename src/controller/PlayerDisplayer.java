@@ -321,6 +321,11 @@ public class PlayerDisplayer {
         });
     }
 
+    public static void displayLoad() {
+        guiController.getLoad().setText("" + (currentPlayer.getLoad() + currentPlayer.getLoadExtra()) + "/" + (currentPlayer.getStrength() * 2));
+        guiController.getLoadExtra().setText(Integer.toString(currentPlayer.getLoadExtra()));
+    }
+
     public static Image findImage(Item item) {
         String path = "images/items/";
         switch (item.getItemType()) {
@@ -425,8 +430,7 @@ public class PlayerDisplayer {
         guiController.getHorseState().setText(currentPlayer.getHorseState());
         guiController.getHorseEquipment().setText(currentPlayer.getHorseEquipment());
         guiController.getExtraInventory().setText(currentPlayer.getExtraInventory());
-        guiController.getLoad().setText(Integer.toString(currentPlayer.getLoad()));
-        guiController.getLoadExtra().setText(Integer.toString(currentPlayer.getLoadExtra()));
+        displayLoad();
         guiController.getGold().setText(currentPlayer.getGold());
         guiController.getBankGold().setText(currentPlayer.getBankGold());
 

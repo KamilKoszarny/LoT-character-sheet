@@ -309,8 +309,20 @@ public class PlayerUpdater {
         guiController.getHorseState().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseState(newValue));
         guiController.getHorseEquipment().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseEquipment(newValue));
         guiController.getExtraInventory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setExtraInventory(newValue));
-        guiController.getLoad().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setLoad(Integer.parseInt(newValue)));
-        guiController.getLoadExtra().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setLoadExtra(Integer.parseInt(newValue)));
+        guiController.getLoadExtra().textProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setLoadExtra(Integer.parseInt(newValue));
+            updateLoad();
+        });
+        guiController.getLoadExtraPlus().setOnMouseClicked(event -> {
+            currentPlayer.setLoadExtra(currentPlayer.getLoadExtra() + 1);
+            PlayerDisplayer.displayLoad();
+            updateStatsFromSkill(SkillType.WRATH);
+        });
+        guiController.getLoadExtraMinus().setOnMouseClicked(event -> {
+            currentPlayer.setLoadExtra(currentPlayer.getLoadExtra() - 1);
+            PlayerDisplayer.displayLoad();
+            updateStatsFromSkill(SkillType.WRATH);
+        });
         guiController.getGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setGold(newValue));
         guiController.getBankGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setBankGold(newValue));
     }
@@ -322,6 +334,7 @@ public class PlayerUpdater {
         guiController.getStrength().setText(Integer.toString(strength));
 
         updateDmg();
+        updateLoad();
     }
 
     private static void updateEndurance() {
@@ -499,36 +512,6 @@ public class PlayerUpdater {
         PlayerDisplayer.displayDmg();
     }
 
-    public static void updateArmors() {
-        int armorHead = StatsCalculator.calculateArmorHead(currentPlayer);
-        currentPlayer.setArmorHead(armorHead);
-        int armorBody = StatsCalculator.calculateArmorBody(currentPlayer);
-        currentPlayer.setArmorBody(armorBody);
-        int armorArms = StatsCalculator.calculateArmorArms(currentPlayer);
-        currentPlayer.setArmorArms(armorArms);
-        int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
-        currentPlayer.setArmorLegs(armorLegs);
-        PlayerDisplayer.displayArmors();
-    }
-
-    public static void updateResistances() {
-        int fireResistance = StatsCalculator.calculateFireResistance(currentPlayer);
-        currentPlayer.setResistFire(fireResistance);
-        int coldResistance = StatsCalculator.calculateColdResistance(currentPlayer);
-        currentPlayer.setResistCold(coldResistance);
-        int windResistance = StatsCalculator.calculateWindResistance(currentPlayer);
-        currentPlayer.setResistWind(windResistance);
-        int earthResistance = StatsCalculator.calculateEarthResistance(currentPlayer);
-        currentPlayer.setResistEarth(earthResistance);
-        int magicResistance = StatsCalculator.calculateMagicResistance(currentPlayer);
-        currentPlayer.setResistMagic(magicResistance);
-        int bodyIllnessResistance = StatsCalculator.calculateBodyIllnessResistance(currentPlayer);
-        currentPlayer.setResistBodyIllness(bodyIllnessResistance);
-        int findIllnessResistance = StatsCalculator.calculateMindIllnessResistance(currentPlayer);
-        currentPlayer.setResistMindIllness(findIllnessResistance);
-        PlayerDisplayer.displayResistances();
-    }
-
     public static void updateHits() {
         updateHits(true);
         updateHits(false);
@@ -605,4 +588,39 @@ public class PlayerUpdater {
         PlayerDisplayer.displayAttackTime();
     }
 
+    public static void updateArmors() {
+        int armorHead = StatsCalculator.calculateArmorHead(currentPlayer);
+        currentPlayer.setArmorHead(armorHead);
+        int armorBody = StatsCalculator.calculateArmorBody(currentPlayer);
+        currentPlayer.setArmorBody(armorBody);
+        int armorArms = StatsCalculator.calculateArmorArms(currentPlayer);
+        currentPlayer.setArmorArms(armorArms);
+        int armorLegs = StatsCalculator.calculateArmorLegs(currentPlayer);
+        currentPlayer.setArmorLegs(armorLegs);
+        PlayerDisplayer.displayArmors();
+    }
+
+    public static void updateResistances() {
+        int fireResistance = StatsCalculator.calculateFireResistance(currentPlayer);
+        currentPlayer.setResistFire(fireResistance);
+        int coldResistance = StatsCalculator.calculateColdResistance(currentPlayer);
+        currentPlayer.setResistCold(coldResistance);
+        int windResistance = StatsCalculator.calculateWindResistance(currentPlayer);
+        currentPlayer.setResistWind(windResistance);
+        int earthResistance = StatsCalculator.calculateEarthResistance(currentPlayer);
+        currentPlayer.setResistEarth(earthResistance);
+        int magicResistance = StatsCalculator.calculateMagicResistance(currentPlayer);
+        currentPlayer.setResistMagic(magicResistance);
+        int bodyIllnessResistance = StatsCalculator.calculateBodyIllnessResistance(currentPlayer);
+        currentPlayer.setResistBodyIllness(bodyIllnessResistance);
+        int findIllnessResistance = StatsCalculator.calculateMindIllnessResistance(currentPlayer);
+        currentPlayer.setResistMindIllness(findIllnessResistance);
+        PlayerDisplayer.displayResistances();
+    }
+
+    public static void updateLoad() {
+        int load = StatsCalculator.calculateLoad(currentPlayer);
+        currentPlayer.setLoad(load);
+        PlayerDisplayer.displayLoad();
+    }
 }

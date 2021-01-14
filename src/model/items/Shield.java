@@ -11,7 +11,7 @@ public class Shield extends Item{
     private final int durability;
 
     public Shield(ShieldModel model) {
-        super(ItemType.SHIELD, model.getModifiers());
+        super(ItemType.SHIELD, model.getWeight(), model.getModifiers());
         this.model = model;
         this.block = model.getBlock();
         this.dmg = model.getDmg();

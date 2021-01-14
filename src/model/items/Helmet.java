@@ -9,7 +9,7 @@ public class Helmet extends Item{
     private int armor;
 
     public Helmet(HelmetModel model) {
-        super(ItemType.HELMET, model.getModifiers());
+        super(ItemType.HELMET, model.getWeight(), model.getModifiers());
         this.model = model;
         this.armor = model.getArmor();
     }

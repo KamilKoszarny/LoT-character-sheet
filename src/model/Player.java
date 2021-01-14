@@ -175,6 +175,18 @@ public class Player implements Serializable {
         return modifyingObjects.stream().filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
+    public Set<Item> getAllItems() {
+        Set<Item> items = new HashSet<>();
+        for (ItemSlot itemSlot: ItemSlot.values()) {
+            Item item = getItem(itemSlot);
+            if (item != null) {
+                items.add(item);
+            }
+        }
+        items.addAll(inventory.keySet());
+        return items;
+    }
+
     public Set<Item> getWearItems() {
         Set<Item> wearItems = new HashSet<>();
         for (ItemSlot itemSlot: ItemSlot.values()) {
@@ -298,14 +310,17 @@ public class Player implements Serializable {
                 ItemHandler.tryPutNewItemInInventory(item);
                 break;
         }
+        PlayerUpdater.updateLoad();
         return true;
     }
 
     public void addToInventory(Item item, Point slot) {
         getInventory().put(item, slot);
+        PlayerUpdater.updateLoad();
     }
 
     public void removeFromInventory(Item item) {
         getInventory().remove(item);
+        PlayerUpdater.updateLoad();
     }
 }

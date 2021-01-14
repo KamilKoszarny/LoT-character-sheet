@@ -25,8 +25,8 @@ public enum WeaponModel {
 
     //axes
     ADZE(WeaponType.AXE,               1, 4, 1, 1,     false, 5, 5, 9, "Siekiera"),
-    AXE_1H(WeaponType.AXE,             2, 5, 1, 1,     false, 15, 13, 13, "Topór"),
-    AXE_2H(WeaponType.AXE,             4, 7, 1, 1,     true, 15, 13, 13, "Topór"),
+    AXE_1H(WeaponType.AXE,             2, 5, 1, 1,     false, 15, 13, 13, "Topór (1-ręczny)"),
+    AXE_2H(WeaponType.AXE,             4, 7, 1, 1,     true, 15, 13, 13, "Topór (2-ręczny)"),
     TWO_SIDE_AXE(WeaponType.AXE,       3, 6, 1, 1,         false, 10, 15, 15, "Obustronny topór"),
     PICK(WeaponType.AXE,               1, 4, 2, 1,        false, 10, 9, 12, "Nadziak", new Modifier(ModifierType.HIT, -5)),
     BEARD_AXE(WeaponType.AXE,          5, 8, 1, 1,       true, 25, 16, 22, "Brodaty topór"),

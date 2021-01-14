@@ -14,7 +14,7 @@ public class Weapon extends Item {
     private int time;
 
     public Weapon(WeaponModel model) {
-        super(ItemType.WEAPON, model.getModifiers());
+        super(ItemType.WEAPON, model.getWeight(), model.getModifiers());
         this.weaponType = model.getType();
         this.model = model;
         this.dmgMin = model.getDmgMin();

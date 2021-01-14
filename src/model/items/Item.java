@@ -1,24 +1,25 @@
 package model.items;
 
 import lombok.Getter;
-import lombok.Setter;
 import model.Modifying;
 
 import java.io.Serializable;
 import java.util.Optional;
 import java.util.Set;
 
+@Getter
 public class Item implements Serializable, Modifying {
 
-    @Getter
-    @Setter
-    private ItemType itemType;
+    private final ItemType itemType;
+
+    private int weight;
 
     @Getter
     protected Set<Modifier> modifiers;
 
-    public Item(ItemType itemType, Set<Modifier> modifiers) {
+    public Item(ItemType itemType, int weight, Set<Modifier> modifiers) {
         this.itemType = itemType;
+        this.weight = weight;
         this.modifiers = modifiers;
     }
 
