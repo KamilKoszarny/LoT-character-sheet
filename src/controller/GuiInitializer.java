@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import model.*;
 import model.items.*;
+import utils.Utils;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class GuiInitializer {
 
 
     public static void init() {
+        makeFieldsNumeric();
         initProffesions();
         initRaces();
         initSigns();
@@ -29,6 +31,22 @@ public class GuiInitializer {
         initTraits();
         initHorseTypes();
         initEquipment();
+    }
+
+    private static void makeFieldsNumeric(){
+        Utils.makeNumeric(guiController.getStrengthBase());
+        Utils.makeNumeric(guiController.getEnduranceBase());
+        Utils.makeNumeric(guiController.getFormBase());
+        Utils.makeNumeric(guiController.getEyeBase());
+        Utils.makeNumeric(guiController.getArmBase());
+        Utils.makeNumeric(guiController.getAgilityBase());
+        Utils.makeNumeric(guiController.getKnowledgeBase());
+        Utils.makeNumeric(guiController.getFocusBase());
+        Utils.makeNumeric(guiController.getCharismaBase());
+        Utils.makeNumeric(guiController.getLuckPoints());
+        Utils.makeNumeric(guiController.getExperiencePoints());
+        Utils.makeNumeric(guiController.getSpeed());
+        Utils.makeNumeric(guiController.getLoadExtra());
     }
 
     private static void initProffesions() {
