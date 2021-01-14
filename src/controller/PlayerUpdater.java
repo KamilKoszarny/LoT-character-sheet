@@ -8,6 +8,7 @@ import lombok.Setter;
 import model.Player;
 import model.Skill;
 import model.SkillType;
+import model.horses.Horse;
 
 import static controller.Main.guiController;
 
@@ -302,12 +303,48 @@ public class PlayerUpdater {
         guiController.getResistMagic().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistMagic(Integer.parseInt(newValue)));
         guiController.getResistBodyIllness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistBodyIllness(Integer.parseInt(newValue)));
         guiController.getResistMindIllness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setResistMindIllness(Integer.parseInt(newValue)));
-        guiController.getHorseType().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseType(guiController.getHorseType().getItems().get((Integer) newValue)));
-        guiController.getHorseName().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseName(newValue));
-        guiController.getHorseHitPoints().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseHitPoints(newValue));
-        guiController.getHorseRiding().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseRiding(newValue));
-        guiController.getHorseState().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseState(newValue));
-        guiController.getHorseEquipment().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseEquipment(newValue));
+        guiController.getHorseType().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            boolean horseRemoved = newValue.intValue() <= 0;
+            if (horseRemoved) {
+                currentPlayer.setHorse(null);
+            } else {
+                currentPlayer.setHorse(new Horse(guiController.getHorseType().getItems().get((Integer) newValue)));
+            }
+            guiController.getHorseName().setDisable(horseRemoved);
+            guiController.getHorseRiding().setDisable(horseRemoved);
+            guiController.getHorseState().setDisable(horseRemoved);
+            guiController.getHorseEquipment().setDisable(horseRemoved);
+            updateLoad();
+            PlayerDisplayer.displayHorse();
+        });
+        guiController.getHorseName().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (currentPlayer.getHorse() != null) {
+                currentPlayer.getHorse().setName(newValue);
+            }
+        });
+        guiController.getHorseHPPlus().setOnMouseClicked(event -> {
+            currentPlayer.getHorse().setHitPoints(currentPlayer.getHorse().getHitPoints() + 1);
+            PlayerDisplayer.displayHorse();
+        });
+        guiController.getHorseHPMinus().setOnMouseClicked(event -> {
+            currentPlayer.getHorse().setHitPoints(currentPlayer.getHorse().getHitPoints() - 1);
+            PlayerDisplayer.displayHorse();
+        });
+        guiController.getHorseRiding().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (currentPlayer.getHorse() != null) {
+                currentPlayer.getHorse().setRiding(Integer.parseInt(newValue));
+            }
+        });
+        guiController.getHorseState().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (currentPlayer.getHorse() != null) {
+                currentPlayer.getHorse().setState(newValue);
+            }
+        });
+        guiController.getHorseEquipment().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (currentPlayer.getHorse() != null) {
+                currentPlayer.getHorse().setEquipment(newValue);
+            }
+        });
         guiController.getExtraInventory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setExtraInventory(newValue));
         guiController.getLoadExtra().textProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setLoadExtra(Integer.parseInt(newValue));
@@ -621,6 +658,8 @@ public class PlayerUpdater {
     public static void updateLoad() {
         int load = StatsCalculator.calculateLoad(currentPlayer);
         currentPlayer.setLoad(load);
+        int loadMax = StatsCalculator.calculateLoadMax(currentPlayer);
+        currentPlayer.setLoadMax(loadMax);
         PlayerDisplayer.displayLoad();
     }
 }

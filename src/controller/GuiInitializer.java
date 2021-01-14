@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import model.*;
+import model.horses.HorseType;
 import model.items.*;
 import utils.Utils;
 
@@ -92,6 +93,7 @@ public class GuiInitializer {
     }
 
     private static void initHorseTypes() {
+        guiController.getHorseType().getItems().add(null);
         guiController.getHorseType().getItems().addAll(HorseType.values());
     }
 

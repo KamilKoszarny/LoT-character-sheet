@@ -325,6 +325,14 @@ public class StatsCalculator {
         return load;
     }
 
+    public static int calculateLoadMax(Player player) {
+        int loadMax = player.getStrength() * 2;
+        if (player.getHorse() != null) {
+            loadMax += player.getHorse().getLoadMax();
+        }
+        return loadMax;
+    }
+
     private static int getStoneSkinResistance(Player player) {
         Skill stoneSkin = player.getSkill(SkillType.STONE_SKIN);
         if (stoneSkin != null) {

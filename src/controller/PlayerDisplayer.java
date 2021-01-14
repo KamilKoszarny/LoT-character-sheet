@@ -13,6 +13,7 @@ import javafx.scene.shape.Rectangle;
 import model.Ability;
 import model.Proffesion;
 import model.Skill;
+import model.horses.Horse;
 import model.items.*;
 import utils.Utils;
 
@@ -322,7 +323,7 @@ public class PlayerDisplayer {
     }
 
     public static void displayLoad() {
-        guiController.getLoad().setText("" + (currentPlayer.getLoad() + currentPlayer.getLoadExtra()) + "/" + (currentPlayer.getStrength() * 2));
+        guiController.getLoad().setText("" + (currentPlayer.getLoad() + currentPlayer.getLoadExtra()) + "/" + currentPlayer.getLoadMax());
         guiController.getLoadExtra().setText(Integer.toString(currentPlayer.getLoadExtra()));
     }
 
@@ -413,34 +414,41 @@ public class PlayerDisplayer {
         displayHit();
         displayRange();
         displayAttackTime();
-        guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodgeA()));
-        guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodgeB()));
+        displayDodge();
         displayArmors();
-        guiController.getResistFire().setText(Integer.toString(currentPlayer.getResistFire()));
-        guiController.getResistCold().setText(Integer.toString(currentPlayer.getResistCold()));
-        guiController.getResistWind().setText(Integer.toString(currentPlayer.getResistWind()));
-        guiController.getResistEarth().setText(Integer.toString(currentPlayer.getResistEarth()));
-        guiController.getResistMagic().setText(Integer.toString(currentPlayer.getResistMagic()));
-        guiController.getResistBodyIllness().setText(Integer.toString(currentPlayer.getResistBodyIllness()));
-        guiController.getResistMindIllness().setText(Integer.toString(currentPlayer.getResistMindIllness()));
-        guiController.getHorseType().getSelectionModel().select(currentPlayer.getHorseType());
-        guiController.getHorseName().setText(currentPlayer.getHorseName());
-        guiController.getHorseHitPoints().setText(currentPlayer.getHorseHitPoints());
-        guiController.getHorseRiding().setText(currentPlayer.getHorseRiding());
-        guiController.getHorseState().setText(currentPlayer.getHorseState());
-        guiController.getHorseEquipment().setText(currentPlayer.getHorseEquipment());
+        displayResistances();
+
+        displayHorse();
+
+        displayEquipment();
+        displayInventory();
         guiController.getExtraInventory().setText(currentPlayer.getExtraInventory());
         displayLoad();
         guiController.getGold().setText(currentPlayer.getGold());
         guiController.getBankGold().setText(currentPlayer.getBankGold());
-
-        displayEquipment();
-        displayInventory();
 
         guiController.getSatiety().setText(currentPlayer.getSatiety());
         guiController.getAlertness().setText(currentPlayer.getAlertness());
         guiController.getIllnesses().setText(currentPlayer.getIllnesses());
         guiController.getState().setText(currentPlayer.getState());
         guiController.getNotes().setText(currentPlayer.getNotes());
+    }
+
+    public static void displayHorse() {
+        Horse horse = currentPlayer.getHorse();
+        if (horse != null) {
+            guiController.getHorseType().getSelectionModel().select(horse.getType());
+            guiController.getHorseName().setText(horse.getName());
+            guiController.getHorseHitPoints().setText("" + horse.getHitPoints() + "/" + horse.getHitPointsMax());
+            guiController.getHorseRiding().setText(Integer.toString(horse.getRiding()));
+            guiController.getHorseState().setText(horse.getState());
+            guiController.getHorseEquipment().setText(horse.getEquipment());
+        } else {
+            guiController.getHorseName().setText(null);
+            guiController.getHorseHitPoints().setText(null);
+            guiController.getHorseRiding().setText(null);
+            guiController.getHorseState().setText(null);
+            guiController.getHorseEquipment().setText(null);
+        }
     }
 }

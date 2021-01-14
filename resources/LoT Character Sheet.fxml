@@ -1589,6 +1589,8 @@
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="30.0" text="typ" textAlignment="CENTER" wrapText="true" />
                                                 <ChoiceBox fx:id="horseType" prefWidth="150.0" />
+                                                <Label text="   prowadzenie  " />
+                                                <TextField fx:id="horseRiding" alignment="CENTER" disable="true" prefColumnCount="2" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1597,11 +1599,38 @@
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="30.0" text="imię" />
-                                                <TextField fx:id="horseName" alignment="CENTER" prefColumnCount="6" />
+                                                <TextField fx:id="horseName" disable="true" prefColumnCount="14" />
                                                 <Label alignment="CENTER" prefWidth="30.0" text="PZ" />
-                                                <TextField fx:id="horseHitPoints" alignment="CENTER" prefColumnCount="3" />
-                                                <Label text="   prowadzenie  " />
-                                                <TextField fx:id="horseRiding" alignment="CENTER" prefColumnCount="2" />
+                                                <TextField fx:id="horseHitPoints" alignment="CENTER" disable="true" prefColumnCount="4" />
+                                                <VBox>
+                                                   <children>
+                                                      <Button fx:id="horseHPPlus" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" text="+" textAlignment="CENTER" textOverrun="CLIP">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <padding>
+                                                            <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                                                         </padding>
+                                                      </Button>
+                                                      <Button fx:id="horseHPMinus" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="15.0" prefWidth="15.0" text="-" textAlignment="CENTER" textOverrun="CLIP">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                         <opaqueInsets>
+                                                            <Insets />
+                                                         </opaqueInsets>
+                                                         <padding>
+                                                            <Insets bottom="-10.0" left="-10.0" right="-10.0" top="-10.0" />
+                                                         </padding>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </VBox>
                                              </children>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -1610,7 +1639,7 @@
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="30.0" text="stan" textAlignment="CENTER" wrapText="true" />
-                                                <TextField fx:id="horseState" alignment="CENTER" prefColumnCount="23" />
+                                                <TextField fx:id="horseState" disable="true" prefColumnCount="23" />
                                              </children>
                                              <VBox.margin>
                                                 <Insets left="5.0" right="5.0" top="5.0" />
@@ -1621,7 +1650,7 @@
                                                 <Insets left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <TextArea fx:id="horseEquipment" prefColumnCount="10" prefRowCount="2">
+                                          <TextArea fx:id="horseEquipment" disable="true" prefColumnCount="10" prefRowCount="2">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" />
                                              </VBox.margin>

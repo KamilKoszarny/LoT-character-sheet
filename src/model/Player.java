@@ -4,6 +4,7 @@ import controller.PlayerUpdater;
 import controller.items.ItemHandler;
 import controller.items.ItemSlot;
 import lombok.Data;
+import model.horses.Horse;
 import model.items.*;
 
 import java.awt.*;
@@ -118,12 +119,7 @@ public class Player implements Serializable {
     private int resistBodyIllness;
     private int resistMindIllness;
 
-    private HorseType horseType;
-    private String horseName;
-    private String horseHitPoints;
-    private String horseRiding;
-    private String horseState;
-    private String horseEquipment;
+    private Horse horse;
 
     private Weapon weaponA;
     private Weapon weaponB;
@@ -144,6 +140,7 @@ public class Player implements Serializable {
     private String extraInventory;
 
     private int load;
+    private int loadMax;
     private int loadExtra;
 
     private String gold;

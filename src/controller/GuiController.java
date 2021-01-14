@@ -6,7 +6,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import lombok.Getter;
 import lombok.Setter;
-import model.*;
+import model.Proffesion;
+import model.Race;
+import model.Sign;
+import model.Trait;
+import model.horses.HorseType;
 
 @Getter
 @Setter
@@ -443,6 +447,12 @@ public class GuiController {
 
     @FXML
     private TextField horseHitPoints;
+
+    @FXML
+    private Button horseHPPlus;
+
+    @FXML
+    private Button horseHPMinus;
 
     @FXML
     private TextField horseRiding;
