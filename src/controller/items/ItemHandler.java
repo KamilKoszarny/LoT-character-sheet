@@ -209,7 +209,7 @@ public class ItemHandler {
 
     public static void initInventoryItemClick(Item item, Rectangle rectangle) {
         ContextMenu invItemContextMenu = invItemContextMenu(item);
-        rectangle.setOnMouseClicked(event -> {
+        rectangle.setOnMousePressed(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 Image itemImage = PlayerDisplayer.findImage(item);
                 holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);

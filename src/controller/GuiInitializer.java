@@ -105,7 +105,7 @@ public class GuiInitializer {
         button.lookup(".arrow-button" ).setStyle( "-fx-padding: 0" );
         button.lookup(".arrow" ).setStyle( "-fx-background-insets: 0; -fx-padding: 0; -fx-shape: null;" );
 
-        button.setOnMouseClicked(event -> {
+        button.setOnMousePressed(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 ItemHandler.handleItemSlotClick(button, itemSlot, new Point((int) event.getX(), (int) event.getY()));
             }
