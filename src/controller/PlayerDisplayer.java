@@ -442,7 +442,7 @@ public class PlayerDisplayer {
             guiController.getHorseHitPoints().setText("" + horse.getHitPoints() + "/" + horse.getHitPointsMax());
             guiController.getHorseRiding().setText(Integer.toString(horse.getRiding()));
             guiController.getHorseState().setText(horse.getState());
-            guiController.getHorseEquipment().setText(horse.getEquipment());
+            guiController.getHorseEquipment().setText(horse.getEquipmentStr());
         } else {
             guiController.getHorseName().setText(null);
             guiController.getHorseHitPoints().setText(null);

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +22,8 @@ public class Horse implements Serializable {
 
     private String name;
     private String state;
-    private String equipment;
+    private String equipmentStr;
+    private List<HorseEquipment> equipment;
 
     public Horse(HorseType type) {
         this.type = type;

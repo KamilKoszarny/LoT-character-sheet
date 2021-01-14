@@ -342,7 +342,7 @@ public class PlayerUpdater {
         });
         guiController.getHorseEquipment().textProperty().addListener((observable, oldValue, newValue) -> {
             if (currentPlayer.getHorse() != null) {
-                currentPlayer.getHorse().setEquipment(newValue);
+                currentPlayer.getHorse().setEquipmentStr(newValue);
             }
         });
         guiController.getExtraInventory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setExtraInventory(newValue));

@@ -47,6 +47,7 @@ public class GuiInitializer {
         Utils.makeNumeric(guiController.getLuckPoints());
         Utils.makeNumeric(guiController.getExperiencePoints());
         Utils.makeNumeric(guiController.getSpeed());
+        Utils.makeNumeric(guiController.getHorseRiding());
         Utils.makeNumeric(guiController.getLoadExtra());
     }
 
