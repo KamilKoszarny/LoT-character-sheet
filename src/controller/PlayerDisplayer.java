@@ -368,8 +368,6 @@ public class PlayerDisplayer {
         guiController.getFamily().setText(currentPlayer.getFamily());
         guiController.getAppearance().setText(currentPlayer.getAppearance());
         guiController.getHistory().setText(currentPlayer.getHistory());
-        guiController.getState().setText(currentPlayer.getState());
-        guiController.getNotes().setText(currentPlayer.getNotes());
 
         guiController.getVim().setText(Integer.toString(currentPlayer.getVim()));
         guiController.getStrengthBase().setText(Integer.toString(currentPlayer.getStrengthBase()));
@@ -427,11 +425,18 @@ public class PlayerDisplayer {
         guiController.getHorseState().setText(currentPlayer.getHorseState());
         guiController.getHorseEquipment().setText(currentPlayer.getHorseEquipment());
         guiController.getExtraInventory().setText(currentPlayer.getExtraInventory());
-        guiController.getLoad().setText(currentPlayer.getLoad());
+        guiController.getLoad().setText(Integer.toString(currentPlayer.getLoad()));
+        guiController.getLoadExtra().setText(Integer.toString(currentPlayer.getLoadExtra()));
         guiController.getGold().setText(currentPlayer.getGold());
         guiController.getBankGold().setText(currentPlayer.getBankGold());
 
         displayEquipment();
         displayInventory();
+
+        guiController.getSatiety().setText(currentPlayer.getSatiety());
+        guiController.getAlertness().setText(currentPlayer.getAlertness());
+        guiController.getIllnesses().setText(currentPlayer.getIllnesses());
+        guiController.getState().setText(currentPlayer.getState());
+        guiController.getNotes().setText(currentPlayer.getNotes());
     }
 }

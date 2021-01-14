@@ -26,8 +26,6 @@ public class Player implements Serializable {
     private String family;
     private String appearance;
     private String history;
-    private String state;
-    private String notes;
 
     private int vim;
     private int strengthBase;
@@ -142,15 +140,22 @@ public class Player implements Serializable {
     private Ring ring2;
     private Belt belt;
 
+    private Map<Item, Point> inventory = new HashMap<>();
     private String extraInventory;
 
-    private String load;
+    private int load;
+    private int loadExtra;
 
     private String gold;
-
     private String bankGold;
 
-    private Map<Item, Point> inventory = new HashMap<>();
+    private String satiety;
+    private String alertness;
+    private String illnesses;
+    private String state;
+
+    private String notes;
+
 
     public Skill getSkill(SkillType skillType) {
         for (Skill skill: skills) {

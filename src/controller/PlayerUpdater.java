@@ -65,6 +65,9 @@ public class PlayerUpdater {
         guiController.getFamily().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setFamily(newValue));
         guiController.getAppearance().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setAppearance(newValue));
         guiController.getHistory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHistory(newValue));
+        guiController.getSatiety().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setSatiety(newValue));
+        guiController.getAlertness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setAlertness(newValue));
+        guiController.getIllnesses().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setIllnesses(newValue));
         guiController.getState().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setState(newValue));
         guiController.getNotes().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setNotes(newValue));
     }
@@ -306,7 +309,8 @@ public class PlayerUpdater {
         guiController.getHorseState().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseState(newValue));
         guiController.getHorseEquipment().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHorseEquipment(newValue));
         guiController.getExtraInventory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setExtraInventory(newValue));
-        guiController.getLoad().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setLoad(newValue));
+        guiController.getLoad().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setLoad(Integer.parseInt(newValue)));
+        guiController.getLoadExtra().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setLoadExtra(Integer.parseInt(newValue)));
         guiController.getGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setGold(newValue));
         guiController.getBankGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setBankGold(newValue));
     }

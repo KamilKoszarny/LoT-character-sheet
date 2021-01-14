@@ -55,12 +55,6 @@ public class GuiController {
     private TextArea history;
 
     @FXML
-    private TextArea state;
-
-    @FXML
-    private TextArea notes;
-
-    @FXML
     private TextField vim;
 
     @FXML
@@ -508,9 +502,27 @@ public class GuiController {
     private TextField load;
 
     @FXML
+    private TextField loadExtra;
+
+    @FXML
     private TextField gold;
 
     @FXML
     private TextField bankGold;
+
+    @FXML
+    private TextField satiety;
+
+    @FXML
+    private TextField alertness;
+
+    @FXML
+    private TextField illnesses;
+
+    @FXML
+    private TextArea state;
+
+    @FXML
+    private TextArea notes;
 }
 
