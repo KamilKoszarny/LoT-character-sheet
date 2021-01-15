@@ -20,6 +20,9 @@ public class GuiController {
     private MenuItem open;
 
     @FXML
+    private MenuItem save;
+
+    @FXML
     private MenuItem saveAs;
 
     @FXML

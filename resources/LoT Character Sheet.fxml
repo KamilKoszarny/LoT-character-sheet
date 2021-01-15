@@ -14,7 +14,7 @@
             <MenuItem mnemonicParsing="false" text="Nowy" />
             <MenuItem fx:id="open" mnemonicParsing="false" text="Otwórz..." />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Zapisz" />
+            <MenuItem fx:id="save" mnemonicParsing="false" text="Zapisz" />
             <MenuItem fx:id="saveAs" mnemonicParsing="false" text="Zapisz jako..." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Zamknij" />
