@@ -61,7 +61,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox fx:id="proffesion" prefWidth="150.0">
+                                    <ChoiceBox fx:id="profession" prefWidth="150.0">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </HBox.margin>

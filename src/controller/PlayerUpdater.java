@@ -45,8 +45,8 @@ public class PlayerUpdater {
     }
 
     private static void initIdentityUpdating() {
-        guiController.getProffesion().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            currentPlayer.setProffesion(guiController.getProffesion().getItems().get((Integer) newValue));
+        guiController.getProfession().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            currentPlayer.setProfession(guiController.getProfession().getItems().get((Integer) newValue));
             PlayerDisplayer.displayAbilities();
         });
         guiController.getRace().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {

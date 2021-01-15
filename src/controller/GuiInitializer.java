@@ -25,7 +25,7 @@ public class GuiInitializer {
 
     public static void init() {
         makeFieldsNumeric();
-        initProffesions();
+        initProfessions();
         initRaces();
         initSigns();
         initSkills();
@@ -51,8 +51,8 @@ public class GuiInitializer {
         Utils.makeNumeric(guiController.getLoadExtra());
     }
 
-    private static void initProffesions() {
-        guiController.getProffesion().getItems().addAll(Proffesion.values());
+    private static void initProfessions() {
+        guiController.getProfession().getItems().addAll(Profession.values());
     }
 
     private static void initRaces() {

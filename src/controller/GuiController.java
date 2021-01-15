@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import lombok.Getter;
 import lombok.Setter;
-import model.Proffesion;
+import model.Profession;
 import model.Race;
 import model.Sign;
 import model.Trait;
@@ -26,7 +26,7 @@ public class GuiController {
     private TextField fullname;
 
     @FXML
-    private ChoiceBox<Proffesion> proffesion;
+    private ChoiceBox<Profession> profession;
 
     @FXML
     private ChoiceBox<Race> race;

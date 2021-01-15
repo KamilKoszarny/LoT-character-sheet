@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class Player implements Serializable {
 
     private String fullname;
-    private Proffesion proffesion;
+    private Profession profession;
     private Race race;
     private String age;
     private String height;
