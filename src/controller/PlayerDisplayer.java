@@ -363,7 +363,25 @@ public class PlayerDisplayer {
         return new Image(path);
     }
 
-    public static void displayAllNotAuto() {
+    public static void displayHorse() {
+        Horse horse = currentPlayer.getHorse();
+        if (horse != null) {
+            guiController.getHorseType().getSelectionModel().select(horse.getType());
+            guiController.getHorseName().setText(horse.getName());
+            guiController.getHorseHitPoints().setText("" + horse.getHitPoints() + "/" + horse.getHitPointsMax());
+            guiController.getHorseRiding().setText(Integer.toString(horse.getRiding()));
+            guiController.getHorseState().setText(horse.getState());
+            guiController.getHorseEquipment().setText(horse.getEquipmentStr());
+        } else {
+            guiController.getHorseName().setText(null);
+            guiController.getHorseHitPoints().setText(null);
+            guiController.getHorseRiding().setText(null);
+            guiController.getHorseState().setText(null);
+            guiController.getHorseEquipment().setText(null);
+        }
+    }
+
+    private static void displayIdentity() {
         guiController.getProfession().getSelectionModel().select(currentPlayer.getProfession());
         guiController.getRace().getSelectionModel().select(currentPlayer.getRace());
         guiController.getSign().getSelectionModel().select(currentPlayer.getSign());
@@ -376,7 +394,9 @@ public class PlayerDisplayer {
         guiController.getFamily().setText(currentPlayer.getFamily());
         guiController.getAppearance().setText(currentPlayer.getAppearance());
         guiController.getHistory().setText(currentPlayer.getHistory());
+    }
 
+    private static void displayAttributes() {
         guiController.getVim().setText(Integer.toString(currentPlayer.getVim()));
         guiController.getStrengthBase().setText(Integer.toString(currentPlayer.getStrengthBase()));
         guiController.getStrength().setText(Integer.toString(currentPlayer.getStrength()));
@@ -398,6 +418,18 @@ public class PlayerDisplayer {
         guiController.getFocus().setText(Integer.toString(currentPlayer.getFocus()));
         guiController.getCharismaBase().setText(Integer.toString(currentPlayer.getCharismaBase()));
         guiController.getCharisma().setText(Integer.toString(currentPlayer.getCharisma()));
+    }
+
+    public static void displayAllNotAuto() {
+        displayIdentity();
+
+        displayAttributes();
+
+        if (currentPlayer.getSign() != null) {
+            guiController.getSignNumber().setText(String.valueOf(currentPlayer.getSign().getNumber()));
+        }
+        guiController.getLuckPoints().setText(Integer.toString(currentPlayer.getLuckPoints()));
+        guiController.getExperiencePoints().setText(Integer.toString(currentPlayer.getExperiencePoints()));
 
         displaySkills();
         displayTraits();
@@ -434,23 +466,5 @@ public class PlayerDisplayer {
         guiController.getIllnesses().setText(currentPlayer.getIllnesses());
         guiController.getState().setText(currentPlayer.getState());
         guiController.getNotes().setText(currentPlayer.getNotes());
-    }
-
-    public static void displayHorse() {
-        Horse horse = currentPlayer.getHorse();
-        if (horse != null) {
-            guiController.getHorseType().getSelectionModel().select(horse.getType());
-            guiController.getHorseName().setText(horse.getName());
-            guiController.getHorseHitPoints().setText("" + horse.getHitPoints() + "/" + horse.getHitPointsMax());
-            guiController.getHorseRiding().setText(Integer.toString(horse.getRiding()));
-            guiController.getHorseState().setText(horse.getState());
-            guiController.getHorseEquipment().setText(horse.getEquipmentStr());
-        } else {
-            guiController.getHorseName().setText(null);
-            guiController.getHorseHitPoints().setText(null);
-            guiController.getHorseRiding().setText(null);
-            guiController.getHorseState().setText(null);
-            guiController.getHorseEquipment().setText(null);
-        }
     }
 }

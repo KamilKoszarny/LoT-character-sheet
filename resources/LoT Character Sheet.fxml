@@ -139,7 +139,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <ChoiceBox fx:id="sign" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="sign" prefWidth="160.0" />
                                     <Label text="Religia">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -587,6 +587,12 @@
                                        </font>
                                        <HBox.margin>
                                           <Insets left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="Nr znaku:" />
+                                    <Label fx:id="signNumber" alignment="CENTER" prefWidth="25.0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
                                        </HBox.margin>
                                     </Label>
                                     <Label text="Punkty Szczęścia">

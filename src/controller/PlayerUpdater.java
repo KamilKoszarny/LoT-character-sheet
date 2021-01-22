@@ -38,6 +38,7 @@ public class PlayerUpdater {
     private static void initUpdating() {
         initIdentityUpdating();
         initAttributesUpdating();
+        initLuckAndExperienceUpdating();
         initSkillsUpdating();
         initTraitsUpdating();
         initAbilityTimeUpdating();
@@ -55,6 +56,7 @@ public class PlayerUpdater {
         });
         guiController.getSign().getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             currentPlayer.setSign(guiController.getSign().getItems().get((Integer) newValue));
+            guiController.getSignNumber().setText(String.valueOf(currentPlayer.getSign().getNumber()));
         });
 
         guiController.getFullname().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setFullname(newValue));
@@ -156,6 +158,11 @@ public class PlayerUpdater {
             updateCharisma();
             updateIntelligence();
         });
+    }
+
+    private static void initLuckAndExperienceUpdating() {
+        guiController.getLuckPoints().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setLuckPoints(Integer.parseInt(newValue)));
+        guiController.getExperiencePoints().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setExperiencePoints(Integer.parseInt(newValue)));
     }
 
     private static void initSkillsUpdating() {

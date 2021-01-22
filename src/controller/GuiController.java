@@ -125,6 +125,9 @@ public class GuiController {
     private TextField charisma;
 
     @FXML
+    private Label signNumber;
+
+    @FXML
     private TextField luckPoints;
 
     @FXML
