@@ -15,6 +15,7 @@ import model.Profession;
 import model.Skill;
 import model.horses.Horse;
 import model.items.*;
+import utils.GraphicUtils;
 import utils.Utils;
 
 import java.awt.*;
@@ -283,6 +284,9 @@ public class PlayerDisplayer {
         } else {
             Image img = findImage(item);
             ImageView view = new ImageView(img);
+            if (item.isMagic()) {
+                GraphicUtils.addMagicColor(view, item.getColor());
+            }
             button.setGraphic(view);
             button.setOpacity(opacity);
         }

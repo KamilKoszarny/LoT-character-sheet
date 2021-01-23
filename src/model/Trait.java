@@ -5,9 +5,8 @@ import model.items.Modifier;
 import model.items.ModifierType;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Getter
 public enum Trait implements Modifying {
@@ -26,13 +25,13 @@ public enum Trait implements Modifying {
     private final String namePL;
     private final String descriptionPL;
     private final TraitType type;
-    protected Set<Modifier> modifiers;
+    protected List<Modifier> modifiers;
 
     Trait(TraitType type, String namePL, String descriptionPL, Modifier... modifiers) {
         this.type= type;
         this.namePL = namePL;
         this.descriptionPL = descriptionPL;
-        this.modifiers = new HashSet<>(Arrays.asList(modifiers));
+        this.modifiers = Arrays.asList(modifiers);
     }
 
     @Override

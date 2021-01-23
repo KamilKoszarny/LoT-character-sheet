@@ -1,11 +1,11 @@
 package model.items;
 
-import java.util.Set;
+import java.util.List;
 
 public interface ItemModel {
 
     String getNamePL();
     int getWeight();
     int getDurabilityMax();
-    Set<Modifier> getModifiers();
+    List<Modifier> getModifiers();
 }

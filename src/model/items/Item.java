@@ -1,11 +1,13 @@
 package model.items;
 
+import javafx.scene.paint.Color;
 import lombok.Getter;
 import model.Modifying;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Getter
@@ -18,7 +20,8 @@ public class Item implements Serializable, Modifying {
     private int durability;
     private int durabilityMax;
 
-    protected Set<Modifier> modifiers;
+    protected List<Modifier> modifiers;
+    private Color color;
 
     public Item(ItemType itemType, ItemModel itemModel) {
         this.itemType = itemType;
@@ -26,7 +29,7 @@ public class Item implements Serializable, Modifying {
         this.weight = itemModel.getWeight();
         this.durability = itemModel.getDurabilityMax();
         this.durabilityMax = itemModel.getDurabilityMax();
-        this.modifiers = new HashSet<>(itemModel.getModifiers());
+        this.modifiers = new ArrayList<>(itemModel.getModifiers());
     }
 
     public void setMagicModifier(MagicModifier newMagicModifier) {
@@ -43,11 +46,30 @@ public class Item implements Serializable, Modifying {
             modifiers.remove(oldModifierToDelete);
         }
         modifiers.add(newModifier);
+        color = newMagicModifier.getColor();
+    }
+
+    public void removeMagicModifier(boolean prefix) {
+        Modifier modifierToRemove = null;
+        if (prefix) {
+            Optional<Modifier> optionalPrefixModifier = modifiers.stream().filter(Modifier::hasPrefix).findFirst();
+            if (optionalPrefixModifier.isPresent()) {
+                modifierToRemove = optionalPrefixModifier.get();
+            }
+        } else {
+            Optional<Modifier> optionalSuffixModifier = modifiers.stream().filter(Modifier::hasSuffix).findFirst();
+            if (optionalSuffixModifier.isPresent()) {
+                modifierToRemove = optionalSuffixModifier.get();
+            }
+        }
+        if (modifierToRemove != null) {
+            modifiers.remove(modifierToRemove);
+        }
     }
 
     @Override
     public int getModifiersSum(ModifierType modifierType) {
-        Set<Modifier> modifiersOfType = this.modifiers.stream().filter(modifier -> modifier.getType().equals(modifierType)).collect(Collectors.toSet());
+        List<Modifier> modifiersOfType = this.modifiers.stream().filter(modifier -> modifier.getType().equals(modifierType)).collect(Collectors.toList());
         int sum = 0;
         for (Modifier modifier: modifiersOfType) {
             sum += modifier.getValue();

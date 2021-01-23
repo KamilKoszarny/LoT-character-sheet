@@ -121,6 +121,8 @@ public class EquipmentGuiInitializer {
         Menu addMagicModifierButton = new Menu("Magiczne właściwości");
         Menu prefixesMenu = new Menu("Przedrostki");
         Menu suffixesMenu = new Menu("Przyrostki");
+        prefixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, true));
+        suffixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, false));
         for (MagicModifier magicModifier: MagicModifier.values()) {
             MenuItem modifierButton = createMagicModifierButton(item, itemSlot, rectangle, magicModifier);
             if (magicModifier.hasPrefix()) {
@@ -147,6 +149,35 @@ public class EquipmentGuiInitializer {
             if (foundItem != null) {
                 foundItem.setMagicModifier(magicModifier);
                 PlayerUpdater.updateAll();
+                if (item == null) {
+                    PlayerDisplayer.displayEquipmentItem(foundItem, itemSlot);
+                } else {
+                    PlayerDisplayer.displayInventory();
+                }
+                updateTooltip(item, itemSlot, rectangle);
+            }
+        });
+        return modifierButton;
+    }
+
+    private static MenuItem createRemoveMagicModifierButton(Item item, ItemSlot itemSlot, Rectangle rectangle, boolean prefix) {
+        MenuItem modifierButton = new MenuItem();
+        modifierButton.setText("Brak");
+        modifierButton.setOnAction(event -> {
+            Item foundItem;
+            if (item == null) {
+                foundItem = PlayerUpdater.getCurrentPlayer().getItem(itemSlot);
+            } else {
+                foundItem = item;
+            }
+            if (foundItem != null) {
+                foundItem.removeMagicModifier(prefix);
+                PlayerUpdater.updateAll();
+                if (item == null) {
+                    PlayerDisplayer.displayEquipmentItem(foundItem, itemSlot);
+                } else {
+                    PlayerDisplayer.displayInventory();
+                }
                 updateTooltip(item, itemSlot, rectangle);
             }
         });

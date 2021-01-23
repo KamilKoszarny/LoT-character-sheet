@@ -3,8 +3,7 @@ package model.items;
 import lombok.Getter;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 public enum ShieldModel implements ItemModel{
@@ -27,7 +26,7 @@ public enum ShieldModel implements ItemModel{
     private final int weight;
     private final int durabilityMax;
     private final String namePL;
-    private final Set<Modifier> modifiers;
+    private final List<Modifier> modifiers;
 
     ShieldModel(int block, int dmg, int weight, int durabilityMax, String namePL, Modifier... modifiers) {
         this.block = block;
@@ -35,6 +34,6 @@ public enum ShieldModel implements ItemModel{
         this.weight = weight;
         this.durabilityMax = durabilityMax;
         this.namePL = namePL;
-        this.modifiers = new HashSet<>(Arrays.asList(modifiers));
+        this.modifiers = Arrays.asList(modifiers);
     }
 }
