@@ -399,9 +399,7 @@ public class PlayerUpdater {
         int vim = StatsCalculator.calculateVim(currentPlayer);
         currentPlayer.setVim(vim);
         guiController.getVim().setText(Integer.toString(vim));
-        int hitPointsMax = (int) Math.round(vim/3.);
-        currentPlayer.setHitPointsMax(hitPointsMax);
-        guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + hitPointsMax);
+        updateHitPointsMax();
     }
 
     private static void updateArm() {
@@ -466,28 +464,6 @@ public class PlayerUpdater {
         updateManaMax();
     }
 
-    public static void updateStatsFromWeapon(boolean firstSet) {
-        updateKnowledge();
-        updateManaMax();
-        updateManaIncrease();
-        updateDmg(firstSet);
-        updateHits(firstSet);
-        updateParry(firstSet);
-        updateRange(firstSet);
-        updateAttackTime(firstSet);
-    }
-
-    public static void updateStatsFromArmor() {
-        updateArmors();
-        updateForm();
-        updateEye();
-        updateArm();
-        updateAgility();
-        updateKnowledge();
-        updateFocus();
-        updateCharisma();
-    }
-
     private static void updateStatsFromSkill(SkillType skillType) {
         switch (skillType) {
             case REGENERATION:
@@ -513,6 +489,13 @@ public class PlayerUpdater {
                 break;
         }
     }
+
+    private static void updateHitPointsMax() {
+        int hitPointsMax = StatsCalculator.calculateHitPointsMax(currentPlayer);
+        currentPlayer.setHitPointsMax(hitPointsMax);
+        guiController.getHitPoints().setText("" + currentPlayer.getHitPoints() + '/' + hitPointsMax);
+    }
+
 
     private static void updateHitPointsIncrease() {
         int hitPointsIncrease = StatsCalculator.calculateHitPointsIncrease(currentPlayer);
@@ -698,12 +681,10 @@ public class PlayerUpdater {
         updateFocus();
         updateCharisma();
         updateIntelligence();
-        updateStatsFromWeapon(true);
-        updateStatsFromWeapon(false);
-        updateStatsFromArmor();
         for (SkillType skillType: SkillType.values()) {
             updateStatsFromSkill(skillType);
         }
+        updateHitPointsMax();
         updateHitPointsIncrease();
         updateManaMax();
         updateManaIncrease();

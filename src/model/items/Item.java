@@ -29,6 +29,22 @@ public class Item implements Serializable, Modifying {
         this.modifiers = new HashSet<>(itemModel.getModifiers());
     }
 
+    public void setMagicModifier(MagicModifier newMagicModifier) {
+        Modifier newModifier = new Modifier(newMagicModifier);
+        Modifier oldModifierToDelete = null;
+        for (Modifier modifier: modifiers) {
+            if (modifier.hasPrefix() && newModifier.hasPrefix()) {
+                oldModifierToDelete = modifier;
+            } else if (modifier.hasSuffix() && newModifier.hasSuffix()) {
+                oldModifierToDelete = modifier;
+            }
+        }
+        if (oldModifierToDelete != null) {
+            modifiers.remove(oldModifierToDelete);
+        }
+        modifiers.add(newModifier);
+    }
+
     @Override
     public int getModifiersSum(ModifierType modifierType) {
         Set<Modifier> modifiersOfType = this.modifiers.stream().filter(modifier -> modifier.getType().equals(modifierType)).collect(Collectors.toSet());

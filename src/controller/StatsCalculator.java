@@ -74,6 +74,12 @@ public class StatsCalculator {
         return charisma;
     }
 
+    public static int calculateHitPointsMax(Player player) {
+        int hitPointsMax = (int) Math.round(player.getVim()/3.);
+        hitPointsMax += modifiersSum(player, ModifierType.HP_MAX);
+        return hitPointsMax;
+    }
+
     public static int calculateHitPointsIncrease(Player player) {
         int hitPointsIncrease = 1;
         hitPointsIncrease += modifiersSum(player, ModifierType.HP_INCREASE);

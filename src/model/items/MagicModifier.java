@@ -6,7 +6,17 @@ import java.util.Set;
 
 @Getter
 public enum MagicModifier {
-    MM00("Trafny", null, ModifierType.HIT, 5);
+    MMP00("Trafny", null, ModifierType.HIT, 5),
+    MMP01("Celny", null, ModifierType.HIT, 10),
+
+    MMP88("Rześki", null, ModifierType.HP_MAX, 2),
+
+
+    MMS00(null, "Barana", ModifierType.STRENGTH, 3),
+    MMS01(null, "Byka", ModifierType.STRENGTH, 6),
+
+    MMS05(null, "Robaka", ModifierType.ENDURANCE, 3),
+    ;
 
     private String prefix;
     private String suffix;
@@ -19,6 +29,10 @@ public enum MagicModifier {
         this.suffix = suffix;
         this.modifierType = modifierType;
         this.value = value;
+    }
+
+    public boolean hasPrefix() {
+        return prefix != null;
     }
 
     public String getText() {

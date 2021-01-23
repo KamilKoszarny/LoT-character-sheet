@@ -237,82 +237,62 @@ public class Player implements Serializable {
         switch (itemSlot) {
             case WEAPON_A:
                 setWeaponA((Weapon) item);
-                PlayerUpdater.updateStatsFromWeapon(true);
                 break;
             case WEAPON_B:
                 setWeaponB((Weapon) item);
-                PlayerUpdater.updateStatsFromWeapon(false);
                 break;
             case SHIELD_A:
                 if (item == null) {
                     setShieldA(null);
                     setWeaponA2ndHand(null);
-                    PlayerUpdater.updateStatsFromWeapon(true);
-                    PlayerUpdater.updateBlock(true);
                 } else if (item instanceof Weapon) {
                     setWeaponA2ndHand((Weapon) item);
-                    PlayerUpdater.updateStatsFromWeapon(true);
                 } else {
                     setShieldA((Shield) item);
-                    PlayerUpdater.updateDmg(true);
-                    PlayerUpdater.updateBlock(true);
                 }
                 break;
             case SHIELD_B:
                 if (item == null) {
                     setShieldB(null);
                     setWeaponB2ndHand(null);
-                    PlayerUpdater.updateStatsFromWeapon(false);
-                    PlayerUpdater.updateBlock(false);
                 } else if (item instanceof Weapon) {
                     setWeaponB2ndHand((Weapon) item);
-                    PlayerUpdater.updateStatsFromWeapon(false);
                 } else {
                     setShieldB((Shield) item);
-                    PlayerUpdater.updateDmg(false);
-                    PlayerUpdater.updateBlock(false);
                 }
                 break;
             case HELMET:
                 setHelmet((Helmet) item);
-                PlayerUpdater.updateStatsFromArmor();
                 break;
             case ARMOR:
                 setArmor((Armor) item);
-                PlayerUpdater.updateStatsFromArmor();
                 break;
             case GLOVES:
                 setGloves((Gloves) item);
-                PlayerUpdater.updateStatsFromArmor();
                 break;
             case BOOTS:
                 setBoots((Boots) item);
-                PlayerUpdater.updateStatsFromArmor();
                 break;
             case AMULET:
                 setAmulet((Amulet) item);
-                PlayerUpdater.updateCharisma();
                 break;
             case RING1:
                 setRing1((Ring) item);
-                PlayerUpdater.updateCharisma();
                 break;
             case RING2:
                 setRing2((Ring) item);
-                PlayerUpdater.updateCharisma();
                 break;
             case BELT:
                 setBelt((Belt) item);
-                PlayerUpdater.updateStatsFromArmor();
                 break;
             case INVENTORY:
                 ItemHandler.tryPutNewItemInInventory(item);
                 break;
         }
         if (!itemSlot.equals(ItemSlot.INVENTORY)) {
-            EquipmentGuiInitializer.updateTooltip(itemSlot);
+            EquipmentGuiInitializer.updateTooltip(null, itemSlot, null);
         }
-        PlayerUpdater.updateLoad();
+        PlayerUpdater.updateAll();
         return true;
     }
 

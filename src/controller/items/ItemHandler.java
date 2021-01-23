@@ -1,17 +1,14 @@
 package controller.items;
 
+import controller.EquipmentGuiInitializer;
 import controller.PlayerDisplayer;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.items.Item;
-import model.items.MagicModifier;
-import model.items.Modifier;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -211,7 +208,7 @@ public class ItemHandler {
     }
 
     public static void initInventoryItemClick(Item item, Rectangle rectangle) {
-        ContextMenu invItemContextMenu = invItemContextMenu(item);
+        ContextMenu invItemContextMenu = EquipmentGuiInitializer.createContextMenu(item, null, rectangle);
         rectangle.setOnMousePressed(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 Image itemImage = PlayerDisplayer.findImage(item);
@@ -225,37 +222,6 @@ public class ItemHandler {
                 invItemContextMenu.show(rectangle, event.getScreenX(), event.getScreenY());
             }
         });
-    }
-
-    private static ContextMenu invItemContextMenu(Item item) {
-        final ContextMenu contextMenu = new ContextMenu();
-        contextMenu.getItems().add(createInvItemDropButton(item));
-        contextMenu.getItems().add(createAddMagicModifierButton(item));
-        return contextMenu;
-    }
-
-    private static javafx.scene.control.MenuItem createInvItemDropButton(Item item) {
-        javafx.scene.control.MenuItem dropButton = new MenuItem();
-        dropButton.setText("Wyrzuć");
-        dropButton.setOnAction(event -> {
-            currentPlayer.removeFromInventory(item);
-            PlayerDisplayer.removeInventoryItem(item);
-        });
-        return dropButton;
-    }
-
-    private static MenuItem createAddMagicModifierButton(Item item) {
-        javafx.scene.control.Menu addMagicModifierButton = new Menu();
-        addMagicModifierButton.setText("Dodaj magiczną właściwość");
-        for (MagicModifier magicModifier: MagicModifier.values()) {
-            MenuItem modifierButton = new MenuItem();
-            modifierButton.setText(magicModifier.getText());
-            modifierButton.setOnAction(event -> {
-                item.getModifiers().add(new Modifier(magicModifier));
-            });
-            addMagicModifierButton.getItems().add(modifierButton);
-        }
-        return addMagicModifierButton;
     }
 
     public static void tryPutNewItemInInventory(Item item) {

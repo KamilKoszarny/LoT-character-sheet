@@ -306,6 +306,7 @@ public class PlayerDisplayer {
         rectangle.setId(Integer.toString(item.hashCode()));
 
         ItemHandler.initInventoryItemClick(item, rectangle);
+        EquipmentGuiInitializer.updateTooltip(item, null, rectangle);
 
         guiController.getItemsPane().getChildren().add(rectangle);
     }

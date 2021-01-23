@@ -6,11 +6,14 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
+import javafx.scene.shape.Rectangle;
 import model.items.*;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static controller.PlayerUpdater.currentPlayer;
 
 public class EquipmentGuiInitializer {
 
@@ -33,7 +36,7 @@ public class EquipmentGuiInitializer {
         addNewItemMenus(button, itemSlot);
 
         if (!itemSlot.equals(ItemSlot.INVENTORY)) {
-            addContextMenu(button, itemSlot);
+            button.setContextMenu(createContextMenu(null, itemSlot, null));
         }
     }
 
@@ -75,51 +78,79 @@ public class EquipmentGuiInitializer {
         }
     }
 
-    private static void addContextMenu(MenuButton button, ItemSlot itemSlot) {
-        final ContextMenu contextMenu = new ContextMenu();
-        contextMenu.getItems().add(createDropButton(itemSlot));
-        contextMenu.getItems().add(createAddMagicModifierButton(itemSlot));
-        button.setContextMenu(contextMenu);
-    }
-
-    public static void updateTooltip(ItemSlot itemSlot) {
-        MenuButton button = itemSlot.getMenuButton();
-        Item item = PlayerUpdater.getCurrentPlayer().getItem(itemSlot);
+    public static void updateTooltip(Item item, ItemSlot itemSlot, Rectangle rectangle) {
+        if (item == null) {
+            item = PlayerUpdater.getCurrentPlayer().getItem(itemSlot);
+        }
         if (item != null) {
-            Tooltip tooltip = new Tooltip(
-                item.getDescription()
-            );
-            button.setTooltip(tooltip);
+            Tooltip tooltip = new Tooltip(item.getDescription());
+            if (itemSlot != null) {
+                MenuButton button = itemSlot.getMenuButton();
+                button.setTooltip(tooltip);
+            } else {
+                Tooltip.install(rectangle, tooltip);
+            }
         }
     }
 
-    private static MenuItem createDropButton(ItemSlot itemSlot) {
+    public static ContextMenu createContextMenu(Item item, ItemSlot itemSlot, Rectangle rectangle) {
+        final ContextMenu contextMenu = new ContextMenu();
+        contextMenu.getItems().add(createDropButton(itemSlot, item));
+        contextMenu.getItems().add(createSetMagicModifierMenu(item, itemSlot, rectangle));
+        return contextMenu;
+    }
+
+    public static MenuItem createDropButton(ItemSlot itemSlot, Item item) {
         MenuItem dropButton = new MenuItem();
         dropButton.setText("Wyrzuć");
-        dropButton.setOnAction(event -> {
-            PlayerUpdater.getCurrentPlayer().trySetItem(null, itemSlot);
-            PlayerDisplayer.displayEquipmentItem(null, itemSlot);
-        });
+        if (itemSlot != null) {
+            dropButton.setOnAction(event -> {
+                PlayerUpdater.getCurrentPlayer().trySetItem(null, itemSlot);
+                PlayerDisplayer.displayEquipmentItem(null, itemSlot);
+            });
+        } else {
+            dropButton.setOnAction(event -> {
+                currentPlayer.removeFromInventory(item);
+                PlayerDisplayer.removeInventoryItem(item);
+            });
+        }
         return dropButton;
     }
 
-    private static MenuItem createAddMagicModifierButton(ItemSlot itemSlot) {
-        Menu addMagicModifierButton = new Menu();
-        addMagicModifierButton.setText("Dodaj magiczną właściwość");
+    public static Menu createSetMagicModifierMenu(Item item, ItemSlot itemSlot, Rectangle rectangle) {
+        Menu addMagicModifierButton = new Menu("Magiczne właściwości");
+        Menu prefixesMenu = new Menu("Przedrostki");
+        Menu suffixesMenu = new Menu("Przyrostki");
         for (MagicModifier magicModifier: MagicModifier.values()) {
-            MenuItem modifierButton = new MenuItem();
-            modifierButton.setText(magicModifier.getText());
-            modifierButton.setOnAction(event -> {
-                Item item = PlayerUpdater.getCurrentPlayer().getItem(itemSlot);
-                if (item != null) {
-                    item.getModifiers().add(new Modifier(magicModifier));
-                    PlayerUpdater.updateAll();
-                    updateTooltip(itemSlot);
-                }
-            });
-            addMagicModifierButton.getItems().add(modifierButton);
+            MenuItem modifierButton = createMagicModifierButton(item, itemSlot, rectangle, magicModifier);
+            if (magicModifier.hasPrefix()) {
+                prefixesMenu.getItems().add(modifierButton);
+            } else {
+                suffixesMenu.getItems().add(modifierButton);
+            }
         }
+        addMagicModifierButton.getItems().add(prefixesMenu);
+        addMagicModifierButton.getItems().add(suffixesMenu);
         return addMagicModifierButton;
+    }
+
+    private static MenuItem createMagicModifierButton(Item item, ItemSlot itemSlot, Rectangle rectangle, MagicModifier magicModifier) {
+        MenuItem modifierButton = new MenuItem();
+        modifierButton.setText(magicModifier.getText());
+        modifierButton.setOnAction(event -> {
+            Item foundItem;
+            if (item == null) {
+                foundItem = PlayerUpdater.getCurrentPlayer().getItem(itemSlot);
+            } else {
+                foundItem = item;
+            }
+            if (foundItem != null) {
+                foundItem.setMagicModifier(magicModifier);
+                PlayerUpdater.updateAll();
+                updateTooltip(item, itemSlot, rectangle);
+            }
+        });
+        return modifierButton;
     }
 
     private static List<MenuItem> createWeaponMenu(ItemSlot itemSlot) {
@@ -134,7 +165,7 @@ public class EquipmentGuiInitializer {
                     menuItem.setOnAction(event -> {
                         Weapon weapon = new Weapon(weaponModel);
                         if (PlayerUpdater.getCurrentPlayer().trySetItem(weapon, itemSlot)) {
-                            PlayerUpdater.updateStatsFromWeapon(itemSlot.equals(ItemSlot.WEAPON_A) || itemSlot.equals(ItemSlot.SHIELD_A));
+                            PlayerUpdater.updateAll();
                             PlayerDisplayer.displayEquipmentItem(weapon, itemSlot);
                         }
                     });
@@ -186,7 +217,7 @@ public class EquipmentGuiInitializer {
             menuItem.setOnAction(event -> {
                 Helmet helmet = new Helmet(helmetModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(helmet, itemSlot);
-                PlayerUpdater.updateStatsFromArmor();
+                PlayerUpdater.updateAll();
                 PlayerDisplayer.displayEquipmentItem(helmet, itemSlot);
             });
             helmetMenuItems.add(menuItem);
@@ -202,7 +233,7 @@ public class EquipmentGuiInitializer {
             menuItem.setOnAction(event -> {
                 Armor armor = new Armor(armorModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(armor, itemSlot);
-                PlayerUpdater.updateStatsFromArmor();
+                PlayerUpdater.updateAll();
                 PlayerDisplayer.displayEquipmentItem(armor, itemSlot);
             });
             armorMenuItems.add(menuItem);
@@ -218,7 +249,7 @@ public class EquipmentGuiInitializer {
             menuItem.setOnAction(event -> {
                 Gloves gloves = new Gloves(glovesModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(gloves, itemSlot);
-                PlayerUpdater.updateStatsFromArmor();
+                PlayerUpdater.updateAll();
                 PlayerDisplayer.displayEquipmentItem(gloves, itemSlot);
             });
             glovesMenuItems.add(menuItem);
@@ -234,7 +265,7 @@ public class EquipmentGuiInitializer {
             menuItem.setOnAction(event -> {
                 Boots boots = new Boots(bootsModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(boots, itemSlot);
-                PlayerUpdater.updateStatsFromArmor();
+                PlayerUpdater.updateAll();
                 PlayerDisplayer.displayEquipmentItem(boots, itemSlot);
             });
             bootsMenuItems.add(menuItem);
@@ -282,7 +313,7 @@ public class EquipmentGuiInitializer {
             menuItem.setOnAction(event -> {
                 Belt belt = new Belt(beltModel);
                 PlayerUpdater.getCurrentPlayer().trySetItem(belt, itemSlot);
-                PlayerUpdater.updateStatsFromArmor();
+                PlayerUpdater.updateAll();
                 PlayerDisplayer.displayEquipmentItem(belt, itemSlot);
             });
             beltMenuItems.add(menuItem);

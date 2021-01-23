@@ -32,4 +32,12 @@ public class Modifier implements Serializable {
         String valueText = optionalPlus + this.value;
         return genericDescription.replace("<value>", valueText);
     }
+
+    public boolean hasPrefix() {
+        return prefix != null;
+    }
+
+    public boolean hasSuffix() {
+        return suffix != null;
+    }
 }
