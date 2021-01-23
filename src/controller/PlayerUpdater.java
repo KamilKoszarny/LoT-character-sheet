@@ -574,6 +574,11 @@ public class PlayerUpdater {
         PlayerDisplayer.displayHit();
     }
 
+    public static void updateParry() {
+        updateParry(true);
+        updateParry(false);
+    }
+
     public static void updateParry(boolean firstSet) {
         int parry = StatsCalculator.calculateParry(currentPlayer, firstSet);
         if(firstSet) {
@@ -606,6 +611,11 @@ public class PlayerUpdater {
         PlayerDisplayer.displayDodge();
     }
 
+    public static void updateRange() {
+        updateRange(true);
+        updateRange(false);
+    }
+
     public static void updateRange(boolean firstSet) {
         int range = StatsCalculator.calculateRange(currentPlayer, firstSet, true);
         int range2ndHand = StatsCalculator.calculateRange(currentPlayer, firstSet, false);
@@ -617,6 +627,11 @@ public class PlayerUpdater {
             currentPlayer.setRangeB2(range2ndHand);
         }
         PlayerDisplayer.displayRange();
+    }
+
+    public static void updateAttackTime() {
+        updateAttackTime(true);
+        updateAttackTime(false);
     }
 
     public static void updateAttackTime(boolean firstSet) {
@@ -668,5 +683,39 @@ public class PlayerUpdater {
         int loadMax = StatsCalculator.calculateLoadMax(currentPlayer);
         currentPlayer.setLoadMax(loadMax);
         PlayerDisplayer.displayLoad();
+    }
+
+    public static void updateAll() {
+        updateStrength();
+        updateEndurance();
+        updateForm();
+        updateVim();
+        updateArm();
+        updateEye();
+        updateAgility();
+        updateEfficiency();
+        updateKnowledge();
+        updateFocus();
+        updateCharisma();
+        updateIntelligence();
+        updateStatsFromWeapon(true);
+        updateStatsFromWeapon(false);
+        updateStatsFromArmor();
+        for (SkillType skillType: SkillType.values()) {
+            updateStatsFromSkill(skillType);
+        }
+        updateHitPointsIncrease();
+        updateManaMax();
+        updateManaIncrease();
+        updateDmg();
+        updateHits();
+        updateParry();
+        updateBlock();
+        updateDodges();
+        updateRange();
+        updateAttackTime();
+        updateArmors();
+        updateResistances();
+        updateLoad();
     }
 }

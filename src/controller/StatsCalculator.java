@@ -170,11 +170,11 @@ public class StatsCalculator {
         if (weapon == null) {
             hit += 50 + player.getArm();
         } else if (weapon.getWeaponType().isRange()) {
-            hit += 50 + player.getEye() + weapon.getModifierValue(ModifierType.HIT);
+            hit += 50 + player.getEye() + weapon.getModifiersSum(ModifierType.HIT);
         } else if (weapon.getWeaponType().equals(WeaponType.MAGES)) {
             hit += 50 + player.getFocus();
         } else {
-            hit += 50 + player.getArm() + weapon.getModifierValue(ModifierType.HIT);
+            hit += 50 + player.getArm() + weapon.getModifiersSum(ModifierType.HIT);
         }
         if (!firstHand) {
             hit += -30;
@@ -366,7 +366,7 @@ public class StatsCalculator {
     private static int modifiersSum(Player player, ModifierType modifierType) {
         int sum = 0;
         for (Modifying modifying: player.getModifyingObjects()) {
-            sum += modifying.getModifierValue(modifierType);
+            sum += modifying.getModifiersSum(modifierType);
         }
         return sum;
     }

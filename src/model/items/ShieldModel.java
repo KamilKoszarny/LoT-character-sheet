@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-public enum ShieldModel {
+public enum ShieldModel implements ItemModel{
 
     WOODEN_SHIELD(      15, 1, 4, 5, "Drewniana tarcza"),
     BUCKLER(            20, 1, 7, 12, "Puklerz"),
@@ -25,15 +25,15 @@ public enum ShieldModel {
     private final int block;
     private final int dmg;
     private final int weight;
-    private final int durability;
+    private final int durabilityMax;
     private final String namePL;
     private final Set<Modifier> modifiers;
 
-    ShieldModel(int block, int dmg, int weight, int durability, String namePL, Modifier... modifiers) {
+    ShieldModel(int block, int dmg, int weight, int durabilityMax, String namePL, Modifier... modifiers) {
         this.block = block;
         this.dmg = dmg;
         this.weight = weight;
-        this.durability = durability;
+        this.durabilityMax = durabilityMax;
         this.namePL = namePL;
         this.modifiers = new HashSet<>(Arrays.asList(modifiers));
     }

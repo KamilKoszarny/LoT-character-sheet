@@ -9,7 +9,7 @@ public class Belt extends Item{
     private int armor;
 
     public Belt(BeltModel model) {
-        super(ItemType.BELT, model.getWeight(), model.getModifiers());
+        super(ItemType.BELT, model);
         this.model = model;
         this.armor = model.getArmor();
     }

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-public enum GlovesModel {
+public enum GlovesModel implements ItemModel{
 
     RAG_GLOVES(     0, 2, 3, "Szmaciane rękawice"),
     LEATHER_GLOVES( 1, 3, 6, "Skórzane rękawice"),
@@ -18,14 +18,14 @@ public enum GlovesModel {
 
     private final int armor;
     private final int weight;
-    private final int durability;
+    private final int durabilityMax;
     private final String namePL;
     private final Set<Modifier> modifiers;
 
-    GlovesModel(int armor, int weight, int durability, String namePL, Modifier... modifiers) {
+    GlovesModel(int armor, int weight, int durabilityMax, String namePL, Modifier... modifiers) {
         this.armor = armor;
         this.weight = weight;
-        this.durability = durability;
+        this.durabilityMax = durabilityMax;
         this.namePL = namePL;
         this.modifiers = new HashSet<>(Arrays.asList(modifiers));
     }

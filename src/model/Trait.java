@@ -41,7 +41,7 @@ public enum Trait implements Modifying {
     }
 
     @Override
-    public int getModifierValue(ModifierType modifierType) {
+    public int getModifiersSum(ModifierType modifierType) {
         final Optional<Modifier> optionalModifier = this.modifiers.stream().filter(modifier -> modifier.getType().equals(modifierType)).findFirst();
         return optionalModifier.map(Modifier::getValue).orElse(0);
     }

@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-public enum WeaponModel {
+public enum WeaponModel implements ItemModel {
 
     //swords
     SHORT_SWORD(WeaponType.SWORD,         2, 4, 1, 1,         false, 15, 6, 12, "Krótki miecz"),
@@ -117,11 +117,11 @@ public enum WeaponModel {
     private final boolean twoHanded;
     private final int parry;
     private final int weight;
-    private final int durability;
+    private final int durabilityMax;
     private final String namePL;
     private final Set<Modifier> modifiers;
 
-    WeaponModel(WeaponType type, int dmgMin, int dmgMax, int time, int range, boolean twoHanded, int parry, int weight, int durability, String namePL, Modifier... modifiers) {
+    WeaponModel(WeaponType type, int dmgMin, int dmgMax, int time, int range, boolean twoHanded, int parry, int weight, int durabilityMax, String namePL, Modifier... modifiers) {
         this.type = type;
         this.dmgMin = dmgMin;
         this.dmgMax = dmgMax;
@@ -130,7 +130,7 @@ public enum WeaponModel {
         this.twoHanded = twoHanded;
         this.parry = parry;
         this.weight = weight;
-        this.durability = durability;
+        this.durabilityMax = durabilityMax;
         this.namePL = namePL;
         this.modifiers = new HashSet<>(Arrays.asList(modifiers));
     }
