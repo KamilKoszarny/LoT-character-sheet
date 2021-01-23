@@ -4,5 +4,5 @@ import model.items.ModifierType;
 
 public interface Modifying {
 
-    int getModifierValue(ModifierType modifierType);
+    int getModifiersSum(ModifierType modifierType);
 }

@@ -14,7 +14,7 @@ public class Weapon extends Item {
     private int time;
 
     public Weapon(WeaponModel model) {
-        super(ItemType.WEAPON, model.getWeight(), model.getModifiers());
+        super(ItemType.WEAPON, model);
         this.weaponType = model.getType();
         this.model = model;
         this.dmgMin = model.getDmgMin();
@@ -22,5 +22,10 @@ public class Weapon extends Item {
         this.parry = model.getParry();
         this.range = model.getRange();
         this.time = model.getTime();
+    }
+
+    @Override
+    protected String getSpecificDescription() {
+        return "\nObrażenia: " + dmgMin + " - " + dmgMax;
     }
 }

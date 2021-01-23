@@ -1,5 +1,6 @@
 package model;
 
+import controller.EquipmentGuiInitializer;
 import controller.PlayerUpdater;
 import controller.items.ItemHandler;
 import controller.items.ItemSlot;
@@ -164,6 +165,7 @@ public class Player implements Serializable {
 
     public Set<Modifying> getModifyingObjects() {
         Set<Modifying> modifyingObjects = new HashSet<>();
+        //noinspection CollectionAddAllCanBeReplacedWithConstructor
         modifyingObjects.addAll(getWearItems());
         modifyingObjects.add(positiveTrait);
         modifyingObjects.add(neutralTrait);
@@ -306,6 +308,9 @@ public class Player implements Serializable {
             case INVENTORY:
                 ItemHandler.tryPutNewItemInInventory(item);
                 break;
+        }
+        if (!itemSlot.equals(ItemSlot.INVENTORY)) {
+            EquipmentGuiInitializer.updateTooltip(itemSlot);
         }
         PlayerUpdater.updateLoad();
         return true;

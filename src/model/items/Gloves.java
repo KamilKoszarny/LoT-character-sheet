@@ -9,7 +9,7 @@ public class Gloves extends Item{
     private int armor;
 
     public Gloves(GlovesModel model) {
-        super(ItemType.GLOVES, model.getWeight(), model.getModifiers());
+        super(ItemType.GLOVES, model);
         this.model = model;
         this.armor = model.getArmor();
     }

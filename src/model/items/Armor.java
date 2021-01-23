@@ -12,7 +12,7 @@ public class Armor extends Item{
     private int legsArmor;
 
     public Armor(ArmorModel model) {
-        super(ItemType.ARMOR, model.getWeight(), model.getModifiers());
+        super(ItemType.ARMOR, model);
         this.model = model;
         this.headArmor = model.getHeadArmor();
         this.bodyArmor = model.getBodyArmor();
