@@ -3,6 +3,7 @@ package model.items;
 import javafx.scene.paint.Color;
 import lombok.Getter;
 import model.Modifying;
+import utils.GraphicUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class Item implements Serializable, Modifying {
     private int durabilityMax;
 
     protected List<Modifier> modifiers;
-    private Color color;
+    private Color prefixColor;
+    private Color suffixColor;
 
     public Item(ItemType itemType, ItemModel itemModel) {
         this.itemType = itemType;
@@ -46,7 +48,12 @@ public class Item implements Serializable, Modifying {
             modifiers.remove(oldModifierToDelete);
         }
         modifiers.add(newModifier);
-        color = newMagicModifier.getColor();
+        if (newMagicModifier.hasPrefix()) {
+            prefixColor = newMagicModifier.getColor();
+        } else {
+            suffixColor = newMagicModifier.getColor();
+        }
+        updateStatsFromModifiers();
     }
 
     public void removeMagicModifier(boolean prefix) {
@@ -64,7 +71,13 @@ public class Item implements Serializable, Modifying {
         }
         if (modifierToRemove != null) {
             modifiers.remove(modifierToRemove);
+            if (modifierToRemove.hasPrefix()) {
+                prefixColor = null;
+            } else {
+                suffixColor = null;
+            }
         }
+        updateStatsFromModifiers();
     }
 
     @Override
@@ -77,6 +90,8 @@ public class Item implements Serializable, Modifying {
         return sum;
     }
 
+    protected void updateStatsFromModifiers() {}
+
     public boolean isMagic() {
         for (Modifier modifier: modifiers) {
             if (modifier.isMagic()) {
@@ -84,14 +99,6 @@ public class Item implements Serializable, Modifying {
             }
         }
         return false;
-    }
-
-    public String getDescription() {
-        return getPrefix() + itemModel.getNamePL() + getSuffix() +
-                "\nWaga: " + weight +
-                "\nWytrzymałość: " + durability + "/" + durabilityMax +
-                getSpecificDescription() +
-                getModifiersDescription();
     }
 
     private String getPrefix() {
@@ -110,6 +117,24 @@ public class Item implements Serializable, Modifying {
             }
         }
         return "";
+    }
+
+    public Color getColor() {
+        if (prefixColor != null && suffixColor != null) {
+            return GraphicUtils.mixColors(prefixColor, suffixColor);
+        } else if (prefixColor != null) {
+            return prefixColor;
+        } else {
+            return suffixColor;
+        }
+    }
+
+    public String getDescription() {
+        return getPrefix() + itemModel.getNamePL() + getSuffix() +
+                "\nWaga: " + weight +
+                "\nWytrzymałość: " + durability + "/" + durabilityMax +
+                getSpecificDescription() +
+                getModifiersDescription();
     }
 
     protected String getSpecificDescription() {

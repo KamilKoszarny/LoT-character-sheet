@@ -28,4 +28,12 @@ public class Weapon extends Item {
     protected String getSpecificDescription() {
         return "\nObrażenia: " + dmgMin + " - " + dmgMax;
     }
+
+    @Override
+    protected void updateStatsFromModifiers() {
+        dmgMax = model.getDmgMax() + getModifiersSum(ModifierType.DMG_MAX) + getModifiersSum(ModifierType.DMG);
+        dmgMin = Math.min(dmgMax, model.getDmgMin() + getModifiersSum(ModifierType.DMG_MIN) + getModifiersSum(ModifierType.DMG));
+    }
+
+
 }

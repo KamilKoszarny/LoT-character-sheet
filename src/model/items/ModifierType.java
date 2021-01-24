@@ -38,6 +38,15 @@ public enum ModifierType {
     DMG_MIN("<value> do obrażeń min."),
     DMG_MAX("<value> do obrażeń max."),
     DMG("<value> do obrażeń"),
+    DMG_UNDEAD("<value>% do obr. nieumarłym"),
+    DMG_DEMON("<value>% do obr. demonom"),
+    DMG_FIRE("+<kvalue> obr. od ognia"),
+    DMG_COLD("+<kvalue> obr. od zimna"),
+    DMG_WIND("+<kvalue> obr. od powietrza"),
+    DMG_EARTH("2 obr. od trucizn przez <kvalue> tur"),
+    DMG_MAGIC("<value>% obr. magicznych"),
+
+
     HIT("<value> do trafienia"),
     PARRY("<value> do parowania"),
     BLOCK("<value> do blokowania"),

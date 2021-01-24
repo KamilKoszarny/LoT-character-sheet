@@ -16,4 +16,12 @@ public class GraphicUtils {
         lighting.setLight(new Light.Distant(45, 45, color));
         imageView.setEffect(lighting);
     }
+
+    public static Color mixColors(Color color1, Color color2) {
+        double red = (color1.getRed() + color2.getRed()) / 2;
+        double green = (color1.getGreen() + color2.getGreen()) / 2;
+        double blue = (color1.getBlue() + color2.getBlue()) / 2;
+        double opacity = (color1.getOpacity() + color2.getOpacity()) / 2;
+        return new Color(red, green, blue, opacity);
+    }
 }

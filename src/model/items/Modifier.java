@@ -28,9 +28,13 @@ public class Modifier implements Serializable {
 
     public String getDescription() {
         String genericDescription = type.getDescription();
-        String optionalPlus = value > 0 ? "+" : "";
-        String valueText = optionalPlus + this.value;
-        return genericDescription.replace("<value>", valueText);
+        if (genericDescription.contains("<value>")) {
+            String optionalPlus = value > 0 ? "+" : "";
+            String valueText = optionalPlus + this.value;
+            return genericDescription.replace("<value>", valueText);
+        } else {
+            return genericDescription.replace("<kvalue>", Integer.toString(this.value));
+        }
     }
 
     public boolean hasPrefix() {
