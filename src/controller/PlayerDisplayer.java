@@ -334,6 +334,9 @@ public class PlayerDisplayer {
                 itemImage.getWidth(), itemImage.getHeight());
         rectangle.setFill(new ImagePattern(itemImage));
         rectangle.setId(Integer.toString(item.hashCode()));
+        if (item.isMagic()) {
+            GraphicUtils.addMagicColor(rectangle, item.getColor());
+        }
 
         ItemHandler.initInventoryItemClick(item, rectangle);
         EquipmentGuiInitializer.updateTooltip(item, null, rectangle);

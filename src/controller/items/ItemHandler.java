@@ -9,6 +9,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.items.Item;
+import utils.GraphicUtils;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -91,6 +92,11 @@ public class ItemHandler {
         heldItemRectangle.setHeight(itemImage.getHeight());
         heldItemRectangle.toFront();
         heldItemRectangle.setVisible(true);
+        if (item.isMagic()) {
+            GraphicUtils.addMagicColor(heldItemRectangle, item.getColor());
+        } else {
+            heldItemRectangle.setEffect(null);
+        }
         PlayerDisplayer.changeInventoryItemsMouseTransparency(true);
     }
 
