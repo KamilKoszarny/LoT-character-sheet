@@ -8,10 +8,10 @@ import java.util.List;
 @Getter
 public enum BeltModel implements ItemModel{
 
-    SASH(           0, 2, 3, "Szarfa"),
-    LEATHER_BELT(   1, 3, 6, "Skórzany pas"),
-    WIDE_BELT(      1, 4, 8, "Szeroki pas", new Modifier(ModifierType.FORM, -5)),
-    PLATE_BELT(     2, 6, 14, "Płytowy pas", new Modifier(ModifierType.FORM, -8)),
+    SASH(           0, 2, 3, "Szarfa", new Modifier(ModifierType.POTION_SPACE, 1)),
+    LEATHER_BELT(   1, 3, 6, "Skórzany pas", new Modifier(ModifierType.POTION_SPACE, 2)),
+    WIDE_BELT(      1, 4, 8, "Szeroki pas", new Modifier(ModifierType.FORM, -5), new Modifier(ModifierType.POTION_SPACE, 3)),
+    PLATE_BELT(     2, 6, 14, "Płytowy pas", new Modifier(ModifierType.FORM, -8), new Modifier(ModifierType.POTION_SPACE, 3)),
     ;
 
     private final int armor;
