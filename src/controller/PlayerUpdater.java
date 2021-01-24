@@ -9,6 +9,7 @@ import model.Player;
 import model.Skill;
 import model.SkillType;
 import model.horses.Horse;
+import model.items.ModifierType;
 
 import static controller.Main.guiController;
 
@@ -525,16 +526,46 @@ public class PlayerUpdater {
         int dmgMax = StatsCalculator.calculateDmgMax(currentPlayer, firstSet, true);
         int dmgMin2ndHand = StatsCalculator.calculateDmgMin(currentPlayer, firstSet, false);
         int dmgMax2ndHand = StatsCalculator.calculateDmgMax(currentPlayer, firstSet, false);
+        int dmgFire = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, true, ModifierType.DMG_FIRE);
+        int dmgFire2ndHand = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, false, ModifierType.DMG_FIRE);
+        int dmgCold = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, true, ModifierType.DMG_COLD);
+        int dmgCold2ndHand = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, false, ModifierType.DMG_COLD);
+        int dmgWind = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, true, ModifierType.DMG_WIND);
+        int dmgWind2ndHand = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, false, ModifierType.DMG_WIND);
+        int dmgEarth = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, true, ModifierType.DMG_EARTH);
+        int dmgEarth2ndHand = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, false, ModifierType.DMG_EARTH);
+        int dmgMagic = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, true, ModifierType.DMG_MAGIC);
+        int dmgMagic2ndHand = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, false, ModifierType.DMG_MAGIC);
         if (firstSet) {
             currentPlayer.setDmgAMin(dmgMin);
             currentPlayer.setDmgA2Min(dmgMin2ndHand);
             currentPlayer.setDmgAMax(dmgMax);
             currentPlayer.setDmgA2Max(dmgMax2ndHand);
+            currentPlayer.setDmgAFire(dmgFire);
+            currentPlayer.setDmgA2Fire(dmgFire2ndHand);
+            currentPlayer.setDmgACold(dmgCold);
+            currentPlayer.setDmgA2Cold(dmgCold2ndHand);
+            currentPlayer.setDmgAWind(dmgWind);
+            currentPlayer.setDmgA2Wind(dmgWind2ndHand);
+            currentPlayer.setDmgAEarth(dmgEarth);
+            currentPlayer.setDmgA2Earth(dmgEarth2ndHand);
+            currentPlayer.setDmgAMagic(dmgMagic);
+            currentPlayer.setDmgA2Magic(dmgMagic2ndHand);
         } else {
             currentPlayer.setDmgBMin(dmgMin);
             currentPlayer.setDmgB2Min(dmgMin2ndHand);
             currentPlayer.setDmgBMax(dmgMax);
             currentPlayer.setDmgB2Max(dmgMax2ndHand);
+            currentPlayer.setDmgBFire(dmgFire);
+            currentPlayer.setDmgB2Fire(dmgFire2ndHand);
+            currentPlayer.setDmgBCold(dmgCold);
+            currentPlayer.setDmgB2Cold(dmgCold2ndHand);
+            currentPlayer.setDmgBWind(dmgWind);
+            currentPlayer.setDmgB2Wind(dmgWind2ndHand);
+            currentPlayer.setDmgBEarth(dmgEarth);
+            currentPlayer.setDmgB2Earth(dmgEarth2ndHand);
+            currentPlayer.setDmgBMagic(dmgMagic);
+            currentPlayer.setDmgB2Magic(dmgMagic2ndHand);
         }
         PlayerDisplayer.displayDmg();
     }
@@ -669,6 +700,7 @@ public class PlayerUpdater {
     }
 
     public static void updateAll() {
+        //all updates should be called here explicit or inside below methods
         updateStrength();
         updateEndurance();
         updateForm();
@@ -684,12 +716,7 @@ public class PlayerUpdater {
         for (SkillType skillType: SkillType.values()) {
             updateStatsFromSkill(skillType);
         }
-        updateHitPointsMax();
         updateHitPointsIncrease();
-        updateManaMax();
-        updateManaIncrease();
-        updateDmg();
-        updateHits();
         updateParry();
         updateBlock();
         updateDodges();

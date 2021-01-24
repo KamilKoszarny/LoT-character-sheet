@@ -130,15 +130,41 @@ public class PlayerDisplayer {
 
     public static void displayDmg() {
         String dmgAText = "" + currentPlayer.getDmgAMin() + "-" + currentPlayer.getDmgAMax();
+        dmgAText += writeDmgExtra(currentPlayer.getDmgAFire(), currentPlayer.getDmgACold(), currentPlayer.getDmgAWind(), currentPlayer.getDmgAEarth(), currentPlayer.getDmgAMagic());
         if (currentPlayer.getItem(ItemSlot.SHIELD_A) != null) {
             dmgAText += "/" + currentPlayer.getDmgA2Min() + "-" + currentPlayer.getDmgA2Max();
+            dmgAText += writeDmgExtra(currentPlayer.getDmgA2Fire(), currentPlayer.getDmgA2Cold(), currentPlayer.getDmgA2Wind(), currentPlayer.getDmgA2Earth(), currentPlayer.getDmgA2Magic());
         }
         guiController.getDmgA().setText(dmgAText);
+
         String dmgBText = "" + currentPlayer.getDmgBMin() + "-" + currentPlayer.getDmgBMax();
+        dmgBText += writeDmgExtra(currentPlayer.getDmgBFire(), currentPlayer.getDmgBCold(), currentPlayer.getDmgBWind(), currentPlayer.getDmgBEarth(), currentPlayer.getDmgBMagic());
         if (currentPlayer.getItem(ItemSlot.SHIELD_B) != null) {
             dmgBText += "/" + currentPlayer.getDmgB2Min() + "-" + currentPlayer.getDmgB2Max();
+            dmgBText += writeDmgExtra(currentPlayer.getDmgB2Fire(), currentPlayer.getDmgB2Cold(), currentPlayer.getDmgB2Wind(), currentPlayer.getDmgB2Earth(), currentPlayer.getDmgB2Magic());
         }
         guiController.getDmgB().setText(dmgBText);
+    }
+
+
+    private static String writeDmgExtra(int dmgFire, int dmgCold, int dmgWind, int dmgEarth, int dmgMagic) {
+        StringBuilder dmgExtra = new StringBuilder();
+        if (dmgFire != 0) {
+            dmgExtra.append(" +k").append(dmgFire).append("og.");
+        }
+        if (dmgCold != 0) {
+            dmgExtra.append(" +k").append(dmgCold).append("zim.");
+        }
+        if (dmgWind != 0) {
+            dmgExtra.append(" +k").append(dmgWind).append("pow.");
+        }
+        if (dmgEarth != 0) {
+            dmgExtra.append(" +2/k").append(dmgEarth).append("tr.");
+        }
+        if (dmgMagic != 0) {
+            dmgExtra.append(" +").append(dmgMagic).append("% mag.");
+        }
+        return dmgExtra.toString();
     }
 
     public static void displayHit() {

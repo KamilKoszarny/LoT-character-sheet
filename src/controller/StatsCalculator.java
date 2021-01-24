@@ -170,6 +170,30 @@ public class StatsCalculator {
         return dmgMax;
     }
 
+    public static int calculateDmgExtra(Player player, boolean firstSet, boolean firstHand, ModifierType modifierType) {
+        int wearDmgExtra = modifiersSum(player, modifierType);
+        int firstSet1stHandDmgExtra = player.getWeaponA() != null ? player.getWeaponA().getModifiersSum(modifierType) : 0;
+        int firstSet2ndHandDmgExtra = player.getWeaponA2ndHand() != null ? player.getWeaponA2ndHand().getModifiersSum(modifierType)
+                : player.getShieldA() != null ? player.getShieldA().getModifiersSum(modifierType) : 0;
+        int secondSet1stHandDmgExtra = player.getWeaponB() != null ? player.getWeaponB().getModifiersSum(modifierType) : 0;
+        int secondSet2ndHandDmgExtra = player.getWeaponB2ndHand() != null ? player.getWeaponB2ndHand().getModifiersSum(modifierType)
+                : player.getShieldB() != null ? player.getShieldB().getModifiersSum(modifierType) : 0;
+
+        if (firstSet) {
+            if (firstHand) {
+                return wearDmgExtra - firstSet2ndHandDmgExtra;
+            } else {
+                return wearDmgExtra - firstSet1stHandDmgExtra;
+            }
+        } else {
+            if (firstHand) {
+                return wearDmgExtra - firstSet1stHandDmgExtra - firstSet2ndHandDmgExtra + secondSet1stHandDmgExtra;
+            } else {
+                return wearDmgExtra - firstSet1stHandDmgExtra - firstSet2ndHandDmgExtra + secondSet2ndHandDmgExtra;
+            }
+        }
+    }
+
     public static int calculateHit(Player player, boolean firstSet, boolean firstHand) {
         int hit = 0;
         Weapon weapon = firstSet ? (firstHand ? player.getWeaponA() : player.getWeaponA2ndHand()) : (firstHand ? player.getWeaponB() : player.getWeaponB2ndHand());

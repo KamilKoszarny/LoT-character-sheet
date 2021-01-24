@@ -1397,8 +1397,8 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label text="obrażenia " />
-                                    <TextField fx:id="dmgA" alignment="CENTER" disable="true" prefColumnCount="6" />
+                                    <Label text="obr. " />
+                                    <TextField fx:id="dmgA" alignment="CENTER" disable="true" />
                                     <Label text=" traf. " />
                                     <TextField fx:id="hitA" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" par. " />
@@ -1408,9 +1408,9 @@
                                     <Label text=" unik. " />
                                     <TextField fx:id="dodgeA" alignment="CENTER" disable="true" prefColumnCount="2" />
                                     <Label text=" zasięg " />
-                                    <TextField fx:id="rangeA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <TextField fx:id="rangeA" alignment="CENTER" disable="true" prefColumnCount="2" />
                                     <Label text=" czas " />
-                                    <TextField fx:id="timeA" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <TextField fx:id="timeA" alignment="CENTER" disable="true" prefColumnCount="2" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="25.0" />
@@ -1423,8 +1423,8 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label text=" obrażenia " />
-                                    <TextField fx:id="dmgB" alignment="CENTER" disable="true" prefColumnCount="6" />
+                                    <Label text=" obr. " />
+                                    <TextField fx:id="dmgB" alignment="CENTER" disable="true" />
                                     <Label text=" traf. " />
                                     <TextField fx:id="hitB" alignment="CENTER" disable="true" prefColumnCount="3" />
                                     <Label text=" par. " />
@@ -1434,9 +1434,9 @@
                                     <Label text=" unik. " />
                                     <TextField fx:id="dodgeB" alignment="CENTER" disable="true" prefColumnCount="2" />
                                     <Label text=" zasięg " />
-                                    <TextField fx:id="rangeB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <TextField fx:id="rangeB" alignment="CENTER" disable="true" prefColumnCount="2" />
                                     <Label text=" czas " />
-                                    <TextField fx:id="timeB" alignment="CENTER" disable="true" prefColumnCount="3" />
+                                    <TextField fx:id="timeB" alignment="CENTER" disable="true" prefColumnCount="2" />
                                  </children>
                               </HBox>
                               <HBox>

@@ -33,7 +33,7 @@ public class Modifier implements Serializable {
             String valueText = optionalPlus + this.value;
             return genericDescription.replace("<value>", valueText);
         } else {
-            return genericDescription.replace("<kvalue>", Integer.toString(this.value));
+            return genericDescription.replace("<kvalue>", "k" + this.value);
         }
     }
 

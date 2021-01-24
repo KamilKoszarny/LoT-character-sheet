@@ -17,7 +17,7 @@ public enum WeaponModel implements ItemModel {
     LONG_SWORD(WeaponType.SWORD,          3, 9, 1, 1,       false, 30, 7, 16, "Długi miecz"),
     TWO_HAND_SWORD(WeaponType.SWORD,      5, 7, 1, 2,      true, 30, 12, 18, "Miecz oburęczny"),
     CLAYMORE(WeaponType.SWORD,            3, 10, 1, 2,     true, 45, 9, 16, "Claymore"),
-    HALF_HAND_SWORD_1H(WeaponType.SWORD,  4, 8, 2, 2,    true, 30, 11, 19, "Miecz półtoraręczny (1 ręka)"),
+    HALF_HAND_SWORD_1H(WeaponType.SWORD,  4, 8, 2, 2,    false, 30, 11, 19, "Miecz półtoraręczny (1 ręka)"),
     HALF_HAND_SWORD_2H(WeaponType.SWORD,  5, 10, 1, 2,    true, 30, 11, 19, "Miecz półtoraręczny (2 ręce)"),
     SABER(WeaponType.SWORD,               6, 14, 2, 3,    true, 35, 13, 15, "Koncerz"),
     GRAND_SWORD(WeaponType.SWORD,         6, 12, 1, 2,      true, 40, 17, 22, "Wielki miecz"),

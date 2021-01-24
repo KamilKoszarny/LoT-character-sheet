@@ -82,6 +82,11 @@ public class Player implements Serializable {
 
     private int dmgAMin;
     private int dmgAMax;
+    private int dmgAFire;
+    private int dmgACold;
+    private int dmgAWind;
+    private int dmgAEarth;
+    private int dmgAMagic;
     private int hitA;
     private int parryA;
     private int blockA;
@@ -90,11 +95,21 @@ public class Player implements Serializable {
     private int attackTimeA;
     private int dmgA2Min;
     private int dmgA2Max;
+    private int dmgA2Fire;
+    private int dmgA2Cold;
+    private int dmgA2Wind;
+    private int dmgA2Earth;
+    private int dmgA2Magic;
     private int hitA2;
     private int rangeA2;
     private int attackTimeA2;
     private int dmgBMin;
     private int dmgBMax;
+    private int dmgBFire;
+    private int dmgBCold;
+    private int dmgBWind;
+    private int dmgBEarth;
+    private int dmgBMagic;
     private int hitB;
     private int parryB;
     private int blockB;
@@ -103,6 +118,11 @@ public class Player implements Serializable {
     private int attackTimeB;
     private int dmgB2Min;
     private int dmgB2Max;
+    private int dmgB2Fire;
+    private int dmgB2Cold;
+    private int dmgB2Wind;
+    private int dmgB2Earth;
+    private int dmgB2Magic;
     private int hitB2;
     private int rangeB2;
     private int attackTimeB2;
