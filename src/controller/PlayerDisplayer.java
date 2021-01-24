@@ -500,5 +500,7 @@ public class PlayerDisplayer {
         guiController.getIllnesses().setText(currentPlayer.getIllnesses());
         guiController.getState().setText(currentPlayer.getState());
         guiController.getNotes().setText(currentPlayer.getNotes());
+
+        EquipmentGuiInitializer.updateTooltips();
     }
 }

@@ -23,6 +23,12 @@ public class EquipmentGuiInitializer {
         }
     }
 
+    static void updateTooltips() {
+        for (ItemSlot slot : ItemSlot.values()) {
+            updateTooltip(null, slot, null);
+        }
+    }
+
     private static void initItemMenu(MenuButton button, ItemSlot itemSlot) {
         button.lookup(".arrow-button").setStyle("-fx-padding: 0");
         button.lookup(".arrow").setStyle("-fx-background-insets: 0; -fx-padding: 0; -fx-shape: null;");

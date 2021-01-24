@@ -22,8 +22,6 @@ public class Item implements Serializable, Modifying {
     private int durabilityMax;
 
     protected List<Modifier> modifiers;
-    private Color prefixColor;
-    private Color suffixColor;
 
     public Item(ItemType itemType, ItemModel itemModel) {
         this.itemType = itemType;
@@ -48,11 +46,6 @@ public class Item implements Serializable, Modifying {
             modifiers.remove(oldModifierToDelete);
         }
         modifiers.add(newModifier);
-        if (newMagicModifier.hasPrefix()) {
-            prefixColor = newMagicModifier.getColor();
-        } else {
-            suffixColor = newMagicModifier.getColor();
-        }
         updateStatsFromModifiers();
     }
 
@@ -71,11 +64,6 @@ public class Item implements Serializable, Modifying {
         }
         if (modifierToRemove != null) {
             modifiers.remove(modifierToRemove);
-            if (modifierToRemove.hasPrefix()) {
-                prefixColor = null;
-            } else {
-                suffixColor = null;
-            }
         }
         updateStatsFromModifiers();
     }
@@ -103,25 +91,40 @@ public class Item implements Serializable, Modifying {
         return false;
     }
 
-    private String getPrefix() {
+    private Modifier getPrefixModifier() {
         for (Modifier modifier: modifiers) {
             if (modifier.getPrefix() != null) {
-                return modifier.getPrefix() + " ";
+                return modifier;
             }
         }
-        return "";
+        return null;
+    }
+
+    private Modifier getSuffixModifier() {
+        for (Modifier modifier: modifiers) {
+            if (modifier.getSuffix() != null) {
+                return modifier;
+            }
+        }
+        return null;
+    }
+
+    private String getPrefix() {
+        Modifier prefixModifier = getPrefixModifier();
+        return prefixModifier != null ? prefixModifier.getPrefix() + " " : "";
     }
 
     private String getSuffix() {
-        for (Modifier modifier: modifiers) {
-            if (modifier.getSuffix() != null) {
-                return " " + modifier.getSuffix();
-            }
-        }
-        return "";
+        Modifier suffixModifier = getSuffixModifier();
+        return suffixModifier != null ? " " + suffixModifier.getSuffix() : "";
     }
 
     public Color getColor() {
+        Modifier prefixModifier = getPrefixModifier();
+        Color prefixColor = prefixModifier != null ? prefixModifier.getColor() : null;
+        Modifier suffixModifier = getSuffixModifier();
+        Color suffixColor = suffixModifier != null ? suffixModifier.getColor() : null;
+
         if (prefixColor != null && suffixColor != null) {
             return GraphicUtils.mixColors(prefixColor, suffixColor);
         } else if (prefixColor != null) {

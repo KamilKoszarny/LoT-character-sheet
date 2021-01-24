@@ -21,8 +21,8 @@ public class Main extends Application {
 
         GuiController guiController = loader.getController();
         Main.guiController = loader.getController();
-        GuiInitializer.init();
         PlayerUpdater.init();
+        GuiInitializer.init();
         PlayerSaveLoader.init(primaryStage, guiController);
         primaryStage.setX(10);
         primaryStage.setY(10);

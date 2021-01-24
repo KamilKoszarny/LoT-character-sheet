@@ -1,5 +1,6 @@
 package model.items;
 
+import javafx.scene.paint.Color;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -43,5 +44,17 @@ public class Modifier implements Serializable {
 
     public boolean hasSuffix() {
         return suffix != null;
+    }
+
+    public Color getColor() {
+        for (MagicModifier magicModifier: MagicModifier.values()) {
+            if (hasPrefix() && prefix.equals(magicModifier.getPrefix())) {
+                return magicModifier.getColor();
+            }
+            if (hasSuffix() && suffix.equals(magicModifier.getSuffix())) {
+                return magicModifier.getColor();
+            }
+        }
+        return null;
     }
 }
