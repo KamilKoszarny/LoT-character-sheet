@@ -13,4 +13,15 @@ public class Boots extends Item{
         this.model = model;
         this.armor = model.getArmor();
     }
+
+    @Override
+    protected String getSpecificDescription() {
+        return "\nPancerz nóg: " + armor;
+    }
+
+    @Override
+    protected void updateStatsFromModifiers() {
+        super.updateStatsFromModifiers();
+        armor = model.getArmor() + getModifiersSum(ModifierType.ARMOR);
+    }
 }

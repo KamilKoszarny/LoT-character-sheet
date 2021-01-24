@@ -13,4 +13,15 @@ public class Belt extends Item{
         this.model = model;
         this.armor = model.getArmor();
     }
+
+    @Override
+    protected String getSpecificDescription() {
+        return "\nPancerz tułowia: " + armor;
+    }
+
+    @Override
+    protected void updateStatsFromModifiers() {
+        super.updateStatsFromModifiers();
+        armor = model.getArmor() + getModifiersSum(ModifierType.ARMOR);
+    }
 }

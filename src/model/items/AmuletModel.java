@@ -16,7 +16,7 @@ public enum AmuletModel implements ItemModel{
     private final String namePL;
     private final List<Modifier> modifiers;
     private final int weight = 0;
-    private final int durabilityMax = 99;
+    private final int durabilityMax = 60;
 
     AmuletModel(String namePL, Modifier... modifiers) {
         this.namePL = namePL;

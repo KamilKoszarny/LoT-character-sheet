@@ -19,6 +19,12 @@ public class Shield extends Item{
     }
 
     @Override
+    protected String getSpecificDescription() {
+        return "\nBlok: " + block + "%" +
+                "\nObrażenia: " + dmg + " - " + dmg;
+    }
+
+    @Override
     protected void updateStatsFromModifiers() {
         super.updateStatsFromModifiers();
         dmg = model.getDmg() + getModifiersSum(ModifierType.DMG);

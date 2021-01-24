@@ -74,6 +74,7 @@ public class Player implements Serializable {
 
     private int actions = 5;
     private int actionsMax = 5;
+    private int actionsMaxExtra;
     private int speed;
 
     private int mana;

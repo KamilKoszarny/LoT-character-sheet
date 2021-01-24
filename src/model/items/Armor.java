@@ -6,10 +6,10 @@ import lombok.Getter;
 public class Armor extends Item{
 
     private final ArmorModel model;
-    private int headArmor;
+    private final int headArmor;
     private int bodyArmor;
-    private int armsArmor;
-    private int legsArmor;
+    private final int armsArmor;
+    private final int legsArmor;
 
     public Armor(ArmorModel model) {
         super(ItemType.ARMOR, model);
@@ -18,5 +18,19 @@ public class Armor extends Item{
         this.bodyArmor = model.getBodyArmor();
         this.armsArmor = model.getArmsArmor();
         this.legsArmor = model.getLegsArmor();
+    }
+
+    @Override
+    protected String getSpecificDescription() {
+        return "\nPancerz głowy: " + headArmor
+                + "\nPancerz tułowia: " + bodyArmor
+                + "\nPancerz rąk: " + armsArmor
+                + "\nPancerz nóg: " + legsArmor;
+    }
+
+    @Override
+    protected void updateStatsFromModifiers() {
+        super.updateStatsFromModifiers();
+        bodyArmor = model.getBodyArmor() + getModifiersSum(ModifierType.ARMOR);
     }
 }

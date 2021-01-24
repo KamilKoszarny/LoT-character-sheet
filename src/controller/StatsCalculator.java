@@ -90,9 +90,15 @@ public class StatsCalculator {
         return hitPointsIncrease;
     }
 
+    public static int calculateSpeed(Player player) {
+        int speed = (int) Math.round(1 + player.getEfficiency() /25.);
+        speed += modifiersSum(player, ModifierType.SPEED);
+        return speed;
+    }
+
     public static int calculateManaMax(Player player) {
         int manaMax = (int) Math.round(player.getIntelligence()/3.);
-        manaMax += modifiersSum(player, ModifierType.MANA_MAX);
+        manaMax += modifiersSum(player, ModifierType.MP_MAX);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
             manaMax += 10 * magicTalent.getLevel();
@@ -102,12 +108,18 @@ public class StatsCalculator {
 
     public static int calculateManaIncrease(Player player) {
         int manaIncrease = (int) Math.round(player.getFocus() / 5.);
-        manaIncrease += modifiersSum(player, ModifierType.MANA_INCREASE);
+        manaIncrease += modifiersSum(player, ModifierType.MP_INCREASE);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
             manaIncrease += 3 * magicTalent.getLevel();
         }
         return manaIncrease;
+    }
+
+    public static int calculateActionsMaxExtra(Player player) {
+        int actionsMaxExtra = 0;
+        actionsMaxExtra += modifiersSum(player, ModifierType.ACTIONS_MAX);
+        return actionsMaxExtra;
     }
 
     public static int calculateDmgMin(Player player, boolean firstSet, boolean firstHand) {
@@ -286,6 +298,7 @@ public class StatsCalculator {
     public static int calculateFireResistance(Player player) {
         int fireResistance = 0;
         fireResistance += modifiersSum(player, ModifierType.RES_FIRE);
+        fireResistance += modifiersSum(player, ModifierType.RES_ELEMENTS);
         fireResistance += getStoneSkinResistance(player);
         fireResistance += getElementalMagicResistance(player);
         return fireResistance;
@@ -294,6 +307,7 @@ public class StatsCalculator {
     public static int calculateColdResistance(Player player) {
         int coldResistance = 0;
         coldResistance += modifiersSum(player, ModifierType.RES_COLD);
+        coldResistance += modifiersSum(player, ModifierType.RES_ELEMENTS);
         coldResistance += getStoneSkinResistance(player);
         coldResistance += getElementalMagicResistance(player);
         return coldResistance;
@@ -302,6 +316,7 @@ public class StatsCalculator {
     public static int calculateWindResistance(Player player) {
         int windResistance = 0;
         windResistance += modifiersSum(player, ModifierType.RES_WIND);
+        windResistance += modifiersSum(player, ModifierType.RES_ELEMENTS);
         windResistance += getStoneSkinResistance(player);
         windResistance += getElementalMagicResistance(player);
         return windResistance;
@@ -310,6 +325,7 @@ public class StatsCalculator {
     public static int calculateEarthResistance(Player player) {
         int earthResistance = 0;
         earthResistance += modifiersSum(player, ModifierType.RES_EARTH);
+        earthResistance += modifiersSum(player, ModifierType.RES_ELEMENTS);
         earthResistance += getStoneSkinResistance(player);
         earthResistance += getLightMagicResistance(player);
         earthResistance += getElementalMagicResistance(player);

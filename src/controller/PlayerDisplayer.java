@@ -121,7 +121,7 @@ public class PlayerDisplayer {
     }
 
     public static void displayActions() {
-        guiController.getActions().setText("" + currentPlayer.getActions() + '/' + currentPlayer.getActionsMax());
+        guiController.getActions().setText("" + currentPlayer.getActions() + '/' + (currentPlayer.getActionsMax() + currentPlayer.getActionsMaxExtra()));
     }
 
     public static void displayMana() {

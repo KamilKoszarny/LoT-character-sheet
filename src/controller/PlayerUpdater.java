@@ -432,9 +432,7 @@ public class PlayerUpdater {
         int efficiency = StatsCalculator.calculateEfficiency(currentPlayer);
         currentPlayer.setEfficiency(efficiency);
         guiController.getEfficiency().setText(Integer.toString(efficiency));
-        int speed = (int) Math.round(1 + efficiency/25.);
-        currentPlayer.setSpeed(speed);
-        guiController.getSpeed().setText(Integer.toString(speed));
+        updateSpeed();
     }
 
     private static void updateKnowledge() {
@@ -504,6 +502,12 @@ public class PlayerUpdater {
         guiController.getHitPointsIncrease().setText(Integer.toString(hitPointsIncrease));
     }
 
+    private static void updateSpeed() {
+        int speed = StatsCalculator.calculateSpeed(currentPlayer);
+        currentPlayer.setSpeed(speed);
+        guiController.getSpeed().setText(Integer.toString(speed));
+    }
+
     private static void updateManaMax() {
         int manaMax = StatsCalculator.calculateManaMax(currentPlayer);
         currentPlayer.setManaMax(manaMax);
@@ -514,6 +518,12 @@ public class PlayerUpdater {
         int manaIncrease = StatsCalculator.calculateManaIncrease(currentPlayer);
         currentPlayer.setManaIncrease(manaIncrease);
         guiController.getManaIncrease().setText(Integer.toString(manaIncrease));
+    }
+
+    private static void updateActionsMax() {
+        int actionsMaxExtra = StatsCalculator.calculateActionsMaxExtra(currentPlayer);
+        currentPlayer.setActionsMaxExtra(actionsMaxExtra);
+        PlayerDisplayer.displayActions();
     }
 
     public static void updateDmg() {
@@ -717,6 +727,7 @@ public class PlayerUpdater {
             updateStatsFromSkill(skillType);
         }
         updateHitPointsIncrease();
+        updateActionsMax();
         updateParry();
         updateBlock();
         updateDodges();
