@@ -9,12 +9,13 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static GuiController guiController;
+    public static String version = "v0.3.1";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoT Character Sheet.fxml"));
         Pane pane = loader.load();
-        primaryStage.setTitle("Legacy of Tyrant: Karta postaci");
+        primaryStage.setTitle("Legacy of Tyrant: Karta postaci " + version);
         primaryStage.setScene(new Scene(pane));
         primaryStage.show();
 
