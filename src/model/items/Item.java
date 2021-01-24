@@ -17,7 +17,7 @@ public class Item implements Serializable, Modifying {
     private final ItemType itemType;
     private final ItemModel itemModel;
 
-    private int weight;
+    private final int weight;
     private int durability;
     private int durabilityMax;
 
@@ -90,7 +90,9 @@ public class Item implements Serializable, Modifying {
         return sum;
     }
 
-    protected void updateStatsFromModifiers() {}
+    protected void updateStatsFromModifiers() {
+        durabilityMax = (int) (itemModel.getDurabilityMax() * (100 + getModifiersSum(ModifierType.ITEM_DURABILITY))/100.);
+    }
 
     public boolean isMagic() {
         for (Modifier modifier: modifiers) {
@@ -130,9 +132,10 @@ public class Item implements Serializable, Modifying {
     }
 
     public String getDescription() {
+        boolean isUnbreakable = modifiers.stream().anyMatch(modifier -> modifier.getType().equals(ModifierType.ITEM_UNBREAKABLE));
         return getPrefix() + itemModel.getNamePL() + getSuffix() +
                 "\nWaga: " + weight +
-                "\nWytrzymałość: " + durability + "/" + durabilityMax +
+                (isUnbreakable ? "" : "\nWytrzymałość: " + durability + "/" + durabilityMax) +
                 getSpecificDescription() +
                 getModifiersDescription();
     }

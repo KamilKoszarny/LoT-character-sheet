@@ -7,7 +7,7 @@ public class Shield extends Item{
 
     private final ShieldModel model;
     private final int block;
-    private final int dmg;
+    private int dmg;
     private final int durability;
 
     public Shield(ShieldModel model) {
@@ -16,5 +16,11 @@ public class Shield extends Item{
         this.block = model.getBlock();
         this.dmg = model.getDmg();
         this.durability = model.getDurabilityMax();
+    }
+
+    @Override
+    protected void updateStatsFromModifiers() {
+        super.updateStatsFromModifiers();
+        dmg = model.getDmg() + getModifiersSum(ModifierType.DMG);
     }
 }

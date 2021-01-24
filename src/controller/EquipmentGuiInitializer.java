@@ -95,8 +95,9 @@ public class EquipmentGuiInitializer {
 
     public static ContextMenu createContextMenu(Item item, ItemSlot itemSlot, Rectangle rectangle) {
         final ContextMenu contextMenu = new ContextMenu();
-        contextMenu.getItems().add(createDropButton(itemSlot, item));
         contextMenu.getItems().add(createSetMagicModifierMenu(item, itemSlot, rectangle));
+        contextMenu.getItems().add(new SeparatorMenuItem());
+        contextMenu.getItems().add(createDropButton(itemSlot, item));
         return contextMenu;
     }
 
@@ -124,11 +125,13 @@ public class EquipmentGuiInitializer {
         prefixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, true));
         suffixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, false));
         for (MagicModifier magicModifier: MagicModifier.values()) {
-            MenuItem modifierButton = createMagicModifierButton(item, itemSlot, rectangle, magicModifier);
-            if (magicModifier.hasPrefix()) {
-                prefixesMenu.getItems().add(modifierButton);
-            } else {
-                suffixesMenu.getItems().add(modifierButton);
+            if (magicModifier.applicableForType(item, itemSlot)) {
+                MenuItem modifierButton = createMagicModifierButton(item, itemSlot, rectangle, magicModifier);
+                if (magicModifier.hasPrefix()) {
+                    prefixesMenu.getItems().add(modifierButton);
+                } else {
+                    suffixesMenu.getItems().add(modifierButton);
+                }
             }
         }
         addMagicModifierButton.getItems().add(prefixesMenu);

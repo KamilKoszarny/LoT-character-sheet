@@ -31,9 +31,8 @@ public class Weapon extends Item {
 
     @Override
     protected void updateStatsFromModifiers() {
+        super.updateStatsFromModifiers();
         dmgMax = model.getDmgMax() + getModifiersSum(ModifierType.DMG_MAX) + getModifiersSum(ModifierType.DMG);
         dmgMin = Math.min(dmgMax, model.getDmgMin() + getModifiersSum(ModifierType.DMG_MIN) + getModifiersSum(ModifierType.DMG));
     }
-
-
 }

@@ -5,8 +5,7 @@ import lombok.Getter;
 import model.items.ItemType;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import static controller.Main.guiController;
 
@@ -27,7 +26,7 @@ public enum ItemSlot {
     INVENTORY(guiController.getInventory()) //all types
     ;
 
-    private final Set<ItemType> itemTypes;
+    private final List<ItemType> itemTypes;
     private final MenuButton menuButton;
     private final int x;
     private final int y;
@@ -36,7 +35,7 @@ public enum ItemSlot {
 
     ItemSlot(MenuButton menuButton, ItemType... itemTypes) {
         this.menuButton = menuButton;
-        this.itemTypes = new HashSet<>(Arrays.asList(itemTypes));
+        this.itemTypes = Arrays.asList(itemTypes);
         this.x = (int) menuButton.getLayoutX();
         this.y = (int) menuButton.getLayoutY();
         this.width = (int) menuButton.getWidth();
@@ -45,5 +44,9 @@ public enum ItemSlot {
 
     public boolean itemTypeCompatible(ItemType itemType) {
         return this.equals(INVENTORY) || itemTypes.contains(itemType);
+    }
+
+    public boolean itemTypeCompatibleStrict(ItemType itemType) {
+        return this.equals(INVENTORY) || (itemTypes.get(0).equals(itemType));
     }
 }

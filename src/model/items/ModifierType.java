@@ -46,7 +46,6 @@ public enum ModifierType {
     DMG_EARTH("2 obr. od trucizn przez <kvalue> tur"),
     DMG_MAGIC("<value>% obr. magicznych"),
 
-
     HIT("<value> do trafienia"),
     PARRY("<value> do parowania"),
     BLOCK("<value> do blokowania"),
@@ -67,6 +66,11 @@ public enum ModifierType {
     RES_MIND_ILL("<value> do odp. na choroby umysłu"),
 
     //others
+    HP_PER_KILL("<value>PZ za zabicie przeciwnika"),
+    MP_PER_KILL("<value>PM za zabicie przeciwnika"),
+
+    ITEM_DURABILITY("<value>% do maks. wytrzymałości"),
+    ITEM_UNBREAKABLE("Niezniszczalny"),
     ITEM_REQUIREMENTS("<value> do wymagań przedmiotu"),
     ITEM_STATS("<value> do statystyk przedmiotu"),
     ;

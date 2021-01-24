@@ -122,22 +122,7 @@ public class StatsCalculator {
         } else {
             dmgMin += (int) Math.round(weapon.getDmgMin() * (1 + player.getStrength()/50.));
         }
-        Skill wrath = player.getSkill(SkillType.WRATH);
-        if (wrath != null && player.getHitPoints() < 0.4 * player.getHitPointsMax()) {
-            dmgMin += 2 * wrath.getLevel();
-        }
-        if (!firstHand) {
-            if (player.getShieldA() != null) {
-                dmgMin = player.getShieldA().getDmg();
-                Skill shieldman = player.getSkill(SkillType.SHIELDMAN);
-                if (shieldman != null) {
-                    dmgMin += shieldman.getLevel();
-                }
-            } else if (player.getWeaponA2ndHand() == null) {
-                dmgMin = 1;
-            }
-        }
-        return dmgMin;
+        return dmgMin + calculateSkillsDmg(player, firstHand);
     }
 
     public static int calculateDmgMax(Player player, boolean firstSet, boolean firstHand) {
@@ -152,6 +137,11 @@ public class StatsCalculator {
         } else {
             dmgMax += (int) Math.round(weapon.getDmgMax() * (1 + player.getStrength()/50.));
         }
+        return dmgMax + calculateSkillsDmg(player, firstHand);
+    }
+
+    private static int calculateSkillsDmg(Player player, boolean firstHand) {
+        int dmgMax = 0;
         Skill wrath = player.getSkill(SkillType.WRATH);
         if (wrath != null && player.getHitPoints() < 0.4 * player.getHitPointsMax()) {
             dmgMax += 2 * wrath.getLevel();
