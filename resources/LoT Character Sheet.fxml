@@ -1310,7 +1310,7 @@
                                                 </Label>
                                                 <VBox alignment="CENTER" prefWidth="70.0">
                                                    <children>
-                                                      <TextField fx:id="speed" alignment="CENTER" editable="false" maxWidth="-Infinity" prefColumnCount="2" />
+                                                      <TextField fx:id="speed" alignment="CENTER" disable="true" editable="false" maxWidth="-Infinity" prefColumnCount="2" />
                                                    </children>
                                                 </VBox>
                                              </children>

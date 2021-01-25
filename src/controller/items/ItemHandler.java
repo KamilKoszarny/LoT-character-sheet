@@ -72,7 +72,7 @@ public class ItemHandler {
 
     public static void tryCatchItem(ItemSlot itemSlot, Point clickPoint) {
         Item item = currentPlayer.getItem(itemSlot);
-        Image itemImage = PlayerDisplayer.findImage(item);
+        Image itemImage = PlayerDisplayer.prepareImage(item);
         holdPoint = holdPoint(itemSlot, itemImage, clickPoint);
         if (holdPoint == null) {
             return;
@@ -87,11 +87,11 @@ public class ItemHandler {
 
     private static void catchItem(Item item, Image itemImage) {
         heldItem = item;
-        heldItemRectangle.setFill(new ImagePattern(itemImage));
         heldItemRectangle.setWidth(itemImage.getWidth());
         heldItemRectangle.setHeight(itemImage.getHeight());
         heldItemRectangle.toFront();
         heldItemRectangle.setVisible(true);
+        heldItemRectangle.setFill(new ImagePattern(itemImage));
         if (item.isMagic()) {
             GraphicUtils.addMagicColor(heldItemRectangle, item.getColor());
         } else {
@@ -118,7 +118,7 @@ public class ItemHandler {
                 return true;
             } else if (itemsUnderneath.size() == 1) {
                 Item underneathItem = itemsUnderneath.iterator().next();
-                Image itemImage = PlayerDisplayer.findImage(underneathItem);
+                Image itemImage = PlayerDisplayer.prepareImage(underneathItem);
                 currentPlayer.addToInventory(heldItem, inventorySlot);
                 holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
                 catchItem(underneathItem, itemImage);
@@ -135,7 +135,7 @@ public class ItemHandler {
     private static void changeItem(ItemSlot itemSlot, Point clickPoint) {
         Item underneathItem = currentPlayer.getItem(itemSlot);
         if (tryPutItem(itemSlot, clickPoint)) {
-            Image itemImage = PlayerDisplayer.findImage(underneathItem);
+            Image itemImage = PlayerDisplayer.prepareImage(underneathItem);
             holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
             catchItem(underneathItem, itemImage);
             drawHeldItem(new Point(itemSlot.getX() + clickPoint.x, itemSlot.getY() + clickPoint.y));
@@ -197,7 +197,7 @@ public class ItemHandler {
     }
 
     private static Set<Point> itemSlots(Item item, Point slot) {
-        Image itemImage = PlayerDisplayer.findImage(item);
+        Image itemImage = PlayerDisplayer.prepareImage(item);
         int itemSizeX = (int) Math.round(itemImage.getWidth() / ITEM_SLOT_SIZE);
         int itemSizeY = (int) Math.round(itemImage.getHeight() / ITEM_SLOT_SIZE);
         Set<Point> itemSlots = new HashSet<>();
@@ -217,7 +217,7 @@ public class ItemHandler {
         ContextMenu invItemContextMenu = EquipmentGuiInitializer.createContextMenu(item, null, rectangle);
         rectangle.setOnMousePressed(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                Image itemImage = PlayerDisplayer.findImage(item);
+                Image itemImage = PlayerDisplayer.prepareImage(item);
                 holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
                 catchItem(item, itemImage);
                 drawHeldItem(new Point((int) (rectangle.getLayoutX() + event.getX()), (int) (rectangle.getLayoutY() + event.getY())));

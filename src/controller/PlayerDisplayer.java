@@ -25,6 +25,8 @@ import static controller.PlayerUpdater.currentPlayer;
 
 public class PlayerDisplayer {
 
+    public static final double DURABILITY_RATIO_FOR_ICON_DISPLAY = 0.3;
+
     public static void displaySkills() {
         displaySkill(1, guiController.getSkill1(), guiController.getSkill1lvl1(), guiController.getSkill1lvl2(), guiController.getSkill1lvl3(), guiController.getSkill1description());
         displaySkill(2, guiController.getSkill2(), guiController.getSkill2lvl1(), guiController.getSkill2lvl2(), guiController.getSkill2lvl3(), guiController.getSkill2description());
@@ -308,7 +310,7 @@ public class PlayerDisplayer {
         if (item == null) {
             button.setOpacity(0);
         } else {
-            Image img = findImage(item);
+            Image img = prepareImage(item);
             ImageView view = new ImageView(img);
             if (item.isMagic()) {
                 GraphicUtils.addMagicColor(view, item.getColor());
@@ -327,13 +329,13 @@ public class PlayerDisplayer {
 
     public static void displayInventoryItem(Item item, Point slot) {
         final MenuButton invButton = guiController.getInventory();
-        Image itemImage = findImage(item);
+        Image itemImage = prepareImage(item);
         Rectangle rectangle = new Rectangle(
                 invButton.getLayoutX() + slot.x * ItemHandler.ITEM_SLOT_SIZE,
                 invButton.getLayoutY() + slot.y * ItemHandler.ITEM_SLOT_SIZE,
                 itemImage.getWidth(), itemImage.getHeight());
-        rectangle.setFill(new ImagePattern(itemImage));
         rectangle.setId(Integer.toString(item.hashCode()));
+        rectangle.setFill(new ImagePattern(itemImage));
         if (item.isMagic()) {
             GraphicUtils.addMagicColor(rectangle, item.getColor());
         }
@@ -363,7 +365,7 @@ public class PlayerDisplayer {
         guiController.getLoadExtra().setText(Integer.toString(currentPlayer.getLoadExtra()));
     }
 
-    public static Image findImage(Item item) {
+    public static Image prepareImage(Item item) {
         String path = "images/items/";
         switch (item.getItemType()) {
             case WEAPON:
@@ -394,7 +396,9 @@ public class PlayerDisplayer {
                 path += "belts/" + ((Belt) item).getModel().name() + ".png";
                 break;
         }
-        return new Image(path);
+        Image image = new Image(path);
+        image = GraphicUtils.addBrokenIcon(image, item.getDurability() / (double)item.getDurabilityMax());
+        return image;
     }
 
     public static void displayHorse() {

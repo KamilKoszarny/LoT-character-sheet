@@ -1,5 +1,6 @@
 package model.items;
 
+import controller.PlayerDisplayer;
 import javafx.scene.paint.Color;
 import lombok.Getter;
 import model.Modifying;
@@ -153,5 +154,17 @@ public class Item implements Serializable, Modifying {
             modifiersDescription.append("\n").append(modifier.getDescription());
         }
         return modifiersDescription.toString();
+    }
+
+    public void durabilityMinus(int value) {
+        durability-= value;
+    }
+
+    public void durabilityMax() {
+        durability = durabilityMax;
+    }
+
+    public boolean breakIconShouldBeDisplayed() {
+        return durability / (double)durabilityMax <= PlayerDisplayer.DURABILITY_RATIO_FOR_ICON_DISPLAY;
     }
 }

@@ -101,10 +101,113 @@ public class EquipmentGuiInitializer {
 
     public static ContextMenu createContextMenu(Item item, ItemSlot itemSlot, Rectangle rectangle) {
         final ContextMenu contextMenu = new ContextMenu();
+        contextMenu.getItems().add(createDurabilityMenu(item, itemSlot, rectangle));
+        contextMenu.getItems().add(new SeparatorMenuItem());
         contextMenu.getItems().add(createSetMagicModifierMenu(item, itemSlot, rectangle));
         contextMenu.getItems().add(new SeparatorMenuItem());
         contextMenu.getItems().add(createDropButton(itemSlot, item));
         return contextMenu;
+    }
+
+    public static Menu createDurabilityMenu(Item item, ItemSlot itemSlot, Rectangle rectangle) {
+        Menu durabilityMenu = new Menu("Wytrzymałość");
+        MenuItem durabilityMinus1 = new MenuItem("uszkodzenie: -1");
+        durabilityMinus1.setOnAction(event -> handleDurabilityMinusClick(item, rectangle, itemSlot, 1));
+        MenuItem durabilityMinus5 = new MenuItem("uszkodzenie: -5");
+        durabilityMinus5.setOnAction(event -> handleDurabilityMinusClick(item, rectangle, itemSlot, 5));
+        MenuItem durabilityMax = new MenuItem("naprawa: max");
+        durabilityMax.setOnAction(event -> {
+            Item foundItem = findItem(item, itemSlot);
+            if (foundItem != null) {
+                foundItem.durabilityMax();
+                updateTooltip(item, itemSlot, rectangle);
+                if (item != null) {
+                    PlayerDisplayer.displayInventory();
+                } else {
+                    PlayerDisplayer.displayEquipmentItem(foundItem, itemSlot);
+                }
+            }
+        });
+        durabilityMenu.getItems().addAll(durabilityMinus1, durabilityMinus5, new SeparatorMenuItem(), durabilityMax);
+        return durabilityMenu;
+    }
+
+    private static void handleDurabilityMinusClick(Item item, Rectangle rectangle, ItemSlot itemSlot, int value) {
+        Item foundItem = findItem(item, itemSlot);
+        if (foundItem != null) {
+            foundItem.durabilityMinus(value);
+            updateTooltip(item, itemSlot, rectangle);
+            if (foundItem.breakIconShouldBeDisplayed()) {
+                if (item != null) {
+                    PlayerDisplayer.displayInventory();
+                } else {
+                    PlayerDisplayer.displayEquipmentItem(foundItem, itemSlot);
+                }
+            }
+        }
+    }
+
+    public static Menu createSetMagicModifierMenu(Item item, ItemSlot itemSlot, Rectangle rectangle) {
+        Menu addMagicModifierMenu = new Menu("Magiczne właściwości");
+        Menu prefixesMenu = new Menu("Przedrostki");
+        Menu suffixesMenu = new Menu("Przyrostki");
+        prefixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, true));
+        suffixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, false));
+        for (MagicModifier magicModifier: MagicModifier.values()) {
+            if (magicModifier.applicableForType(item, itemSlot)) {
+                MenuItem modifierButton = createMagicModifierButton(item, itemSlot, rectangle, magicModifier);
+                if (magicModifier.hasPrefix()) {
+                    prefixesMenu.getItems().add(modifierButton);
+                } else {
+                    suffixesMenu.getItems().add(modifierButton);
+                }
+            }
+        }
+        addMagicModifierMenu.getItems().add(prefixesMenu);
+        addMagicModifierMenu.getItems().add(suffixesMenu);
+        return addMagicModifierMenu;
+    }
+
+    private static MenuItem createMagicModifierButton(Item item, ItemSlot itemSlot, Rectangle rectangle, MagicModifier magicModifier) {
+        MenuItem modifierButton = new MenuItem();
+        modifierButton.setText(magicModifier.getText());
+        modifierButton.setOnAction(event -> handleMagicModifierButtonClick(item, itemSlot, rectangle, magicModifier, null));
+        return modifierButton;
+    }
+
+    private static MenuItem createRemoveMagicModifierButton(Item item, ItemSlot itemSlot, Rectangle rectangle, boolean hasPrefix) {
+        MenuItem modifierButton = new MenuItem();
+        modifierButton.setText("Brak");
+        modifierButton.setOnAction(event -> handleMagicModifierButtonClick(item, itemSlot, rectangle, null, hasPrefix));
+        return modifierButton;
+    }
+
+    private static void handleMagicModifierButtonClick(Item item, ItemSlot itemSlot, Rectangle rectangle, MagicModifier magicModifier, Boolean hasPrefix) {
+        Item foundItem = findItem(item, itemSlot);
+        if (foundItem != null) {
+            if (magicModifier != null) {
+                foundItem.setMagicModifier(magicModifier);
+            } else {
+                foundItem.removeMagicModifier(hasPrefix);
+            }
+            PlayerUpdater.updateAll();
+            if (item == null) {
+                PlayerDisplayer.displayEquipmentItem(foundItem, itemSlot);
+            } else {
+                PlayerDisplayer.displayInventory();
+            }
+            updateTooltip(item, itemSlot, rectangle);
+        }
+    }
+
+    private static Item findItem(Item item, ItemSlot itemSlot) {
+        Item foundItem;
+        if (item == null) {
+            foundItem = currentPlayer.getItem(itemSlot);
+        } else {
+            foundItem = item;
+        }
+        return foundItem;
     }
 
     public static MenuItem createDropButton(ItemSlot itemSlot, Item item) {
@@ -122,75 +225,6 @@ public class EquipmentGuiInitializer {
             });
         }
         return dropButton;
-    }
-
-    public static Menu createSetMagicModifierMenu(Item item, ItemSlot itemSlot, Rectangle rectangle) {
-        Menu addMagicModifierButton = new Menu("Magiczne właściwości");
-        Menu prefixesMenu = new Menu("Przedrostki");
-        Menu suffixesMenu = new Menu("Przyrostki");
-        prefixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, true));
-        suffixesMenu.getItems().add(createRemoveMagicModifierButton(item, itemSlot, rectangle, false));
-        for (MagicModifier magicModifier: MagicModifier.values()) {
-            if (magicModifier.applicableForType(item, itemSlot)) {
-                MenuItem modifierButton = createMagicModifierButton(item, itemSlot, rectangle, magicModifier);
-                if (magicModifier.hasPrefix()) {
-                    prefixesMenu.getItems().add(modifierButton);
-                } else {
-                    suffixesMenu.getItems().add(modifierButton);
-                }
-            }
-        }
-        addMagicModifierButton.getItems().add(prefixesMenu);
-        addMagicModifierButton.getItems().add(suffixesMenu);
-        return addMagicModifierButton;
-    }
-
-    private static MenuItem createMagicModifierButton(Item item, ItemSlot itemSlot, Rectangle rectangle, MagicModifier magicModifier) {
-        MenuItem modifierButton = new MenuItem();
-        modifierButton.setText(magicModifier.getText());
-        modifierButton.setOnAction(event -> {
-            Item foundItem;
-            if (item == null) {
-                foundItem = PlayerUpdater.getCurrentPlayer().getItem(itemSlot);
-            } else {
-                foundItem = item;
-            }
-            if (foundItem != null) {
-                foundItem.setMagicModifier(magicModifier);
-                PlayerUpdater.updateAll();
-                if (item == null) {
-                    PlayerDisplayer.displayEquipmentItem(foundItem, itemSlot);
-                } else {
-                    PlayerDisplayer.displayInventory();
-                }
-                updateTooltip(item, itemSlot, rectangle);
-            }
-        });
-        return modifierButton;
-    }
-
-    private static MenuItem createRemoveMagicModifierButton(Item item, ItemSlot itemSlot, Rectangle rectangle, boolean prefix) {
-        MenuItem modifierButton = new MenuItem();
-        modifierButton.setText("Brak");
-        modifierButton.setOnAction(event -> {
-            Item foundItem;
-            if (item == null) {
-                foundItem = PlayerUpdater.getCurrentPlayer().getItem(itemSlot);
-            } else {
-                foundItem = item;
-            }
-            if (foundItem != null) {
-                foundItem.removeMagicModifier(prefix);
-                PlayerUpdater.updateAll();
-                if (item == null) {
-                    PlayerDisplayer.displayEquipmentItem(foundItem, itemSlot);
-                } else {
-                    PlayerDisplayer.displayInventory();
-                }
-                updateTooltip(item, itemSlot, rectangle);
-            }
-        });
-        return modifierButton;
     }
 
     private static List<MenuItem> createWeaponMenu(ItemSlot itemSlot) {
