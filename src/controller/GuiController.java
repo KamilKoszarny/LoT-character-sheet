@@ -146,6 +146,9 @@ public class GuiController {
     private CheckBox skill1lvl3;
 
     @FXML
+    private Label skill1Extra;
+
+    @FXML
     private Label skill1description;
 
     @FXML
@@ -159,6 +162,9 @@ public class GuiController {
 
     @FXML
     private CheckBox skill2lvl3;
+
+    @FXML
+    private Label skill2Extra;
 
     @FXML
     private Label skill2description;
@@ -176,6 +182,9 @@ public class GuiController {
     private CheckBox skill3lvl3;
 
     @FXML
+    private Label skill3Extra;
+
+    @FXML
     private Label skill3description;
 
     @FXML
@@ -189,6 +198,9 @@ public class GuiController {
 
     @FXML
     private CheckBox skill4lvl3;
+
+    @FXML
+    private Label skill4Extra;
 
     @FXML
     private Label skill4description;
@@ -206,6 +218,9 @@ public class GuiController {
     private CheckBox skill5lvl3;
 
     @FXML
+    private Label skill5Extra;
+
+    @FXML
     private Label skill5description;
 
     @FXML
@@ -219,6 +234,9 @@ public class GuiController {
 
     @FXML
     private CheckBox skill6lvl3;
+
+    @FXML
+    private Label skill6Extra;
 
     @FXML
     private Label skill6description;
@@ -546,5 +564,17 @@ public class GuiController {
 
     @FXML
     private TextArea notes;
+
+    public Label getSkillExtraLabel(int index) {
+        switch (index) {
+            case 1: return skill1Extra;
+            case 2: return skill2Extra;
+            case 3: return skill3Extra;
+            case 4: return skill4Extra;
+            case 5: return skill5Extra;
+            case 6: return skill6Extra;
+        }
+        return null;
+    }
 }
 

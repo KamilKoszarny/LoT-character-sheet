@@ -5,11 +5,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import lombok.Getter;
 import lombok.Setter;
+import model.Modifying;
 import model.Player;
 import model.Skill;
 import model.SkillType;
 import model.horses.Horse;
 import model.items.ModifierType;
+
+import java.util.Set;
 
 import static controller.Main.guiController;
 
@@ -183,6 +186,7 @@ public class PlayerUpdater {
             SkillType skillType = (SkillType) skillChoiceBox.getItems().get((Integer) newValue);
             currentPlayer.getSkills()[skillNumber - 1] = new Skill(skillType);
             updateStatsFromSkill(skillType);
+            updateSkillsExtra();
             lvl1Checkbox.setDisable(false);
             lvl2Checkbox.setDisable(false);
             PlayerDisplayer.displaySkills();
@@ -205,6 +209,7 @@ public class PlayerUpdater {
                 lvl2Checkbox.setDisable(true);
             }
             updateStatsFromSkill(skillType);
+            updateSkillsExtra();
             PlayerDisplayer.displaySkills();
         });
 
@@ -221,6 +226,7 @@ public class PlayerUpdater {
                 lvl3Checkbox.setDisable(true);
             }
             updateStatsFromSkill(skill.getType());
+            updateSkillsExtra();
         });
 
         lvl3Checkbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -233,6 +239,7 @@ public class PlayerUpdater {
                 lvl2Checkbox.setDisable(false);
             }
             updateStatsFromSkill(skill.getType());
+            updateSkillsExtra();
         });
     }
 
@@ -361,12 +368,10 @@ public class PlayerUpdater {
         guiController.getLoadExtraPlus().setOnMouseClicked(event -> {
             currentPlayer.setLoadExtra(currentPlayer.getLoadExtra() + 1);
             PlayerDisplayer.displayLoad();
-            updateStatsFromSkill(SkillType.WRATH);
         });
         guiController.getLoadExtraMinus().setOnMouseClicked(event -> {
             currentPlayer.setLoadExtra(currentPlayer.getLoadExtra() - 1);
             PlayerDisplayer.displayLoad();
-            updateStatsFromSkill(SkillType.WRATH);
         });
         guiController.getGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setGold(newValue));
         guiController.getBankGold().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setBankGold(newValue));
@@ -461,6 +466,24 @@ public class PlayerUpdater {
         currentPlayer.setIntelligence(intelligence);
         guiController.getIntelligence().setText(Integer.toString(intelligence));
         updateManaMax();
+    }
+
+    private static void updateSkillsExtra() {
+        Set<Modifying> modifiers = currentPlayer.getModifyingObjects();
+        for (int i = 1; i <= currentPlayer.getSkills().length; i++) {
+            Skill skill = currentPlayer.getSkills()[i-1];
+            if (skill != null) {
+                int skillExtra = 0;
+                for (Modifying modifier: modifiers) {
+                    skillExtra += modifier.getModifiersSum(skill.getType().getModifierType());
+                }
+                if (skillExtra > 0) {
+                    guiController.getSkillExtraLabel(i).setText("+" + skillExtra);
+                } else {
+                    guiController.getSkillExtraLabel(i).setText("");
+                }
+            }
+        }
     }
 
     private static void updateStatsFromSkill(SkillType skillType) {
@@ -723,8 +746,11 @@ public class PlayerUpdater {
         updateFocus();
         updateCharisma();
         updateIntelligence();
+        updateSkillsExtra();
         for (SkillType skillType: SkillType.values()) {
-            updateStatsFromSkill(skillType);
+            if (currentPlayer.getSkill(skillType) != null) {
+                updateStatsFromSkill(skillType);
+            }
         }
         updateHitPointsIncrease();
         updateActionsMax();

@@ -611,6 +611,7 @@
                                           <Insets bottom="5.0" left="5.0" right="20.0" top="5.0" />
                                        </HBox.margin>
                                     </TextField>
+                                    <Label text="Tryb rozwoju" />
                                  </children>
                               </HBox>
                               <HBox>
@@ -619,26 +620,27 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox fx:id="skill1" prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill1" prefWidth="130.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                                 <CheckBox fx:id="skill1lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill1lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill1lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
+                                                <Label fx:id="skill1Extra" />
                                              </children>
                                           </HBox>
                                           <Label fx:id="skill1description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
@@ -652,26 +654,27 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox fx:id="skill2" prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill2" prefWidth="130.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                                 <CheckBox fx:id="skill2lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill2lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill2lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
+                                                <Label fx:id="skill2Extra" />
                                              </children>
                                           </HBox>
                                           <Label fx:id="skill2description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
@@ -685,26 +688,27 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox fx:id="skill3" prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill3" prefWidth="130.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                                 <CheckBox fx:id="skill3lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill3lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill3lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
+                                                <Label fx:id="skill3Extra" />
                                              </children>
                                           </HBox>
                                           <Label fx:id="skill3description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
@@ -722,26 +726,27 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox fx:id="skill4" prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill4" prefWidth="130.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                                 <CheckBox fx:id="skill4lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill4lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill4lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
+                                                <Label fx:id="skill4Extra" />
                                              </children>
                                           </HBox>
                                           <Label fx:id="skill4description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
@@ -755,26 +760,27 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox fx:id="skill5" prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill5" prefWidth="130.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                                 <CheckBox fx:id="skill5lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill5lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill5lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
+                                                <Label fx:id="skill5Extra" />
                                              </children>
                                           </HBox>
                                           <Label fx:id="skill5description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">
@@ -788,26 +794,27 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
-                                                <ChoiceBox fx:id="skill6" prefWidth="150.0">
+                                                <ChoiceBox fx:id="skill6" prefWidth="130.0">
                                                    <HBox.margin>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </ChoiceBox>
                                                 <CheckBox fx:id="skill6lvl1" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill6lvl2" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
                                                 <CheckBox fx:id="skill6lvl3" mnemonicParsing="false">
                                                    <HBox.margin>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="1.0" right="1.0" top="5.0" />
                                                    </HBox.margin>
                                                 </CheckBox>
+                                                <Label fx:id="skill6Extra" />
                                              </children>
                                           </HBox>
                                           <Label fx:id="skill6description" alignment="TOP_LEFT" minHeight="32.0" wrapText="true">

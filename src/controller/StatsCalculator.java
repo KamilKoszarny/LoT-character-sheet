@@ -74,6 +74,17 @@ public class StatsCalculator {
         return charisma;
     }
 
+    public static int calculateSkillLevel(Player player, SkillType skillType) {
+        Skill skill = player.getSkill(skillType);
+        if (skill != null) {
+            int lvl = skill.getLevel();
+            lvl += modifiersSum(player, skillType.getModifierType());
+            return lvl;
+        } else {
+            return 0;
+        }
+    }
+
     public static int calculateHitPointsMax(Player player) {
         int hitPointsMax = (int) Math.round(player.getVim()/3.);
         hitPointsMax += modifiersSum(player, ModifierType.HP_MAX);
@@ -85,7 +96,8 @@ public class StatsCalculator {
         hitPointsIncrease += modifiersSum(player, ModifierType.HP_INCREASE);
         Skill regeneration = player.getSkill(SkillType.REGENERATION);
         if (regeneration != null) {
-            hitPointsIncrease += regeneration.getLevel() == 1 ? 2 : 4;
+            int skillLvl = calculateSkillLevel(player, SkillType.REGENERATION);
+            hitPointsIncrease += skillLvl > 1 ? 4 : 2;
         }
         return hitPointsIncrease;
     }
@@ -101,7 +113,8 @@ public class StatsCalculator {
         manaMax += modifiersSum(player, ModifierType.MP_MAX);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
-            manaMax += 10 * magicTalent.getLevel();
+            int skillLvl = calculateSkillLevel(player, SkillType.MAGIC_TALENT);
+            manaMax += 10 * skillLvl;
         }
         return manaMax;
     }
@@ -111,7 +124,8 @@ public class StatsCalculator {
         manaIncrease += modifiersSum(player, ModifierType.MP_INCREASE);
         Skill magicTalent = player.getSkill(SkillType.MAGIC_TALENT);
         if (magicTalent != null) {
-            manaIncrease += 3 * magicTalent.getLevel();
+            int skillLvl = calculateSkillLevel(player, SkillType.MAGIC_TALENT);
+            manaIncrease += 3 * skillLvl;
         }
         return manaIncrease;
     }
@@ -134,7 +148,7 @@ public class StatsCalculator {
         } else {
             dmgMin += (int) Math.round(weapon.getDmgMin() * (1 + player.getStrength()/50.));
         }
-        return dmgMin + calculateSkillsDmg(player, firstHand);
+        return dmgMin + calculateSkillsAndShieldDmg(player, firstHand);
     }
 
     public static int calculateDmgMax(Player player, boolean firstSet, boolean firstHand) {
@@ -149,21 +163,23 @@ public class StatsCalculator {
         } else {
             dmgMax += (int) Math.round(weapon.getDmgMax() * (1 + player.getStrength()/50.));
         }
-        return dmgMax + calculateSkillsDmg(player, firstHand);
+        return dmgMax + calculateSkillsAndShieldDmg(player, firstHand);
     }
 
-    private static int calculateSkillsDmg(Player player, boolean firstHand) {
+    private static int calculateSkillsAndShieldDmg(Player player, boolean firstHand) {
         int dmgMax = 0;
         Skill wrath = player.getSkill(SkillType.WRATH);
         if (wrath != null && player.getHitPoints() < 0.4 * player.getHitPointsMax()) {
-            dmgMax += 2 * wrath.getLevel();
+            int skillLvl = calculateSkillLevel(player, SkillType.WRATH);
+            dmgMax += 2 * skillLvl;
         }
         if (!firstHand) {
             if (player.getShieldA() != null) {
                 dmgMax = player.getShieldA().getDmg();
                 Skill shieldman = player.getSkill(SkillType.SHIELDMAN);
                 if (shieldman != null) {
-                    dmgMax += shieldman.getLevel();
+                    int skillLvl = calculateSkillLevel(player, SkillType.SHIELDMAN);
+                    dmgMax += skillLvl;
                 }
             } else if (player.getWeaponA2ndHand() == null) {
                 dmgMax = 1;
@@ -231,13 +247,23 @@ public class StatsCalculator {
         int block = shield.getBlock();
         Skill shieldman = player.getSkill(SkillType.SHIELDMAN);
         if (shieldman != null) {
-            block += shieldman.getLevel() * 5;
+            int skillLvl = calculateSkillLevel(player, SkillType.SHIELDMAN);
+            block += skillLvl * 5;
         }
         return block;
     }
 
     public static int calculateDodge(Player player, boolean firstSet) {
         int dodge = (int) Math.round(player.getAgility() / 2.);
+        dodge += modifiersSum(player, ModifierType.DODGE);
+        if (!firstSet) {
+            dodge -= player.getWeaponA().getModifiersSum(ModifierType.DODGE);
+            dodge -= player.getWeaponA2ndHand().getModifiersSum(ModifierType.DODGE);
+            dodge -= player.getShieldA().getModifiersSum(ModifierType.DODGE);
+            dodge += player.getWeaponB().getModifiersSum(ModifierType.DODGE);
+            dodge += player.getWeaponB2ndHand().getModifiersSum(ModifierType.DODGE);
+            dodge += player.getShieldB().getModifiersSum(ModifierType.DODGE);
+        }
         return dodge;
     }
 
@@ -372,7 +398,7 @@ public class StatsCalculator {
     private static int getStoneSkinResistance(Player player) {
         Skill stoneSkin = player.getSkill(SkillType.STONE_SKIN);
         if (stoneSkin != null) {
-            int lvl = stoneSkin.getLevel();
+            int lvl = calculateSkillLevel(player, SkillType.STONE_SKIN);
             return player.getEndurance() / (lvl == 1 ? 10 : lvl == 2 ? 5 : 3);
         }
         return 0;
@@ -386,7 +412,7 @@ public class StatsCalculator {
     private static int getElementalMagicResistance(Player player) {
         Skill elementalMagic = player.getSkill(SkillType.ELEMENTAL_MAGIC);
         if (elementalMagic != null) {
-            int lvl = elementalMagic.getLevel();
+            int lvl = calculateSkillLevel(player, SkillType.ELEMENTAL_MAGIC);
             return lvl == 1 ? 5 : lvl == 2 ? 5 : 12;
         }
         return 0;
@@ -394,7 +420,8 @@ public class StatsCalculator {
 
     private static int getChangeMagicResistance(Player player) {
         Skill changeMagic = player.getSkill(SkillType.CHANGE_MAGIC);
-        if (changeMagic != null && changeMagic.getLevel() >= 2)
+        int skillLvl = calculateSkillLevel(player, SkillType.CHANGE_MAGIC);
+        if (changeMagic != null && skillLvl >= 2)
             return 20;
         return 0;
     }
