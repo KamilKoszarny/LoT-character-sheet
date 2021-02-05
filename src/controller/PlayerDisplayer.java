@@ -131,19 +131,19 @@ public class PlayerDisplayer {
     }
 
     public static void displayDmg() {
-        String dmgAText = "" + currentPlayer.getDmgAMin() + "-" + currentPlayer.getDmgAMax();
-        dmgAText += writeDmgExtra(currentPlayer.getDmgAFire(), currentPlayer.getDmgACold(), currentPlayer.getDmgAWind(), currentPlayer.getDmgAEarth(), currentPlayer.getDmgAMagic());
-        if (currentPlayer.getItem(ItemSlot.SHIELD_A) != null) {
-            dmgAText += "/" + currentPlayer.getDmgA2Min() + "-" + currentPlayer.getDmgA2Max();
-            dmgAText += writeDmgExtra(currentPlayer.getDmgA2Fire(), currentPlayer.getDmgA2Cold(), currentPlayer.getDmgA2Wind(), currentPlayer.getDmgA2Earth(), currentPlayer.getDmgA2Magic());
+        String dmgAText = "" + currentPlayer.getDmg1stSetMin() + "-" + currentPlayer.getDmg1stSetMax();
+        dmgAText += writeDmgExtra(currentPlayer.getDmg1stSetFire(), currentPlayer.getDmg1stSetCold(), currentPlayer.getDmg1stSetWind(), currentPlayer.getDmg1stSetEarth(), currentPlayer.getDmg1stSetMagic());
+        if (currentPlayer.getItem(ItemSlot.SHIELD_1ST_SET) != null) {
+            dmgAText += "/" + currentPlayer.getDmg1stSet2ndHandMin() + "-" + currentPlayer.getDmg1stSet2ndHandMax();
+            dmgAText += writeDmgExtra(currentPlayer.getDmg1stSet2ndHandFire(), currentPlayer.getDmg1stSet2ndHandCold(), currentPlayer.getDmg1stSet2ndHandWind(), currentPlayer.getDmg1stSet2ndHandEarth(), currentPlayer.getDmg1stSet2ndHandMagic());
         }
         guiController.getDmgA().setText(dmgAText);
 
-        String dmgBText = "" + currentPlayer.getDmgBMin() + "-" + currentPlayer.getDmgBMax();
-        dmgBText += writeDmgExtra(currentPlayer.getDmgBFire(), currentPlayer.getDmgBCold(), currentPlayer.getDmgBWind(), currentPlayer.getDmgBEarth(), currentPlayer.getDmgBMagic());
-        if (currentPlayer.getItem(ItemSlot.SHIELD_B) != null) {
-            dmgBText += "/" + currentPlayer.getDmgB2Min() + "-" + currentPlayer.getDmgB2Max();
-            dmgBText += writeDmgExtra(currentPlayer.getDmgB2Fire(), currentPlayer.getDmgB2Cold(), currentPlayer.getDmgB2Wind(), currentPlayer.getDmgB2Earth(), currentPlayer.getDmgB2Magic());
+        String dmgBText = "" + currentPlayer.getDmg2ndSetMin() + "-" + currentPlayer.getDmg2ndSetMax();
+        dmgBText += writeDmgExtra(currentPlayer.getDmg2ndSetFire(), currentPlayer.getDmg2ndSetCold(), currentPlayer.getDmg2ndSetWind(), currentPlayer.getDmg2ndSetEarth(), currentPlayer.getDmg2ndSetMagic());
+        if (currentPlayer.getItem(ItemSlot.SHIELD_2ND_SET) != null) {
+            dmgBText += "/" + currentPlayer.getDmg2ndSet2ndHandMin() + "-" + currentPlayer.getDmg2ndSet2ndHandMax();
+            dmgBText += writeDmgExtra(currentPlayer.getDmg2ndSet2ndHandFire(), currentPlayer.getDmg2ndSet2ndHandCold(), currentPlayer.getDmg2ndSet2ndHandWind(), currentPlayer.getDmg2ndSet2ndHandEarth(), currentPlayer.getDmg2ndSet2ndHandMagic());
         }
         guiController.getDmgB().setText(dmgBText);
     }
@@ -170,55 +170,55 @@ public class PlayerDisplayer {
     }
 
     public static void displayHit() {
-        String hitAText = "" + currentPlayer.getHitA();
-        if (currentPlayer.getWeaponA2ndHand() != null) {
-            hitAText += "/" + currentPlayer.getHitA2();
+        String hitAText = "" + currentPlayer.getHit1stSet();
+        if (currentPlayer.getWeapon1stSet2ndHand() != null) {
+            hitAText += "/" + currentPlayer.getHit1stSet2ndHand();
         }
         guiController.getHitA().setText(hitAText);
-        String hitBText = "" + currentPlayer.getHitB();
-        if (currentPlayer.getWeaponB2ndHand() != null) {
-            hitBText += "/" + currentPlayer.getHitB2();
+        String hitBText = "" + currentPlayer.getHit2ndSet();
+        if (currentPlayer.getWeapon2ndSet2ndHand() != null) {
+            hitBText += "/" + currentPlayer.getHit2ndSet2ndHand();
         }
         guiController.getHitB().setText(hitBText);
     }
 
     public static void displayParry() {
-        guiController.getParryA().setText(Integer.toString(currentPlayer.getParryA()));
-        guiController.getParryB().setText(Integer.toString(currentPlayer.getParryB()));
+        guiController.getParryA().setText(Integer.toString(currentPlayer.getParry1stSet()));
+        guiController.getParryB().setText(Integer.toString(currentPlayer.getParry2ndSet()));
     }
 
     public static void displayBlock() {
-        guiController.getBlockA().setText(Integer.toString(currentPlayer.getBlockA()));
-        guiController.getBlockB().setText(Integer.toString(currentPlayer.getBlockB()));
+        guiController.getBlockA().setText(Integer.toString(currentPlayer.getBlock1stSet()));
+        guiController.getBlockB().setText(Integer.toString(currentPlayer.getBlock2ndSet()));
     }
 
     public static void displayDodge() {
-        guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodgeA()));
-        guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodgeB()));
+        guiController.getDodgeA().setText(Integer.toString(currentPlayer.getDodge1stSet()));
+        guiController.getDodgeB().setText(Integer.toString(currentPlayer.getDodge2ndSet()));
     }
 
     public static void displayRange() {
-        String rangeAText = "" + currentPlayer.getRangeA();
-        if (currentPlayer.getWeaponA2ndHand() != null) {
-            rangeAText += "/" + currentPlayer.getRangeA2();
+        String rangeAText = "" + currentPlayer.getRange1stSet();
+        if (currentPlayer.getWeapon1stSet2ndHand() != null) {
+            rangeAText += "/" + currentPlayer.getRange1stSet2ndHand();
         }
         guiController.getRangeA().setText(rangeAText);
-        String rangeBText = "" + currentPlayer.getRangeB();
-        if (currentPlayer.getWeaponB2ndHand() != null) {
-            rangeBText += "/" + currentPlayer.getRangeB2();
+        String rangeBText = "" + currentPlayer.getRange2ndSet();
+        if (currentPlayer.getWeapon2ndSet2ndHand() != null) {
+            rangeBText += "/" + currentPlayer.getRange2ndSet2ndHand();
         }
         guiController.getRangeB().setText(rangeBText);
     }
 
     public static void displayAttackTime() {
-        String attackTimeAText = "" + currentPlayer.getAttackTimeA();
-        if (currentPlayer.getWeaponA2ndHand() != null) {
-            attackTimeAText += "/" + currentPlayer.getAttackTimeA2();
+        String attackTimeAText = "" + currentPlayer.getAttackTime1stSet();
+        if (currentPlayer.getWeapon1stSet2ndHand() != null) {
+            attackTimeAText += "/" + currentPlayer.getAttackTime1stSet2ndHand();
         }
         guiController.getTimeA().setText(attackTimeAText);
-        String attackTimeBText = "" + currentPlayer.getAttackTimeB();
-        if (currentPlayer.getWeaponB2ndHand() != null) {
-            attackTimeBText += "/" + currentPlayer.getAttackTimeB2();
+        String attackTimeBText = "" + currentPlayer.getAttackTime2ndSet();
+        if (currentPlayer.getWeapon2ndSet2ndHand() != null) {
+            attackTimeBText += "/" + currentPlayer.getAttackTime2ndSet2ndHand();
         }
         guiController.getTimeB().setText(attackTimeBText);
     }
@@ -241,17 +241,17 @@ public class PlayerDisplayer {
     }
 
     private static void displayEquipment() {
-        if (currentPlayer.getWeaponA() != null) {
-            displayEquipmentItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_A);
+        if (currentPlayer.getWeapon1stSet() != null) {
+            displayEquipmentItem(currentPlayer.getWeapon1stSet(), ItemSlot.WEAPON_1ST_SET);
         }
-        if (currentPlayer.getWeaponB() != null) {
-            displayEquipmentItem(currentPlayer.getWeaponA(), ItemSlot.WEAPON_B);
+        if (currentPlayer.getWeapon2ndSet() != null) {
+            displayEquipmentItem(currentPlayer.getWeapon1stSet(), ItemSlot.WEAPON_2ND_SET);
         }
-        if (currentPlayer.getShieldA() != null) {
-            displayEquipmentItem(currentPlayer.getShieldA(), ItemSlot.SHIELD_A);
+        if (currentPlayer.getShield1stSet() != null) {
+            displayEquipmentItem(currentPlayer.getShield1stSet(), ItemSlot.SHIELD_1ST_SET);
         }
-        if (currentPlayer.getShieldB() != null) {
-            displayEquipmentItem(currentPlayer.getShieldB(), ItemSlot.SHIELD_B);
+        if (currentPlayer.getShield2ndSet() != null) {
+            displayEquipmentItem(currentPlayer.getShield2ndSet(), ItemSlot.SHIELD_2ND_SET);
         }
         if (currentPlayer.getHelmet() != null) {
             displayEquipmentItem(currentPlayer.getHelmet(), ItemSlot.HELMET);
@@ -281,18 +281,18 @@ public class PlayerDisplayer {
 
     public static void displayEquipmentItem(Item item, ItemSlot itemSlot) {
         displayEquipmentItem(item, itemSlot, 1);
-        if (itemSlot.equals(ItemSlot.WEAPON_A)) {
+        if (itemSlot.equals(ItemSlot.WEAPON_1ST_SET)) {
             displaySecondHand(item, true);
-        } else if (itemSlot.equals(ItemSlot.WEAPON_B)) {
+        } else if (itemSlot.equals(ItemSlot.WEAPON_2ND_SET)) {
             displaySecondHand(item, false);
         }
     }
 
     private static void displaySecondHand(Item item, boolean firstSet) {
-        Weapon weapon = firstSet ? currentPlayer.getWeaponA() : currentPlayer.getWeaponB();
-        Shield shield = firstSet ? currentPlayer.getShieldA() : currentPlayer.getShieldB();
-        Weapon weapon2ndHand = firstSet ? currentPlayer.getWeaponA2ndHand() : currentPlayer.getWeaponB2ndHand();
-        ItemSlot shieldSlot = firstSet ? ItemSlot.SHIELD_A : ItemSlot.SHIELD_B;
+        Weapon weapon = firstSet ? currentPlayer.getWeapon1stSet() : currentPlayer.getWeapon2ndSet();
+        Shield shield = firstSet ? currentPlayer.getShield1stSet() : currentPlayer.getShield2ndSet();
+        Weapon weapon2ndHand = firstSet ? currentPlayer.getWeapon1stSet2ndHand() : currentPlayer.getWeapon2ndSet2ndHand();
+        ItemSlot shieldSlot = firstSet ? ItemSlot.SHIELD_1ST_SET : ItemSlot.SHIELD_2ND_SET;
 
         if (item == null) {
             if (shield == null && weapon2ndHand == null) {

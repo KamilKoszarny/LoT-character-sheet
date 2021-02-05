@@ -81,52 +81,52 @@ public class Player implements Serializable {
     private int manaMax;
     private int manaIncrease;
 
-    private int dmgAMin;
-    private int dmgAMax;
-    private int dmgAFire;
-    private int dmgACold;
-    private int dmgAWind;
-    private int dmgAEarth;
-    private int dmgAMagic;
-    private int hitA;
-    private int parryA;
-    private int blockA;
-    private int dodgeA;
-    private int rangeA;
-    private int attackTimeA;
-    private int dmgA2Min;
-    private int dmgA2Max;
-    private int dmgA2Fire;
-    private int dmgA2Cold;
-    private int dmgA2Wind;
-    private int dmgA2Earth;
-    private int dmgA2Magic;
-    private int hitA2;
-    private int rangeA2;
-    private int attackTimeA2;
-    private int dmgBMin;
-    private int dmgBMax;
-    private int dmgBFire;
-    private int dmgBCold;
-    private int dmgBWind;
-    private int dmgBEarth;
-    private int dmgBMagic;
-    private int hitB;
-    private int parryB;
-    private int blockB;
-    private int dodgeB;
-    private int rangeB;
-    private int attackTimeB;
-    private int dmgB2Min;
-    private int dmgB2Max;
-    private int dmgB2Fire;
-    private int dmgB2Cold;
-    private int dmgB2Wind;
-    private int dmgB2Earth;
-    private int dmgB2Magic;
-    private int hitB2;
-    private int rangeB2;
-    private int attackTimeB2;
+    private int dmg1stSetMin;
+    private int dmg1stSetMax;
+    private int dmg1stSetFire;
+    private int dmg1stSetCold;
+    private int dmg1stSetWind;
+    private int dmg1stSetEarth;
+    private int dmg1stSetMagic;
+    private int hit1stSet;
+    private int parry1stSet;
+    private int block1stSet;
+    private int dodge1stSet;
+    private int range1stSet;
+    private int attackTime1stSet;
+    private int dmg1stSet2ndHandMin;
+    private int dmg1stSet2ndHandMax;
+    private int dmg1stSet2ndHandFire;
+    private int dmg1stSet2ndHandCold;
+    private int dmg1stSet2ndHandWind;
+    private int dmg1stSet2ndHandEarth;
+    private int dmg1stSet2ndHandMagic;
+    private int hit1stSet2ndHand;
+    private int range1stSet2ndHand;
+    private int attackTime1stSet2ndHand;
+    private int dmg2ndSetMin;
+    private int dmg2ndSetMax;
+    private int dmg2ndSetFire;
+    private int dmg2ndSetCold;
+    private int dmg2ndSetWind;
+    private int dmg2ndSetEarth;
+    private int dmg2ndSetMagic;
+    private int hit2ndSet;
+    private int parry2ndSet;
+    private int block2ndSet;
+    private int dodge2ndSet;
+    private int range2ndSet;
+    private int attackTime2ndSet;
+    private int dmg2ndSet2ndHandMin;
+    private int dmg2ndSet2ndHandMax;
+    private int dmg2ndSet2ndHandFire;
+    private int dmg2ndSet2ndHandCold;
+    private int dmg2ndSet2ndHandWind;
+    private int dmg2ndSet2ndHandEarth;
+    private int dmg2ndSet2ndHandMagic;
+    private int hit2ndSet2ndHand;
+    private int range2ndSet2ndHand;
+    private int attackTime2ndSet2ndHand;
 
     private int armorHead;
     private int armorBody;
@@ -143,12 +143,12 @@ public class Player implements Serializable {
 
     private Horse horse;
 
-    private Weapon weaponA;
-    private Weapon weaponB;
-    private Weapon weaponA2ndHand;
-    private Weapon weaponB2ndHand;
-    private Shield shieldA;
-    private Shield shieldB;
+    private Weapon weapon1stSet;
+    private Weapon weapon2ndSet;
+    private Weapon weapon1stSet2ndHand;
+    private Weapon weapon2ndSet2ndHand;
+    private Shield shield1stSet;
+    private Shield shield2ndSet;
     private Helmet helmet;
     private Armor armor;
     private Gloves gloves;
@@ -211,7 +211,7 @@ public class Player implements Serializable {
         Set<Item> wearItems = new HashSet<>();
         for (ItemSlot itemSlot: ItemSlot.values()) {
             Item item = getItem(itemSlot);
-            if (item != null && itemSlot != ItemSlot.WEAPON_B && itemSlot != ItemSlot.SHIELD_B) {
+            if (item != null && itemSlot != ItemSlot.WEAPON_2ND_SET && itemSlot != ItemSlot.SHIELD_2ND_SET) {
                 wearItems.add(item);
             }
         }
@@ -220,18 +220,18 @@ public class Player implements Serializable {
 
     public Item getItem(ItemSlot itemSlot) {
         switch (itemSlot) {
-            case WEAPON_A: return weaponA;
-            case WEAPON_B: return weaponB;
-            case SHIELD_A:
-                if (shieldA != null)
-                    return shieldA;
+            case WEAPON_1ST_SET: return weapon1stSet;
+            case WEAPON_2ND_SET: return weapon2ndSet;
+            case SHIELD_1ST_SET:
+                if (shield1stSet != null)
+                    return shield1stSet;
                 else
-                    return weaponA2ndHand;
-            case SHIELD_B:
-                if (shieldB != null)
-                    return shieldB;
+                    return weapon1stSet2ndHand;
+            case SHIELD_2ND_SET:
+                if (shield2ndSet != null)
+                    return shield2ndSet;
                 else
-                    return weaponB2ndHand;
+                    return weapon2ndSet2ndHand;
             case HELMET: return helmet;
             case ARMOR: return armor;
             case GLOVES: return gloves;
@@ -247,39 +247,39 @@ public class Player implements Serializable {
     public boolean trySetItem(Item item, ItemSlot itemSlot) {
         if (item != null
                 && (!itemSlot.itemTypeCompatible(item.getItemType())
-                || itemSlot.equals(ItemSlot.WEAPON_A) && ((Weapon) item).getModel().isTwoHanded() && (shieldA != null || weaponA2ndHand != null)
-                || itemSlot.equals(ItemSlot.WEAPON_B) && ((Weapon) item).getModel().isTwoHanded() && (shieldB != null || weaponB2ndHand != null)
-                || itemSlot.equals(ItemSlot.SHIELD_A) && weaponA != null && weaponA.getModel().isTwoHanded()
-                || itemSlot.equals(ItemSlot.SHIELD_B) && weaponB != null && weaponB.getModel().isTwoHanded()
+                || itemSlot.equals(ItemSlot.WEAPON_1ST_SET) && ((Weapon) item).getModel().isTwoHanded() && (shield1stSet != null || weapon1stSet2ndHand != null)
+                || itemSlot.equals(ItemSlot.WEAPON_2ND_SET) && ((Weapon) item).getModel().isTwoHanded() && (shield2ndSet != null || weapon2ndSet2ndHand != null)
+                || itemSlot.equals(ItemSlot.SHIELD_1ST_SET) && weapon1stSet != null && weapon1stSet.getModel().isTwoHanded()
+                || itemSlot.equals(ItemSlot.SHIELD_2ND_SET) && weapon2ndSet != null && weapon2ndSet.getModel().isTwoHanded()
         )) {
             return false;
         }
 
         switch (itemSlot) {
-            case WEAPON_A:
-                setWeaponA((Weapon) item);
+            case WEAPON_1ST_SET:
+                setWeapon1stSet((Weapon) item);
                 break;
-            case WEAPON_B:
-                setWeaponB((Weapon) item);
+            case WEAPON_2ND_SET:
+                setWeapon2ndSet((Weapon) item);
                 break;
-            case SHIELD_A:
+            case SHIELD_1ST_SET:
                 if (item == null) {
-                    setShieldA(null);
-                    setWeaponA2ndHand(null);
+                    setShield1stSet(null);
+                    setWeapon1stSet2ndHand(null);
                 } else if (item instanceof Weapon) {
-                    setWeaponA2ndHand((Weapon) item);
+                    setWeapon1stSet2ndHand((Weapon) item);
                 } else {
-                    setShieldA((Shield) item);
+                    setShield1stSet((Shield) item);
                 }
                 break;
-            case SHIELD_B:
+            case SHIELD_2ND_SET:
                 if (item == null) {
-                    setShieldB(null);
-                    setWeaponB2ndHand(null);
+                    setShield2ndSet(null);
+                    setWeapon2ndSet2ndHand(null);
                 } else if (item instanceof Weapon) {
-                    setWeaponB2ndHand((Weapon) item);
+                    setWeapon2ndSet2ndHand((Weapon) item);
                 } else {
-                    setShieldB((Shield) item);
+                    setShield2ndSet((Shield) item);
                 }
                 break;
             case HELMET:

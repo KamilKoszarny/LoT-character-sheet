@@ -8,11 +8,11 @@ import java.util.List;
 @Getter
 public enum GlovesModel implements ItemModel{
 
-    RAG_GLOVES(     0, 2, 3, "Szmaciane rękawice"),
-    LEATHER_GLOVES( 1, 3, 6, "Skórzane rękawice"),
-    CHAIN_GLOVES(   2, 5, 9, "Kolcze rękawice"),
-    STEEL_GLOVES(   4, 7, 16, "Stalowe rękawice", new Modifier(ModifierType.ARM, -5)),
-    PLATE_GLOVES(   3, 5, 13, "Płytowe rękawice", new Modifier(ModifierType.ARM, -2)),
+    RAG_GLOVES(     1, 2, 3, "Szmaciane rękawice"),
+    LEATHER_GLOVES( 2, 3, 6, "Skórzane rękawice"),
+    CHAIN_GLOVES(   3, 5, 9, "Kolcze rękawice"),
+    STEEL_GLOVES(   5, 7, 16, "Stalowe rękawice", new Modifier(ModifierType.ARM, -5)),
+    PLATE_GLOVES(   4, 5, 13, "Płytowe rękawice", new Modifier(ModifierType.ARM, -2)),
     ;
 
     private final int armor;

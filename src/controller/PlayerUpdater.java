@@ -570,35 +570,35 @@ public class PlayerUpdater {
         int dmgMagic = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, true, ModifierType.DMG_MAGIC);
         int dmgMagic2ndHand = StatsCalculator.calculateDmgExtra(currentPlayer, firstSet, false, ModifierType.DMG_MAGIC);
         if (firstSet) {
-            currentPlayer.setDmgAMin(dmgMin);
-            currentPlayer.setDmgA2Min(dmgMin2ndHand);
-            currentPlayer.setDmgAMax(dmgMax);
-            currentPlayer.setDmgA2Max(dmgMax2ndHand);
-            currentPlayer.setDmgAFire(dmgFire);
-            currentPlayer.setDmgA2Fire(dmgFire2ndHand);
-            currentPlayer.setDmgACold(dmgCold);
-            currentPlayer.setDmgA2Cold(dmgCold2ndHand);
-            currentPlayer.setDmgAWind(dmgWind);
-            currentPlayer.setDmgA2Wind(dmgWind2ndHand);
-            currentPlayer.setDmgAEarth(dmgEarth);
-            currentPlayer.setDmgA2Earth(dmgEarth2ndHand);
-            currentPlayer.setDmgAMagic(dmgMagic);
-            currentPlayer.setDmgA2Magic(dmgMagic2ndHand);
+            currentPlayer.setDmg1stSetMin(dmgMin);
+            currentPlayer.setDmg1stSet2ndHandMin(dmgMin2ndHand);
+            currentPlayer.setDmg1stSetMax(dmgMax);
+            currentPlayer.setDmg1stSet2ndHandMax(dmgMax2ndHand);
+            currentPlayer.setDmg1stSetFire(dmgFire);
+            currentPlayer.setDmg1stSet2ndHandFire(dmgFire2ndHand);
+            currentPlayer.setDmg1stSetCold(dmgCold);
+            currentPlayer.setDmg1stSet2ndHandCold(dmgCold2ndHand);
+            currentPlayer.setDmg1stSetWind(dmgWind);
+            currentPlayer.setDmg1stSet2ndHandWind(dmgWind2ndHand);
+            currentPlayer.setDmg1stSetEarth(dmgEarth);
+            currentPlayer.setDmg1stSet2ndHandEarth(dmgEarth2ndHand);
+            currentPlayer.setDmg1stSetMagic(dmgMagic);
+            currentPlayer.setDmg1stSet2ndHandMagic(dmgMagic2ndHand);
         } else {
-            currentPlayer.setDmgBMin(dmgMin);
-            currentPlayer.setDmgB2Min(dmgMin2ndHand);
-            currentPlayer.setDmgBMax(dmgMax);
-            currentPlayer.setDmgB2Max(dmgMax2ndHand);
-            currentPlayer.setDmgBFire(dmgFire);
-            currentPlayer.setDmgB2Fire(dmgFire2ndHand);
-            currentPlayer.setDmgBCold(dmgCold);
-            currentPlayer.setDmgB2Cold(dmgCold2ndHand);
-            currentPlayer.setDmgBWind(dmgWind);
-            currentPlayer.setDmgB2Wind(dmgWind2ndHand);
-            currentPlayer.setDmgBEarth(dmgEarth);
-            currentPlayer.setDmgB2Earth(dmgEarth2ndHand);
-            currentPlayer.setDmgBMagic(dmgMagic);
-            currentPlayer.setDmgB2Magic(dmgMagic2ndHand);
+            currentPlayer.setDmg2ndSetMin(dmgMin);
+            currentPlayer.setDmg2ndSet2ndHandMin(dmgMin2ndHand);
+            currentPlayer.setDmg2ndSetMax(dmgMax);
+            currentPlayer.setDmg2ndSet2ndHandMax(dmgMax2ndHand);
+            currentPlayer.setDmg2ndSetFire(dmgFire);
+            currentPlayer.setDmg2ndSet2ndHandFire(dmgFire2ndHand);
+            currentPlayer.setDmg2ndSetCold(dmgCold);
+            currentPlayer.setDmg2ndSet2ndHandCold(dmgCold2ndHand);
+            currentPlayer.setDmg2ndSetWind(dmgWind);
+            currentPlayer.setDmg2ndSet2ndHandWind(dmgWind2ndHand);
+            currentPlayer.setDmg2ndSetEarth(dmgEarth);
+            currentPlayer.setDmg2ndSet2ndHandEarth(dmgEarth2ndHand);
+            currentPlayer.setDmg2ndSetMagic(dmgMagic);
+            currentPlayer.setDmg2ndSet2ndHandMagic(dmgMagic2ndHand);
         }
         PlayerDisplayer.displayDmg();
     }
@@ -612,11 +612,11 @@ public class PlayerUpdater {
         int hit = StatsCalculator.calculateHit(currentPlayer, firstSet, true);
         int hit2ndHand = StatsCalculator.calculateHit(currentPlayer, firstSet, false);
         if(firstSet) {
-            currentPlayer.setHitA(hit);
-            currentPlayer.setHitA2(hit2ndHand);
+            currentPlayer.setHit1stSet(hit);
+            currentPlayer.setHit1stSet2ndHand(hit2ndHand);
         } else {
-            currentPlayer.setHitB(hit);
-            currentPlayer.setHitB2(hit2ndHand);
+            currentPlayer.setHit2ndSet(hit);
+            currentPlayer.setHit2ndSet2ndHand(hit2ndHand);
         }
         PlayerDisplayer.displayHit();
     }
@@ -629,9 +629,9 @@ public class PlayerUpdater {
     public static void updateParry(boolean firstSet) {
         int parry = StatsCalculator.calculateParry(currentPlayer, firstSet);
         if(firstSet) {
-            currentPlayer.setParryA(parry);
+            currentPlayer.setParry1stSet(parry);
         } else {
-            currentPlayer.setParryB(parry);
+            currentPlayer.setParry2ndSet(parry);
         }
         PlayerDisplayer.displayParry();
     }
@@ -644,17 +644,17 @@ public class PlayerUpdater {
     public static void updateBlock(boolean firstSet) {
         int block = StatsCalculator.calculateBlock(currentPlayer, firstSet);
         if (firstSet) {
-            currentPlayer.setBlockA(block);
+            currentPlayer.setBlock1stSet(block);
         } else {
-            currentPlayer.setBlockB(block);
+            currentPlayer.setBlock2ndSet(block);
         }
         PlayerDisplayer.displayBlock();
     }
 
     static void updateDodges() {
         int dodge = StatsCalculator.calculateDodge(currentPlayer, true);
-        currentPlayer.setDodgeA(dodge);
-        currentPlayer.setDodgeB(dodge);
+        currentPlayer.setDodge1stSet(dodge);
+        currentPlayer.setDodge2ndSet(dodge);
         PlayerDisplayer.displayDodge();
     }
 
@@ -667,11 +667,11 @@ public class PlayerUpdater {
         int range = StatsCalculator.calculateRange(currentPlayer, firstSet, true);
         int range2ndHand = StatsCalculator.calculateRange(currentPlayer, firstSet, false);
         if(firstSet) {
-            currentPlayer.setRangeA(range);
-            currentPlayer.setRangeA2(range2ndHand);
+            currentPlayer.setRange1stSet(range);
+            currentPlayer.setRange1stSet2ndHand(range2ndHand);
         } else {
-            currentPlayer.setRangeB(range);
-            currentPlayer.setRangeB2(range2ndHand);
+            currentPlayer.setRange2ndSet(range);
+            currentPlayer.setRange2ndSet2ndHand(range2ndHand);
         }
         PlayerDisplayer.displayRange();
     }
@@ -685,11 +685,11 @@ public class PlayerUpdater {
         int attackTime = StatsCalculator.calculateAttackTime(currentPlayer, firstSet, true);
         int attackTime2ndHand = StatsCalculator.calculateAttackTime(currentPlayer, firstSet, false);
         if(firstSet) {
-            currentPlayer.setAttackTimeA(attackTime);
-            currentPlayer.setAttackTimeA2(attackTime2ndHand);
+            currentPlayer.setAttackTime1stSet(attackTime);
+            currentPlayer.setAttackTime1stSet2ndHand(attackTime2ndHand);
         } else {
-            currentPlayer.setAttackTimeB(attackTime);
-            currentPlayer.setAttackTimeB2(attackTime2ndHand);
+            currentPlayer.setAttackTime2ndSet(attackTime);
+            currentPlayer.setAttackTime2ndSet2ndHand(attackTime2ndHand);
         }
         PlayerDisplayer.displayAttackTime();
     }

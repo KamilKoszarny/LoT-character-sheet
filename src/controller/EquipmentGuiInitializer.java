@@ -48,12 +48,12 @@ public class EquipmentGuiInitializer {
 
     private static void addNewItemMenus(MenuButton button, ItemSlot itemSlot) {
         switch (itemSlot) {
-            case WEAPON_A:
-            case WEAPON_B:
+            case WEAPON_1ST_SET:
+            case WEAPON_2ND_SET:
                 button.getItems().addAll(createWeaponMenu(itemSlot));
                 break;
-            case SHIELD_A:
-            case SHIELD_B:
+            case SHIELD_1ST_SET:
+            case SHIELD_2ND_SET:
                 button.getItems().addAll(create2ndHandMenu(itemSlot));
                 break;
             case HELMET:
@@ -274,7 +274,7 @@ public class EquipmentGuiInitializer {
             menuItem.setOnAction(event -> {
                 Shield shield = new Shield(shieldModel);
                 if (PlayerUpdater.getCurrentPlayer().trySetItem(shield, itemSlot)) {
-                    PlayerUpdater.updateBlock(itemSlot.equals(ItemSlot.SHIELD_A));
+                    PlayerUpdater.updateBlock(itemSlot.equals(ItemSlot.SHIELD_1ST_SET));
                     PlayerDisplayer.displayEquipmentItem(shield, itemSlot);
                 }
             });

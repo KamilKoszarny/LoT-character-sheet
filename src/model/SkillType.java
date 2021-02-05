@@ -28,7 +28,8 @@ public enum SkillType {
             "Wymaga: z > 20 / 35 / 50, w > 40 / 60 / 80", ModifierType.SHIELDMAN),
     INTIMIDATE("Zastraszanie", "+ 15 / 30 / 40 zdobywanie informacji i dyplomacja\n" +
             "Wymaga: s > 20 / 45 / 60", ModifierType.INTIMIDATE),
-    BLACKSMITHING("Kowalstwo", "Wytwarzanie i naprawa ekwipunku \u000BI / II / III poziom \n" +
+    BLACKSMITHING("Kowalstwo", "Wytwarzanie i naprawa metalowych przedmiotów\n" +
+            "I / II / III poziom \n" +
             "Wymaga w > 20 / 40 / 60, s > 25 / 45 / 65 \n", ModifierType.BLACKSMITHING),
 
     MULTISHOT("Wielostrzał", "Strzał 2 / 2 / 3 pociskami z 60 / 75 / 60 % normalnych szans na trafienie każda. Jeśli różni przeciwnicy: -30.\n" +
@@ -81,14 +82,17 @@ public enum SkillType {
             " Wymaga s > 30 / 50 / 80, o > 15 / 30 / 45", ModifierType.ALCHEMY),
     MEDICINE("Medycyna", "Leczenie lekkich/ciezkich/krytycznych ran .25/.5/1 PZ/h oraz chorob z w/(5/3/2) na dzien\n" +
             " Wymaga w > 30 / 50 / 80, c > 15 / 30 / 45", ModifierType.MEDICINE),
-    ENGINEERING("Inżynieria", "Leczenie lekkich/ciężkich/krytycznych ran .25/.5/1 PZ/h oraz chorób z w/(5/3/2) na dzień\n" +
-            " Wymaga w > 30 / 50 / 80, c > 15 / 30 / 45", ModifierType.ENGINEERING),
-    TRADING("Targowanie", "Wytwarzanie i naprawa przedmiotów, pułapek, pojazdów itp. I / II / III poziom \n" +
-            "Wymaga w > 25 / 45 / 70, r > 20 / 35 / 55", ModifierType.TRADING),
-    PERSUASION("Perswazja", "+ 30 do sprzedaży, wycena zwykłych/ \n" +
+    ENGINEERING("Inżynieria", "Wytwarzanie i naprawa niemetalowych przedmiotów, pułapek, pojazdów itp.\n" +
+            "I / II / III poziom \n" +
+            "Wymaga w > 25 / 45 / 70, r > 20 / 35 / 55", ModifierType.ENGINEERING),
+    TRADING("Targowanie", "+ 30 do sprzedaży, wycena zwykłych/ \n" +
             "+ 30 do zakupu, wycena magicznych, zwiększona dostępność / \n" +
             "+ 30 do usług, pelna wycena, zwiększona dostępność \n" +
-            "Wymaga c > 25 / 50 / 75 ", ModifierType.PERSUASION);
+            "Wymaga c > 25 / 50 / 75 \n", ModifierType.TRADING),
+    PERSUASION("Perswazja", "+ 20 do zdobywania informacji / \n" +
+            "+ 25% do wartości nagród / \n" +
+            "+ 50% do dyplomacji \n" +
+            "Wymaga c > 30 / 55 / 80", ModifierType.PERSUASION);
 
     private final String namePL;
     private final String descriptionPL;

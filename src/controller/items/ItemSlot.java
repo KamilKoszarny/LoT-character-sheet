@@ -11,10 +11,10 @@ import static controller.Main.guiController;
 
 @Getter
 public enum ItemSlot {
-    WEAPON_A(guiController.getWeaponA(), ItemType.WEAPON),
-    WEAPON_B(guiController.getWeaponB(), ItemType.WEAPON),
-    SHIELD_A(guiController.getShieldA(), ItemType.SHIELD, ItemType.WEAPON),
-    SHIELD_B(guiController.getShieldB(), ItemType.SHIELD, ItemType.WEAPON),
+    WEAPON_1ST_SET(guiController.getWeaponA(), ItemType.WEAPON),
+    WEAPON_2ND_SET(guiController.getWeaponB(), ItemType.WEAPON),
+    SHIELD_1ST_SET(guiController.getShieldA(), ItemType.SHIELD, ItemType.WEAPON),
+    SHIELD_2ND_SET(guiController.getShieldB(), ItemType.SHIELD, ItemType.WEAPON),
     HELMET(guiController.getHelmet(), ItemType.HELMET),
     ARMOR(guiController.getArmor(), ItemType.ARMOR),
     GLOVES(guiController.getGloves(), ItemType.GLOVES),
