@@ -245,7 +245,7 @@ public class PlayerDisplayer {
             displayEquipmentItem(currentPlayer.getWeapon1stSet(), ItemSlot.WEAPON_1ST_SET);
         }
         if (currentPlayer.getWeapon2ndSet() != null) {
-            displayEquipmentItem(currentPlayer.getWeapon1stSet(), ItemSlot.WEAPON_2ND_SET);
+            displayEquipmentItem(currentPlayer.getWeapon2ndSet(), ItemSlot.WEAPON_2ND_SET);
         }
         if (currentPlayer.getShield1stSet() != null) {
             displayEquipmentItem(currentPlayer.getShield1stSet(), ItemSlot.SHIELD_1ST_SET);
