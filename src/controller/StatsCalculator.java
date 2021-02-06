@@ -1,9 +1,6 @@
 package controller;
 
-import model.Modifying;
-import model.Player;
-import model.Skill;
-import model.SkillType;
+import model.*;
 import model.items.*;
 
 public class StatsCalculator {
@@ -219,6 +216,9 @@ public class StatsCalculator {
             hit += 50 + player.getArm();
         } else if (weapon.getWeaponType().isRange()) {
             hit += 50 + player.getEye() + weapon.getModifiersSum(ModifierType.HIT);
+            if (player.getAbilities().contains(Ability.EYE_WINK)) {
+                hit += Math.round(player.getFocus() / 10.);
+            }
         } else if (weapon.getWeaponType().equals(WeaponType.MAGES)) {
             hit += 50 + player.getFocus();
         } else {

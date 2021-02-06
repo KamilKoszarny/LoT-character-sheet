@@ -40,7 +40,7 @@ public enum Ability {
     WAR_PATH(Profession.SOLDIER, 0, "DROGA WOJNY", "+2 do maks. akcji po potyczce. Do momentu snu."),
     ATTACK(Profession.SOLDIER, 1, "DO ATAKU!", "+30 do ręki przed ciosem wręcz.\nMożliwe raz na 2 dni. Koszt 5PM."),
     DEFEND(Profession.SOLDIER, 2, "BROŃ SIĘ!", "+30 do zwinności przed spodziewanym ciosem.\nMożliwe raz na 2 dni. Koszt 5PM."),
-    BORN_TO_FIGHT(Profession.WARRIOR, 0, "URODZONY BY WALCZYĆ", "+3 do wszystkich testÓw podczas walki"),
+    BORN_TO_FIGHT(Profession.WARRIOR, 0, "URODZONY BY WALCZYĆ", "+3 do wszystkich testów podczas walki"),
     KNOW_MY_POWER(Profession.WARRIOR, 1, "ZNAJ MĄ SIŁĘ", "dodanie +4 obr. przed ciosem wręcz. Możliwe raz na 2 dni. Koszt 3PM."),
     NO_BREAK(Profession.WARRIOR, 2, "NIE ZŁAMIESZ MNIE", "odjęcie 4 obr. od spodziewanego ciosu. Możliwe raz na 2 dni. Koszt 3PM."),
     OBSTINATION(Profession.FANATIC, 0, "ZAWZIĘTOŚĆ", "+1 obr. każdy następny cios z rzędu (tj. bez żadnej akcji pomiędzy)"),

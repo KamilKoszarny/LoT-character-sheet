@@ -10,6 +10,7 @@ import model.items.*;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -182,6 +183,10 @@ public class Player implements Serializable {
                 return skill;
         }
         return null;
+    }
+
+    public List<Ability> getAbilities() {
+        return Arrays.stream(Ability.values()).filter(ability -> ability.getProfession().equals(profession)).collect(Collectors.toList());
     }
 
     public Set<Modifying> getModifyingObjects() {
