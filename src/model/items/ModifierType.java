@@ -75,7 +75,6 @@ public enum ModifierType {
     DMG_WIND("+<kvalue> obr. od powietrza"),
     DMG_EARTH("2 obr. od trucizn przez <kvalue> tur"),
     DMG_MAGIC("<value>% obr. magicznych"),
-    DMG_HIDDEN("<value>% obr. z ukrycia"),
     DMG_AGAINST_CHARGE("<value>% obr. przeciw szarży"),
 
     HIT("<value> do trafienia"),

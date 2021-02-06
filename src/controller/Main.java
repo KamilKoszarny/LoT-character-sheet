@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static GuiController guiController;
-    public static String version = "v0.3.2";
+    public static String version = "v0.3.3";
 
     @Override
     public void start(Stage primaryStage) throws Exception{

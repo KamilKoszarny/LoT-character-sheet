@@ -48,7 +48,7 @@ public enum WeaponModel implements ItemModel {
 
     //short
     KNIFE(WeaponType.SHORT,              2, 3, 1, 1,       false, 0, 2, 7, "Nóż"),
-    DAGGER(WeaponType.SHORT,             2, 4, 1, 1,       false, 0, 2, 9, "Sztylet", new Modifier(ModifierType.DMG_HIDDEN, 100)),
+    DAGGER(WeaponType.SHORT,             2, 4, 1, 1,       false, 0, 2, 9, "Sztylet"),
     CEREMONY_DAGGER(WeaponType.SHORT,    2, 4, 1, 1,       false, 0, 3, 13, "Ceremonialny sztylet", new Modifier(ModifierType.DMG_EARTH, 2)),
     SPIKE(WeaponType.SHORT,              4, 5, 1, 1,        false, 0, 3, 10, "Kolec", new Modifier(ModifierType.ARMOR_PIERCE, -20)),
     KNUCKLE_DUSTER(WeaponType.SHORT,     2, 3, 1, 1,       false, 0, 2, 17, "Kastet", new Modifier(ModifierType.STUNN, 1)),
