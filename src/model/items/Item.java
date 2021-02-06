@@ -1,6 +1,7 @@
 package model.items;
 
 import controller.PlayerDisplayer;
+import controller.PlayerUpdater;
 import javafx.scene.paint.Color;
 import lombok.Getter;
 import model.Modifying;
@@ -15,22 +16,22 @@ import java.util.stream.Collectors;
 @Getter
 public class Item implements Serializable, Modifying {
 
-    private final ItemType itemType;
-    private final ItemModel itemModel;
+    private final ItemType type;
+    private final ItemModel model;
 
-    private final int weight;
-    private int durability;
-    private int durabilityMax;
+    private int weight;
+    private int durabilityOrQuantity;
+    private int durabilityOrQuantityMax;
 
     protected List<Modifier> modifiers;
 
-    public Item(ItemType itemType, ItemModel itemModel) {
-        this.itemType = itemType;
-        this.itemModel = itemModel;
-        this.weight = itemModel.getWeight();
-        this.durability = itemModel.getDurabilityMax();
-        this.durabilityMax = itemModel.getDurabilityMax();
-        this.modifiers = new ArrayList<>(itemModel.getModifiers());
+    public Item(ItemType type, ItemModel model) {
+        this.type = type;
+        this.model = model;
+        this.weight = model.getWeight();
+        this.durabilityOrQuantity = model.getDurabilityMax();
+        this.durabilityOrQuantityMax = model.getDurabilityMax();
+        this.modifiers = new ArrayList<>(model.getModifiers());
     }
 
     public void setMagicModifier(MagicModifier newMagicModifier) {
@@ -80,7 +81,7 @@ public class Item implements Serializable, Modifying {
     }
 
     protected void updateStatsFromModifiers() {
-        durabilityMax = (int) (itemModel.getDurabilityMax() * (100 + getModifiersSum(ModifierType.ITEM_DURABILITY))/100.);
+        durabilityOrQuantityMax = (int) (model.getDurabilityMax() * (100 + getModifiersSum(ModifierType.ITEM_DURABILITY))/100.);
     }
 
     public boolean isMagic() {
@@ -137,9 +138,11 @@ public class Item implements Serializable, Modifying {
 
     public String getDescription() {
         boolean isUnbreakable = modifiers.stream().anyMatch(modifier -> modifier.getType().equals(ModifierType.ITEM_UNBREAKABLE));
-        return getPrefix() + itemModel.getNamePL() + getSuffix() +
+        String durabilityOrQuantity = isUnbreakable ? "" : (type.equals(ItemType.AMMUNITION) ? "\nIlość: " : "\nWytrzymałość: ") + this.durabilityOrQuantity + "/" + durabilityOrQuantityMax;
+
+        return getPrefix() + model.getNamePL() + getSuffix() +
                 "\nWaga: " + weight +
-                (isUnbreakable ? "" : "\nWytrzymałość: " + durability + "/" + durabilityMax) +
+                durabilityOrQuantity +
                 getSpecificDescription() +
                 getModifiersDescription();
     }
@@ -157,14 +160,22 @@ public class Item implements Serializable, Modifying {
     }
 
     public void durabilityMinus(int value) {
-        durability-= value;
+        durabilityOrQuantity -= value;
+        if (type.equals(ItemType.AMMUNITION)) {
+            weight = Math.round(Math.round(durabilityOrQuantity / 10.));
+            PlayerUpdater.updateLoad();
+        }
     }
 
     public void durabilityMax() {
-        durability = durabilityMax;
+        durabilityOrQuantity = durabilityOrQuantityMax;
+        if (type.equals(ItemType.AMMUNITION)) {
+            weight = Math.round(Math.round(durabilityOrQuantity / 10.));
+            PlayerUpdater.updateLoad();
+        }
     }
 
     public boolean breakIconShouldBeDisplayed() {
-        return durability / (double)durabilityMax <= PlayerDisplayer.DURABILITY_RATIO_FOR_ICON_DISPLAY;
+        return durabilityOrQuantity / (double) durabilityOrQuantityMax <= PlayerDisplayer.DURABILITY_RATIO_FOR_ICON_DISPLAY;
     }
 }

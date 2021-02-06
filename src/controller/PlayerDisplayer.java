@@ -1,24 +1,13 @@
 package controller;
 
-import controller.items.ItemHandler;
 import controller.items.ItemSlot;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import model.Ability;
 import model.Profession;
 import model.Skill;
 import model.horses.Horse;
-import model.items.*;
-import utils.GraphicUtils;
-import utils.Utils;
-
-import java.awt.*;
 
 import static controller.Main.guiController;
 import static controller.PlayerUpdater.currentPlayer;
@@ -240,165 +229,9 @@ public class PlayerDisplayer {
         guiController.getResistMindIllness().setText(Integer.toString(currentPlayer.getResistMindIllness()));
     }
 
-    private static void displayEquipment() {
-        if (currentPlayer.getWeapon1stSet() != null) {
-            displayEquipmentItem(currentPlayer.getWeapon1stSet(), ItemSlot.WEAPON_1ST_SET);
-        }
-        if (currentPlayer.getWeapon2ndSet() != null) {
-            displayEquipmentItem(currentPlayer.getWeapon2ndSet(), ItemSlot.WEAPON_2ND_SET);
-        }
-        if (currentPlayer.getShield1stSet() != null) {
-            displayEquipmentItem(currentPlayer.getShield1stSet(), ItemSlot.SHIELD_1ST_SET);
-        }
-        if (currentPlayer.getShield2ndSet() != null) {
-            displayEquipmentItem(currentPlayer.getShield2ndSet(), ItemSlot.SHIELD_2ND_SET);
-        }
-        if (currentPlayer.getHelmet() != null) {
-            displayEquipmentItem(currentPlayer.getHelmet(), ItemSlot.HELMET);
-        }
-        if (currentPlayer.getArmor() != null) {
-            displayEquipmentItem(currentPlayer.getArmor(), ItemSlot.ARMOR);
-        }
-        if (currentPlayer.getGloves() != null) {
-            displayEquipmentItem(currentPlayer.getGloves(), ItemSlot.GLOVES);
-        }
-        if (currentPlayer.getBoots() != null) {
-            displayEquipmentItem(currentPlayer.getBoots(), ItemSlot.BOOTS);
-        }
-        if (currentPlayer.getAmulet() != null) {
-            displayEquipmentItem(currentPlayer.getAmulet(), ItemSlot.AMULET);
-        }
-        if (currentPlayer.getRing1() != null) {
-            displayEquipmentItem(currentPlayer.getRing1(), ItemSlot.RING1);
-        }
-        if (currentPlayer.getRing2() != null) {
-            displayEquipmentItem(currentPlayer.getRing2(), ItemSlot.RING2);
-        }
-        if (currentPlayer.getBelt() != null) {
-            displayEquipmentItem(currentPlayer.getBelt(), ItemSlot.BELT);
-        }
-    }
-
-    public static void displayEquipmentItem(Item item, ItemSlot itemSlot) {
-        displayEquipmentItem(item, itemSlot, 1);
-        if (itemSlot.equals(ItemSlot.WEAPON_1ST_SET)) {
-            displaySecondHand(item, true);
-        } else if (itemSlot.equals(ItemSlot.WEAPON_2ND_SET)) {
-            displaySecondHand(item, false);
-        }
-    }
-
-    private static void displaySecondHand(Item item, boolean firstSet) {
-        Weapon weapon = firstSet ? currentPlayer.getWeapon1stSet() : currentPlayer.getWeapon2ndSet();
-        Shield shield = firstSet ? currentPlayer.getShield1stSet() : currentPlayer.getShield2ndSet();
-        Weapon weapon2ndHand = firstSet ? currentPlayer.getWeapon1stSet2ndHand() : currentPlayer.getWeapon2ndSet2ndHand();
-        ItemSlot shieldSlot = firstSet ? ItemSlot.SHIELD_1ST_SET : ItemSlot.SHIELD_2ND_SET;
-
-        if (item == null) {
-            if (shield == null && weapon2ndHand == null) {
-                displayEquipmentItem(null, shieldSlot);
-            }
-        } else if (weapon.getModel().isTwoHanded()) {
-            displayEquipmentItem(weapon, shieldSlot, 0.6);
-        } else if (shield == null && weapon2ndHand == null) {
-            displayEquipmentItem(null, shieldSlot);
-        }
-    }
-
-    public static void displayEquipmentItem(Item item, ItemSlot itemSlot, double opacity) {
-        MenuButton button = itemSlot.getMenuButton();
-        if (item == null) {
-            button.setOpacity(0);
-        } else {
-            Image img = prepareImage(item);
-            ImageView view = new ImageView(img);
-            if (item.isMagic()) {
-                GraphicUtils.addMagicColor(view, item.getColor());
-            }
-            button.setGraphic(view);
-            button.setOpacity(opacity);
-        }
-    }
-
-    public static void displayInventory() {
-        for (Item item: currentPlayer.getInventory().keySet()) {
-            displayInventoryItem(item, currentPlayer.getInventory().get(item));
-        }
-        changeInventoryItemsMouseTransparency(ItemHandler.isItemHeld());
-    }
-
-    public static void displayInventoryItem(Item item, Point slot) {
-        final MenuButton invButton = guiController.getInventory();
-        Image itemImage = prepareImage(item);
-        Rectangle rectangle = new Rectangle(
-                invButton.getLayoutX() + slot.x * ItemHandler.ITEM_SLOT_SIZE,
-                invButton.getLayoutY() + slot.y * ItemHandler.ITEM_SLOT_SIZE,
-                itemImage.getWidth(), itemImage.getHeight());
-        rectangle.setId(Integer.toString(item.hashCode()));
-        rectangle.setFill(new ImagePattern(itemImage));
-        if (item.isMagic()) {
-            GraphicUtils.addMagicColor(rectangle, item.getColor());
-        }
-
-        ItemHandler.initInventoryItemClick(item, rectangle);
-        EquipmentGuiInitializer.updateTooltip(item, null, rectangle);
-
-        guiController.getItemsPane().getChildren().add(rectangle);
-    }
-
-    public static void removeInventoryItem(Item item) {
-        guiController.getItemsPane().getChildren()
-                .removeIf(node -> node.getId() != null
-                        && node.getId().equals(Integer.toString(item.hashCode())));
-    }
-
-    public static void changeInventoryItemsMouseTransparency(boolean transparent) {
-        guiController.getItemsPane().getChildren().forEach(node -> {
-            if (Utils.isInteger(node.getId())) {
-                node.setMouseTransparent(transparent);
-            }
-        });
-    }
-
     public static void displayLoad() {
         guiController.getLoad().setText("" + (currentPlayer.getLoad() + currentPlayer.getLoadExtra()) + "/" + currentPlayer.getLoadMax());
         guiController.getLoadExtra().setText(Integer.toString(currentPlayer.getLoadExtra()));
-    }
-
-    public static Image prepareImage(Item item) {
-        String path = "images/items/";
-        switch (item.getItemType()) {
-            case WEAPON:
-                path += "weapons/" + ((Weapon) item).getModel().name() + ".png";
-                break;
-            case SHIELD:
-                path += "shields/" + ((Shield) item).getModel().name() + ".png";
-                break;
-            case HELMET:
-                path += "helmets/" + ((Helmet) item).getModel().name() + ".png";
-                break;
-            case ARMOR:
-                path += "armors/" + ((Armor) item).getModel().name() + ".png";
-                break;
-            case GLOVES:
-                path += "gloves/" + ((Gloves) item).getModel().name() + ".png";
-                break;
-            case BOOTS:
-                path += "boots/" + ((Boots) item).getModel().name() + ".png";
-                break;
-            case AMULET:
-                path += "amulets/" + ((Amulet) item).getModel().name() + ".png";
-                break;
-            case RING:
-                path += "rings/" + ((Ring) item).getModel().name() + ".png";
-                break;
-            case BELT:
-                path += "belts/" + ((Belt) item).getModel().name() + ".png";
-                break;
-        }
-        Image image = new Image(path);
-        image = GraphicUtils.addBrokenIcon(image, item.getDurability() / (double)item.getDurabilityMax());
-        return image;
     }
 
     public static void displayHorse() {
@@ -492,8 +325,8 @@ public class PlayerDisplayer {
 
         displayHorse();
 
-        displayEquipment();
-        displayInventory();
+        ItemsDisplayer.displayEquipment();
+        ItemsDisplayer.displayInventory();
         guiController.getExtraInventory().setText(currentPlayer.getExtraInventory());
         displayLoad();
         guiController.getGold().setText(currentPlayer.getGold());

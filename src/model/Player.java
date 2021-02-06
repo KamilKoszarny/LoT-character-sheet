@@ -1,6 +1,7 @@
 package model;
 
 import controller.EquipmentGuiInitializer;
+import controller.ItemsDisplayer;
 import controller.PlayerUpdater;
 import controller.items.ItemHandler;
 import controller.items.ItemSlot;
@@ -150,6 +151,8 @@ public class Player implements Serializable {
     private Weapon weapon2ndSet2ndHand;
     private Shield shield1stSet;
     private Shield shield2ndSet;
+    private Ammunition ammunition1stSet;
+    private Ammunition ammunition2ndSet;
     private Helmet helmet;
     private Armor armor;
     private Gloves gloves;
@@ -230,13 +233,17 @@ public class Player implements Serializable {
             case SHIELD_1ST_SET:
                 if (shield1stSet != null)
                     return shield1stSet;
-                else
+                else if (weapon1stSet2ndHand != null)
                     return weapon1stSet2ndHand;
+                else
+                    return ammunition1stSet;
             case SHIELD_2ND_SET:
                 if (shield2ndSet != null)
                     return shield2ndSet;
-                else
+                else if (weapon2ndSet2ndHand != null)
                     return weapon2ndSet2ndHand;
+                else
+                    return ammunition2ndSet;
             case HELMET: return helmet;
             case ARMOR: return armor;
             case GLOVES: return gloves;
@@ -250,15 +257,7 @@ public class Player implements Serializable {
     }
 
     public boolean trySetItem(Item item, ItemSlot itemSlot) {
-        if (item != null
-                && (!itemSlot.itemTypeCompatible(item.getItemType())
-                || itemSlot.equals(ItemSlot.WEAPON_1ST_SET) && ((Weapon) item).getModel().isTwoHanded() && (shield1stSet != null || weapon1stSet2ndHand != null)
-                || itemSlot.equals(ItemSlot.WEAPON_2ND_SET) && ((Weapon) item).getModel().isTwoHanded() && (shield2ndSet != null || weapon2ndSet2ndHand != null)
-                || itemSlot.equals(ItemSlot.SHIELD_1ST_SET) && weapon1stSet != null && weapon1stSet.getModel().isTwoHanded()
-                || itemSlot.equals(ItemSlot.SHIELD_2ND_SET) && weapon2ndSet != null && weapon2ndSet.getModel().isTwoHanded()
-        )) {
-            return false;
-        }
+        if (checkIfSetImpossible(item, itemSlot)) return false;
 
         switch (itemSlot) {
             case WEAPON_1ST_SET:
@@ -271,20 +270,26 @@ public class Player implements Serializable {
                 if (item == null) {
                     setShield1stSet(null);
                     setWeapon1stSet2ndHand(null);
+                    setAmmunition1stSet(null);
                 } else if (item instanceof Weapon) {
                     setWeapon1stSet2ndHand((Weapon) item);
-                } else {
+                } else if (item instanceof Shield){
                     setShield1stSet((Shield) item);
+                } else {
+                    setAmmunition1stSet((Ammunition) item);
                 }
                 break;
             case SHIELD_2ND_SET:
                 if (item == null) {
                     setShield2ndSet(null);
                     setWeapon2ndSet2ndHand(null);
+                    setAmmunition2ndSet(null);
                 } else if (item instanceof Weapon) {
                     setWeapon2ndSet2ndHand((Weapon) item);
-                } else {
+                } else if (item instanceof Shield){
                     setShield2ndSet((Shield) item);
+                } else {
+                    setAmmunition2ndSet((Ammunition) item);
                 }
                 break;
             case HELMET:
@@ -319,7 +324,27 @@ public class Player implements Serializable {
             EquipmentGuiInitializer.updateTooltip(null, itemSlot, null);
         }
         PlayerUpdater.updateAll();
+        ItemsDisplayer.displayEquipment();
         return true;
+    }
+
+    private boolean checkIfSetImpossible(Item item, ItemSlot itemSlot) {
+        boolean tryingPutTwoHandedWeaponWhen2ndHandBusy = item != null
+                && (itemSlot.equals(ItemSlot.WEAPON_1ST_SET) && ((Weapon) item).getModel().isTwoHanded() && (shield1stSet != null || weapon1stSet2ndHand != null)
+                || itemSlot.equals(ItemSlot.WEAPON_2ND_SET) && ((Weapon) item).getModel().isTwoHanded() && (shield2ndSet != null || weapon2ndSet2ndHand != null));
+        boolean tryingPutTo2ndHandWhenHasTwoHandedWeaponAndItsNotBowPlusArrowsOrCrossbowPlusBolts = item != null
+                && ((itemSlot.equals(ItemSlot.SHIELD_1ST_SET) && weapon1stSet != null && weapon1stSet.getModel().isTwoHanded()
+                && !(item.getModel().equals(AmmunitionModel.ARROWS) && weapon1stSet.getWeaponType().equals(WeaponType.BOW))
+                && !(item.getModel().equals(AmmunitionModel.BOLTS) && weapon1stSet.getWeaponType().equals(WeaponType.CROSSBOW)))
+                || (itemSlot.equals(ItemSlot.SHIELD_2ND_SET) && weapon2ndSet != null && weapon2ndSet.getModel().isTwoHanded()
+                && !(item.getModel().equals(AmmunitionModel.ARROWS) && weapon1stSet.getWeaponType().equals(WeaponType.BOW))
+                && !(item.getModel().equals(AmmunitionModel.BOLTS) && weapon1stSet.getWeaponType().equals(WeaponType.CROSSBOW)))
+        );
+        return item != null
+                && (!itemSlot.itemTypeCompatible(item.getType())
+                || tryingPutTwoHandedWeaponWhen2ndHandBusy
+                || tryingPutTo2ndHandWhenHasTwoHandedWeaponAndItsNotBowPlusArrowsOrCrossbowPlusBolts
+        );
     }
 
     public void addToInventory(Item item, Point slot) {

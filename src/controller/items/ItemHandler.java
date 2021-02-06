@@ -1,7 +1,7 @@
 package controller.items;
 
 import controller.EquipmentGuiInitializer;
-import controller.PlayerDisplayer;
+import controller.ItemsDisplayer;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
@@ -72,7 +72,7 @@ public class ItemHandler {
 
     public static void tryCatchItem(ItemSlot itemSlot, Point clickPoint) {
         Item item = currentPlayer.getItem(itemSlot);
-        Image itemImage = PlayerDisplayer.prepareImage(item);
+        Image itemImage = ItemsDisplayer.prepareImage(item);
         holdPoint = holdPoint(itemSlot, itemImage, clickPoint);
         if (holdPoint == null) {
             return;
@@ -82,7 +82,6 @@ public class ItemHandler {
         drawHeldItem(new Point(itemSlot.getX() + clickPoint.x, itemSlot.getY() + clickPoint.y));
 
         currentPlayer.trySetItem(null, itemSlot);
-        PlayerDisplayer.displayEquipmentItem(null, itemSlot);
     }
 
     private static void catchItem(Item item, Image itemImage) {
@@ -97,12 +96,11 @@ public class ItemHandler {
         } else {
             heldItemRectangle.setEffect(null);
         }
-        PlayerDisplayer.changeInventoryItemsMouseTransparency(true);
+        ItemsDisplayer.changeInventoryItemsMouseTransparency(true);
     }
 
     public static boolean tryPutItem(ItemSlot itemSlot, Point clickPoint) {
         if (!itemSlot.equals(ItemSlot.INVENTORY) && currentPlayer.trySetItem(heldItem, itemSlot)) {
-            PlayerDisplayer.displayEquipmentItem(heldItem, itemSlot);
             hideHeldItem();
             return true;
         } else if (itemSlot.equals(ItemSlot.INVENTORY)) {
@@ -114,17 +112,17 @@ public class ItemHandler {
             if (itemsUnderneath.size() == 0) {
                 currentPlayer.addToInventory(heldItem, inventorySlot);
                 hideHeldItem();
-                PlayerDisplayer.displayInventory();
+                ItemsDisplayer.displayInventory();
                 return true;
             } else if (itemsUnderneath.size() == 1) {
                 Item underneathItem = itemsUnderneath.iterator().next();
-                Image itemImage = PlayerDisplayer.prepareImage(underneathItem);
+                Image itemImage = ItemsDisplayer.prepareImage(underneathItem);
                 currentPlayer.addToInventory(heldItem, inventorySlot);
                 holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
                 catchItem(underneathItem, itemImage);
                 currentPlayer.removeFromInventory(underneathItem);
-                PlayerDisplayer.removeInventoryItem(underneathItem);
-                PlayerDisplayer.displayInventory();
+                ItemsDisplayer.removeInventoryItem(underneathItem);
+                ItemsDisplayer.displayInventory();
                 heldItemRectangle.toFront();
                 return true;
             }
@@ -135,7 +133,7 @@ public class ItemHandler {
     private static void changeItem(ItemSlot itemSlot, Point clickPoint) {
         Item underneathItem = currentPlayer.getItem(itemSlot);
         if (tryPutItem(itemSlot, clickPoint)) {
-            Image itemImage = PlayerDisplayer.prepareImage(underneathItem);
+            Image itemImage = ItemsDisplayer.prepareImage(underneathItem);
             holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
             catchItem(underneathItem, itemImage);
             drawHeldItem(new Point(itemSlot.getX() + clickPoint.x, itemSlot.getY() + clickPoint.y));
@@ -154,7 +152,7 @@ public class ItemHandler {
         heldItemRectangle.setWidth(0);
         heldItemRectangle.setHeight(0);
         heldItemRectangle.setVisible(false);
-        PlayerDisplayer.changeInventoryItemsMouseTransparency(false);
+        ItemsDisplayer.changeInventoryItemsMouseTransparency(false);
     }
 
     private static Point holdPoint(ItemSlot itemSlot, Image itemImage, Point clickPoint) {
@@ -197,7 +195,7 @@ public class ItemHandler {
     }
 
     private static Set<Point> itemSlots(Item item, Point slot) {
-        Image itemImage = PlayerDisplayer.prepareImage(item);
+        Image itemImage = ItemsDisplayer.prepareImage(item);
         int itemSizeX = (int) Math.round(itemImage.getWidth() / ITEM_SLOT_SIZE);
         int itemSizeY = (int) Math.round(itemImage.getHeight() / ITEM_SLOT_SIZE);
         Set<Point> itemSlots = new HashSet<>();
@@ -217,13 +215,13 @@ public class ItemHandler {
         ContextMenu invItemContextMenu = EquipmentGuiInitializer.createContextMenu(item, null, rectangle);
         rectangle.setOnMousePressed(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                Image itemImage = PlayerDisplayer.prepareImage(item);
+                Image itemImage = ItemsDisplayer.prepareImage(item);
                 holdPoint = new Point((int) itemImage.getWidth() / 2, (int) itemImage.getHeight() / 2);
                 catchItem(item, itemImage);
                 drawHeldItem(new Point((int) (rectangle.getLayoutX() + event.getX()), (int) (rectangle.getLayoutY() + event.getY())));
                 currentPlayer.removeFromInventory(item);
-                PlayerDisplayer.removeInventoryItem(item);
-                PlayerDisplayer.displayInventory();
+                ItemsDisplayer.removeInventoryItem(item);
+                ItemsDisplayer.displayInventory();
             } else {
                 invItemContextMenu.show(rectangle, event.getScreenX(), event.getScreenY());
             }
@@ -236,7 +234,7 @@ public class ItemHandler {
                 Point slot = new Point(x, y);
                 if (!itemOutOfInventory(item, slot) && itemsUnderneath(item, slot).size() == 0) {
                     currentPlayer.addToInventory(item, slot);
-                    PlayerDisplayer.displayInventory();
+                    ItemsDisplayer.displayInventory();
                     return;
                 }
             }

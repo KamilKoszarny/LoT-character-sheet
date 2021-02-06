@@ -13,7 +13,8 @@ public enum ItemType {
     BOOTS("Buty"),
     BELT("Pasy"),
     AMULET("Amulety"),
-    RING("Pierścienie");
+    RING("Pierścienie"),
+    AMMUNITION("Amunicja");
 
 
     private final String namePL;

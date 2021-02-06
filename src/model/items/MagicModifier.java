@@ -254,7 +254,7 @@ public enum MagicModifier {
 
     public boolean applicableForType(Item item, ItemSlot itemSlot) {
         if (item != null) {
-            return itemTypes.contains(item.getItemType());
+            return itemTypes.contains(item.getType());
         }
         if (itemSlot != null) {
             for (ItemType itemType: itemTypes) {
