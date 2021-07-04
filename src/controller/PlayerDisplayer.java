@@ -305,6 +305,7 @@ public class PlayerDisplayer {
         displaySkills();
         displayTraits();
         displayAbilities();
+        guiController.getOther().setText(currentPlayer.getOther());
 
         displayHitPoints();
         displayActions();

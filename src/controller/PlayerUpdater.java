@@ -72,6 +72,7 @@ public class PlayerUpdater {
         guiController.getFamily().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setFamily(newValue));
         guiController.getAppearance().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setAppearance(newValue));
         guiController.getHistory().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setHistory(newValue));
+        guiController.getOther().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setOther(newValue));
         guiController.getSatiety().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setSatiety(newValue));
         guiController.getAlertness().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setAlertness(newValue));
         guiController.getIllnesses().textProperty().addListener((observable, oldValue, newValue) -> currentPlayer.setIllnesses(newValue));

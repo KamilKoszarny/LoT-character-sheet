@@ -347,6 +347,9 @@ public class GuiController {
     private Label abilityIII2Description;
 
     @FXML
+    private TextArea other;
+
+    @FXML
     private TextField hitPoints;
 
     @FXML

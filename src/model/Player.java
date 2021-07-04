@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 @Data
 public class Player implements Serializable {
 
+    static final long serialVersionUID = 1L;
+
     private String fullname;
     private Profession profession;
     private Race race;
@@ -69,6 +71,7 @@ public class Player implements Serializable {
     private String abilityII2Time;
     private String abilityIII1Time;
     private String abilityIII2Time;
+    private String other;
 
     private int hitPoints;
     private int hitPointsMax;
